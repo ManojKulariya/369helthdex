@@ -1,0 +1,89 @@
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba( 255, 255, 255, .8) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+
+body.loading, .modal {
+    overflow: hidden;
+}
+
+/* the login page css start here */
+
+.logo {
+    height: 200px;
+    margin: 6px -8px 8px -14px;
+    /* width: 100px; */
+}
+
+.bag {
+    margin: 0px;
+    max-width: 100%;
+}
+
+#box {
+    /* position: absolute;
+    TOP: 100PX;
+    left: 39px; */
+    border: 2px solid gray;
+    background-color: aliceblue;
+    border-radius: 10px;
+    width: 300px;
+    /* margin: 100px 0px 20px 22px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 115px auto;
+    justify-content: center;
+}
+
+input:hover {
+    transform: scale(1.001);
+}
+
+.over {
+    height: 600px;
+    width: 500px;
+    background-color: aliceblue;
+    z-index: 1;
+}
+
+.bottom {
+    font-weight: 100;
+    color: black;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .logoutdiv {
+    float: right;
+} */
+
+/* appointment page css starts here */
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+
+/* body.loading, .modal {
+ display: block;
+} */

@@ -1,0 +1,327 @@
+@extends('front.layout')
+
+<?php
+
+$res_curr = explode("-", $setting->currency);
+
+$sharp70 = asset('public/front/Docpro/assets/images/shape/shape-70.png');
+
+$sharp71 = asset('public/front/Docpro/assets/images/shape/shape-71.png');
+
+$cityName = ucfirst(session()->get('cityName'));
+
+if ($cityName == '') {
+
+   $cityName = 'Jaipur';
+   
+
+}
+$description = '';
+   if($data->description){
+   $description = COMMAN::replace($data->description, $cityName);
+   }
+?>
+
+@section('title')
+
+Book {{isset($data->name)?$data->name:''}} Test in {{$cityName}} | Reliable Diagnostic
+
+@stop
+ 
+@section('meta-data')
+
+<link rel="canonical" href="{{ url()->current() }}">
+
+<meta name="description"
+
+   content="Book {{isset($data->name)?$data->name:''}} Online in {{$cityName}} with Free Sample Home Collection, Check {{isset($data->name)?$data->name:''}} Symptoms, Price">
+
+<meta name="keywords"  content="{{isset($data->name)?$data->name:''}} in {{$cityName}}, {{isset($data->name)?$data->name:''}} symptoms, {{isset($data->name)?$data->name:''}} price">
+
+<meta name="robots" content="index, follow" />
+
+<meta property="og:type" content="website" />
+
+<meta property="og:url" content="{{ url()->current() }}" />
+
+<meta property="og:title"
+
+   content="Book {{isset($data->name)?$data->name:''}} Test in {{$cityName}} | Reliable Diagnostic" />
+
+<meta property="og:image" content="{{asset('public/img/').'/'.$setting->logo}}" />
+
+<meta property="og:image:width" content="250px" />
+
+<meta property="og:image:height" content="250px" />
+
+<meta property="og:site_name" content="{{__('message.site_name')}}" />
+
+<meta property="og:description"
+
+   content="Book {{isset($data->name)?$data->name:''}} Online in {{$cityName}} with Free Sample Home Collection, Check {{isset($data->name)?$data->name:''}} Symptoms, Price" />
+
+<meta property="og:keyword"
+
+   content="{{isset($data->name)?$data->name:''}} in {{$cityName}}, {{isset($data->name)?$data->name:''}} symptoms, {{isset($data->name)?$data->name:''}} price" />
+
+<link rel="shortcut icon" href="{{asset('public/img/').'/'.$setting->favicon}}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+@stop
+
+@section('content')
+
+
+
+<section class="page-title-two">
+   <div class="lower-content">
+
+      <div class="auto-container">
+
+         <ul class="bread-crumb clearfix">
+
+            <li><a href="{{route('home')}}">{{__('message.Home')}}</a></li>
+
+            <li>{{isset($data->name)?$data->name:''}} ({{isset($data->test_short_code)?$data->test_short_code :''}})
+
+               {{__('message.Detail')}}</li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+</section>
+
+<section class="doctor-details bg-color-3">
+
+   <div class="auto-container">
+
+      <div class="row clearfix">
+
+         <div class="col-lg-12 col-md-12 col-sm-12 content-side">
+
+            <div class="clinic-details-content doctor-details-content">
+                <div class="clinic-block-one">
+                   <div  class="inner-box2">
+                   <div class="content-box">
+                             <div class="col-12 row px-4 py-4">
+                                 <div class="col-12 col-md-8 col-lg-8">
+                                    <ul class="name-box clearfix col-12 mx-0 px-0">
+                                       <li class="name">
+                                          <h3 id="package_name" class="white">{{isset($data->name)?$data->name:''}} In {{ ucfirst($cityName)}}</h3>
+                                       </li>
+                                       <li><i class="icon-Trust-1"></i></li>
+                                       <li><i class="icon-Trust-2"></i></li>
+                                    </ul>
+                                   
+                                    <div class="col-12 row">
+                                      <div class="rating-box clearfix px-4 py-1 mb-2" style="background-color:white;border-radius:5px;">
+                                         <ul class="rating clearfix ">
+                                            <?php 
+                                            $a = explode(".",$data->avg_review);
+                                            
+                                               if(isset($a[0])){
+                                                   for($i=0;$i<$a[0];$i++){
+                                                        echo '<li><i class="icon-Star"></i></li>';
+                                                   }
+                                                   if(isset($a[1])){
+                                                      for($j=$i;$j<5;$j++){
+                                                           echo '<li><i class="icon-Star"></i></li>';
+                                                      }
+                                                   }
+                                               }else{
+                                                  for($i=0;$i<5;$i++){
+                                                        echo '<li><i class="icon-Star light"></i></li>';
+                                                  }
+                                               }
+                                            ?>
+                                            <!--<li><a href="#">({{$data->total_review}} {{__("message.Reviews")}})</a></li>-->
+                                            <li>{{$data->avg_review}}/5</li>
+                                         </ul>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 
+
+                                <div class="col-12 col-md-4 col-lg-4 mt-1 row text-right-custom" >
+                                   @if($data->price > 0)
+                                       <div class="pl-2 stretched-text" style="display: flex; flex-direction: column; align-items: center; text-align: center; font-size: 18px;">
+                                            <h6 class="white " style="font-weight: bold;">Offer Price</h6>
+                                            <h4 style="font-weight: bold; color: #eb0401 !important;">₹ {{$data->mrp}}/-</h4>
+                                            <h6 class="white" style="text-decoration: line-through;font-weight: bold;">₹ {{$data->price}}/-</h6>
+                                        </div>
+                                        <div style="margin-top: 16px;"> 
+                                            <a href="{{ route('checkouts', ['id' => $data->id, 'type' => 2, 'parameter' => 1]) }}" 
+                                               class="book_now ml-5 stretched-text" 
+                                               style="display: inline-block; text-align: center;padding: 2px 15px;">
+                                                {{ __('message.Book Now') }}
+                                            </a>
+                                        </div>
+                                    @else
+                                        <div class="pl-2" style="display: flex; flex-direction: column; align-items: center; text-align: center; ">
+                                            <h6 class="white" style="font-weight: bold;">Price</h6>
+                                            <h4 style="font-weight: bold; color: #eb0401 !important;">₹ {{$data->mrp}}/-</h4>
+                                        </div>
+                                        <div style="margin-top: 8px;"> 
+                                            <a href="{{ route('checkouts', ['id' => $data->id, 'type' => 2, 'parameter' => 1]) }}" 
+                                               class="book_now ml-4" 
+                                               style="display: inline-block; text-align: center;padding: 5px 15px;">
+                                                {{ __('message.Book Now') }}
+                                            </a>
+                                        </div>
+                                  
+                                    @endif
+                                </div>
+                                 </div>
+                             <div class="col-12 pt-2" style="background-color:white !important;">
+                                 <div class="content-collapse">
+                                     <div class="descriptiontxt">
+                                      <?= html_entity_decode($description);?>
+                                    </div>
+                                 </div>
+                                 <button class="read-more-btn">Read More</button>
+                             </div>
+                             <div class="col-12 mx-0 px-0 row" style="background-color:white !important;">
+                                <div class="col-md-3 col-lg-3  col-6 row p-4 mx-0" >
+                                    <figure class="icon-box-i"><i class="fa fa-flask"></i></figure>
+                                    <h6 class="pl-2 usplevel"><b>1</b> Parameter <br>Included</h6>
+                                </div>
+                                <div class="col-md-3 col-6 row p-4 mx-0" >
+                                    <figure class="icon-box-i"><i class="fa fa-car"></i></figure>
+                                        @if(isset($data->sample_collection)&&$data->sample_collection=='1')
+                                            <h6 class="pl-2 usplevel"><b>{{__('message.Free')}}</b> Sample <br>Collection</h6>
+                                        @endif
+                                </div>
+                                <div class="col-md-3 col-6 row p-4 mx-0">
+                                    <figure class="icon-box-i"><i class="fa fa-stethoscope"></i></figure>
+                                    <h6 class="pl-2 usplevel"><b>{{__('message.Free')}}</b> Doctor <br>Consultation</h6>
+                                </div>
+                                <div class="col-md-3 col-6 row p-4 mx-0">
+                                    <figure class="icon-box-i"><i class="fa fa-thumbs-up"></i></figure>
+                                    <h6 class="pl-2 usplevel">{{__('message.Test booked')}}<br><b>100+</b></h6>
+                                </div>
+                             </div>
+                            
+                                
+                             <div class="custom-row py-4">
+                                    <div class="custom-col">
+                                        <p>{{ __('message.Report Time') }}:<br><strong>{{ isset($data->report_time) ? $data->report_time : '' }}</strong></p>
+                                    </div>
+                                    <div class="custom-col">
+                                        <p>{{ __('message.Fasting Time') }}:<br><strong>
+                                            @if(isset($data->fasting_time) && $data->fasting_time == '0')
+                                                {{ __('message.Free') }}
+                                            @elseif(isset($data->fasting_time) && $data->fasting_time == '1')
+                                                {{ isset($data->fast_time) ? $data->fast_time : 'No' }}
+                                            @endif</strong>
+                                        </p>
+                                    </div>
+                                    <div class="custom-col">
+                                        <p>Recommended Test:<br><strong>{{ isset($data->test_recommended_for) ? $data->test_recommended_for : '' }}</strong></p>
+                                    </div>
+                                    <div class="custom-col">
+                                        <p>{{ __('message.Recommended age') }}:<br><strong>{{ isset($data->test_recommended_for_age) ? $data->test_recommended_for_age : '' }}</strong></p>
+                                    </div>
+                                </div>
+                             <div class="col-12 px-4 py-4" style="background-color:white;align-items: center;text-align: center; "> 
+                                <div>
+                                    <a href="{{ route('checkouts', ['id' => $data->id, 'type' => 2, 'parameter' => 1]) }}" 
+                                       class="book_now" 
+                                       style="display: inline-block; text-align: center;padding: 5px 21px;">
+                                        {{ __('message.Book Now') }}
+                                    </a>
+                                    <a href="javascript:void(0)"  id="request-button" 
+                                       class="book_now ml-2" 
+                                       style="display: inline-block; text-align: center;padding: 5px 21px;">
+                                        Get a free call
+                                    </a>
+                                </div>
+                             </div>
+                      </div>
+                   </div>
+                  </div>
+
+                @if(count($data->package_frq)>0)
+               <div class="tabs-box">
+
+
+                  <div class="tabs-content">
+                      
+                     <div class="tab ctive-tab" id="tab-3">
+
+                        <div class="location-box">
+
+                           <div class="content_block_5">
+
+                              <div class="content-box">
+
+                                 <ul class="accordion-box">
+
+                                    @if(count($data->package_frq)>0)
+
+                                    @foreach($data->package_frq as $dp)
+
+                                    <li class="accordion block">
+
+                                       <div class="acc-btn">
+
+                                          <div class="icon-outer"></div>
+
+                                          <h4>{{$dp->question}}</h4>
+
+                                       </div>
+
+                                       <div class="acc-content">
+
+                                          <div class="text">
+
+                                             <p>{{$dp->ans}}</p>
+
+                                          </div>
+
+                                       </div>
+
+                                    </li>
+
+                                    @endforeach
+
+                                    @endif
+
+                                 </ul>
+
+                              </div>
+
+                           </div>
+
+                        </div>
+
+                     </div>
+
+                  </div>
+
+               </div>
+                @endif    
+            </div>
+            @include('front.how_book')
+         </div>
+
+      </div>
+
+   </div>
+
+</section>
+
+
+
+@stop
+
+@section('footer')
+
+
+
+
+
+@stop

@@ -1,0 +1,1780 @@
+[08-Sep-2023 18:11:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Oct-2023 20:56:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Oct-2023 20:56:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Oct-2023 20:56:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[25-Oct-2023 01:40:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[25-Oct-2023 01:40:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[25-Oct-2023 01:40:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[08-Nov-2023 05:45:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[08-Nov-2023 05:45:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[13-Dec-2023 16:00:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[13-Dec-2023 16:00:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[29-Dec-2023 22:48:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[29-Dec-2023 22:48:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[06-Jan-2024 19:48:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Jan-2024 15:27:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Jan-2024 15:27:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Jan-2024 15:27:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Jan-2024 15:27:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Jan-2024 18:18:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Jan-2024 18:18:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Jan-2024 18:18:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[10-Jan-2024 20:47:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[10-Jan-2024 20:47:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[11-Jan-2024 01:48:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[12-Jan-2024 08:08:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[13-Jan-2024 12:34:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[16-Jan-2024 09:36:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[16-Jan-2024 09:37:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[28-Jan-2024 20:25:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[03-Feb-2024 20:16:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[03-Feb-2024 20:16:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[08-Feb-2024 01:57:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[10-Feb-2024 16:29:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[10-Feb-2024 16:37:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[12-Feb-2024 12:59:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[12-Feb-2024 13:10:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[14-Feb-2024 21:01:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[14-Feb-2024 21:09:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[19-Mar-2024 22:25:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[19-Mar-2024 22:32:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[20-Mar-2024 05:41:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[27-Mar-2024 21:58:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[27-Mar-2024 21:58:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[20-Apr-2024 03:02:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[20-Apr-2024 03:33:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[03-May-2024 10:36:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[03-May-2024 10:36:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[06-May-2024 09:26:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[06-May-2024 09:26:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[18-May-2024 10:19:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[18-May-2024 20:25:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[29-May-2024 20:41:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[29-May-2024 21:02:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[24-Jun-2024 17:03:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Jun-2024 17:03:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Jun-2024 17:03:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Jun-2024 17:03:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Jun-2024 17:03:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Jun-2024 17:03:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Jun-2024 17:03:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Jun-2024 17:03:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[05-Jul-2024 03:45:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[05-Jul-2024 03:46:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[05-Jul-2024 03:49:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[05-Jul-2024 03:51:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[05-Jul-2024 03:52:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[05-Jul-2024 03:54:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[05-Jul-2024 03:55:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[05-Jul-2024 03:56:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Jul-2024 09:58:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[09-Jul-2024 09:58:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[13-Jul-2024 22:58:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[13-Jul-2024 22:59:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[13-Jul-2024 22:59:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[13-Jul-2024 23:02:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[13-Jul-2024 23:03:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[13-Jul-2024 23:05:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[13-Jul-2024 23:05:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[13-Jul-2024 23:07:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[17-Jul-2024 23:38:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[22-Jul-2024 00:56:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[22-Jul-2024 00:56:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[22-Jul-2024 09:35:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[22-Jul-2024 17:49:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[22-Jul-2024 17:49:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[22-Jul-2024 17:50:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[22-Jul-2024 17:51:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[22-Jul-2024 17:52:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[22-Jul-2024 17:52:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[22-Jul-2024 17:52:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[22-Jul-2024 17:53:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[01-Aug-2024 02:47:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[01-Aug-2024 02:47:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[08-Aug-2024 06:05:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[08-Aug-2024 06:15:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[08-Aug-2024 06:47:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[08-Aug-2024 06:47:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[08-Aug-2024 06:52:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/services.php on line 18
+[08-Aug-2024 06:53:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/session.php on line 21
+[08-Aug-2024 06:53:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/rdccare/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/view.php on line 17
+[08-Aug-2024 06:53:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/queue.php on line 16
+[08-Aug-2024 06:53:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/broadcasting.php on line 18
+[08-Aug-2024 06:53:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/logging.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/logging.php on line 20
+[09-Aug-2024 23:40:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Aug-2024 23:41:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Aug-2024 23:41:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Aug-2024 23:44:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Aug-2024 23:45:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Aug-2024 23:47:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Aug-2024 23:48:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[09-Aug-2024 23:49:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[15-Aug-2024 14:31:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[15-Aug-2024 14:42:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[15-Aug-2024 15:15:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[15-Aug-2024 15:15:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[15-Aug-2024 15:19:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/services.php on line 18
+[15-Aug-2024 15:20:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/session.php on line 21
+[15-Aug-2024 15:20:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/rdccare/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/view.php on line 17
+[15-Aug-2024 15:20:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/queue.php on line 16
+[15-Aug-2024 15:20:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/broadcasting.php on line 18
+[15-Aug-2024 15:20:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/logging.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/logging.php on line 20
+[17-Aug-2024 10:58:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[17-Aug-2024 10:58:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[17-Aug-2024 10:58:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[17-Aug-2024 11:02:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[17-Aug-2024 11:03:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[17-Aug-2024 11:05:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[17-Aug-2024 11:06:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[17-Aug-2024 11:07:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[21-Aug-2024 05:11:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[24-Aug-2024 16:56:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Aug-2024 17:03:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Aug-2024 17:04:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[01-Oct-2024 02:33:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[01-Oct-2024 02:40:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[01-Oct-2024 02:41:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[05-Nov-2024 07:27:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[05-Jan-2025 11:48:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[01-Feb-2025 23:06:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[01-Feb-2025 23:06:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[01-Feb-2025 23:06:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[01-Feb-2025 23:06:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[01-Feb-2025 23:06:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/queue.php on line 16
+[01-Feb-2025 23:06:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/session.php on line 21
+[01-Feb-2025 23:06:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/rdccare/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/view.php on line 17
+[01-Feb-2025 23:06:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/filesystems.php on line 16
+[01-Feb-2025 23:06:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/services.php on line 18
+[01-Feb-2025 23:07:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/broadcasting.php on line 18
+[18-Feb-2025 03:40:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[20-Feb-2025 02:11:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[21-Feb-2025 19:40:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[02-Apr-2025 19:32:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[04-Apr-2025 21:44:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[15-Apr-2025 09:31:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/services.php on line 18
+[15-Apr-2025 09:32:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[15-Apr-2025 09:34:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[15-Apr-2025 09:35:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[15-Apr-2025 09:35:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/filesystems.php on line 16
+[15-Apr-2025 09:35:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/rdccare/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/view.php on line 17
+[10-May-2025 17:22:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[17-May-2025 23:14:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[17-May-2025 23:14:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[17-May-2025 23:14:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[17-May-2025 23:14:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[29-May-2025 06:17:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[29-May-2025 06:25:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[29-May-2025 06:28:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[29-May-2025 06:28:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/filesystems.php on line 16
+[29-May-2025 06:28:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/rdccare/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/view.php on line 17
+[15-Jun-2025 07:23:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[15-Jun-2025 07:23:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[15-Jun-2025 07:24:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[15-Jun-2025 07:24:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[15-Jun-2025 15:17:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[15-Jun-2025 15:19:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[15-Jun-2025 16:06:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[15-Jun-2025 16:06:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[16-Jun-2025 02:27:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[16-Jun-2025 02:27:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[16-Jun-2025 02:28:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[16-Jun-2025 02:28:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[18-Jun-2025 06:02:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[18-Jun-2025 06:02:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[18-Jun-2025 06:03:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[18-Jun-2025 06:03:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[20-Jun-2025 03:48:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[20-Jun-2025 03:48:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[20-Jun-2025 03:48:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[20-Jun-2025 03:49:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[22-Jun-2025 04:10:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[22-Jun-2025 04:10:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[22-Jun-2025 04:11:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[22-Jun-2025 04:11:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[23-Jun-2025 06:39:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[23-Jun-2025 06:39:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/broadcasting.php on line 18
+[23-Jun-2025 06:39:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[23-Jun-2025 06:39:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[23-Jun-2025 06:39:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[23-Jun-2025 06:39:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/broadcasting.php on line 18
+[23-Jun-2025 06:39:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[23-Jun-2025 06:39:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[23-Jun-2025 06:39:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/filesystems.php on line 16
+[23-Jun-2025 06:40:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/filesystems.php on line 16
+[23-Jun-2025 06:40:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[23-Jun-2025 06:40:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[23-Jun-2025 06:40:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/queue.php on line 16
+[23-Jun-2025 06:40:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/queue.php on line 16
+[23-Jun-2025 06:40:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/services.php on line 18
+[23-Jun-2025 06:40:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/session.php on line 21
+[23-Jun-2025 06:40:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/services.php on line 18
+[23-Jun-2025 06:40:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/rdccare/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/view.php on line 17
+[23-Jun-2025 06:41:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/session.php on line 21
+[23-Jun-2025 06:41:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/rdccare/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/view.php on line 17
+[30-Jun-2025 13:37:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[30-Jun-2025 13:37:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[30-Jun-2025 13:37:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[30-Jun-2025 13:37:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[03-Jul-2025 07:22:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[03-Jul-2025 07:22:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[03-Jul-2025 07:22:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[03-Jul-2025 07:23:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[06-Jul-2025 05:28:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[06-Jul-2025 05:28:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[06-Jul-2025 05:32:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[09-Jul-2025 09:44:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[12-Jul-2025 15:06:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[12-Jul-2025 15:06:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[12-Jul-2025 15:06:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/services.php on line 18
+[14-Jul-2025 10:15:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[15-Jul-2025 03:57:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[15-Jul-2025 03:58:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/broadcasting.php on line 18
+[15-Jul-2025 03:58:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[15-Jul-2025 03:59:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[15-Jul-2025 04:00:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/filesystems.php on line 16
+[15-Jul-2025 04:02:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/queue.php on line 16
+[15-Jul-2025 04:03:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/services.php on line 18
+[15-Jul-2025 04:03:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/session.php on line 21
+[15-Jul-2025 04:06:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/rdccare/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/view.php on line 17
+[23-Jul-2025 21:49:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[23-Jul-2025 21:50:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[23-Jul-2025 21:50:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[31-Jul-2025 18:31:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[31-Jul-2025 18:31:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[01-Aug-2025 09:25:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[05-Aug-2025 07:01:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[07-Aug-2025 17:04:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[07-Aug-2025 17:05:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[10-Aug-2025 12:31:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/services.php on line 18
+[10-Aug-2025 13:02:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[10-Aug-2025 13:02:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[11-Aug-2025 10:31:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[11-Aug-2025 10:32:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[11-Aug-2025 14:00:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[11-Aug-2025 14:00:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[11-Aug-2025 14:01:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[11-Aug-2025 14:02:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[11-Aug-2025 14:43:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[11-Aug-2025 14:43:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[23-Aug-2025 02:46:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/broadcasting.php on line 18
+[23-Aug-2025 02:46:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[23-Aug-2025 02:46:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/rdccare/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/view.php on line 17
+[23-Aug-2025 02:46:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/filesystems.php on line 16
+[23-Aug-2025 02:46:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[23-Aug-2025 02:46:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/session.php on line 21
+[23-Aug-2025 02:46:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/queue.php on line 16
+[23-Aug-2025 02:46:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/database.php on line 18
+[23-Aug-2025 02:46:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/services.php on line 18
+[23-Aug-2025 02:46:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/cache.php on line 18
+[24-Aug-2025 11:08:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/app.php on line 16
+[24-Aug-2025 11:08:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/mail.php on line 16
+[24-Aug-2025 11:09:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/queue.php on line 16
+[24-Aug-2025 11:09:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/rdccare/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/view.php on line 17
+[24-Aug-2025 11:09:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/filesystems.php on line 16
+[24-Aug-2025 11:11:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/rdccare/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/rdccare/public_html/config/broadcasting.php on line 18
+[25-Oct-2025 13:59:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/mshpathlabs/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/mshpathlabs/public_html/config/app.php on line 16
+[25-Oct-2025 13:59:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/mshpathlabs/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/mshpathlabs/public_html/config/mail.php on line 16
+[25-Oct-2025 13:59:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/mshpathlabs/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/mshpathlabs/public_html/config/filesystems.php on line 16
+[25-Oct-2025 13:59:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/mshpathlabs/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/mshpathlabs/public_html/config/services.php on line 18
+[25-Oct-2025 13:59:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/mshpathlabs/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/mshpathlabs/public_html/config/broadcasting.php on line 18
+[09-Nov-2025 00:24:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/database.php on line 18
+[09-Nov-2025 00:24:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/cache.php on line 18
+[09-Nov-2025 00:25:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/session.php on line 21
+[09-Nov-2025 00:25:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/shreelaboratory/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/view.php on line 17
+[09-Nov-2025 00:25:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/mail.php on line 16
+[09-Nov-2025 00:25:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/app.php on line 16
+[09-Nov-2025 00:25:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/queue.php on line 16
+[09-Nov-2025 00:25:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/broadcasting.php on line 18
+[09-Nov-2025 00:25:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[09-Nov-2025 00:25:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/filesystems.php on line 16
+[11-Nov-2025 13:42:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/database.php on line 18
+[11-Nov-2025 13:42:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/queue.php on line 16
+[11-Nov-2025 13:42:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/mail.php on line 16
+[11-Nov-2025 13:42:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/app.php on line 16
+[11-Nov-2025 13:42:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/filesystems.php on line 16
+[11-Nov-2025 13:42:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/cache.php on line 18
+[11-Nov-2025 13:42:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/session.php on line 21
+[11-Nov-2025 13:42:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/shreelaboratory/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/view.php on line 17
+[11-Nov-2025 13:42:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[13-Nov-2025 11:36:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/shreelaboratory/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/view.php on line 17
+[13-Nov-2025 11:36:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/broadcasting.php on line 18
+[13-Nov-2025 11:36:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/mail.php on line 16
+[13-Nov-2025 11:36:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[13-Nov-2025 11:36:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/session.php on line 21
+[13-Nov-2025 11:36:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/queue.php on line 16
+[13-Nov-2025 11:36:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/database.php on line 18
+[13-Nov-2025 11:36:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/filesystems.php on line 16
+[13-Nov-2025 11:36:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/cache.php on line 18
+[13-Nov-2025 11:36:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/app.php on line 16
+[26-Nov-2025 04:29:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/queue.php on line 16
+[26-Nov-2025 04:29:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/session.php on line 21
+[26-Nov-2025 04:29:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/shreelaboratory/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/view.php on line 17
+[26-Nov-2025 04:29:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/mail.php on line 16
+[26-Nov-2025 04:29:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/app.php on line 16
+[26-Nov-2025 04:29:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/broadcasting.php on line 18
+[26-Nov-2025 04:29:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/cache.php on line 18
+[26-Nov-2025 04:29:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/database.php on line 18
+[26-Nov-2025 04:29:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/filesystems.php on line 16
+[26-Nov-2025 04:29:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[26-Nov-2025 10:34:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/filesystems.php on line 16
+[26-Nov-2025 10:34:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/app.php on line 16
+[26-Nov-2025 10:35:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/shreelaboratory/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/view.php on line 17
+[26-Nov-2025 10:35:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/session.php on line 21
+[26-Nov-2025 10:35:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/queue.php on line 16
+[26-Nov-2025 10:35:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/database.php on line 18
+[26-Nov-2025 10:35:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[26-Nov-2025 10:35:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/mail.php on line 16
+[26-Nov-2025 10:35:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/broadcasting.php on line 18
+[26-Nov-2025 10:35:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/cache.php on line 18
+[30-Nov-2025 13:56:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/app.php on line 16
+[30-Nov-2025 13:56:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/mail.php on line 16
+[30-Nov-2025 13:57:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/database.php on line 18
+[13-Dec-2025 09:20:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/shreelaboratory/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/view.php on line 17
+[13-Dec-2025 09:20:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/app.php on line 16
+[18-Jan-2026 22:26:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/app.php on line 16
+[18-Jan-2026 22:26:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/cache.php on line 18
+[18-Jan-2026 22:26:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/database.php on line 18
+[18-Jan-2026 22:26:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/broadcasting.php on line 18
+[18-Jan-2026 22:26:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/filesystems.php on line 16
+[18-Jan-2026 22:26:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/mail.php on line 16
+[18-Jan-2026 22:26:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[18-Jan-2026 22:26:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/queue.php on line 16
+[18-Jan-2026 22:26:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/shreelaboratory/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/view.php on line 17
+[18-Jan-2026 22:26:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/session.php on line 21
+[04-Feb-2026 01:07:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[04-Feb-2026 01:07:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[04-Feb-2026 01:07:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[04-Feb-2026 21:59:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[04-Feb-2026 21:59:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[04-Feb-2026 21:59:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/shreelaboratory/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/shreelaboratory/public_html/config/services.php on line 18
+[08-Feb-2026 12:24:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[08-Feb-2026 12:24:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[08-Feb-2026 12:24:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[10-Feb-2026 04:36:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[10-Feb-2026 04:36:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[10-Feb-2026 04:36:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[10-Feb-2026 04:37:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[10-Feb-2026 04:37:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[10-Feb-2026 04:37:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[22-Feb-2026 05:56:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[22-Feb-2026 05:56:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[22-Feb-2026 05:56:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[22-Feb-2026 05:57:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[22-Feb-2026 05:57:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[22-Feb-2026 05:57:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[22-Feb-2026 06:03:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/logging.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/logging.php on line 20
+[22-Feb-2026 06:03:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/logging.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/logging.php on line 20
+[22-Feb-2026 06:03:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/logging.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/logging.php on line 20
+[02-Mar-2026 12:24:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[02-Mar-2026 12:24:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[02-Mar-2026 12:24:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[02-Mar-2026 12:26:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[02-Mar-2026 12:26:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[02-Mar-2026 12:26:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[12-Apr-2026 22:56:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[12-Apr-2026 22:56:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[16-Apr-2026 10:23:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[16-Apr-2026 10:23:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[16-Apr-2026 10:23:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[16-Apr-2026 10:23:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[17-Apr-2026 18:00:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[17-Apr-2026 18:00:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[17-Apr-2026 22:49:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[17-Apr-2026 23:48:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[18-Apr-2026 00:47:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[18-Apr-2026 06:10:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[18-Apr-2026 06:10:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[18-Apr-2026 09:32:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[18-Apr-2026 09:32:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[20-Apr-2026 00:21:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[20-Apr-2026 14:13:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[20-Apr-2026 14:13:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[21-Apr-2026 13:33:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[21-Apr-2026 13:33:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[22-Apr-2026 13:27:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[22-Apr-2026 13:27:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[24-Apr-2026 05:21:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[24-Apr-2026 05:21:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[24-Apr-2026 05:21:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[24-Apr-2026 05:21:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[24-Apr-2026 05:21:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[24-Apr-2026 05:21:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[25-Apr-2026 00:44:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[25-Apr-2026 00:44:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[25-Apr-2026 00:44:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[25-Apr-2026 00:45:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[25-Apr-2026 00:45:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[25-Apr-2026 00:45:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[25-Apr-2026 00:50:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[25-Apr-2026 00:50:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[25-Apr-2026 00:50:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[25-Apr-2026 00:52:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[25-Apr-2026 04:36:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[25-Apr-2026 04:36:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[25-Apr-2026 04:36:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[25-Apr-2026 04:41:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[25-Apr-2026 04:41:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[25-Apr-2026 04:41:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[25-Apr-2026 05:02:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[25-Apr-2026 05:02:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[25-Apr-2026 05:02:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[25-Apr-2026 05:08:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[25-Apr-2026 05:08:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[25-Apr-2026 05:08:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[25-Apr-2026 06:02:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[25-Apr-2026 06:02:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[25-Apr-2026 06:02:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[10-Jun-2026 21:13:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/app.php on line 16
+[10-Jun-2026 21:13:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[10-Jun-2026 21:13:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[10-Jun-2026 21:13:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/cache.php on line 18
+[10-Jun-2026 21:13:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[11-Jun-2026 17:35:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[11-Jun-2026 17:35:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/app.php on line 16
+[11-Jun-2026 17:35:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[11-Jun-2026 17:35:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[11-Jun-2026 21:07:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[11-Jun-2026 21:07:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/cache.php on line 18
+[11-Jun-2026 21:07:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[11-Jun-2026 21:07:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/app.php on line 16
+[11-Jun-2026 21:07:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[19-Jun-2026 08:35:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[19-Jun-2026 08:35:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/services.php on line 18
+[19-Jun-2026 08:40:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/mail.php on line 16
+[19-Jun-2026 08:43:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
+[19-Jun-2026 08:43:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/healthdex/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/healthdex/public_html/config/database.php on line 18
