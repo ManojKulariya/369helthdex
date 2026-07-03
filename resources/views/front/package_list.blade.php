@@ -74,52 +74,7 @@ Book Full Body Health Checkup Packages in {{$cityName}} | Reliable
   @include('front.how_book')
 <!----------------------- Why Pathkind Labs ----------------->
  @include('front.why_rdc')
-@if(isset($contentdata) && !empty($contentdata))
-<section class="doctor-details bg-color-3" style="margin-top:-5%">
-   <div class="auto-container" style="margin-bottom:-10%">
-     <div class="row clearfix">
-       <div class="col-lg-12 col-md-12 col-sm-12 content-side">
-         <div class="clinic-details-content doctor-details-content">
-           <div class="clinic-block-one">
-             <div class="inner-box" style="padding: 34px 40px 37px 34px !important;">
-               <div class="row">
-                 <div class="col-md-12">
-                    @foreach($contentdata as $cn)
-                    @if($cn->page_name == "Popular-Package")
-                    <div class="content-box">
-                     <ul class="name-box clearfix">
-                       <li class="name">
-                         <h3>{{ $cn->name }}</h3>
-                       </li>
-                     </ul>
-                     <div class="text">
-                        @php
-                            $description = COMMAN::replace($cn->description,$cityName) ;
-                         @endphp
-                         <div class="descriptiontxt">
-                       <p>{!! $description !!}</p>
-                        </div>
-                     </div>
-                     
-                   </div>
-                   @endif
-                   @endforeach
-                   
-                 </div>
-                 
-               </div>
-               <div class="text-center">
-                                    <button class="read-more-btn">Read More</button>
-                                </div>
 
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </section><br>
- @endif
  
 @stop
 

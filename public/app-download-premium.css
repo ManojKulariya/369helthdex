@@ -1,0 +1,813 @@
+/* ============================================
+   HealthDex 369 - Premium App Download Section
+   Luxury Healthcare App Showcase Design
+   Target: Apple, Stripe, Uber, Swiggy, Tata 1mg, Apollo 24|7
+   ============================================ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ============================================
+   SECTION CONTAINER
+   ============================================ */
+.app-download-section {
+  position: relative;
+  padding: 100px 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.app-download-section .auto-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   PREMIUM GRADIENT CARD
+   ============================================ */
+.app-gradient-card {
+  position: relative;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #065f46 0%, #047857 25%, #10b981 50%, #34d399 75%, #6ee7b7 100%);
+  padding: 60px 50px;
+  overflow: hidden;
+  box-shadow: 
+    0 25px 50px rgba(16, 185, 129, 0.25),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Overlay for Better Text Contrast */
+.app-gradient-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.05) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Background Glow Effects */
+.app-gradient-card::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Medical Pattern Overlay */
+.app-medical-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 20v60M20 50h60' stroke='%23ffffff' stroke-width='1' stroke-opacity='0.03'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23ffffff' stroke-width='0.5' stroke-opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Floating Shapes */
+.app-floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  animation: floatShape 8s ease-in-out infinite;
+}
+
+.app-floating-shape-1 {
+  width: 120px;
+  height: 120px;
+  top: 10%;
+  right: 15%;
+  animation-delay: 0s;
+}
+
+.app-floating-shape-2 {
+  width: 80px;
+  height: 80px;
+  bottom: 20%;
+  left: 10%;
+  animation-delay: 2s;
+}
+
+.app-floating-shape-3 {
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  right: 40%;
+  animation-delay: 4s;
+}
+
+@keyframes floatShape {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* ============================================
+   CONTENT GRID
+   ============================================ */
+.app-content-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   LEFT SIDE - PHONE MOCKUP
+   ============================================ */
+.app-phone-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.95;
+}
+
+.app-phone-mockup {
+  position: relative;
+  width: 280px;
+  height: 580px;
+  background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-radius: 40px;
+  padding: 12px;
+  box-shadow: 
+    0 50px 100px rgba(0, 0, 0, 0.3),
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transform: rotate(-3deg);
+  animation: phoneFloat 6s ease-in-out infinite;
+}
+
+@keyframes phoneFloat {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(-3deg) translateY(-15px); }
+}
+
+/* Phone Screen */
+.app-phone-screen {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 50%, #f0fdf4 100%);
+  border-radius: 32px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Phone Notch */
+.app-phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 28px;
+  background: #1a1a1a;
+  border-radius: 0 0 20px 20px;
+  z-index: 10;
+}
+
+/* Phone Content Placeholder */
+.app-phone-content {
+  padding: 40px 16px 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-phone-logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+.app-phone-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.app-phone-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+/* Phone Cards */
+.app-phone-cards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.app-phone-card {
+  background: white;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.app-phone-card-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+  font-size: 14px;
+}
+
+.app-phone-card-text {
+  flex: 1;
+}
+
+.app-phone-card-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.app-phone-card-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  color: #9ca3af;
+}
+
+/* Floating Healthcare Icons */
+.app-floating-icon {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+  font-size: 22px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: iconFloat 5s ease-in-out infinite;
+  z-index: 10;
+}
+
+.app-floating-icon-1 {
+  top: 5%;
+  left: -10%;
+  animation-delay: 0s;
+}
+
+.app-floating-icon-2 {
+  top: 25%;
+  right: -15%;
+  animation-delay: 1s;
+}
+
+.app-floating-icon-3 {
+  bottom: 30%;
+  left: -5%;
+  animation-delay: 2s;
+}
+
+.app-floating-icon-4 {
+  bottom: 10%;
+  right: -10%;
+  animation-delay: 3s;
+}
+
+.app-floating-icon-5 {
+  top: 50%;
+  left: -20%;
+  animation-delay: 4s;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+/* ============================================
+   RIGHT SIDE - CONTENT
+   ============================================ */
+.app-content-wrapper {
+  color: white;
+  position: relative;
+  z-index: 3;
+}
+
+.app-section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+  margin-bottom: 28px;
+  font-family: 'Inter', sans-serif;
+}
+
+.app-section-badge-icon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  color: #10b981;
+  font-size: 11px;
+}
+
+.app-section-badge-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.app-section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.03em;
+  max-width: 550px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.app-section-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.75;
+  margin: 0 0 36px 0;
+  max-width: 520px;
+  font-weight: 400;
+}
+
+/* ============================================
+   FEATURE LIST
+   ============================================ */
+.app-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.app-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.app-feature-icon {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   APP BUTTONS
+   ============================================ */
+.app-buttons-wrapper {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.app-store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 32px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 190px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.app-store-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+}
+
+.app-store-btn-icon {
+  font-size: 32px;
+  color: #111827;
+}
+
+.app-store-btn-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-store-btn-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #6b7280;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.app-store-btn-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+}
+
+/* ============================================
+   QR CODE CARD
+   ============================================ */
+.app-qr-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.app-qr-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.app-qr-image {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.app-qr-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.app-qr-text {
+  font-family: 'Inter', sans-serif;
+}
+
+.app-qr-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.app-qr-desc {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ============================================
+   RATING & STATS
+   ============================================ */
+.app-stats-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.app-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-rating-stars {
+  display: flex;
+  gap: 3px;
+  color: #fbbf24;
+  font-size: 18px;
+}
+
+.app-rating-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.app-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-stat-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.app-stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1200px) {
+  .app-section-title {
+    font-size: 40px;
+  }
+  
+  .app-phone-mockup {
+    width: 260px;
+    height: 540px;
+  }
+  
+  .app-content-grid {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 992px) {
+  .app-download-section {
+    padding: 80px 0;
+  }
+  
+  .app-gradient-card {
+    padding: 50px 40px;
+  }
+  
+  .app-content-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .app-phone-wrapper {
+    order: -1;
+  }
+  
+  .app-section-title {
+    font-size: 36px;
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .app-section-description {
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .app-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .app-features-grid {
+    max-width: 400px;
+  }
+  
+  .app-buttons-wrapper {
+    justify-content: center;
+  }
+  
+  .app-qr-wrapper {
+    justify-content: center;
+  }
+  
+  .app-stats-wrapper {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .app-phone-mockup {
+    width: 240px;
+    height: 500px;
+    transform: rotate(0deg);
+    animation: phoneFloatMobile 6s ease-in-out infinite;
+  }
+  
+  @keyframes phoneFloatMobile {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  
+  .app-floating-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-download-section {
+    padding: 64px 0;
+  }
+  
+  .app-download-section .auto-container {
+    padding: 0 16px;
+  }
+  
+  .app-gradient-card {
+    padding: 40px 24px;
+    border-radius: 24px;
+  }
+  
+  .app-section-title {
+    font-size: 28px;
+  }
+  
+  .app-section-description {
+    font-size: 15px;
+  }
+  
+  .app-features-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .app-buttons-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .app-store-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .app-qr-card {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .app-stats-wrapper {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-download-section {
+    padding: 48px 0;
+  }
+  
+  .app-gradient-card {
+    padding: 32px 20px;
+  }
+  
+  .app-section-title {
+    font-size: 24px;
+  }
+  
+  .app-phone-mockup {
+    width: 200px;
+    height: 420px;
+    border-radius: 32px;
+  }
+  
+  .app-phone-screen {
+    border-radius: 26px;
+  }
+  
+  .app-phone-logo {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+  
+  .app-store-btn {
+    padding: 12px 20px;
+    min-width: auto;
+  }
+  
+  .app-store-btn-icon {
+    font-size: 26px;
+  }
+  
+  .app-store-btn-name {
+    font-size: 15px;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-content-wrapper {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.app-phone-wrapper {
+  animation: fadeInUp 0.8s ease 0.2s forwards;
+  opacity: 0;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.d-flex { display: flex; }
+.align-items-center { align-items: center; }
+.justify-content-center { justify-content: center; }
+.justify-content-between { justify-content: space-between; }
+
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 4px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 4px; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }

@@ -42,209 +42,448 @@ if ($cityName == '') {
 }
 
 @endphp
-<section class="banner-section">
-  <div class="container-fluid">
-    <div class="row  col-12 mx-0 pt-3 pb-3">
-      <div class="col-lg-7 col-md-7 col-12">
-          <h4><p style="color:white;font-weight: 600;" class="pb-3">Search for test & packages</p></h4>
-          <!-- Search Bar -->
-          <form action="{{ route('search') }}" method="get" class="w-100">
-            {{ csrf_field() }}
-            
-            <div class="input-group position-relative">
-                
-                <span class="position-absolute" style="z-index: 10;left: 12px; top: 50%; transform: translateY(-50%); color: black; font-size: 16px;">
-                    <i class="fas fa-search"></i>
-                </span>
-              <input type="text" name="tags" class="form-control" id="tags" placeholder="Search Packages, Parameters" style="padding-left: 35px;" required>
-              <div class="input-group-append">
-                <button class="btn px-3" style="background-color:#e6ae05;color:white;" type="submit">Search</button>
-              </div>
-            </div>
-          </form>
-          <!-- Buttons -->
-          <div class="row mt-3">
-            <div class="col-6 mx-0 pr-1">
-              <a href="{{route('Upload_Prescription')}}" class="custom-btn w-100 py-3">
-                <!--<i class="fa fa-heart"></i>-->
-                <i class="fa fa-file"></i>
-                Upload Prescription
-              </a>
-            </div>
-            <div class="col-6 mx-0 pl-1">
-              <a href="{{route('download-report')}}" class="custom-btn w-100 py-3">
-                <i class="fa fa-download"></i> Download Reports
-              </a>
-            </div>
+
+<!-- Luxury Hero Section -->
+<section class="luxury-hero">
+  <div class="luxury-hero-bg" aria-hidden="true">
+    <span class="luxury-hero-blob luxury-hero-blob-1"></span>
+    <span class="luxury-hero-blob luxury-hero-blob-2"></span>
+    <span class="luxury-hero-pattern"></span>
+  </div>
+  <div class="container">
+    <div class="luxury-hero-grid">
+      <!-- Left Content -->
+      <div class="luxury-hero-content">
+        <div class="luxury-hero-badge">
+          <span class="luxury-hero-badge-dot"></span>
+          <i data-lucide="shield-check"></i>
+          NABL Accredited Labs
+        </div>
+
+        <h1 class="luxury-hero-title">
+          Strong Body.<br>
+          <span class="luxury-hero-title-accent">Strong Life.</span>
+        </h1>
+
+        <p class="luxury-hero-subtitle">
+          Health tests, full body checkups and diagnostics at your doorstep. Book trusted health packages and individual tests with certified laboratories.
+        </p>
+
+        <!-- Search Box (functionality preserved) -->
+        <form action="{{ route('search') }}" method="get" class="luxury-hero-search-form">
+          {{ csrf_field() }}
+          <div class="luxury-hero-search">
+            <span class="luxury-hero-search-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+                <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z" clip-rule="evenodd" />
+              </svg>
+            </span>
+            <input type="text" name="tags" class="luxury-hero-search-input" placeholder="Search for tests, health packages or checkups…" required>
+            <button class="btn btn-primary btn-lg luxury-hero-search-btn" type="submit">
+              <span>Search</span>
+              <i data-lucide="arrow-right"></i>
+            </button>
           </div>
-      </div> 
+        </form>
 
-      <!-- Second Column for Iage (Visible only on lg and md screens) -->
-      <div class="col-lg-5 col-md-5 d-none d-md-block">
-        <img src="{{ asset('public/bannerbg.png') }}" alt="Side Banner" style="width:100%;height:auto;" class="img-fluid w-100">
-      </div> 
+        <!-- Feature Cards (functionality preserved) -->
+        <div class="luxury-hero-quick-actions">
+          <a href="{{route('Upload_Prescription')}}" class="luxury-hero-action-card">
+            <span class="luxury-hero-action-icon">
+              <i data-lucide="file-text"></i>
+            </span>
+            <span class="luxury-hero-action-body">
+              <span class="luxury-hero-action-title">Upload Prescription</span>
+              <span class="luxury-hero-action-desc">Get a tailored package</span>
+            </span>
+            <i data-lucide="arrow-up-right" class="luxury-hero-action-arrow"></i>
+          </a>
+          <a href="{{route('download-report')}}" class="luxury-hero-action-card">
+            <span class="luxury-hero-action-icon">
+              <i data-lucide="download"></i>
+            </span>
+            <span class="luxury-hero-action-body">
+              <span class="luxury-hero-action-title">Download Reports</span>
+              <span class="luxury-hero-action-desc">Access your results</span>
+            </span>
+            <i data-lucide="arrow-up-right" class="luxury-hero-action-arrow"></i>
+          </a>
+        </div>
 
-    </div> <!-- row -->
-  </div> <!-- container -->
+      </div>
+
+      <!-- Right Visual -->
+      <div class="luxury-hero-visual">
+        <div class="luxury-hero-visual-frame" data-hd-parallax="12">
+          <img src="{{ asset('public/img/hero-quality-trust.png') }}" alt="Quality diagnostics you can trust — NABL accredited labs, home sample collection and accurate reports" class="luxury-hero-main-image" fetchpriority="high" decoding="async">
+        </div>
+
+        <div class="luxury-hero-chip luxury-hero-chip-1" data-hd-parallax="26">
+          <span class="luxury-hero-chip-icon"><i data-lucide="shield-check"></i></span>
+          <span class="luxury-hero-chip-body">
+            <strong>NABL</strong>
+            <span>Certified Labs</span>
+          </span>
+        </div>
+        <div class="luxury-hero-chip luxury-hero-chip-2" data-hd-parallax="20">
+          <span class="luxury-hero-chip-icon"><i data-lucide="clock"></i></span>
+          <span class="luxury-hero-chip-body">
+            <strong>24h</strong>
+            <span>Fast Reports</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- End Luxury Hero -->
 
-<section class="life_style_section alternat-2 centred d-none">
+<!-- Premium Packages Section -->
+<section class="packages-premium-section reveal">
   <div class="auto-container">
-    
-    <div class="row col-12 mb-4" >
-        <div class="col-md-6 pl-0" style="text-align:left">
-            <h4 class="newstyle" >{{__('Tests by Lifestyle Disorder')}}</h4>
+    <!-- Section Header -->
+    <div class="packages-section-header">
+      <div class="packages-section-title-wrapper">
+        <div class="packages-section-badge">
+          <span class="packages-section-badge-icon">
+            <i data-lucide="check"></i>
+          </span>
+          <span class="packages-section-badge-text">Health Packages</span>
         </div>
-        <div class="col-md-6 d-none d-md-block">
-            <div class="custom-swiper-nav">
-                <button class="swiper-button-prev btn-pre"><i class="fa fa-chevron-right"></i></button>
-                <button class="swiper-button-next btn-next"><i class="fa fa-chevron-left"></i></button>
-            </div>
+        <h2 class="packages-section-title">Top Health Packages</h2>
+        <p class="packages-section-description">Comprehensive health checkup packages at affordable prices with free home collection</p>
+      </div>
+      
+      <!-- Action Group: View All + Navigation -->
+      <div class="packages-action-group">
+        <a href="{{route('popular-packages',['city'=>$cityName])}}" class="packages-view-all-btn">
+          View All Packages
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <div class="packages-swiper-nav">
+          <button class="packages-swiper-btn packageswiper-button-prev" aria-label="Previous packages">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <button class="packages-swiper-btn packageswiper-button-next" aria-label="Next packages">
+            <i data-lucide="chevron-right"></i>
+          </button>
         </div>
+      </div>
     </div>
-    
-    <div class="inner-content">
-      <div class="row clearfix">
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper section-padding">
-            @foreach($category as $c)
+
+    <!-- Packages Slider -->
+    <div class="packages-slider-wrapper">
+      <div class="swiper packageSwiper">
+        <div class="swiper-wrapper">
+          @foreach($data_popular as $pl)
+            @php
+              $discount = 0;
+              if($pl->price > 0){
+                $discount = 100 * ($pl->price - $pl->mrp) / $pl->price;
+              }
+            @endphp
             <div class="swiper-slide">
-              <a href="{{ route('lifestyledisorder', ['city'=>$cityName, 'slug' => $c->slug]) }}">
-                <div class="single-logo">
-                  <div class="category-block-one">
-                    <div class="inner-box d-flex align-items-center justify-content-center p-3">
-                      <figure class="mb-0 me-1">
-                        <img src="{{asset('storage/app/public/Subcategory').'/'.$c->image}}" style="width: 40px; height: 40px;" alt="">
-                      </figure>
-                      <h6 class="mb-0 ml-2"><h7>{{$c->name}}</h7></h6>
+              @include('front.card')
+            </div>
+          @endforeach
+        </div>
+        <!-- Pagination for mobile -->
+        <div class="swiper-pagination packageSwiper-pagination d-md-none"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Premium Categories Section -->
+@if(isset($category) && count($category) > 0)
+<section class="categories-premium-section reveal">
+  <div class="auto-container">
+    <!-- Section Header -->
+    <div class="categories-section-header">
+      <div class="categories-section-title-wrapper">
+        <div class="categories-section-badge">
+          <span class="categories-section-badge-icon">
+            <i data-lucide="layout-grid"></i>
+          </span>
+          <span class="categories-section-badge-text">Health Concerns</span>
+        </div>
+        <h2 class="categories-section-title">Browse Tests by Health Concern</h2>
+        <p class="categories-section-description">Find the right tests for your specific health needs — from lifestyle disorders to preventive care</p>
+      </div>
+
+      <div class="categories-action-group">
+        <a href="{{ route('lifestyle-disorder', ['city'=>$cityName]) }}" class="categories-view-all-btn">
+          View All Concerns
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <div class="categories-swiper-nav d-none d-md-flex">
+          <button class="categories-swiper-btn categorySwiper-button-prev" aria-label="Previous categories">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <button class="categories-swiper-btn categorySwiper-button-next" aria-label="Next categories">
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories Slider -->
+    <div class="swiper categorySwiper">
+      <div class="swiper-wrapper">
+        @foreach($category as $c)
+        <div class="swiper-slide">
+          <a href="{{ route('lifestyledisorder', ['city'=>$cityName, 'slug' => $c->slug]) }}" class="hd-category-card">
+            <span class="hd-category-icon">
+              <img src="{{asset('storage/app/public/Subcategory').'/'.$c->image}}" alt="{{$c->name}}" loading="lazy" decoding="async">
+            </span>
+            <span class="hd-category-name">{{$c->name}}</span>
+            <span class="hd-category-link">
+              Explore Tests
+              <i data-lucide="arrow-right"></i>
+            </span>
+          </a>
+        </div>
+        @endforeach
+      </div>
+      <div class="swiper-pagination categorySwiper-pagination d-md-none"></div>
+    </div>
+  </div>
+</section>
+@endif
+
+  @include('front.how_book')
+
+<!-- Premium Tests Section -->
+<section class="tests-premium-section reveal">
+  <div class="auto-container">
+    <!-- Section Header -->
+    <div class="tests-section-header">
+      <div class="tests-section-title-wrapper">
+        <div class="tests-section-badge">
+          <span class="tests-section-badge-icon">
+            <i data-lucide="check"></i>
+          </span>
+          <span class="tests-section-badge-text">Popular Tests</span>
+        </div>
+        <h2 class="tests-section-title">Popular Tests</h2>
+        <p class="tests-section-description">Choose from our most booked diagnostic tests with affordable pricing</p>
+      </div>
+      
+      <!-- Action Group: View All + Navigation -->
+      <div class="tests-action-group">
+        <a href="{{route('popular-blood-tests',['city'=>$cityName])}}" class="tests-view-all-btn">
+          View All Tests
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <div class="tests-swiper-nav d-none d-md-flex">
+          <button class="tests-swiper-btn testswiper-button-prev" aria-label="Previous tests">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <button class="tests-swiper-btn testswiper-button-next" aria-label="Next tests">
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tests Slider -->
+    <div class="tests-slider-wrapper">
+      <div class="swiper testSwiper">
+        <div class="swiper-wrapper">
+          @foreach($test as $pl)
+            @php
+              $discount = 0;
+              if($pl->price > 0){
+                $discount = 100 * ($pl->price - $pl->mrp) / $pl->price;
+              }
+            @endphp
+            <div class="swiper-slide">
+              @include('front.card_test')
+            </div>
+          @endforeach
+        </div>
+        <!-- Pagination for mobile -->
+        <div class="swiper-pagination testSwiper-pagination d-md-none"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Premium App Download Section -->
+<section class="app-download-section reveal" id="download_app">
+  <div class="auto-container">
+    <div class="app-gradient-card">
+      <!-- Background Elements -->
+      <div class="app-medical-pattern"></div>
+      <div class="app-floating-shape app-floating-shape-1"></div>
+      <div class="app-floating-shape app-floating-shape-2"></div>
+      <div class="app-floating-shape app-floating-shape-3"></div>
+      
+      <div class="app-content-grid">
+        <!-- Left Side - Phone Mockup -->
+        <div class="app-phone-wrapper">
+          <!-- Floating Healthcare Icons -->
+          <div class="app-floating-icon app-floating-icon-1">
+            <i data-lucide="pill"></i>
+          </div>
+          <div class="app-floating-icon app-floating-icon-2">
+            <i data-lucide="heart-pulse"></i>
+          </div>
+          <div class="app-floating-icon app-floating-icon-3">
+            <i data-lucide="flask-conical"></i>
+          </div>
+          <div class="app-floating-icon app-floating-icon-4">
+            <i data-lucide="map-pin"></i>
+          </div>
+          <div class="app-floating-icon app-floating-icon-5">
+            <i data-lucide="shield-check"></i>
+          </div>
+          
+          <!-- Phone Mockup -->
+          <div class="app-phone-mockup">
+            <div class="app-phone-notch"></div>
+            <div class="app-phone-screen">
+              <div class="app-phone-content">
+                <div class="app-phone-logo">
+                  <i data-lucide="heart-pulse"></i>
+                </div>
+                <div class="app-phone-title">HealthDex 369</div>
+                <div class="app-phone-subtitle">Your Health Partner</div>
+                <div class="app-phone-cards">
+                  <div class="app-phone-card">
+                    <div class="app-phone-card-icon">
+                      <i data-lucide="calendar-check"></i>
+                    </div>
+                    <div class="app-phone-card-text">
+                      <div class="app-phone-card-title">Book Tests</div>
+                      <div class="app-phone-card-desc">Schedule easily</div>
+                    </div>
+                  </div>
+                  <div class="app-phone-card">
+                    <div class="app-phone-card-icon">
+                      <i data-lucide="file-text"></i>
+                    </div>
+                    <div class="app-phone-card-text">
+                      <div class="app-phone-card-title">View Reports</div>
+                      <div class="app-phone-card-desc">Instant access</div>
+                    </div>
+                  </div>
+                  <div class="app-phone-card">
+                    <div class="app-phone-card-icon">
+                      <i data-lucide="house"></i>
+                    </div>
+                    <div class="app-phone-card-text">
+                      <div class="app-phone-card-title">Home Collection</div>
+                      <div class="app-phone-card-desc">Free pickup</div>
                     </div>
                   </div>
                 </div>
-              </a>
-            </div>
-            @endforeach
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="pricing-section bg-color-3 pt-5">
-  <div class="auto-container">
-    <div class="sec-title">
-        <h4 class="newstyle">Top Health Packages</h4>
-        <div class="custom-swiper-nav">
-          <a href="{{route('popular-packages',['city'=>$cityName])}}" style="color:#1F3E6D;">View All</a>
-          <button class="packageswiper-button-prev btn-pre d-none d-md-block"><i class="fa fa-chevron-left"></i></button>
-          <button class="packageswiper-button-next btn-next d-none d-md-block"><i class="fa fa-chevron-right"></i></button>
-        </div>
-    </div>
-  </div>
-
-  <div class="tabs-box px-2">
-    <div class="tabs-content">
-      <div class="tab active-tab" id="tab-1">
-        <div class="swiper packageSwiper">
-          <div class="swiper-wrapper">
-            @foreach($data_popular as $pl)
-              <?php 
-                $discount = 0;
-                if($pl->price > 0 ){
-                  $discount = 100 * ($pl->price - $pl->mrp) / $pl->price;
-                }
-              ?>
-              <div class="swiper-slide category-block">
-                @include('front.card')
               </div>
-            @endforeach
-          </div>
-          <!-- Pagination for mobile -->
-          <div class="swiper-pagination d-md-none" style="position: relative !important;  margin-top: -10px; text-align: center;"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-  @include('front.how_book')
-<!---------------------------------test--------------------->
-
-<section class="pricing-section bg-color-3 pt-5">
-  <div class="auto-container">
-    <div class="sec-title">
-      <h4 class="newstyle">Popular Tests</h4>
-      
-      <div class="custom-swiper-nav">
-        <a href="{{route('popular-blood-tests',['city'=>$cityName])}}" class="mr-2" style="color:#1F3E6D;"> View All</a>
-        <button class="testswiper-button-prev btn-pre d-none d-md-block"><i class="fa fa-chevron-left"></i></button>
-        <button class="testswiper-button-next btn-next d-none d-md-block"><i class="fa fa-chevron-right"></i></button>
-      </div>
-    </div>
-  </div>
-
-  <div class="tabs-box px-2">
-    <div class="tabs-content">
-      <div class="tab active-tab" id="tab-1">
-        <div class="swiper testSwiper">
-          <div class="swiper-wrapper">
-            @foreach($test as $pl)
-              <?php 
-                $discount = 0;
-                if($pl->price > 0 ){
-                  $discount = 100 * ($pl->price - $pl->mrp) / $pl->price;
-                }
-              ?>
-              <div class="swiper-slide category-block">
-                @include('front.card_test')
-              </div>
-            @endforeach
-          </div>
-          <!-- Pagination for mobile -->
-          <div class="swiper-pagination d-md-none" style="position: relative !important;  margin-top: -10px; text-align: center;"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!------------------------------end test-------------------->
-
-<section class="cta-section alternat-2 bg-color-2" id="download_app">
-
-  <div class="auto-container">
-    <div class="row align-items-center clearfix">
-      <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-        <div class="content_block_2">
-          <div class="content-box py-2">
-            <div class="sec-title light">
-                <div>
-                    <p>{{__('message.Download apps')}}</p>
-                    <h2>{{__('Download HealthDex Centre App Now')}}</h2>
-                </div>
             </div>
-            <div class="text">
-              <p>Book HealthDex Centre Health Tests and access your smart reports and health  trackers anytime anywhere. Now available on both Google Play Store and App Store.</p>
-            </div>
+          </div>
+        </div>
+        
+        <!-- Right Side - Content -->
+        <div class="app-content-wrapper">
+          <div class="app-section-badge">
+            <span class="app-section-badge-icon">
+              <i data-lucide="smartphone"></i>
+            </span>
+            <span class="app-section-badge-text">{{__('message.Download apps')}}</span>
+          </div>
           
+          <h2 class="app-section-title">{{__('Download HealthDex Centre App Now')}}</h2>
+          
+          <p class="app-section-description">Book health packages, schedule home sample collection, access reports instantly and manage your family's health from one place. Now available on both Google Play Store and App Store.</p>
+          
+          <!-- Feature List -->
+          <div class="app-features-grid">
+            <div class="app-feature-item">
+              <span class="app-feature-icon"><i data-lucide="check"></i></span>
+              Book Tests Instantly
+            </div>
+            <div class="app-feature-item">
+              <span class="app-feature-icon"><i data-lucide="check"></i></span>
+              Download Reports
+            </div>
+            <div class="app-feature-item">
+              <span class="app-feature-icon"><i data-lucide="check"></i></span>
+              Home Sample Collection
+            </div>
+            <div class="app-feature-item">
+              <span class="app-feature-icon"><i data-lucide="check"></i></span>
+              Track Orders
+            </div>
+            <div class="app-feature-item">
+              <span class="app-feature-icon"><i data-lucide="check"></i></span>
+              Secure Payments
+            </div>
+            <div class="app-feature-item">
+              <span class="app-feature-icon"><i data-lucide="check"></i></span>
+              24×7 Support
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-6 d-flex justify-content-center">
-        <div class="image-box wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-            <figure class="image">
-                <a href="{{$setting->appstore_url}}" target="_blank">
-                    <img src="https://rdccare.com/public/img/App_Store.png"></a>
-            </figure>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-6 d-flex justify-content-center">
-        <div class="image-box wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-          <figure class="image">
-              <a href="{{$setting->playstore_url}}" target="_blank">
-                  <img src="https://rdccare.com/public/img/google-play.png">
-                </a>
-          </figure>
+          
+          <!-- App Store Buttons -->
+          <div class="app-buttons-wrapper">
+            <a href="{{$setting->appstore_url}}" target="_blank" class="app-store-btn">
+              <i class="fab fa-apple app-store-btn-icon"></i>
+              <div class="app-store-btn-text">
+                <span class="app-store-btn-label">Download on the</span>
+                <span class="app-store-btn-name">App Store</span>
+              </div>
+            </a>
+            
+            <a href="{{$setting->playstore_url}}" target="_blank" class="app-store-btn">
+              <i class="fab fa-google-play app-store-btn-icon"></i>
+              <div class="app-store-btn-text">
+                <span class="app-store-btn-label">Get it on</span>
+                <span class="app-store-btn-name">Google Play</span>
+              </div>
+            </a>
+          </div>
+          
+          <!-- QR Code -->
+          <div class="app-qr-wrapper">
+            <div class="app-qr-card">
+              <div class="app-qr-image">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data={{$setting->playstore_url ?? 'https://healthdex369.com'}}" alt="Scan to Download">
+              </div>
+              <div class="app-qr-text">
+                <div class="app-qr-label">Scan to Download</div>
+                <div class="app-qr-desc">Point your camera at this QR code</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Rating & Stats -->
+          <div class="app-stats-wrapper">
+            <div class="app-rating">
+              <div class="app-rating-stars">
+                <i data-lucide="star" style="fill: currentColor;"></i>
+                <i data-lucide="star" style="fill: currentColor;"></i>
+                <i data-lucide="star" style="fill: currentColor;"></i>
+                <i data-lucide="star" style="fill: currentColor;"></i>
+                <i data-lucide="star" style="fill: currentColor;"></i>
+              </div>
+              <span class="app-rating-value">4.9 Rating</span>
+            </div>
+            <div class="app-stat-item">
+              <span class="app-stat-value">25M+</span>
+              <span class="app-stat-label">Downloads</span>
+            </div>
+            <div class="app-stat-item">
+              <span class="app-stat-value">Trusted</span>
+              <span class="app-stat-label">by Thousands</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -254,13 +493,24 @@ if ($cityName == '') {
 <!----------------------- Why Pathkind Labs ----------------->
  @include('front.why_rdc')
 
-<section class="process-style-two alternat-2 centred">
+<!-- Premium Offers Section -->
+<section class="offers-premium-section reveal">
   <div class="auto-container">
-    <div class="sec-title" >
-      <h4 class="newstyle">Our Offers</h4>
-      <div class="custom-swiper-nav d-none d-md-block" >
-        <button class="offerSwiper-button-prev btn-pre"><i class="fa fa-chevron-left"></i></button>
-        <button class="offerSwiper-button-next btn-next"><i class="fa fa-chevron-right"></i></button>
+    <!-- Section Header -->
+    <div class="offers-section-header">
+      <div class="offers-section-title-wrapper">
+        <div class="offers-section-badge">
+          <span class="offers-section-badge-icon">
+            <i data-lucide="badge-percent"></i>
+          </span>
+          <span class="offers-section-badge-text">Limited Time</span>
+        </div>
+        <h2 class="offers-section-title">Our Offers</h2>
+        <p class="offers-section-description">Save more on health checkups with our exclusive seasonal deals and discounts</p>
+      </div>
+      <div class="custom-swiper-nav d-none d-md-flex">
+        <button class="offerSwiper-button-prev btn-pre" aria-label="Previous offers"><i data-lucide="chevron-left"></i></button>
+        <button class="offerSwiper-button-next btn-next" aria-label="Next offers"><i data-lucide="chevron-right"></i></button>
       </div>
     </div>
     <div class="inner-content">
@@ -268,26 +518,38 @@ if ($cityName == '') {
         <div class="swiper-wrapper">
           @foreach($offer as $c)
           <div class="swiper-slide">
-            <div class="category-block">
-              <img src="{{asset('storage/app/public/category').'/'.$c->image}}" width="100%" alt="">
+            <div class="hd-offer-card">
+              <img src="{{asset('storage/app/public/category').'/'.$c->image}}" width="100%" alt="HealthDex offer" loading="lazy" decoding="async">
+              <span class="hd-offer-card-shine" aria-hidden="true"></span>
             </div>
           </div>
           @endforeach
         </div>
         <!-- Pagination for mobile -->
-        <div class="swiper-pagination d-md-none"></div>
+        <div class="swiper-pagination offerSwiper-pagination d-md-none"></div>
       </div>
     </div>
-  </div> 
+  </div>
 </section>
 
-<section class="testimonial-style-two">
+<!-- Premium Labs Network Section -->
+<section class="labs-premium-section reveal">
   <div class="auto-container">
-    <div class="sec-title">
-      <h4 class="newstyle">Our {{ count($lab) }}+ Labs Network</h4>
-      <div class="custom-swiper-nav">
-        <button class="labSwiper-button-prev btn-pre d-none d-md-block"><i class="fa fa-chevron-left"></i></button>
-        <button class="labSwiper-button-next btn-next d-none d-md-block"><i class="fa fa-chevron-right"></i></button>
+    <!-- Section Header -->
+    <div class="labs-section-header">
+      <div class="labs-section-title-wrapper">
+        <div class="labs-section-badge">
+          <span class="labs-section-badge-icon">
+            <i data-lucide="map-pin"></i>
+          </span>
+          <span class="labs-section-badge-text">Near You</span>
+        </div>
+        <h2 class="labs-section-title">Our {{ count($lab) }}+ Labs Network</h2>
+        <p class="labs-section-description">Certified collection centres near you — walk in or book a free home visit</p>
+      </div>
+      <div class="custom-swiper-nav d-none d-md-flex">
+        <button class="labSwiper-button-prev btn-pre" aria-label="Previous labs"><i data-lucide="chevron-left"></i></button>
+        <button class="labSwiper-button-next btn-next" aria-label="Next labs"><i data-lucide="chevron-right"></i></button>
       </div>
     </div>
     <div class="swiper labSwiper">
@@ -296,59 +558,114 @@ if ($cityName == '') {
           <div class="swiper-slide">
             @include('front.centercard')
           </div>
-        @endforeach 
+        @endforeach
       </div>
-      
-      <div class="swiper-pagination d-md-none " style="position: relative !important;  margin-top: 15px; text-align: center;"></div>
+
+      <div class="swiper-pagination labSwiper-pagination d-md-none"></div>
     </div>
   </div>
 </section>
-@include('front.blogcard')
 
-
-@if(isset($contentdata) && !empty($contentdata))
-    <section class="doctor-details bg-color-3" style="margin-top:-5%">
-        <div class="auto-container" style="margin-bottom:-10%">
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 content-side">
-                    <div class="clinic-details-content doctor-details-content">
-                        <div class="clinic-block-one">
-                            <div class="inner-box" style="padding: 34px 40px 37px 34px !important;">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @foreach($contentdata as $cn)
-                                            @if($cn->page_name == "Home")
-                                                <div class="content-box">
-                                                    <ul class="name-box clearfix">
-                                                        <li class="name">
-                                                            <h3>{{ $cn->name }}</h3>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="text content-collapse">
-                                                        <div class="descriptiontxt">
-                                                            <p>{!! $cn->description !!}</p>
-                                                            <p style="font-size: 4px;">Powered By: <a title="Web Development Company in Ahmedabad" href="https://www.icreators.in/web-development-company-in-ahmedabad">Web Development Company in Ahmedabad</a>, <a href="https://www.icreators.in/web-design-company-in-ahmedabad">Web Design Company in Ahmedabad</a>,<a href="https://www.icreators.in/seo-company-in-ahmedabad">Seo Company in Ahmedabad</a>. Design By: <a href="https://www.icreators.in/web-design-company-in-jaipur">Web Design Company in Jaipur</a>, <a href="https://www.icreators.in/web-development-company-in-jaipur">Web Development Company in Jaipur</a>, <a href="https://www.icreators.in/seo-company-in-jaipur">Seo Company in Jaipur</a></p>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <button class="read-more-btn">Read More</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- Premium FAQ Section -->
+<section class="faq-premium-section reveal">
+  <div class="auto-container">
+    <!-- Section Header -->
+    <div class="faq-section-header">
+      <div class="faq-section-title-wrapper">
+        <div class="faq-section-badge">
+          <span class="faq-section-badge-icon">
+            <i data-lucide="circle-help"></i>
+          </span>
+          <span class="faq-section-badge-text">FAQ</span>
         </div>
-    </section><br>
-@endif
+        <h2 class="faq-section-title">Frequently Asked Questions</h2>
+        <p class="faq-section-description">Everything you need to know about booking tests, home collection and reports</p>
+      </div>
 
+      <a href="tel:{{$setting->phone}}" class="premium-btn premium-btn-primary faq-header-cta">
+        <i data-lucide="phone"></i>
+        {{$setting->phone}}
+      </a>
+    </div>
+
+    <!-- Accordion -->
+    <div class="faq-accordion" id="hdFaqAccordion">
+        <div class="hd-faq-item">
+          <button type="button" class="hd-faq-question" aria-expanded="false">
+            <span>How do I book a test or health package?</span>
+            <span class="hd-faq-icon" aria-hidden="true"><i data-lucide="plus"></i></span>
+          </button>
+          <div class="hd-faq-answer">
+            <div class="hd-faq-answer-inner">
+              <p>Simply search for your test or package, add it to your cart and choose a convenient slot. Our expert phlebotomist will visit your home to collect the sample — or you can visit any of our partner labs.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hd-faq-item">
+          <button type="button" class="hd-faq-question" aria-expanded="false">
+            <span>Is home sample collection really free?</span>
+            <span class="hd-faq-icon" aria-hidden="true"><i data-lucide="plus"></i></span>
+          </button>
+          <div class="hd-faq-answer">
+            <div class="hd-faq-answer-inner">
+              <p>Yes. Home sample collection is completely free on our tests and health packages. A trained phlebotomist visits your home at the time slot you choose.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hd-faq-item">
+          <button type="button" class="hd-faq-question" aria-expanded="false">
+            <span>How and when will I receive my reports?</span>
+            <span class="hd-faq-icon" aria-hidden="true"><i data-lucide="plus"></i></span>
+          </button>
+          <div class="hd-faq-answer">
+            <div class="hd-faq-answer-inner">
+              <p>Reports are shared digitally as soon as they are ready. You can download them anytime from the website or app under Download Reports, and most routine test reports are available within 24–48 hours.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hd-faq-item">
+          <button type="button" class="hd-faq-question" aria-expanded="false">
+            <span>Are your labs certified?</span>
+            <span class="hd-faq-icon" aria-hidden="true"><i data-lucide="plus"></i></span>
+          </button>
+          <div class="hd-faq-answer">
+            <div class="hd-faq-answer-inner">
+              <p>Yes. Samples are processed at NABL accredited partner laboratories with strict quality controls, so you can trust the accuracy of every report.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hd-faq-item">
+          <button type="button" class="hd-faq-question" aria-expanded="false">
+            <span>Do I need a doctor's prescription to book?</span>
+            <span class="hd-faq-icon" aria-hidden="true"><i data-lucide="plus"></i></span>
+          </button>
+          <div class="hd-faq-answer">
+            <div class="hd-faq-answer-inner">
+              <p>Most tests and health packages can be booked without a prescription. If you have one, you can upload it and our team will help you book exactly what your doctor advised.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hd-faq-item">
+          <button type="button" class="hd-faq-question" aria-expanded="false">
+            <span>What payment options are available?</span>
+            <span class="hd-faq-icon" aria-hidden="true"><i data-lucide="plus"></i></span>
+          </button>
+          <div class="hd-faq-answer">
+            <div class="hd-faq-answer-inner">
+              <p>You can pay securely online using cards, UPI and popular wallets. All payments are processed over a secure, SSL-protected gateway.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+@include('front.blogcard')
 
 @stop
 

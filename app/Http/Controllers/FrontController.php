@@ -49,6 +49,10 @@ use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Discount;
 use App\Models\Discountid;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -61,6 +65,8 @@ use App\Models\Wallet;
 
 class FrontController extends Controller
 {
+    use \App\Http\Controllers\Concerns\CalculatesDrivingDistances;
+
     public $currentDate;
     public function __construct()
     {
@@ -834,7 +840,18 @@ class FrontController extends Controller
 
             $city = City::find($cityId);
 
-            session(['cityName' => $city->slug, 'loctionID' => $cityId, 'latitude' => $city->lat, 'longitude' => $city->lng]);
+            // Also seed the user coordinates with the chosen city's centre so lab
+            // distances have a sane basis when browser geolocation is denied.
+            // When geolocation is granted, the layout script overwrites these
+            // with the precise position on the next page load.
+            session([
+                'cityName' => $city->slug,
+                'loctionID' => $cityId,
+                'latitude' => $city->lat,
+                'longitude' => $city->lng,
+                'userlatitude' => (float) $city->lat,
+                'userlongitude' => (float) $city->lng,
+            ]);
         }
 
         // Return a response if necessary
@@ -857,19 +874,21 @@ class FrontController extends Controller
     
         // Execute cURL request
         $response = curl_exec($ch);
-    
-        // Check for cURL errors
+
+        // On cURL failure return the empty coordinates array — callers
+        // array-access the result, so never return a Response object here.
         if (curl_errno($ch)) {
-            return response()->json(['error' => 'Unable to retrieve location: ' . curl_error($ch)], 500);
+            curl_close($ch);
+            return $loc;
         }
-    
+
         // Close cURL session
         curl_close($ch);
-    
+
         // Decode JSON response
         $location = json_decode($response, true);
-    
-        if ($location['status'] === 'success') {
+
+        if (is_array($location) && isset($location['status']) && $location['status'] === 'success') {
             $latitude = $location['lat'];
             $longitude = $location['lon'];
             
@@ -887,40 +906,74 @@ class FrontController extends Controller
     }
     public function updateLocation($ip)
     {
-        
+
         if (session()->has('cityName')  ) {
             return response()->json(['message' => 'Location updated and stored in session']);
-       
+
         }
         $res = $this->getloc($ip);
-        // dd($res['latitude']);
-        $latitude = $res['latitude'];
-        $longitude = $res['longitude'];
-        $tolerance = 1;
+        // Only trust the IP lookup when it returned real coordinates. Casting an
+        // empty string to float yields 0.0 (a point in the Gulf of Guinea), which
+        // used to poison the session and produce ~8,000 km lab distances.
+        if (!is_array($res)
+            || !isset($res['latitude'], $res['longitude'])
+            || !is_numeric($res['latitude']) || !is_numeric($res['longitude'])
+            || (float) $res['latitude'] == 0.0 || (float) $res['longitude'] == 0.0) {
+            return response()->json(['message' => 'Location unavailable'], 200);
+        }
+        $latitude = (float) $res['latitude'];
+        $longitude = (float) $res['longitude'];
         $city = City::whereBetween('lat', [$latitude - 0.1, $latitude + 0.1])
             ->whereBetween('lng', [$longitude - 0.1, $longitude + 0.1])
             ->where('status', 1)
             ->first();
-        if (is_numeric($latitude) || is_numeric($longitude)) {
-            if ($city) {
-                $cityId = $city->id;
-                $cityName = $city->slug;
-                session(['cityName' => $cityName, 'loctionID' => $cityId]);
-            }
-            session(['latitude' => (float) $latitude, 'longitude' => (float) $longitude, 'userlatitude' => (float) $latitude, 'userlongitude' => (float) $longitude]);
-            return response()->json(['message' => 'Location updated and stored in session']);
-        } else {
-            if ($latitude == '' || $longitude == '') {
-                if ($city) {
-                    $cityId = $city->id;
-                    $cityName = $city->slug;
-                    session(['cityName' => $cityName, 'loctionID' => $cityId]);
+        if ($city) {
+            $cityId = $city->id;
+            $cityName = $city->slug;
+            session(['cityName' => $cityName, 'loctionID' => $cityId]);
+        }
+        session(['latitude' => $latitude, 'longitude' => $longitude, 'userlatitude' => $latitude, 'userlongitude' => $longitude]);
+        return response()->json(['message' => 'Location updated and stored in session']);
+    }
 
-                }
-                session(['latitude' => (float) $latitude, 'longitude' => (float) $longitude, 'userlatitude' => (float) $latitude, 'userlongitude' => (float) $longitude]);
-                return response()->json(['message' => 'Invalid latitude or longitude provided'], 400);
+    /**
+     * Stores the browser's geolocation (sent by the layout script as
+     * /update-location?latitude=..&longitude=..) so lab distances use the
+     * visitor's real position. Serves the existing "update-location" route,
+     * which previously pointed at updateLocation($ip) and always failed
+     * because the route supplies no $ip argument.
+     */
+    public function updateBrowserLocation(Request $request)
+    {
+        $latitude = $request->query('latitude');
+        $longitude = $request->query('longitude');
+
+        if (!is_numeric($latitude) || !is_numeric($longitude)) {
+            return response()->json(['message' => 'Invalid latitude or longitude provided'], 400);
+        }
+
+        $latitude = (float) $latitude;
+        $longitude = (float) $longitude;
+
+        if (($latitude == 0.0 && $longitude == 0.0)
+            || $latitude < -90 || $latitude > 90
+            || $longitude < -180 || $longitude > 180) {
+            return response()->json(['message' => 'Invalid latitude or longitude provided'], 400);
+        }
+
+        // Keep any city the visitor already picked; only auto-detect when unset.
+        if (!session()->has('cityName')) {
+            $city = City::whereBetween('lat', [$latitude - 0.1, $latitude + 0.1])
+                ->whereBetween('lng', [$longitude - 0.1, $longitude + 0.1])
+                ->where('status', 1)
+                ->first();
+            if ($city) {
+                session(['cityName' => $city->slug, 'loctionID' => $city->id]);
             }
         }
+
+        session(['latitude' => $latitude, 'longitude' => $longitude, 'userlatitude' => $latitude, 'userlongitude' => $longitude]);
+        return response()->json(['message' => 'Location updated and stored in session']);
     }
     public function get_discount($test_id,$type,$mrp){
         $mrp = (float) $mrp;
@@ -952,26 +1005,45 @@ class FrontController extends Controller
         $this->updateLocation($request->ip());
         $inputLatitude = $request->session()->get('latitude');
         $inputLongitude = $request->session()->get('longitude');
-        if ($inputLatitude == '') {
+        // is_numeric guards against null/'' and legacy sessions poisoned with 0.0
+        // (PHP 8: 0 == '' is false, so the old check let 0.0 through).
+        if (!is_numeric($inputLatitude) || !is_numeric($inputLongitude)
+            || (float) $inputLatitude == 0.0 || (float) $inputLongitude == 0.0) {
             $inputLatitude = 26.9124;
             $inputLongitude = 75.7873;
         }
+        $inputLatitude = (float) $inputLatitude;
+        $inputLongitude = (float) $inputLongitude;
         #------------------- lab ----------------------------
         $inputLatitudeuser = $request->session()->get('userlatitude');
         $inputLongitudeuser = $request->session()->get('userlongitude');
-        if ($inputLatitudeuser == '') {
-            $inputLatitudeuser = 26.9124;
-            $inputLongitudeuser = 75.7873;
+        if (!is_numeric($inputLatitudeuser) || !is_numeric($inputLongitudeuser)
+            || (float) $inputLatitudeuser == 0.0 || (float) $inputLongitudeuser == 0.0) {
+            // Fall back to the selected city's coordinates, then to the default city.
+            $inputLatitudeuser = $inputLatitude;
+            $inputLongitudeuser = $inputLongitude;
         }
-       
+        $inputLatitudeuser = (float) $inputLatitudeuser;
+        $inputLongitudeuser = (float) $inputLongitudeuser;
+
 
         $defaultcityID = $this->getdefaultcityid(session()->get('cityName'));
+        // Spherical law of cosines on Earth radius 6371 km; the LEAST/GREATEST
+        // clamp keeps acos() in its domain when rounding pushes the argument
+        // past ±1 (user standing exactly at the lab's coordinates). This value
+        // is the straight-line fallback; real road distances are applied below.
         $lab = User::with('location')
             ->join('city as user_city', 'users.city', '=', 'user_city.id')
-            ->select('users.*', 'user_city.lat', 'user_city.lng', DB::raw("(6371 * acos(cos(radians($inputLatitudeuser)) * cos(radians(user_city.lat)) * cos(radians(user_city.lng) - radians($inputLongitudeuser)) + sin(radians($inputLatitudeuser)) * sin(radians(user_city.lat)))) AS distance"))
+            ->select('users.*', 'user_city.lat', 'user_city.lng', DB::raw("(6371 * acos(LEAST(1.0, GREATEST(-1.0, cos(radians($inputLatitudeuser)) * cos(radians(user_city.lat)) * cos(radians(user_city.lng) - radians($inputLongitudeuser)) + sin(radians($inputLatitudeuser)) * sin(radians(user_city.lat)))))) AS distance"))
             ->where('users.user_type', 2)
             ->orderBy('distance')
             ->get();
+
+        // Replace the straight-line values with Google Distance Matrix road
+        // distances (matches the "Get Directions" figure). Falls back to the
+        // straight-line value per lab whenever the API/key is unavailable.
+        $lab = $this->apply_driving_distances($lab, $inputLatitudeuser, $inputLongitudeuser);
+        $lab = $lab->sortBy('distance')->values();
 
         #------------------- end lab ----------------------------
         #-------------------test-------------------------------
@@ -2283,6 +2355,16 @@ class FrontController extends Controller
 
     public function show_register()
     {
+        if (Auth::id()) {
+            return redirect()->route('dashboard');
+        }
+        // Registration is only reachable with an OTP-verified mobile number.
+        if (!session()->has('otp_verified_phone') || time() > (int) session('otp_verified_expires_at')) {
+            session()->forget(['otp_verified_phone', 'otp_verified_expires_at']);
+            Session::flash('message', 'Please verify your mobile number with an OTP to create an account.');
+            Session::flash('alert-class', 'alert-info');
+            return redirect()->route('user-login');
+        }
         $popular_package = Popular_package::whereNull('deleted_at')->get();
         $category = Category::where('is_deleted', '0')->get();
         $setting = Setting::find(1);
@@ -2556,14 +2638,78 @@ class FrontController extends Controller
     public function otp_verify(Request $request)
     {
 
-        $otp = $request->input('otp');
-        $phone = $request->input('phone');
+        $otp = trim((string) $request->input('otp'));
+        $phone = (string) $request->input('phone');
 
+        if ($otp === '' || $phone === '') {
+            return response()->json(['success' => false, 'msg' => 'Please enter the OTP.']);
+        }
+
+        // Throttle verification attempts per phone + IP.
+        $verifyKey = 'otp-verify:' . $phone . '|' . $request->ip();
+        if (RateLimiter::tooManyAttempts($verifyKey, (int) config('auth.otp.max_verifies_per_10min', 10))) {
+            return response()->json(['success' => false, 'msg' => 'Too many attempts. Please try again after some time.']);
+        }
+        RateLimiter::hit($verifyKey, 600);
+
+        // ---- Login-flow OTP (hashed, single-use, expiring; stored in session) ----
+        if (session('login_otp_phone') === $phone && session()->has('login_otp')) {
+
+            if (time() > (int) session('login_otp_expires_at')) {
+                $this->forget_login_otp();
+                return response()->json(['success' => false, 'msg' => 'This OTP has expired. Please request a new one.']);
+            }
+
+            $attempts = (int) session('login_otp_attempts') + 1;
+            session(['login_otp_attempts' => $attempts]);
+            if ($attempts > (int) config('auth.otp.max_verify_attempts', 5)) {
+                $this->forget_login_otp();
+                return response()->json(['success' => false, 'msg' => 'Too many wrong attempts. Please request a new OTP.']);
+            }
+
+            if (Hash::check($otp, session('login_otp'))) {
+                // Single use: the OTP is gone the moment it verifies.
+                $this->forget_login_otp();
+                RateLimiter::clear($verifyKey);
+
+                $checkuser = User::where("phone", $phone)->where("user_type", '3')->first();
+
+                if ($checkuser && $checkuser->name) {
+                    // Invalidate any stale OTP the legacy flow left on the row,
+                    // so it cannot be replayed through the DB path below.
+                    if ($checkuser->otp !== null) {
+                        $checkuser->otp = null;
+                        $checkuser->save();
+                    }
+                    $intendedUrl = Session::get('intended_url');
+                    session()->forget('intended_url');
+                    Auth::login($checkuser, true);
+                    return response()->json(['success' => true, 'intended_url' => $intendedUrl]);
+                }
+
+                // Unknown number (or a checkout shell account without a profile):
+                // hand over to registration with the verified phone pre-filled.
+                session([
+                    'otp_verified_phone' => $phone,
+                    'otp_verified_expires_at' => time() + ((int) config('auth.otp.register_window_minutes', 30) * 60),
+                ]);
+                return response()->json(['success' => true, 'register' => true, 'redirect' => route('user-register')]);
+            }
+
+            // Wrong code for the login flow — fall through so a parallel
+            // checkout-flow OTP (stored on the user row) can still verify.
+        }
+
+        // ---- Existing checkout / report-login OTP path ----
         $checkuser = User::where("phone", $phone)->where("otp", $otp)->first();
         if ($checkuser) {
 
+        // Single use: consume the OTP so it cannot be replayed.
+        $checkuser->otp = null;
+        $checkuser->save();
+
         $intendedUrl = Session::get('intended_url');
-        session()->forget('intended_url'); 
+        session()->forget('intended_url');
             Auth::login($checkuser, true);
              if (!$checkuser->name) {
                         return response()->json(['success' => true, 'new_user' => true]);
@@ -2754,107 +2900,197 @@ class FrontController extends Controller
     }
 
     
-    public function post_user_login(Request $request)
+    /**
+     * Generates a login OTP for the given phone, stores it hashed in the
+     * session (single-use, expiring) and sends it through the existing SMS
+     * gateway. Returns ['success' => bool, 'msg' => string].
+     */
+    private function send_login_otp($phone)
     {
+        $resendSeconds = (int) config('auth.otp.resend_seconds', 45);
+        $maxSends = (int) config('auth.otp.max_sends_per_10min', 5);
 
-        $checkuser = User::where("phone", $request->get("phone"))->where("user_type", '3')->first();
-        if ($checkuser) {
-            $url = 'https://msg.smsguruonline.com/fe/api/v1/send?';
-            $user = 'Healthwave';
-            $password = 'XVGY7XU1';
-            $msisdn = $request->get("phone");
-            $sid = 'RDCPLR';
-            $otp = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+        // Resend cool-down for this session
+        $lastSent = session('login_otp_sent_at');
+        if ($lastSent && (time() - (int) $lastSent) < $resendSeconds) {
+            $wait = $resendSeconds - (time() - (int) $lastSent);
+            return ['success' => false, 'msg' => 'Please wait ' . $wait . ' seconds before requesting a new OTP.'];
+        }
 
-            if($msisdn == 6367289664){
-                $otp = 1234;
-            }
-            $checkuser->otp = $otp;
-            
-            $checkuser->save();
+        // Hard limit per phone + IP
+        $sendKey = 'otp-send:' . $phone . '|' . request()->ip();
+        if (RateLimiter::tooManyAttempts($sendKey, $maxSends)) {
+            return ['success' => false, 'msg' => 'Too many OTP requests. Please try again after some time.'];
+        }
+        RateLimiter::hit($sendKey, 600);
+
+        $otp = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+
+        $smsOk = true;
+        if ($phone == '6367289664') {
+            // Existing internal test number keeps its fixed OTP and skips the gateway.
+            $otp = '1234';
+        } else {
             $msg = 'Your OTP for 369 HealthDex login is ' . $otp . ' Do not share this code with anyone. Team 369 HealthDex.';
-            $fl = '0';
-            $gwid = '2';
+            $response = Http::get('https://msg.smsguruonline.com/fe/api/v1/send?', [
+                'username' => '369healthdex.trans',
+                'password' => 'DBLD2',
+                'to' => $phone,
+                'from' => 'HLTHDX',
+                'text' => $msg,
+                'dltPrincipalEntityId' => 1701176959781053032,
+                'dltContentId' => 1707176967358120748,
+                'unicode' => false
+            ]);
+            $smsOk = $response->successful();
+        }
 
-        $response = Http::get($url, [
-            'username' => '369healthdex.trans',
-            'password' => 'DBLD2',
-            'to' => $msisdn,
-            'from' => 'HLTHDX',
-            'text' => $msg,
-            'dltPrincipalEntityId' => 1701176959781053032,
-            'dltContentId' => 1707176967358120748,
-            'unicode' => false  // corrected this line
+        if (!$smsOk) {
+            return ['success' => false, 'msg' => 'OTP sending failed! Please try again.'];
+        }
+
+        session([
+            'login_otp' => Hash::make($otp),
+            'login_otp_phone' => (string) $phone,
+            'login_otp_expires_at' => time() + ((int) config('auth.otp.expiry_minutes', 5) * 60),
+            'login_otp_attempts' => 0,
+            'login_otp_sent_at' => time(),
         ]);
 
-            if ($response->successful()) {
+        return ['success' => true, 'msg' => 'OTP send to your mobile number.'];
+    }
 
-                $popular_package = Popular_package::whereNull('deleted_at')->get();
-                $category = Category::where('is_deleted', '0')->get();
+    private function forget_login_otp()
+    {
+        session()->forget(['login_otp', 'login_otp_phone', 'login_otp_expires_at', 'login_otp_attempts']);
+    }
 
-                $setting = Setting::find(1);
-                Session::put("active_menu", "");
-
-                Session::flash('message', 'OTP send to your mobile number.');
-                Session::flash('alert-class', 'alert-success');
-                return view("front.otp")->with('phone', $msisdn)->with("category", $category)->with("popular_package", $popular_package)->with("setting", $setting)->with("totalcartmember", $this->gettotalcartmember());
-
-            } else {
-                Session::flash('message', 'OTP sending failed! Please try again.');
-                Session::flash('alert-class', 'alert-danger');
-                return redirect()->back();
-            }
-
-            Auth::login($checkuser, true);
-            if ($request->get("rem_me") == 1) {
-                setcookie('email', $request->get("email"), time() + (86400 * 30), "/");
-                setcookie('password', $request->get("password"), time() + (86400 * 30), "/");
-                setcookie('remember', 1, time() + (86400 * 30), "/");
-            }
-            if ($request->get("is_checkout") == 1) {
-                return redirect()->route("checkout");
-            } else {
-                return redirect()->route("dashboard");
-            }
-
-        } else {
-            Session::flash('message', 'Phone Number not found please register account');
-            Session::flash('alert-class', 'alert-danger');
-            return redirect()->back();
+    public function post_user_login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'phone' => 'required|digits_between:8,15',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        $msisdn = (string) $request->get("phone");
+
+        // The OTP is sent to any number: existing users log straight in after
+        // verification, unknown numbers continue to registration.
+        $result = $this->send_login_otp($msisdn);
+
+        if ($result['success']) {
+            $popular_package = Popular_package::whereNull('deleted_at')->get();
+            $category = Category::where('is_deleted', '0')->get();
+
+            $setting = Setting::find(1);
+            Session::put("active_menu", "");
+
+            Session::flash('message', $result['msg']);
+            Session::flash('alert-class', 'alert-success');
+            return view("front.otp")->with('phone', $msisdn)->with("category", $category)->with("popular_package", $popular_package)->with("setting", $setting)->with("totalcartmember", $this->gettotalcartmember());
+        }
+
+        Session::flash('message', $result['msg']);
+        Session::flash('alert-class', 'alert-danger');
+        return redirect()->back()->withInput();
+    }
+
+    /**
+     * AJAX endpoint used by the OTP page's "Resend OTP" link. Only resends
+     * to the phone number the current session already requested an OTP for.
+     */
+    public function resend_login_otp(Request $request)
+    {
+        $phone = (string) $request->get('phone');
+        if ($phone === '' || session('login_otp_phone') !== $phone) {
+            return response()->json(['success' => false, 'msg' => 'Session expired. Please start again from the login page.']);
+        }
+        $result = $this->send_login_otp($phone);
+        return response()->json($result);
     }
 
     public function post_user_register(Request $request)
     {
-         $setting = Setting::find(1);
-        $getuser = User::where("email", $request->get("email"))->where("user_type", '3')->first();
-        $getuserno = User::where("phone", $request->get("phone"))->where("user_type", '3')->first();
-        if ($getuser) {
-            $msg = __("message.Email Id Already Exist");
-            Session::flash('message', $msg);
-            Session::flash('alert-class', 'alert-success');
-            return redirect()->back();
-        } elseif ($getuserno) {
-            $msg = "Mobile Already Exist";
-            Session::flash('message', $msg);
-            Session::flash('alert-class', 'alert-success');
-            return redirect()->back();
-        } else {
-            $store = new User();
-            $store->name = $request->get("name");
-            $store->email = $request->get("email");
-            $store->d_o_b = $request->get("d_o_b");
-            $store->age = $request->get("age");
-            $store->sex = $request->get("sex");
-            $store->phone = $request->get("phone");
-            $store->password = $request->get("password");
-            $store->user_type = '3';
-            $store->wallet_amount  =$setting->wallet_point_on_register;
-            $store->save();
+        $setting = Setting::find(1);
 
+        // The mobile number must have been OTP-verified in this session, and
+        // the submitted value must match it (the field is read-only in the UI,
+        // but the session is the source of truth).
+        $verifiedPhone = (string) session('otp_verified_phone', '');
+        if ($verifiedPhone === '' || time() > (int) session('otp_verified_expires_at')) {
+            session()->forget(['otp_verified_phone', 'otp_verified_expires_at']);
+            Session::flash('message', 'Your verification expired. Please verify your mobile number again.');
+            Session::flash('alert-class', 'alert-danger');
+            return redirect()->route('user-login');
+        }
+
+        $request->merge(['phone' => $verifiedPhone]);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:100',
+            'email' => 'required|email|max:150',
+            'phone' => 'required|digits_between:8,15',
+            'd_o_b' => 'required|date|before:tomorrow',
+            'age' => 'nullable|integer|min:0|max:130',
+            'sex' => 'required|in:Male,Female',
+        ]);
+
+        $validator->after(function ($validator) use ($request, $verifiedPhone) {
+            $emailTaken = User::where("email", $request->get("email"))
+                ->where("user_type", '3')
+                ->whereNotNull('name')
+                ->first();
+            if ($emailTaken) {
+                $validator->errors()->add('email', 'This email is already registered.');
+            }
+
+            // A phone row with a completed profile means the account exists.
+            // A row without a name is a checkout "shell" and gets claimed below.
+            $phoneTaken = User::where("phone", $verifiedPhone)
+                ->where("user_type", '3')
+                ->whereNotNull('name')
+                ->first();
+            if ($phoneTaken) {
+                $validator->errors()->add('phone', 'This mobile number is already registered. Please login instead.');
+            }
+        });
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // Claim an OTP shell account created by the checkout flow, if any.
+        $store = User::where("phone", $verifiedPhone)
+            ->where("user_type", '3')
+            ->whereNull('name')
+            ->first();
+        $isNewUser = !$store;
+        if ($isNewUser) {
+            $store = new User();
+            $store->phone = $verifiedPhone;
+            $store->user_type = '3';
+        }
+
+        $store->name = $request->get("name");
+        $store->email = $request->get("email");
+        $store->d_o_b = $request->get("d_o_b");
+        $store->age = $request->get("age");
+        $store->sex = $request->get("sex");
+        // OTP-only authentication: no password is collected. A random hash
+        // keeps the column filled and unusable for guessing.
+        $store->password = Hash::make(Str::random(40));
+        if ($isNewUser || !$store->wallet_amount) {
+            $store->wallet_amount = $setting->wallet_point_on_register;
+        }
+        $store->save();
+
+        $hasSelf = FamilyMember::where('user_id', $store->id)->where('relation', 'Self')->first();
+        if (!$hasSelf) {
             $storeFamily = new FamilyMember();
             $storeFamily->name = $request->get("name");
-            $storeFamily->mobile_no = $request->get("phone");
+            $storeFamily->mobile_no = $verifiedPhone;
             $storeFamily->age = $request->get("age");
             $storeFamily->email = $request->get("email");
             $storeFamily->dob = $request->get("d_o_b");
@@ -2862,8 +3098,10 @@ class FrontController extends Controller
             $storeFamily->gender = $request->get("sex");
             $storeFamily->user_id = $store->id;
             $storeFamily->save();
-            
-            
+        }
+
+        $hasRegisterWallet = Wallet::where('user_id', $store->id)->where('order_id', 0)->where('action', 1)->first();
+        if (!$hasRegisterWallet) {
             $wallet_data = new Wallet();
             $wallet_data->user_id  =  $store->id;
             $wallet_data->wallet_points  =  $setting->wallet_point_on_register;
@@ -2871,11 +3109,18 @@ class FrontController extends Controller
             $wallet_data->action  =  1;
             $wallet_data->expire_on  =  date('Y-m-d', strtotime('+1 year'));
             $wallet_data->save();
-            // Session::flash('message',"Your Profile Register Successfully");
-            Session::flash('message', __('message.Your Profile Register Successfully'));
-            Session::flash('alert-class', 'alert-success');
-            return redirect()->route('user-login');
         }
+
+        // Verified phone is consumed; log the new user straight in.
+        session()->forget(['otp_verified_phone', 'otp_verified_expires_at']);
+        Auth::login($store, true);
+
+        $intendedUrl = Session::get('intended_url');
+        session()->forget('intended_url');
+
+        Session::flash('message', __('message.Your Profile Register Successfully'));
+        Session::flash('alert-class', 'alert-success');
+        return $intendedUrl ? redirect($intendedUrl) : redirect()->route('dashboard');
     }
     public function get_selected_city_other_labs($city)
     {

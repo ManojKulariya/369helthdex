@@ -1,159 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>timelines</title>
-    <style>
-        .timelines {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        /* Horizontal line for desktop */
-        .timelines::before {
-            content: "";
-            position: absolute;
-            top: 35px;
-            left: 10%;
-            width: 80%;
-            height: 3px;
-            background: red;
-            z-index: -1;
-        }
-
-        .timelines-steps {
-            text-align: center;
-            position: relative;
-            /*background-color: pink;*/
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .timelines-steps .icons {
-            width: 35px;
-            height: 35px;
-            background: #e6ae05;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: bold;
-            margin: 0 auto 10px;
-        }
-
-        .timelines-steps span {
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-        }
-        .span {
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-        }
-        .timelines-steps p {
-            font-size: 12px;
-            color: white;
-        }
-
-        /* Mobile: Vertical timelines */
-        @media (max-width: 767px) {
-            .timelines {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .timelines::before {
-                display: none;
-            }
-
-            .timelines-steps {
-                text-align: left;
-                width: 100%;
-                position: relative;
-                padding-left: 55px;
-            }
-
-            .timelines-steps .icons {
-                position: absolute;
-                left: 11px;
-            }
-
-            .timelines-steps::after {
-                content: "";
-                position: absolute;
-                left: 30px;
-                top: 55px;
-                height: 100%;
-                width: 1px;
-                border-left: 1px dashed #FFFFFF;
-            }
-
-
-            /* Remove last line */
-            .timelines-steps:last-child::after {
-                display: none;
-            }
-        }
-        /* Add arrows between steps for larger screens */
-@media (min-width: 768px) {
-    .timelines-steps {
-        position: relative;
-    }
-
-    .timelines-steps:not(:last-child)::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        right: -10px; /* Adjust as needed */
-        transform: translateY(-50%);
-        width: 40px; /* Adjust width based on the arrow size */
-        height: 100%; /* Full height */
-        background: url('/public/right.png') no-repeat center;
-        background-size: contain;
-    }
-}
-
-    </style>
-</head>
-<body>
-<section class="cta-section alternat-2 bg-color-2" >
-    <div class="container-fluid p-2">
-        <span class="span">How to book Full Body Checkup Package in {{$cityName}}</span>
-        <div class="row justify-content-center timelines">
-            <div class="col-12 col-md-2 timelines-steps">
-                
-                <div class="icons">1</div>
-                <span>Booking Made Easy</span>
-                <p>Book on our website or app, or request a Health Advisor callback.</p>
-            </div>
-            <div class="col-12 col-md-2 timelines-steps">
-                <div class="icons">2</div>
-                <span>Guidance</span>
-                <p>Health Advisor & medical advisor provide guidance of testing process.</p>
-            </div>
-            <div class="col-12 col-md-2 timelines-steps">
-                <div class="icons">3</div>
-                <span>Sample Collection</span>
-                <p>Enjoy free sample collection at home or office by expert phlebotomists.</p>
-            </div>
-            <div class="col-12 col-md-2 timelines-steps">
-                <div class="icons">4</div>
-                <span>Processing & Verify</span>
-                <p>Your sample is transported, processed, and verified by our expert team.</p>
-            </div>
-            <div class="col-12 col-md-2 timelines-steps">
-                <div class="icons">5</div>
-                <span>Report and Support</span>
-                <p>Receive AI-based Smart Reports with free consultations.</p>
-            </div>
+<!-- Premium Booking Process Section -->
+<section class="booking-process-section reveal">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="booking-section-header">
+      <div class="booking-section-title-wrapper">
+        <div class="booking-section-badge">
+          <span class="booking-section-badge-icon">
+            <i data-lucide="check"></i>
+          </span>
+          <span class="booking-section-badge-text">Simple Process</span>
         </div>
+        <h2 class="booking-section-title">How To Book Your Test</h2>
+        <p class="booking-section-description">Get your health checkup done in 5 simple steps with free home collection and NABL certified labs</p>
+      </div>
     </div>
+    
+    <!-- Process Cards Grid -->
+    <div class="process-cards-wrapper">
+      <!-- Animated Connectors (Desktop Only) -->
+      <div class="process-connector">
+        <div class="process-connector-line"></div>
+        <div class="process-connector-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="process-connector-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="process-connector-arrow"><i data-lucide="arrow-right"></i></div>
+        <div class="process-connector-arrow"><i data-lucide="arrow-right"></i></div>
+      </div>
+      
+      <div class="process-cards-grid">
+        <!-- Step 1: Book Online -->
+        <div class="process-card">
+          <div class="process-step-number">1</div>
+          <div class="process-icon-wrapper">
+            <i data-lucide="calendar-check" class="process-icon"></i>
+          </div>
+          <h4 class="process-card-title">Book Online</h4>
+          <p class="process-card-description">Choose your test or package on our website or app</p>
+        </div>
+        
+        <!-- Step 2: Get Guidance -->
+        <div class="process-card">
+          <div class="process-step-number">2</div>
+          <div class="process-icon-wrapper">
+            <i data-lucide="stethoscope" class="process-icon"></i>
+          </div>
+          <h4 class="process-card-title">Get Guidance</h4>
+          <p class="process-card-description">Our health advisors will assist you throughout</p>
+        </div>
+        
+        <!-- Step 3: Sample Collection -->
+        <div class="process-card">
+          <div class="process-step-number">3</div>
+          <div class="process-icon-wrapper">
+            <i data-lucide="flask-conical" class="process-icon"></i>
+          </div>
+          <h4 class="process-card-title">Sample Collection</h4>
+          <p class="process-card-description">Expert phlebotomists visit your home for free</p>
+        </div>
+        
+        <!-- Step 4: Lab Processing -->
+        <div class="process-card">
+          <div class="process-step-number">4</div>
+          <div class="process-icon-wrapper">
+            <i data-lucide="microscope" class="process-icon"></i>
+          </div>
+          <h4 class="process-card-title">Lab Processing</h4>
+          <p class="process-card-description">Samples analyzed in NABL certified labs</p>
+        </div>
+        
+        <!-- Step 5: Get Reports -->
+        <div class="process-card">
+          <div class="process-step-number">5</div>
+          <div class="process-icon-wrapper">
+            <i data-lucide="file-text" class="process-icon"></i>
+          </div>
+          <h4 class="process-card-title">Get Reports</h4>
+          <p class="process-card-description">Smart digital reports with free doctor consultation</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CTA Section -->
+    <div class="booking-cta-section">
+      <a href="{{route('popular-packages',['city'=>$cityName ?? 'Jaipur'])}}" class="booking-cta-button">
+        Book Your Test Now
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+        </svg>
+      </a>
+      
+      <!-- Trust Badges -->
+      <div class="booking-trust-badges">
+        <div class="trust-badge-item">
+          <span class="trust-badge-icon">
+            <i data-lucide="check"></i>
+          </span>
+          NABL Certified Labs
+        </div>
+        <div class="trust-badge-item">
+          <span class="trust-badge-icon">
+            <i data-lucide="check"></i>
+          </span>
+          Free Home Collection
+        </div>
+        <div class="trust-badge-item">
+          <span class="trust-badge-icon">
+            <i data-lucide="check"></i>
+          </span>
+          Secure Reports
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

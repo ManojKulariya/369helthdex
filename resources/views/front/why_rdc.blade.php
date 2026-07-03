@@ -1,113 +1,104 @@
-<section class="why_reliable bg-color-3">
+<!-- Premium Why Choose Us Section -->
+<section class="why-choose-section reveal">
+  <!-- Floating Background Shapes -->
+  <div class="why-floating-shape why-floating-shape-1"></div>
+  <div class="why-floating-shape why-floating-shape-2"></div>
+  <div class="why-floating-shape why-floating-shape-3"></div>
+  
   <div class="auto-container">
-    <div class="sec-title">
-      <h4 class="newstyle">Why HealthDex 369 ?<br>
-      <small>Our Motto is to deliver “Best Quality and HealthDex 369 result at Affordable cost at your door step”.</small></h4>
-
+    <!-- Section Header -->
+    <div class="why-section-header">
+      <div class="why-section-title-wrapper">
+        <div class="why-section-badge">
+          <span class="why-section-badge-icon">
+            <i data-lucide="star"></i>
+          </span>
+          <span class="why-section-badge-text">Why Choose Us</span>
+        </div>
+        <h2 class="why-section-title">Why HealthDex 369?</h2>
+        <p class="why-section-description">Our mission is to deliver best quality healthcare results at affordable prices, right at your doorstep</p>
+      </div>
     </div>
-    <div class="row g-0">
-      <div class="col-md-12">
-        <div class="row labs">
-          <div class="col-lg-2 col-md-4 col-6 ">
-            <div class="card  p-3 centres"> 
-            
-             <img src="https://rdccare.com/public/img/labs1.png" class="imgwhy" alt="Home Collection">
-              <p class="text-heading">Home Collection</p>
-              <p class="text-para">The Laboratory has Round-The-clock Home Blood Collection Services .The
-                            reports are available on email.</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-6">
-            <div class="card  p-3 centres"> 
-            <img src="https://rdccare.com/public/img/labs4.png" class="imgwhy" alt="Newborn screening">
-              <p class="text-heading">Newborn screening</p>
-              <p class="text-para">HealthDex 369 has brought specialized tests such as newborn screening to the reach of
-                        everyone. Radiology facilities are available at Malviya Nagar laboratory</p>
-            </div>
-          </div>
-          <!--<div class="col-lg-2 col-md-4 col-6">-->
-          <!--  <div class="card  p-3 centres"> -->
-          <!--  <img src="https://rdccare.com/public/img/research.png" class="imgwhy" alt="Clinical, bio, histo, & microbiology.">-->
-          <!--    <p class="text-heading">Clinical, bio, histo, & microbiology.</p>-->
-          <!--    <p class="text-para">The principal laboratory in Jaipur features state-of-the-art equipment and technology, conducting tests in clinical pathology, biochemistry, histopathology, and microbiology.</p>-->
-          <!--  </div>-->
-          <!--</div>-->
-          <div class="col-lg-2 col-md-4 col-6">
-            <div class="card  p-3 centres"> 
-            <img src="https://rdccare.com/public/img/labs5.png" class="imgwhy" alt="4000+ tests">
-              <p class="text-heading">4000+ tests & 2 Lakh+ Thyroid samples</p>
-              <p class="text-para">Test menu includes 4000+ tests and is increasing & Testing of 2 Lakh+ Thyroid samples on a monthly basis.</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-6">
-            <div class="card p-3 centres"> 
-            <img src="https://rdccare.com/public/img/labs6.png" class="imgwhy" alt="Satisfied Customers">
-              <p class="text-heading">25 million patient samples</p>
-              <p class="text-para">Successfully completed testing of more than 25 million patient samples</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-6">
-            <div class="card  p-3 centres"> 
-            <img src="https://rdccare.com/public/img/labs.png" class="imgwhy" alt="75+ Labs">
-              <p class="text-heading">75+ Labs</p>
-              <p class="text-para">75+ network Labs & reference Labs in Nepal, Rajasthan, 
-                   Uttar Pradesh, Haryana, Punjab, Jammu & Kashmir, Assam, Orissa, 
-                   Gujarat, Madhya Pradesh and Bihar.</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-6">
-            <div class="card  p-3 centres"> 
-            <img src="https://rdccare.com/public/img/labs2.png"  class="imgwhy" alt="5000+ Collection Points">
-              <p class="text-heading">5000+ Collection Points</p>
-              <p class="text-para">5000+ collection Points spread across varied geographical locations </p>
-            </div>
-          </div>
-          <!--<div class="col-md-2 col-6">-->
-          <!--  <div class="card  p-3 centres"> -->
-          <!--  <img src="https://rdccare.com/public/img/research.png"  class="imgwhy" alt="2 Lakh+ Thyroid samples">-->
-          <!--    <p class="text-heading">2 Lakh+ Thyroid samples</p>-->
-          <!--    <p class="text-para">Testing of 2 Lakh+ Thyroid samples on a monthly basis.</p>-->
-              
-          <!--  </div>-->
-          <!--</div>-->
+    
+    <!-- Feature Cards Grid -->
+    <div class="why-features-grid">
+      <!-- Feature 1: Home Collection -->
+      <div class="why-feature-card">
+        <div class="why-feature-icon-wrapper">
+          <i data-lucide="house" class="why-feature-icon"></i>
+        </div>
+        <h4 class="why-feature-title">Home Collection</h4>
+        <p class="why-feature-description">Round-the-clock home blood collection services by expert phlebotomists. Get tested from the comfort of your home.</p>
+        <div class="why-trust-badge">
+          <i data-lucide="check" class="why-trust-badge-icon"></i>
+          Free Home Collection
+        </div>
+      </div>
+      
+      <!-- Feature 2: Trusted Reports -->
+      <div class="why-feature-card">
+        <div class="why-feature-icon-wrapper">
+          <i data-lucide="award" class="why-feature-icon"></i>
+        </div>
+        <h4 class="why-feature-title">Trusted Reports</h4>
+        <p class="why-feature-description">AI-based Smart Reports with free doctor consultations. NABL accredited labs ensuring accuracy and reliability.</p>
+        <div class="why-trust-badge">
+          <i data-lucide="check" class="why-trust-badge-icon"></i>
+          NABL Certified
+        </div>
+      </div>
+      
+      <!-- Feature 3: 4000+ Tests -->
+      <div class="why-feature-card">
+        <div class="why-feature-icon-wrapper">
+          <i data-lucide="flask-conical" class="why-feature-icon"></i>
+        </div>
+        <h4 class="why-feature-title">4000+ Tests</h4>
+        <p class="why-feature-description">Comprehensive test menu covering all major health conditions. From basic to advanced diagnostics.</p>
+        <div class="why-trust-badge">
+          <i data-lucide="check" class="why-trust-badge-icon"></i>
+          Full Range Coverage
+        </div>
+      </div>
+      
+      <!-- Feature 4: 75+ Labs -->
+      <div class="why-feature-card">
+        <div class="why-feature-icon-wrapper">
+          <i data-lucide="building-2" class="why-feature-icon"></i>
+        </div>
+        <h4 class="why-feature-title">75+ Labs</h4>
+        <p class="why-feature-description">Wide network of certified laboratories across multiple states ensuring accessibility.</p>
+        <div class="why-trust-badge">
+          <i data-lucide="check" class="why-trust-badge-icon"></i>
+          Wide Network
+        </div>
+      </div>
+      
+      <!-- Feature 5: 25M+ Samples -->
+      <div class="why-feature-card">
+        <div class="why-feature-icon-wrapper">
+          <i data-lucide="users" class="why-feature-icon"></i>
+        </div>
+        <h4 class="why-feature-title">25M+ Samples</h4>
+        <p class="why-feature-description">Successfully completed testing of more than 25 million patient samples with accuracy.</p>
+        <div class="why-trust-badge">
+          <i data-lucide="check" class="why-trust-badge-icon"></i>
+          Trusted by Millions
+        </div>
+      </div>
+      
+      <!-- Feature 6: Customer Support -->
+      <div class="why-feature-card">
+        <div class="why-feature-icon-wrapper">
+          <i data-lucide="headphones" class="why-feature-icon"></i>
+        </div>
+        <h4 class="why-feature-title">24/7 Support</h4>
+        <p class="why-feature-description">Dedicated customer support team available round the clock to assist you.</p>
+        <div class="why-trust-badge">
+          <i data-lucide="check" class="why-trust-badge-icon"></i>
+          Expert Support
         </div>
       </div>
     </div>
   </div>
 </section>
-<script type="text/javascript">
-window.addEventListener("load", function () {
-  let cards = document.querySelectorAll(".why_reliable .card");
-  let maxHeight = 0;
-
-  cards.forEach((card) => {
-    let cardHeight = card.offsetHeight;
-    if (cardHeight > maxHeight) {
-      maxHeight = cardHeight;
-    }
-  });
-
-  cards.forEach((card) => {
-    card.style.height = maxHeight + "px";
-  });
-});
-
-window.addEventListener("resize", function () {
-  let cards = document.querySelectorAll(".why_reliable .card");
-  cards.forEach((card) => {
-    card.style.height = "auto"; // Reset height
-  });
-
-  let maxHeight = 0;
-  cards.forEach((card) => {
-    let cardHeight = card.offsetHeight;
-    if (cardHeight > maxHeight) {
-      maxHeight = cardHeight;
-    }
-  });
-
-  cards.forEach((card) => {
-    card.style.height = maxHeight + "px";
-  });
-});
-</script>

@@ -1,0 +1,595 @@
+/* ============================================
+   HealthDex 369 - Premium Booking Process Section
+   Luxury Healthcare Design
+   Target: Apollo 24|7, Tata 1mg, Practo, Stripe, Linear
+   ============================================ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ============================================
+   SECTION CONTAINER
+   ============================================ */
+.booking-process-section {
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(180deg, #f6fffb 0%, #ffffff 50%, #f6fffb 100%);
+  overflow: hidden;
+}
+
+.booking-process-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.booking-process-section .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   SECTION HEADER
+   ============================================ */
+.booking-section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.booking-section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 100px;
+  margin-bottom: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.booking-section-badge-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 50%;
+  color: white;
+  font-size: 11px;
+}
+
+.booking-section-badge-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #047857;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.booking-section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.03em;
+}
+
+.booking-section-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* ============================================
+   PROCESS CARDS CONTAINER
+   ============================================ */
+.process-cards-wrapper {
+  position: relative;
+  margin-bottom: 56px;
+}
+
+.process-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+/* ============================================
+   CONNECTORS (Desktop Only)
+   ============================================ */
+.process-connector {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 0;
+  pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .process-connector {
+    display: block;
+  }
+}
+
+.process-connector-line {
+  position: absolute;
+  top: 50%;
+  left: 18%;
+  right: 18%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 8px,
+    rgba(16, 185, 129, 0.25) 8px,
+    rgba(16, 185, 129, 0.25) 16px
+  );
+  transform: translateY(-50%);
+}
+
+.process-connector-arrow {
+  position: absolute;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  transform: translateY(-50%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  animation: arrowPulse 2s ease-in-out infinite;
+}
+
+.process-connector-arrow:nth-child(2) { left: 28%; animation-delay: 0.2s; }
+.process-connector-arrow:nth-child(3) { left: 48%; animation-delay: 0.4s; }
+.process-connector-arrow:nth-child(4) { left: 68%; animation-delay: 0.6s; }
+
+@keyframes arrowPulse {
+  0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
+  50% { transform: translateY(-50%) scale(1.1); opacity: 0.8; }
+}
+
+/* ============================================
+   PROCESS CARD
+   ============================================ */
+.process-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 22px;
+  border: 1px solid rgba(16, 185, 129, 0.08);
+  padding: 40px 24px 32px;
+  text-align: center;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.02),
+    0 10px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.process-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 20px 40px rgba(16, 185, 129, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.06);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+/* ============================================
+   STEP NUMBER BADGE
+   ============================================ */
+.process-step-number {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.process-card:hover .process-step-number {
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.5);
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* ============================================
+   ICON CONTAINER
+   ============================================ */
+.process-icon-wrapper {
+  width: 88px;
+  height: 88px;
+  margin: 20px auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border-radius: 24px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.process-card:hover .process-icon-wrapper {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  transform: scale(1.05) rotate(-3deg);
+}
+
+.process-icon-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, transparent 100%);
+  border-radius: 28px;
+  z-index: -1;
+}
+
+.process-icon {
+  font-size: 36px;
+  color: #10b981;
+  transition: all 0.3s ease;
+}
+
+.process-card:hover .process-icon {
+  color: white;
+  transform: scale(1.1);
+}
+
+/* ============================================
+   CARD TEXT
+   ============================================ */
+.process-card-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.process-card:hover .process-card-title {
+  color: #059669;
+}
+
+.process-card-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.booking-cta-section {
+  text-align: center;
+}
+
+.booking-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 40px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.booking-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.booking-cta-button:hover::before {
+  left: 100%;
+}
+
+.booking-cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.booking-cta-button svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.booking-cta-button:hover svg {
+  transform: translateX(6px);
+}
+
+/* ============================================
+   TRUST BADGES
+   ============================================ */
+.booking-trust-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.trust-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.trust-badge-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border-radius: 50%;
+  color: #10b981;
+  font-size: 12px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.process-card {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.process-card:nth-child(1) { animation-delay: 0.1s; }
+.process-card:nth-child(2) { animation-delay: 0.2s; }
+.process-card:nth-child(3) { animation-delay: 0.3s; }
+.process-card:nth-child(4) { animation-delay: 0.4s; }
+.process-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1200px) {
+  .booking-section-title {
+    font-size: 36px;
+  }
+  
+  .process-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .process-card:nth-child(4),
+  .process-card:nth-child(5) {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 992px) {
+  .booking-process-section {
+    padding: 80px 0;
+  }
+  
+  .booking-section-header {
+    margin-bottom: 48px;
+  }
+  
+  .booking-section-title {
+    font-size: 32px;
+  }
+  
+  .booking-section-description {
+    font-size: 16px;
+  }
+  
+  .process-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .process-card:nth-child(5) {
+    grid-column: span 2;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+  
+  .process-icon-wrapper {
+    width: 76px;
+    height: 76px;
+  }
+  
+  .process-icon {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .booking-process-section {
+    padding: 64px 0;
+  }
+  
+  .booking-process-section .container {
+    padding: 0 16px;
+  }
+  
+  .booking-section-header {
+    margin-bottom: 40px;
+  }
+  
+  .booking-section-title {
+    font-size: 28px;
+  }
+  
+  .process-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .process-card:nth-child(5) {
+    grid-column: span 1;
+    max-width: 100%;
+  }
+  
+  .process-card {
+    padding: 36px 20px 28px;
+  }
+  
+  .process-step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    top: -18px;
+  }
+  
+  .process-icon-wrapper {
+    width: 72px;
+    height: 72px;
+    margin: 16px auto 20px;
+  }
+  
+  .process-icon {
+    font-size: 28px;
+  }
+  
+  .process-card-title {
+    font-size: 17px;
+  }
+  
+  .process-card-description {
+    font-size: 13px;
+  }
+  
+  .booking-cta-button {
+    padding: 16px 32px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .booking-trust-badges {
+    gap: 20px;
+  }
+  
+  .trust-badge-item {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-process-section {
+    padding: 48px 0;
+  }
+  
+  .booking-section-title {
+    font-size: 24px;
+  }
+  
+  .booking-section-description {
+    font-size: 15px;
+  }
+  
+  .process-card {
+    border-radius: 18px;
+    padding: 32px 16px 24px;
+  }
+  
+  .process-icon-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+  }
+  
+  .process-icon {
+    font-size: 24px;
+  }
+  
+  .process-card-title {
+    font-size: 16px;
+  }
+  
+  .booking-trust-badges {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-center { text-align: center; }
+.d-flex { display: flex; }
+.align-items-center { align-items: center; }
+.justify-content-center { justify-content: center; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }

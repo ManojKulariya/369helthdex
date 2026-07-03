@@ -16,74 +16,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 @stop
 @section('content')
-<section class="page-title-two">
-            <div class="title-box centred bg-color-2">
-                <div class="pattern-layer">
-                    <div class="pattern-1" style="background-image: url(assets/images/shape/shape-70.png);"></div>
-                    <div class="pattern-2" style="background-image: url(assets/images/shape/shape-71.png);"></div>
+<section class="hd-auth-section">
+    <div class="hd-auth-bg" aria-hidden="true">
+        <span class="hd-auth-blob hd-auth-blob-1"></span>
+        <span class="hd-auth-blob hd-auth-blob-2"></span>
+        <span class="hd-auth-pattern"></span>
+    </div>
+    <div class="auto-container">
+        <nav class="hd-auth-breadcrumb" aria-label="Breadcrumb">
+            <a href="{{route('home')}}">{{__("message.Home")}}</a>
+            <i data-lucide="chevron-right"></i>
+            <span>{{__("message.Login")}}</span>
+        </nav>
+
+        <div class="hd-auth-card">
+            <div class="hd-auth-head">
+                <span class="hd-auth-icon"><i data-lucide="user-round"></i></span>
+                <h1 class="hd-auth-title">{{__("message.User Login")}}</h1>
+                <p class="hd-auth-subtitle">Welcome back — sign in with your phone number to manage your bookings and reports</p>
+                <a href="{{route('user-register')}}" class="hd-auth-switch">
+                    {{__("message.Not a User")}}?
+                    <i data-lucide="arrow-right"></i>
+                </a>
+            </div>
+
+            @if(Session::has('message'))
+                <div class="col-sm-12">
+                   <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">{{ Session::get('message') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                   </div>
                 </div>
-                <div class="auto-container">
-                    <div class="title">
-                        <h1>{{__("message.Login")}}</h1>
+                @endif
+
+            <form action="{{route('post-user-login')}}" method="post" class="registration-form hd-auth-form">
+                 {{csrf_field()}}
+                <div class="hd-field">
+                    <label>Phone Number</label>
+                    <div class="hd-input-wrap">
+                        <i data-lucide="phone"></i>
+                        <input type="number" name="phone" placeholder="{{__('message.Enter Phone')}}" required="" value="{{ old('phone', isset($_COOKIE['phone'])?$_COOKIE['phone']:'') }}">
                     </div>
+                    @error('phone')
+                        <div class="hd-field-error">{{ $message }}</div>
+                    @enderror
                 </div>
-            </div>
-            <div class="lower-content">
-                <div class="auto-container">
-                    <ul class="bread-crumb clearfix">
-                        <li><a href="{{route('home')}}">{{__("message.Home")}}</a></li>
-                        <li>{{__("message.Login")}}</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <section class="registration-section bg-color-3">
-            <div class="pattern">
-                <div class="pattern-1" style="background-image: url(assets/images/shape/shape-85.png);"></div>
-                <div class="pattern-2" style="background-image: url(assets/images/shape/shape-86.png);"></div>
-            </div>
-            <div class="auto-container">
-                <div class="inner-box">
-                    <div class="content-box">
-                        <div class="title-box">
-                            <h3>{{__("message.User Login")}}</h3>
-                            <a href="{{route('user-register')}}">{{__("message.Not a User")}}?</a>
-                        </div>
-                        <div class="inner">
-                             @if(Session::has('message'))
-                                 <div class="col-sm-12">
-                                    <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">{{ Session::get('message') }}
-                                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                       <span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                 </div>
-                                 @endif
-                            <form action="{{route('post-user-login')}}" method="post" class="registration-form">
-                                 {{csrf_field()}}
-                                <div class="row clearfix">
-                                   
-                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                        <label>Phone Number</label>
-                                        <input type="number" name="phone" placeholder="{{__('message.Enter Phone')}}" required="" value="{{isset($_COOKIE['phone'])?$_COOKIE['phone']:''}}">
-                                    </div>
-                                   
-                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                        <button type="submit" class="theme-btn-one">{{__("message.Login")}}<i class="icon-Arrow-Right"></i></button>
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="text"><span>{{__("message.or")}}</span></div>
-                           <!-- <ul class="social-links clearfix">
-                                <li><a href="#">{{__("message.Login with Facebook")}}</a></li>
-                                <li><a href="#">{{__("message.Login with Google Plus")}}</a></li>
-                            </ul>-->
-                            <div class="login-now"><p>{{__("message.don't have an account")}}? <a href="{{route('user-register')}}">{{__("message.Register Now")}}</a></p></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
- 
+
+                <button type="submit" class="theme-btn-one hd-auth-submit">Send OTP<i data-lucide="arrow-right"></i></button>
+            </form>
+
+            <div class="hd-auth-divider">{{__("message.or")}}</div>
+           <!-- <ul class="social-links clearfix">
+                <li><a href="#">{{__("message.Login with Facebook")}}</a></li>
+                <li><a href="#">{{__("message.Login with Google Plus")}}</a></li>
+            </ul>-->
+            <div class="login-now"><p>{{__("message.don't have an account")}}? <a href="{{route('user-register')}}">{{__("message.Register Now")}}</a></p></div>
+        </div>
+
+        <div class="hd-auth-hints">
+            <span><i data-lucide="shield-check"></i>Secure OTP login</span>
+            <span><i data-lucide="file-text"></i>Access your reports</span>
+            <span><i data-lucide="calendar-check"></i>Track your bookings</span>
+        </div>
+    </div>
+</section>
+
 @stop
 @section('footer')
 @stop

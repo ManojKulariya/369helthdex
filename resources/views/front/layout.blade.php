@@ -35,6 +35,14 @@
     @include('front.cssclass')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- HealthDex Homepage Design System (single consolidated stylesheet) -->
+    <link rel="stylesheet" href="{{asset('public/hd-home.css')}}?v=hd8">
 
     <!-- Add these links in the <head> section of your HTML file -->
 
@@ -77,18 +85,47 @@
 <!-- End Google Tag Manager (noscript) -->
     <div class="boxed_wrapper">
         <div class="preloader"></div>
-        <header class="main-header style-two">
-            <div class="header-top-new">
-                <div class="outer-container mobile_bg">
-                    <div class="top-inner clearfix">
-                        <div class="container p-0">
-                            <div class="row">
-                                <div class="col-md-2 d-none d-sm-block">
-                                    <figure class="logo"><a href="{{route('home')}}"> 
-                                    <img src="{{asset('public/img').'/'.$setting->logo}}" alt=""></a> 
-                                </figure>
-                                </div>
-                                <div class="col-md-10 d-flex justify-content-end">
+        
+        <!-- Luxury Header -->
+        <header class="luxury-header" id="luxuryHeader">
+            <!-- Top Bar -->
+            <div class="luxury-top-bar">
+                <div class="container">
+                    <div class="luxury-top-bar-content">
+                        <div class="luxury-top-bar-text">
+                            <span><i data-lucide="phone"></i> {{$setting->phone}}</span>
+                            <span><i data-lucide="mail"></i> {{$setting->email}}</span>
+                        </div>
+                        <div class="luxury-top-bar-text">
+                            <span><i data-lucide="clock"></i> 24/7 Support Available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Header -->
+            <div class="luxury-main-header">
+                <div class="container">
+                    <div class="luxury-header-grid">
+                        <!-- Logo -->
+                        <div class="luxury-logo">
+                            <a href="{{route('home')}}">
+                                <img src="{{asset('public/img').'/'.$setting->logo}}" alt="HealthDex 369">
+                            </a>
+                        </div>
+                        
+                        <!-- Navigation -->
+                        <nav class="luxury-nav d-none d-lg-flex">
+                            <a href="{{route('home')}}" class="luxury-nav-link {{Session::get('active_menu')==1 ? 'active' : ''}}">Home</a>
+                            <a href="{{route('popular-packages',['city'=>$cityName ?? 'Jaipur'])}}" class="luxury-nav-link {{Session::get('active_menu')==4 ? 'active' : ''}}">Packages</a>
+                            <a href="{{route('popular-blood-tests',['city'=>$cityName ?? 'Jaipur'])}}" class="luxury-nav-link {{Session::get('active_menu')==11 ? 'active' : ''}}">Tests</a>
+                            <a href="{{route('aboutus')}}" class="luxury-nav-link {{Session::get('active_menu')==7 ? 'active' : ''}}">About</a>
+                            <a href="{{route('blog')}}" class="luxury-nav-link {{Session::get('active_menu')==71 ? 'active' : ''}}">Blog</a>
+                            <a href="{{route('contact-us')}}" class="luxury-nav-link {{Session::get('active_menu')==6 ? 'active' : ''}}">Contact</a>
+                        </nav>
+                        
+                        <!-- Right Actions -->
+                        <div class="luxury-header-actions">
                                     <div class="rightpanel"> @php
                                         $loctionID = session()->get('loctionID');
                                         $userLat = session()->get('latitudes');
@@ -112,131 +149,100 @@
 
                                         $popular_package = \App\Models\Package::whereNull('deleted_at')->take(6)->get();
                                         @endphp
-                                        <div class="locaion_text top-box"> 
-                                            <span class="font_aw_icon"><i class="fa fa-map-marker"></i></span>
-                                            <?php $i = 0; ?>
-                                            @foreach($citydata as $lab)
-                                            @if($lab->id == session()->get('loctionID'))
-                                                <?php $i = 2; ?>
-                                            <a href="javascript:void(0)" onclick="openCityModal()">
-                                                <label class="d-none d-md-block">Your Location </label>
-                                                <span style="white-space: nowrap;">{{$lab->city}} <i class="fa fa-angle-down mt-1"></i></span></a> 
+                                        
+                                        <!-- Location -->
+                                        <a href="javascript:void(0)" onclick="openCityModal()" class="luxury-header-action">
+                                            <i data-lucide="map-pin"></i>
+                                            <span class="d-none d-md-inline">
+                                                @php $i = 0; @endphp
+                                                @foreach($citydata as $lab)
+                                                    @if($lab->id == session()->get('loctionID'))
+                                                        @php $i = 2; @endphp
+                                                        {{$lab->city}}
+                                                    @endif
+                                                @endforeach
+                                                @if($i == 0)
+                                                    {{$citydata[0]['city']}}
                                                 @endif
-                                            @endforeach
-
-                                            @if($i == 0) 
-                                            <a href="javascript:void(0)" onclick="openCityModal()">
-                                                <label class="d-none d-md-block">Your Location</label>
-                                                <span style="white-space: nowrap;">{{$citydata[0]['city']}} &nbsp;<i class="fa fa-angle-down mt-1"></i></span></a> 
-                                            @endif
-                                        </div>
-                                        <div class="locaion_text top-box"> <span class="font_aw_icon"><i class="fa fa-user"></i></span> 
-                                            @if(Auth::id()) 
-                                                <div class="dropdown">
-                                                    <a  class="dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <label>Welcome</label>
-                                                        <span>{{ auth()->user()->name }}</span>
-                                                    </a>
-                                                    <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                                        <a class="dropdown-item" href="{{ route('dashboard') }}"  style="color:black !important;">{{ __('message.My Account') }}</a>
-                                                        <a class="dropdown-item" href="{{ route('user-logout') }}"  style="color:black !important;">Sign Out</a>
-                                                    </div>
-                                                </div>
-                                            @else 
-                                                <a href="{{route('user-login')}}">SignIn/SignUp</a> 
-                                            @endif
-                                        </div>
-                                        <div class="locaion_text top-box "> 
-                                            <span class="font_aw_icon"><i class="fa fa-phone"></i></span> 
-                                                <a > <label>Customer Support </label>{{$setting->phone}}</a> 
-                                            </div>
-                                        <!--<div class="locaion_text top-box shoping-cart"> -->
-                                        <!--        <a href="{{route('checkout')}}">-->
-                                        <!--            <span class="font_aw_icon"><i class="fa fa-shopping-cart" style=" font-size: 15px;"></i>-->
-                                        <!--            <div class="cart-count">-->
-                                        <!--                <?php $cartCollection = Cart::getContent(); ?>-->
-                                        <!--                {{isset($totalcartmember)?$totalcartmember:''}}-->
-                                        <!--            </div>-->
-                                        <!--            </span>-->
-                                        <!--    </a> -->
-                                        <!--</div>-->
-                                        <style>
-                                            .font_aw_icon {
-                                                  position: relative;
-                                                }
-                                                
-                                                .cart-count {
-                                                  position: absolute;
-                                                  top: -5px;
-                                                  right: -5px;
-                                                  background-color: #e6ae05;
-                                                  color: white;
-                                                  border-radius: 50%;
-                                                  padding: 2px 5px;
-                                                  font-size: 10px;
-                                                }
-
-                                        </style>
-                                        <div class="locaion_text top-box shoping-cart">
-                                          <a href="{{ route('checkout') }}">
-                                            <span class="font_aw_icon" style="position: relative;">
-                                              <i class="fa fa-shopping-cart" style="font-size: 15px;"></i>
-                                              <span class="cart-count">
-                                                {{ $totalcartmember ?? '' }}
-                                              </span>
                                             </span>
-                                          </a>
+                                        </a>
+                                        
+                                        <!-- User -->
+                                        @if(Auth::id())
+                                        <div class="dropdown">
+                                            <a class="luxury-header-action dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i data-lucide="user"></i>
+                                                <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                                <a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('message.My Account') }}</a>
+                                                <a class="dropdown-item" href="{{ route('user-logout') }}">Sign Out</a>
+                                            </div>
                                         </div>
+                                        @else
+                                        <a href="{{route('user-login')}}" class="luxury-header-action">
+                                            <i data-lucide="user"></i>
+                                            <span class="d-none d-md-inline">Sign In</span>
+                                        </a>
+                                        @endif
 
+                                        <!-- Cart -->
+                                        <a href="{{ route('checkout') }}" class="luxury-header-action luxury-header-cart">
+                                            <i data-lucide="shopping-cart"></i>
+                                            @if(isset($totalcartmember) && $totalcartmember > 0)
+                                            <span class="luxury-cart-badge">{{ $totalcartmember }}</span>
+                                            @endif
+                                        </a>
+
+                                        <!-- Sticky CTA -->
+                                        <a href="{{route('popular-packages',['city'=>$cityName ?? 'Jaipur'])}}" class="luxury-header-cta d-none d-xl-inline-flex">
+                                            <span>Book a Test</span>
+                                            <i data-lucide="arrow-right"></i>
+                                        </a>
+
+                                        <!-- Mobile Menu Toggle -->
+                                        <button class="luxury-header-action luxury-hamburger d-lg-none" id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false">
+                                            <span class="luxury-hamburger-box" aria-hidden="true">
+                                                <span class="luxury-hamburger-bar"></span>
+                                                <span class="luxury-hamburger-bar"></span>
+                                                <span class="luxury-hamburger-bar"></span>
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+        </header>
 
 
-                        <!-- The Modal -->
-
+                        <!-- City Modal -->
                         <div class="modal" id="cityModal">
-                            <div class="modal-dialog modal-dialog-scrollable  modal-lg">
-                                <div class="modal-content">
-
-                                    <!-- Modal Header -->
-
-                                    <div class="modal-header" style="background-color:#F5F5F5;">
-                                        <h5 class="modal-title">Change Location</h5><input type="text" id="citySearch" onkeyup="filterCities()" class="form-control"
-                                            placeholder="Search for a Location...">
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            onclick="closeCityModal()">&times;</button>
+                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                <div class="modal-content" style="border-radius: 24px; border: none; overflow: hidden;">
+                                    <div class="modal-header" style="background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-bottom: 1px solid rgba(16, 185, 129, 0.1); padding: 20px 24px;">
+                                        <h5 class="modal-title" style="font-weight: 700; color: #111827;">Change Location</h5>
+                                        <input type="text" id="citySearch" onkeyup="filterCities()" class="form-control" placeholder="Search for a Location..." style="border-radius: 12px; border: 2px solid #e5e7eb; padding: 12px 16px; max-width: 300px;">
+                                        <button type="button" class="close" data-dismiss="modal" onclick="closeCityModal()" style="opacity: 0.5;">&times;</button>
                                     </div>
-
-                                    <!-- Modal Body -->
-
-                                    <div class="modal-body">
-                                        
-                                        <div class="" id="cityList"> 
-                                            
+                                    <div class="modal-body" style="padding: 24px;">
+                                        <div id="cityList">
                                             @foreach($groupedCities as $state => $cities)
-                                                <div class="state-group">
-                                                    <h7 class="state-title"><b>{{$state}}</b></h7>
+                                                <div class="state-group" style="margin-bottom: 20px;">
+                                                    <h6 style="font-weight: 700; color: #374151; margin-bottom: 12px; font-size: 14px;">{{$state}}</h6>
                                                     <div class="row">
                                                         @foreach($cities as $lab)
-                                                            <div class="col-md-2 col-6 city-item" data-city="{{$lab->city}}" data-state="{{$state}}">
-                                                                <small>
+                                                            <div class="col-md-3 col-6 city-item" data-city="{{$lab->city}}" data-state="{{$state}}" style="margin-bottom: 8px;">
                                                                 @if($lab->id == session()->get('loctionID'))
-                                                                    <a href="javascript:void(0);" onclick="onCityClick('{{$lab->id}}', '{{$lab->slug}}')">
-                                                                        <mark>{{$lab->city}}</mark>
-                                                                    </a>
+                                                                    <a href="javascript:void(0);" onclick="onCityClick('{{$lab->id}}', '{{$lab->slug}}')" class="hd-city-link hd-city-link-active">{{$lab->city}}</a>
                                                                 @else
-                                                                    <a href="javascript:void(0);" style="text-decoration: none; color: inherit;"  @if($lab->status != 0)  onclick="onCityClick('{{$lab->id}}', '{{$lab->slug}}')"  @endif >
+                                                                    <a href="javascript:void(0);" class="hd-city-link @if($lab->status == 0) hd-city-link-soon @endif" @if($lab->status != 0) onclick="onCityClick('{{$lab->id}}', '{{$lab->slug}}')" @endif>
                                                                         {{$lab->city}}
-                                                                        <small><b>
-                                                                            @if($lab->status == 0)
-                                                                             (Coming soon)
-                                                                            @endif
-                                                                        </b></small>
+                                                                        @if($lab->status == 0)
+                                                                            <small>(Coming soon)</small>
+                                                                        @endif
                                                                     </a>
                                                                 @endif
-                                                                </small>
                                                             </div>
                                                         @endforeach
                                                     </div>
@@ -244,316 +250,281 @@
                                             @endforeach
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
 
-
-                    </div>
-                </div>
-                <div class="header-lower">
-                    <div class="outer-container">
-                        <div class="outer-box">
-                            <div class="logo-box d-block d-sm-none">
-                                <figure class="logo"><a href="{{route('home')}}"><img
-                                            src="{{asset('public/img').'/'.$setting->logo}}" alt=""></a></figure>
-                            </div>
-                            <div class="menu-area">
-                                <div class="mobile-nav-toggler"> <i class="icon-bar"></i> <i class="icon-bar"></i> <i
-                                        class="icon-bar"></i> </div>
-                                <nav class="main-menu navbar-expand-md navbar-light">
-                                    <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                                        <ul class="navigation clearfix">
-                                            <li class="<?= Session::get(" active_menu")==1 ? 'current' : '' ?>"><a
-                                                    href="{{route('home')}}">{{__('message.Home')}}</a></li>
-                                            <li class="<?= Session::get(" active_menu")==11 ? 'current' : '' ?>"><a
-                                                    href="{{route('popular-blood-tests',['city'=>$cityName])}}">Popular
-
-                                                    Test</a></li>
-                                            <li class=" <?= Session::get(" active_menu")==4 ? 'current' : '' ?>"> <a
-                                                    href="{{route('popular-packages',['city'=>$cityName])}}">{{__('message.Popular Package')}}</a> </li>
-                                            <li class="<?= Session::get(" active_menu")==5 ? 'current' : '' ?>"> <a
-                                                    href="{{route('lifestyle-disorder',['city'=>$cityName])}}">{{__('Lifestyle
-
-                                                    Disorder')}}</a> </li>
-                                            <li class="<?= Session::get(" active_menu")==7 ? 'current' : '' ?>"><a
-                                                    href="{{route('aboutus')}}">{{__('message.About Us')}}</a></li>
-                                            <li class="<?= Session::get(" active_menu")==71 ? 'current' : '' ?>"><a
-                                            href="{{route('blog')}}">Blog</a></li>
-                                            <!--<li class="<?= Session::get(" active_menu")==81 ? 'current' : '' ?>"><a-->
-                                            <!--href="{{route('franchise')}}">Franchise</a></li>-->
-                                            <!--<li class="<?= Session::get(" active_menu")==6 ? 'current' : '' ?>"><a-->
-                                            <!--        href="{{route('contact-us')}}">{{__('message.Contact Us')}}</a></li>-->
-                                            
-                                                    
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
-                            
+                        <!-- Mobile Menu -->
+                        <div class="mobile-menu d-lg-none">
+                            <div class="menu-backdrop"></div>
+                            <div class="close-btn" role="button" aria-label="Close menu" tabindex="0"><i data-lucide="x"></i></div>
+                            <nav class="menu-box" aria-label="Mobile navigation">
+                                <div class="hd-mobile-logo">
+                                    <a href="{{route('home')}}"><img src="{{asset('public/img').'/'.$setting->footer_logo}}" alt="{{__('message.site_name')}}"></a>
+                                </div>
+                                <div class="hd-mobile-nav">
+                                    <ul>
+                                        <li><a href="{{route('home')}}" class="{{Session::get('active_menu')==1 ? 'active' : ''}}"><i data-lucide="house"></i>Home<i data-lucide="chevron-right" class="hd-mobile-nav-arrow"></i></a></li>
+                                        <li><a href="{{route('popular-packages',['city'=>$cityName])}}" class="{{Session::get('active_menu')==4 ? 'active' : ''}}"><i data-lucide="package"></i>Packages<i data-lucide="chevron-right" class="hd-mobile-nav-arrow"></i></a></li>
+                                        <li><a href="{{route('popular-blood-tests',['city'=>$cityName])}}" class="{{Session::get('active_menu')==11 ? 'active' : ''}}"><i data-lucide="test-tubes"></i>Tests<i data-lucide="chevron-right" class="hd-mobile-nav-arrow"></i></a></li>
+                                        <li><a href="{{route('aboutus')}}" class="{{Session::get('active_menu')==7 ? 'active' : ''}}"><i data-lucide="heart-handshake"></i>About<i data-lucide="chevron-right" class="hd-mobile-nav-arrow"></i></a></li>
+                                        <li><a href="{{route('blog')}}" class="{{Session::get('active_menu')==71 ? 'active' : ''}}"><i data-lucide="newspaper"></i>Blog<i data-lucide="chevron-right" class="hd-mobile-nav-arrow"></i></a></li>
+                                        <li><a href="{{route('contact-us')}}" class="{{Session::get('active_menu')==6 ? 'active' : ''}}"><i data-lucide="phone"></i>Contact<i data-lucide="chevron-right" class="hd-mobile-nav-arrow"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="hd-mobile-cta">
+                                    <a href="{{route('popular-packages',['city'=>$cityName])}}" class="premium-btn premium-btn-primary">
+                                        Book a Test
+                                        <i data-lucide="arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="hd-mobile-contact">
+                                    <h4>Contact Info</h4>
+                                    <ul>
+                                        <li><i data-lucide="phone"></i><a href="tel:{{$setting->phone}}">{{$setting->phone}}</a></li>
+                                        <li><i data-lucide="mail"></i><a href="mailto:{{$setting->email}}">{{$setting->email}}</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
                         </div>
-                    </div>
-                </div>
-                <div class="sticky-header">
-                    <div class="auto-container">
-                        <div class="outer-box">
-                            <div class="logo-box">
-                                <figure class="logo"><a href="{{route('home')}}"><img
-                                            src="{{asset('public/img').'/'.$setting->logo}}" alt=""></a></figure>
-                            </div>
-                            <div class="menu-area">
-                                <nav class="main-menu clearfix"> </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <div class="mobile-menu">
-            <div class="menu-backdrop"></div>
-            <div class="close-btn"><i class="fas fa-times"></i></div>
-            <nav class="menu-box">
-                <div class="nav-logo"><a href="#"><img src="{{asset('public/img').'/'.$setting->footer_logo}}" alt=""
-                            title=""></a></div>
-                <div class="menu-outer"> </div>
-                <div class="contact-info">
-                    <h4>{{__('message.Contact Info')}}</h4>
-                    <ul>
-                        <!--<li>{{$setting->address}}</li>-->
-                        <li><a href="javascript::void(0)">{{$setting->phone}}</a></li>
-                        <li><a href="javascript::void(0)">{{$setting->email}}</a></li>
-                    </ul>
-                </div>
-                <div class="social-links">
-                    <ul class="clearfix">
-                        <li><a href="https://x.com/Healthdex369" target="_blank"><span
-                                    class="fab fa-twitter"></span></a></li>
-                        <li><a href="https://www.facebook.com/share/1DWpjpUHcy/" target="_blank"><span
-                                    class="fab fa-facebook-square"></span></a></li>
-                        <li><a href="#"
-                                target="_blank"><span class="fab fa-linkedin"></span></a></li>
-                        <li><a href="https://www.instagram.com/healthdex369?igsh=MTN4eHJyNWNxM3F1Yg=="><span class="fab fa-instagram"
-                                    target="_blank"></span></a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
+        
         @yield('content')
-        <section class="agent-section newsletter" style="display:none;">
-            <div class="auto-container">
-                <div class="inner-container bg-color-2">
-                    <div class="row clearfix">
-                        <div class="col-lg-6 col-md-12 col-sm-12 left-column">
-                            <div class="content_block_3">
-                                <div class="content-box">
-                                    <h3>{{__('message.Emergency call')}}</h3>
-                                    <div class="support-box">
-                                        <div class="icon-box"><i class="fas fa-phone"></i></div>
-                                        <span>{{__('message.Telephone')}}</span>
-                                        <h3><a href="javascript::void(0)">{{$setting->phone}}</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12 right-column">
-                            <div class="content_block_4">
-                                <div class="content-box">
-                                    <h3>{{__('message.Sign up for Email')}}</h3>
-                                    <form action="#" method="post" class="subscribe-form">
-                                        <div class="form-group">
-                                            <input type="email" name="email" id="emailnews"
-                                                placeholder="{{__('message.Enter Email')}}" required="">
-                                            <button type="button" onclick="addnewsletter()"
-                                                class="theme-btn-one">{{__('message.Submit now')}}<i
-                                                    class="icon-Arrow-Right"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+        
+        <!-- Premium Footer -->
+        <footer class="premium-footer">
+            <div class="footer-glow-1"></div>
+            <div class="footer-glow-2"></div>
+            
+            <div class="container">
+                <!-- CTA Strip -->
+                <div class="footer-cta-strip">
+                    <div class="footer-cta-content">
+                        <h3 class="footer-cta-title">Need Help Booking Your Health Test?</h3>
+                        <p class="footer-cta-description">Our team is ready to assist you with test selection and home sample collection</p>
                     </div>
-                </div>
-            </div>
-        </section>
-        <footer class="main-footer">
-            <div class="footer-top pt-4 pb-0">
-                <div class="auto-container">
-                    <div class="inner-box clearfix">
-                        <div class="row">
-                            <div class="col-12 copyright pull-left" style="display: flex; align-items: center;">
-                                <p style="color:#FFFFFF"><b>{{__("message.Our_Presence")}} </b> </p>
-                                <hr style="border-color: #FFFFFF; flex-grow: 1;">
-                            </div>
-                        </div>
-                        <div id="our_presence"></div>
-                        <div class="inner-box clearfix">
-                            <div class="row">
-                                <div class="col-12 copyright pull-left" style="display: flex; align-items: center;">
-                                    <p style="color:#FFFFFF"><b>{{__("message.Browse_Popular_Blood_Tests")}} </b> </p>
-                                    <hr style="border-color: #FFFFFF; flex-grow: 1;">
-                                </div>
-                            </div>
-                            <div id="Browse_Popular_Blood_Tests"></div>
-                        </div>
-                        <div class="inner-box clearfix">
-                            <div class="row">
-                                <div class="col-12 copyright pull-left" style="display: flex; align-items: center;">
-                                    <p style="color:#FFFFFF"><b>{{__("message.Browse_Popular_Blood_Packages")}} </b>
-                                    </p>
-                                    <hr style="border-color: #FFFFFF; flex-grow: 1;">
-                                </div>
-                            </div>
-                            <div id="Browse_Popular_Blood_Packages"></div>
-                        </div>
-                        <div class="inner-box clearfix">
-                            <div class="row">
-                                <div class="col-12 copyright pull-left" style="display: flex; align-items: center;">
-                                    <p style="color:#FFFFFF"><b>{{__("message.Browse_Tests_by_Lifestyl_Disorder")}} </b>
-                                    </p>
-                                    <hr style="border-color: #FFFFFF; flex-grow: 1;">
-                                </div>
-                            </div>
-                            <div id="Browse_Tests_by_Lifestyl_Disorder"></div>
-                        </div>
+                    <div class="footer-cta-buttons">
+                        <a href="{{route('popular-packages',['city'=>$cityName ?? 'Jaipur'])}}" class="footer-btn footer-btn-primary">
+                            Book Now
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="{{route('contact-us')}}" class="footer-btn footer-btn-secondary">
+                            <i data-lucide="phone"></i>
+                            Contact Us
+                        </a>
                     </div>
                 </div>
                 
-                <div class="auto-container">
-                    <div class="widget-section">
-                        <div class="row clearfix">
-                            <div class="col-lg-3 col-12 footer-column">
-                                <div class="footer-widget logo-widget">
-                                    <figure class="footer-logo"> <a href="#"><img
-                                                src="{{asset('public/img').'/'.$setting->footer_logo}}" alt=""></a>
-                                    </figure>
-                                    <div class="text">
-                                        <p>{{__('message.footer text')}}</p>
+                <!-- Main Footer -->
+                <div class="footer-main">
+                    <div class="footer-grid">
+                        <!-- Brand Column -->
+                        <div class="footer-brand">
+                            <a href="{{route('home')}}" class="footer-logo">
+                                <img src="{{asset('public/img').'/'.$setting->footer_logo}}" alt="HealthDex 369">
+                            </a>
+                            <p class="footer-description">{{__('message.footer text')}}</p>
+                            
+                            <!-- Trust Badges -->
+                            <div class="footer-trust-badges">
+                                <span class="footer-trust-badge">
+                                    <i data-lucide="check"></i>
+                                    NABL Certified
+                                </span>
+                                <span class="footer-trust-badge">
+                                    <i data-lucide="check"></i>
+                                    Trusted Healthcare
+                                </span>
+                                <span class="footer-trust-badge">
+                                    <i data-lucide="check"></i>
+                                    Secure Reports
+                                </span>
+                                <span class="footer-trust-badge">
+                                    <i data-lucide="check"></i>
+                                    Home Collection
+                                </span>
+                            </div>
+                            
+                            <!-- Social Media -->
+                            <div class="footer-social">
+                                <a href="https://x.com/Healthdex369" target="_blank" class="footer-social-link">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.facebook.com/share/1DWpjpUHcy/" target="_blank" class="footer-social-link">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://www.linkedin.com" target="_blank" class="footer-social-link">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://www.instagram.com/healthdex369" target="_blank" class="footer-social-link">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Links -->
+                        <div class="footer-column">
+                            <h4 class="footer-title">{{__('message.Useful Links')}}</h4>
+                            <div class="footer-links">
+                                <a href="{{route('aboutus')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    {{__('message.About Us')}}
+                                </a>
+                                <a href="{{route('blog')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    Blog
+                                </a>
+                                <a href="{{route('career')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    Careers
+                                </a>
+                                <a href="{{route('contact-us')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    {{__('message.Contact Us')}}
+                                </a>
+                                <a href="{{route('feedback')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    Feedback
+                                </a>
+                                <a href="{{route('Privacy_Policy')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    {{__("message.Privacy Policy")}}
+                                </a>
+                                <a href="{{route('Terms_of_Service')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    {{__("message.Terms of Service")}}
+                                </a>
+                                <a href="{{route('refund_policy')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    Refund Policy
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Services -->
+                        <div class="footer-column">
+                            <h4 class="footer-title">Patients</h4>
+                            <div class="footer-links">
+                                <a href="{{route('popular-blood-tests',['city'=>$cityName ?? 'Jaipur'])}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    Popular Tests
+                                </a>
+                                <a href="{{route('popular-packages',['city'=>$cityName ?? 'Jaipur'])}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    {{__('message.Popular Package')}}
+                                </a>
+                                <a href="{{route('nearest_center')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    Nearest Centre
+                                </a>
+                                <a href="{{route('download-report')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    Download Report
+                                </a>
+                                @if(Auth::id())
+                                <a href="{{route('dashboard')}}" class="footer-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                    {{__('message.My Account')}}
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Info -->
+                        <div class="footer-column">
+                            <h4 class="footer-title">{{__('message.Contacts')}}</h4>
+                            <div class="footer-contact-items">
+                                <div class="footer-contact-item">
+                                    <div class="footer-contact-icon">
+                                        <i data-lucide="phone"></i>
+                                    </div>
+                                    <div class="footer-contact-content">
+                                        <p class="footer-contact-label">Phone</p>
+                                        <a href="tel:{{$setting->phone}}" class="footer-contact-value">{{$setting->phone}}</a>
                                     </div>
                                 </div>
-                                <p style="font-size:18px;font-weight:bold;margin-top:20px;color:#fff;">Download App</p>
-                                <ul class="app_icon">
-                                    <li><a href="{{$setting->appstore_url}}" target="_blank"><img src="https://rdccare.com/public/img/App_Store.png"></a>
-                                    </li>
-                                    <li><a href="{{$setting->playstore_url}}" target="_blank"><img
-                                                src="https://rdccare.com/public/img/google-play.png"></a></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-3 col-6 footer-column">
-                                <div class="footer-widget links-widget">
-                                    <div class="widget-title">
-                                        <h3>{{__('message.Useful Links')}}</h3>
+                                <div class="footer-contact-item">
+                                    <div class="footer-contact-icon">
+                                        <i data-lucide="mail"></i>
                                     </div>
-                                    <div class="widget-content">
-                                        <ul class="links clearfix">
-                                            <li><a href="{{route('aboutus')}}">{{__('message.About Us')}}</a></li>
-                                            <li><a href="{{route('blog')}}">Blog</a></li>
-                                            <li><a href="{{route('career')}}">Careers</a></li>
-                                            <li><a href="{{route('contact-us')}}">{{__('message.Contact Us')}}</a></li>
-                                            
-                                            <li><a href="{{route('feedback')}}">Feedback/Complaints</a></li>
-                                            <li><a href="{{route('nearest_center')}}">Our Team</a></li>
-                                        </ul>
+                                    <div class="footer-contact-content">
+                                        <p class="footer-contact-label">Email</p>
+                                        <a href="mailto:{{$setting->email}}" class="footer-contact-value">{{$setting->email}}</a>
+                                    </div>
+                                </div>
+                                <div class="footer-contact-item">
+                                    <div class="footer-contact-icon">
+                                        <i data-lucide="map-pin"></i>
+                                    </div>
+                                    <div class="footer-contact-content">
+                                        <p class="footer-contact-label">Address</p>
+                                        <p class="footer-contact-value">{{$setting->address}}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-6  footer-column">
-                                <div class="footer-widget links-widget">
-                                    <div class="widget-title">
-                                        <h3>Patients</h3>
-                                    </div>
-                                    <div class="widget-content">
-                                        <ul class="links clearfix">
-                                            <li><a href="{{route('popular-blood-tests',['city'=>$cityName])}}">Popular
-                                                    Blood Tests</a></li>
-                                            <li><a href="{{route('popular-packages',['city'=>$cityName])}}">{{__('message.Popular Package')}}</a></li>
-                                            <li><a href="{{route('nearest_center')}}">Nearest Centre</a></li>
-                                            <li><a href="{{route('download-report')}}">Download Report</a></li>
-                                            
-                                            @if(Auth::id())
-                                            <li><a href="{{route('dashboard')}}">{{__('message.My Account')}}</a></li>
-                                            <li><a href="{{route('home_visit')}}">{{__('message.Home')}} Visit</a></li>
-                                            <li><a href="{{route('checkout')}}">{{__('message.CheckOut')}}</a></li>
-                                            @else
-                                            <li><a href="{{route('user-login')}}">{{__('message.Sign In')}}</a></li>
-                                            @endif
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
-                                <div class="footer-widget contact-widget  mb-10">
-                                    <div class="widget-title">
-                                        <h3>{{__('message.Contacts')}}</h3>
-                                    </div>
-                                    <div class="widget-content">
-                                        <ul class="info-list clearfix">
-                                            <!--<li><i class="fas fa-map-marker-alt"></i> {{$setting->address}} </li>-->
-                                            <li><i class="fas fa-microphone"></i> <a
-                                                    href="javascript::void(0)">{{$setting->phone}}</a> </li>
-                                            <li><i class="fas fa-envelope"></i> <a
-                                                    href="javascript::void(0)">{{$setting->email}}</a> </li>
-                                        </ul>
-                                    </div>
-                                    <div class="footer_social_links">
-                                        <p style="font-size:18px;font-weight:bold;margin-top:20px;color:#fff;">Follow Us
-                                        </p>
-                                        <ul class="clearfix">
-                                            <li><a href="https://x.com/Healthdex369" target="_blank"><span
-                                                        class="fab fa-twitter"></span></a></li>
-                                            <li><a href="https://www.facebook.com/share/1DWpjpUHcy/" target="_blank"><span
-                                                        class="fab fa-facebook-square"></span></a></li>
-                                            <li><a href="#"
-                                                    target="_blank"><span class="fab fa-linkedin"></span></a></li>
-                                            <li><a href="https://www.instagram.com/healthdex369?igsh=MTN4eHJyNWNxM3F1Yg=="><span
-                                                        class="fab fa-instagram" target="_blank"></span></a></li>
-                                        </ul>
-                                    </div>
+                            
+                            <!-- Download App Card -->
+                            <div class="footer-app-card">
+                                <h4 class="footer-app-title">Download Our App</h4>
+                                <div class="footer-app-buttons">
+                                    <a href="{{$setting->appstore_url}}" target="_blank" class="footer-app-btn">
+                                        <i class="fab fa-apple"></i>
+                                        <div class="footer-app-btn-text">
+                                            <span class="footer-app-btn-label">Download on</span>
+                                            <span class="footer-app-btn-name">App Store</span>
+                                        </div>
+                                    </a>
+                                    <a href="{{$setting->playstore_url}}" target="_blank" class="footer-app-btn">
+                                        <i class="fab fa-google-play"></i>
+                                        <div class="footer-app-btn-text">
+                                            <span class="footer-app-btn-label">Get it on</span>
+                                            <span class="footer-app-btn-name">Google Play</span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="auto-container">
-                    <div class="inner-box clearfix">
-                        <div class="copyright pull-left">
-                            <p><a href="https://shreelaboratory.com">{{__("message.site_name")}}</a> &copy; {{date('Y')}} {{__("message.All Right Reserved")}}</p>
-                                
-                        </div>
-                        <ul class="footer-nav pull-right clearfix">
-                            <li><a href="{{route('refund_policy')}}">Refund Policy</a></li>
-                            <li><a href="{{route('Terms_of_Service')}}">{{__("message.Terms of Service")}}</a></li>
-                            <li><a href="{{route('Privacy_Policy')}}">{{__("message.Privacy Policy")}}</a></li>
-                            <!--<li><a href="{{route('franchise')}}">Franchise</a></li>-->
-                        </ul>
                     </div>
                     
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="sticky-bar">
-                            <div class="get_call">
-                                
-                                <div class="input-group"> 
-                                    <input class="form-control" id="request-button" placeholder="Enter your 10 digit mobile number" required type="text">
-                                    <div class="input-group-btn ctbn_free"> <button type="button" class="btn btn-warning">Get a free call</button> </div>
-                                </div>
-                            </div>
-                           
-                        </div>
-                    </div>
                 </div>
             </div>
         </footer>
         <!--<button class="scroll-top scroll-to-target" data-target="html"> <span class="fa fa-arrow-up"></span> </button>-->
     </div>
+    <button type="button" id="request-button" class="hd-callback-fab" aria-label="Request a callback">
+        <span class="hd-callback-fab-icon"><i data-lucide="phone-call"></i></span>
+        <span class="hd-callback-fab-label">Need Help?</span>
+    </button>
     <div class="floating-whatsapp-a">
         <a aria-label="whatsapp" href="https://wa.me/919828112340?text=hi">
-            <img src="https://rdccare.com/public/img/whatsapp.png" />
+            <img src="https://rdccare.com/public/img/whatsapp.png" alt="Chat with us on WhatsApp" loading="lazy" />
         </a>
     </div>
     <div class="modal" id="addaddress">
@@ -727,7 +698,7 @@
     <script src="{{asset('public/front/Docpro/assets/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('public/front/Docpro/assets/js/owl.js')}}"></script>
     <script src="{{asset('public/front/Docpro/assets/js/wow.js')}}"></script>
-    <script src="{{asset('public/front/Docpro/assets/js/swiper.js')}}"></script>
+    <script src="{{asset('public/front/Docpro/assets/js/swiper.js')}}?v=hd4"></script>
     <script src="{{asset('public/front/Docpro/assets/js/validation.js')}}"></script>
     <script src="{{asset('public/front/Docpro/assets/js/jquery.fancybox.js')}}"></script>
     <script src="{{asset('public/front/Docpro/assets/js/appear.js')}}"></script>
@@ -1068,13 +1039,37 @@
 
                     const longitude = position.coords.longitude;
 
-                    // Make an AJAX request to store the lat and long in session
+                    // Store the coordinates in the session so lab distances are
+                    // computed from the visitor's real position. Skip the call
+                    // when this tab already sent the same coordinates.
 
                     const queryString = `latitude=${latitude}&longitude=${longitude}`;
 
-                    const url = `/update-location?${queryString}`;
+                    const url = $("#url_path").val() + `/update-location?${queryString}`;
 
+                    const geoKey = latitude.toFixed(4) + ',' + longitude.toFixed(4);
 
+                    if (sessionStorage.getItem('hdGeoSent') !== geoKey) {
+
+                        fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+
+                            .then(function (response) {
+
+                                if (response.ok) {
+
+                                    sessionStorage.setItem('hdGeoSent', geoKey);
+
+                                }
+
+                            })
+
+                            .catch(function (error) {
+
+                                console.error('Failed to store location:', error);
+
+                            });
+
+                    }
 
                 },
 
@@ -1094,7 +1089,93 @@
         function reloadCaptcha() {
             document.getElementById('captcha-img').src = '{{ url("/custom-captcha") }}?' + Math.random();
         }
+        
+        // Luxury Header Scroll Effect
+        (function() {
+            const header = document.getElementById('luxuryHeader');
+            if (header) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        })();
+        
+        // Mobile Menu Toggle
+        (function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const menuBackdrop = document.querySelector('.menu-backdrop');
+            const closeBtn = document.querySelector('.mobile-menu .close-btn');
+            
+            function setMenuState(open) {
+                mobileMenu.classList.toggle('active', open);
+                mobileMenuToggle.classList.toggle('is-open', open);
+                mobileMenuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                document.body.classList.toggle('hd-menu-open', open);
+            }
+
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    setMenuState(!mobileMenu.classList.contains('active'));
+                });
+
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        setMenuState(false);
+                    });
+                }
+
+                if (menuBackdrop) {
+                    menuBackdrop.addEventListener('click', function() {
+                        setMenuState(false);
+                    });
+                }
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                        setMenuState(false);
+                    }
+                });
+            }
+        })();
+        
+        // Scroll Reveal Animation
+        (function() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            function revealOnScroll() {
+                reveals.forEach(function(element) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < windowHeight - elementVisible) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+        })();
     </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        (function initLucide() {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            } else {
+                setTimeout(initLucide, 60);
+            }
+        })();
+    </script>
+    <!-- HealthDex premium interactions (reveals, counters, parallax, ripple, FAQ) -->
+    <script src="{{asset('public/hd-home.js')}}?v=hd4"></script>
     @yield('footer')
 </body>
 

@@ -1,0 +1,362 @@
+/* ============================================
+   HealthDex 369 - Spacing Polish
+   Reduces vertical spacing between sections
+   Desktop: 60px top/bottom
+   Mobile: 40px top/bottom
+   ============================================ */
+
+/* ============================================
+   SECTION PADDING - DESKTOP (Default)
+   ============================================ */
+
+/* Popular Tests Section */
+.tests-premium-section {
+  padding: 60px 0 !important;
+}
+
+/* Top Health Packages Section */
+.packages-premium-section {
+  padding: 60px 0 !important;
+}
+
+/* How to Book / Booking Process Section */
+.booking-process-section {
+  padding: 60px 0 !important;
+}
+
+/* Why Choose HealthDex Section */
+.why-choose-section {
+  padding: 60px 0 !important;
+}
+
+/* Blog Section */
+.blog-premium-section {
+  padding: 60px 0 !important;
+}
+
+/* Download App Section */
+.app-download-section {
+  padding: 60px 0 !important;
+}
+
+/* Offers Section */
+.process-style-two {
+  padding: 60px 0 !important;
+}
+
+/* Labs Network Section */
+.testimonial-style-two {
+  padding: 60px 0 !important;
+}
+
+/* ============================================
+   SECTION HEADER SPACING
+   ============================================ */
+
+/* Section Badge to Heading */
+.tests-section-badge,
+.packages-section-badge,
+.booking-section-badge,
+.why-section-badge,
+.blog-section-badge,
+.app-section-badge {
+  margin-bottom: 16px !important;
+}
+
+/* Section Heading to Description */
+.tests-section-title,
+.packages-section-title,
+.booking-section-title,
+.why-section-title,
+.blog-section-title,
+.app-section-title {
+  margin-bottom: 16px !important;
+}
+
+/* Section Description to Content */
+.tests-section-description,
+.packages-section-description,
+.booking-section-description,
+.why-section-description,
+.blog-section-description,
+.app-section-description {
+  margin-bottom: 32px !important;
+}
+
+/* Section Header Container */
+.tests-section-header,
+.packages-section-header,
+.booking-section-header,
+.why-section-header,
+.blog-section-header {
+  margin-bottom: 36px !important;
+}
+
+/* Offers & Labs Section Titles */
+.process-style-two .sec-title,
+.testimonial-style-two .sec-title {
+  margin-bottom: 32px !important;
+}
+
+/* ============================================
+   CONTENT SPACING
+   ============================================ */
+
+/* Features Grid */
+.app-features-grid {
+  margin-bottom: 32px !important;
+  gap: 14px !important;
+}
+
+/* Buttons Wrapper */
+.app-buttons-wrapper {
+  margin-bottom: 28px !important;
+  gap: 14px !important;
+}
+
+/* Stats Wrapper */
+.app-stats-wrapper {
+  margin-top: 24px !important;
+  padding-top: 24px !important;
+  gap: 24px !important;
+}
+
+/* Booking Steps Container */
+.booking-steps-container {
+  gap: 24px !important;
+  margin-top: 0 !important;
+}
+
+/* Why Choose Grid */
+.why-features-grid {
+  gap: 24px !important;
+}
+
+/* Blog Slider */
+.blog-slider-wrapper {
+  margin-top: 0 !important;
+}
+
+/* ============================================
+   FOOTER SPACING
+   ============================================ */
+.premium-footer {
+  padding-top: 60px !important;
+}
+
+.footer-cta-strip {
+  margin-bottom: 40px !important;
+}
+
+.footer-main {
+  padding-bottom: 40px !important;
+}
+
+.footer-trust-strip {
+  padding: 24px 0 !important;
+  margin-bottom: 24px !important;
+  gap: 32px !important;
+}
+
+.footer-bottom {
+  padding-top: 24px !important;
+}
+
+/* ============================================
+   HERO SECTION ADJUSTMENTS
+   ============================================ */
+.luxury-hero {
+  padding: calc(100px + 40px) 0 60px !important;
+  min-height: auto !important;
+}
+
+.luxury-hero-badge {
+  margin-bottom: 16px !important;
+}
+
+.luxury-hero-title {
+  margin-bottom: 16px !important;
+}
+
+.luxury-hero-subtitle {
+  margin-bottom: 28px !important;
+}
+
+.luxury-hero-quick-actions {
+  margin-top: 28px !important;
+  gap: 16px !important;
+}
+
+.luxury-hero-trust {
+  margin-top: 28px !important;
+  gap: 24px !important;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE - 768px and below
+   ============================================ */
+@media (max-width: 768px) {
+  /* Section Padding */
+  .tests-premium-section,
+  .packages-premium-section,
+  .booking-process-section,
+  .why-choose-section,
+  .blog-premium-section,
+  .app-download-section,
+  .process-style-two,
+  .testimonial-style-two {
+    padding: 40px 0 !important;
+  }
+
+  /* Section Header Spacing */
+  .tests-section-badge,
+  .packages-section-badge,
+  .booking-section-badge,
+  .why-section-badge,
+  .blog-section-badge,
+  .app-section-badge {
+    margin-bottom: 12px !important;
+  }
+
+  .tests-section-title,
+  .packages-section-title,
+  .booking-section-title,
+  .why-section-title,
+  .blog-section-title,
+  .app-section-title {
+    margin-bottom: 12px !important;
+  }
+
+  .tests-section-description,
+  .packages-section-description,
+  .booking-section-description,
+  .why-section-description,
+  .blog-section-description,
+  .app-section-description {
+    margin-bottom: 24px !important;
+  }
+
+  .tests-section-header,
+  .packages-section-header,
+  .booking-section-header,
+  .why-section-header,
+  .blog-section-header {
+    margin-bottom: 28px !important;
+  }
+
+  .process-style-two .sec-title,
+  .testimonial-style-two .sec-title {
+    margin-bottom: 24px !important;
+  }
+
+  /* Content Spacing */
+  .app-features-grid {
+    margin-bottom: 24px !important;
+    gap: 12px !important;
+  }
+
+  .app-buttons-wrapper {
+    margin-bottom: 24px !important;
+    gap: 12px !important;
+  }
+
+  .app-stats-wrapper {
+    margin-top: 20px !important;
+    padding-top: 20px !important;
+    gap: 20px !important;
+  }
+
+  /* Footer */
+  .premium-footer {
+    padding-top: 40px !important;
+  }
+
+  .footer-cta-strip {
+    margin-bottom: 32px !important;
+  }
+
+  .footer-main {
+    padding-bottom: 32px !important;
+  }
+
+  .footer-trust-strip {
+    padding: 20px 0 !important;
+    margin-bottom: 20px !important;
+    gap: 16px !important;
+  }
+
+  .footer-bottom {
+    padding-top: 20px !important;
+  }
+
+  /* Hero Mobile */
+  .luxury-hero {
+    padding: 80px 0 40px !important;
+  }
+
+  .luxury-hero-quick-actions {
+    margin-top: 24px !important;
+    gap: 12px !important;
+  }
+
+  .luxury-hero-trust {
+    margin-top: 24px !important;
+    gap: 16px !important;
+  }
+}
+
+/* ============================================
+   TABLET RESPONSIVE - 992px
+   ============================================ */
+@media (max-width: 992px) {
+  .tests-premium-section,
+  .packages-premium-section,
+  .booking-process-section,
+  .why-choose-section,
+  .blog-premium-section,
+  .app-download-section,
+  .process-style-two,
+  .testimonial-style-two {
+    padding: 60px 0 !important;
+  }
+
+  .booking-steps-container {
+    gap: 20px !important;
+  }
+
+  .why-features-grid {
+    gap: 20px !important;
+  }
+
+  .luxury-hero {
+    padding: calc(90px + 32px) 0 50px !important;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE - 480px
+   ============================================ */
+@media (max-width: 480px) {
+  .tests-premium-section,
+  .packages-premium-section,
+  .booking-process-section,
+  .why-choose-section,
+  .blog-premium-section,
+  .app-download-section,
+  .process-style-two,
+  .testimonial-style-two {
+    padding: 40px 0 !important;
+  }
+
+  .tests-section-header,
+  .packages-section-header,
+  .booking-section-header,
+  .why-section-header,
+  .blog-section-header {
+    margin-bottom: 24px !important;
+  }
+
+  .luxury-hero {
+    padding: 70px 0 32px !important;
+  }
+}

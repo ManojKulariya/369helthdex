@@ -1,0 +1,820 @@
+/* ============================================
+   HealthDex 369 - Premium Footer Section
+   Luxury Healthcare Footer Design
+   Target: Apollo 24|7, Tata 1mg, Stripe, Apple, Linear, Notion
+   ============================================ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ============================================
+   FOOTER CONTAINER
+   ============================================ */
+.premium-footer {
+  position: relative;
+  background: linear-gradient(135deg, #065f46 0%, #047857 25%, #059669 50%, #10b981 100%);
+  border-radius: 32px 32px 0 0;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+/* Dark overlay for better text contrast */
+.premium-footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.08) 50%, rgba(0, 0, 0, 0.02) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.premium-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 20v40M20 40h40' stroke='%23ffffff' stroke-width='1' stroke-opacity='0.03'/%3E%3Ccircle cx='40' cy='40' r='20' fill='none' stroke='%23ffffff' stroke-width='0.5' stroke-opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Glow Effects */
+.footer-glow-1 {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.footer-glow-2 {
+  position: absolute;
+  bottom: -150px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.premium-footer .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   TOP CTA STRIP
+   ============================================ */
+.footer-cta-strip {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 32px 40px;
+  margin-bottom: 56px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-cta-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.footer-cta-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.footer-cta-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.footer-cta-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.footer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+}
+
+.footer-btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.footer-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.footer-btn-secondary {
+  background: white;
+  color: #10b981;
+  border: 2px solid rgba(16, 185, 129, 0.2);
+}
+
+.footer-btn-secondary:hover {
+  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #059669;
+  text-decoration: none;
+}
+
+.footer-btn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.footer-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   FOOTER MAIN CONTENT
+   ============================================ */
+.footer-main {
+  padding: 0 0 56px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: 64px;
+}
+
+/* ============================================
+   BRAND COLUMN
+   ============================================ */
+.footer-brand {
+  color: white;
+}
+
+.footer-logo {
+  margin-bottom: 28px;
+  display: block;
+}
+
+.footer-logo img {
+  height: 68px;
+  filter: brightness(0) invert(1);
+  opacity: 1;
+}
+
+.footer-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.75;
+  margin: 0 0 28px 0;
+  max-width: 320px;
+}
+
+/* Trust Badges */
+.footer-trust-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.footer-trust-badge:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(4px);
+}
+
+.footer-trust-badge i {
+  font-size: 14px;
+  color: #6ee7b7;
+}
+
+/* ============================================
+   LINKS COLUMNS
+   ============================================ */
+.footer-column {
+  color: white;
+}
+
+.footer-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 28px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover {
+  color: white;
+  padding-left: 8px;
+}
+
+.footer-link:hover::before {
+  width: 100%;
+}
+
+.footer-link svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover svg {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================
+   CONTACT COLUMN
+   ============================================ */
+.footer-contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.footer-contact-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  color: white;
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.footer-contact-item:hover .footer-contact-icon {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+.footer-contact-content {
+  flex: 1;
+}
+
+.footer-contact-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.footer-contact-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-contact-value:hover {
+  color: #6ee7b7;
+  text-decoration: none;
+}
+
+/* ============================================
+   DOWNLOAD APP CARD
+   ============================================ */
+.footer-app-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 24px;
+  margin-top: 28px;
+}
+
+.footer-app-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 16px 0;
+}
+
+.footer-app-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-app-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-app-btn:hover {
+  background: rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.footer-app-btn i {
+  font-size: 26px;
+  color: white;
+}
+
+.footer-app-btn-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-app-btn-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1;
+}
+
+.footer-app-btn-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.3;
+}
+
+/* ============================================
+   SOCIAL MEDIA
+   ============================================ */
+.footer-social {
+  display: flex;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.footer-social-link {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-social-link:hover {
+  background: white;
+  color: #10b981;
+  border-color: white;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================
+   TRUST STRIP
+   ============================================ */
+.footer-trust-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 32px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-trust-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: #6ee7b7;
+  font-size: 20px;
+}
+
+.footer-trust-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ============================================
+   BOTTOM BAR
+   ============================================ */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0 0;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-copyright {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-legal-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-legal-link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-made-with {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.footer-made-with i {
+  color: #f87171;
+  margin: 0 4px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1200px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+
+  .footer-cta-title {
+    font-size: 24px;
+  }
+
+  .footer-logo img {
+    height: 60px;
+  }
+}
+
+@media (max-width: 992px) {
+  .premium-footer {
+    padding-top: 70px;
+  }
+
+  .footer-cta-strip {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 24px;
+  }
+
+  .footer-cta-content {
+    min-width: 100%;
+  }
+
+  .footer-cta-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 36px;
+  }
+
+  .footer-brand {
+    grid-column: span 2;
+  }
+
+  .footer-trust-strip {
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .footer-legal {
+    order: -1;
+  }
+
+  .footer-logo img {
+    height: 56px;
+  }
+}
+
+@media (max-width: 768px) {
+  .premium-footer .container {
+    padding: 0 16px;
+  }
+
+  .footer-cta-strip {
+    margin-bottom: 40px;
+    border-radius: 20px;
+  }
+
+  .footer-cta-title {
+    font-size: 22px;
+  }
+
+  .footer-cta-description {
+    font-size: 14px;
+  }
+
+  .footer-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer-brand {
+    grid-column: span 1;
+    text-align: center;
+  }
+
+  .footer-description {
+    max-width: 100%;
+  }
+
+  .footer-trust-badges {
+    align-items: center;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+
+  .footer-links {
+    align-items: center;
+  }
+
+  .footer-contact-items {
+    align-items: center;
+  }
+
+  .footer-contact-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-app-card {
+    text-align: center;
+  }
+
+  .footer-app-buttons {
+    align-items: center;
+  }
+
+  .footer-trust-strip {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-trust-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-logo img {
+    height: 52px;
+  }
+
+  .footer-social-link {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .premium-footer {
+    border-radius: 24px 24px 0 0;
+  }
+  
+  .footer-cta-strip {
+    padding: 24px 20px;
+  }
+  
+  .footer-cta-title {
+    font-size: 20px;
+  }
+  
+  .footer-cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .footer-btn {
+    width: 100%;
+  }
+  
+  .footer-title {
+    font-size: 14px;
+  }
+  
+  .footer-link {
+    font-size: 13px;
+  }
+  
+  .footer-app-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .footer-legal {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-cta-strip,
+.footer-column,
+.footer-brand {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.footer-cta-strip { animation-delay: 0.1s; }
+.footer-brand { animation-delay: 0.2s; }
+.footer-column:nth-child(2) { animation-delay: 0.3s; }
+.footer-column:nth-child(3) { animation-delay: 0.4s; }
+.footer-column:nth-child(4) { animation-delay: 0.5s; }
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.d-flex { display: flex; }
+.align-items-center { align-items: center; }
+.justify-content-center { justify-content: center; }
+.justify-content-between { justify-content: space-between; }
+
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 4px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 4px; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }

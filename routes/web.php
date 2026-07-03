@@ -99,7 +99,7 @@ Route::get("my_prescription", [FrontController::class, "my_prescription"])->name
 
 
 
-Route::get("update-location", [FrontController::class, "updateLocation"])->name('update-location');
+Route::get("update-location", [FrontController::class, "updateBrowserLocation"])->name('update-location');
 Route::get("update-location-city", [FrontController::class, "updateLocationcity"])->name('update-location-city');
 
 Route::get("get-map-url", [FrontController::class, "get_map_url"])->name('get-map-url');
@@ -120,8 +120,9 @@ Route::get("get-users-by-city/{id}", [FrontController::class, "getUsersByCity"])
 Route::get("get-users-by-city-home/{id}", [FrontController::class, "getUsersByCityHome"]);
 Route::get("applycoupon", [FrontController::class, "applycoupon"]);
 Route::get("login", [FrontController::class, "show_login"])->name("user-login");
-Route::get("otpsend", [FrontController::class, "otpsend"]); 
+Route::get("otpsend", [FrontController::class, "otpsend"]);
 Route::get("otpverify", [FrontController::class, "otp_verify"]);
+Route::get("resend-login-otp", [FrontController::class, "resend_login_otp"])->name('resend-login-otp');
 Route::get("save_user_details", [FrontController::class, "save_user_details"]);
 Route::get("otp-job-verify", [FrontController::class, "job_otp_verify"]);
 Route::get("appId/{id}", [FrontController::class, "appId"])->name('appId');

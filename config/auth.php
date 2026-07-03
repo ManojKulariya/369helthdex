@@ -108,4 +108,23 @@ return [
 
     'password_timeout' => 10800,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Login OTP
+    |--------------------------------------------------------------------------
+    |
+    | Settings for the mobile-number + OTP login flow. All values can be
+    | overridden from .env without touching this file.
+    |
+    */
+
+    'otp' => [
+        'expiry_minutes' => (int) env('OTP_EXPIRY_MINUTES', 5),
+        'resend_seconds' => (int) env('OTP_RESEND_SECONDS', 45),
+        'max_verify_attempts' => (int) env('OTP_MAX_VERIFY_ATTEMPTS', 5),
+        'max_sends_per_10min' => (int) env('OTP_MAX_SENDS_PER_10MIN', 5),
+        'max_verifies_per_10min' => (int) env('OTP_MAX_VERIFIES_PER_10MIN', 10),
+        'register_window_minutes' => (int) env('OTP_REGISTER_WINDOW_MINUTES', 30),
+    ],
+
 ];
