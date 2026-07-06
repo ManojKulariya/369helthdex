@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="text">
                                     <p class="tagline">
-        Healthcare should not begin at the hospital. It should begin at home.  At <span class="highlight">HealthDex 369</span>, we are not just building a healthcare platform —
+        Healthcare should not begin at the hospital. It should begin at home.  At <span class="highlight">369 HealthDex</span>, we are not just building a healthcare platform —
         we are leading a movement to transform how India experiences health.
     </p>
 
@@ -103,7 +103,7 @@
     </p>
 
     <p>
-        <strong>HealthDex 369</strong> was created to change that story.
+        <strong>369 HealthDex</strong> was created to change that story.
     </p>
 
     <p>We exist to empower every individual and every family with:</p>
@@ -166,7 +166,7 @@
     <h2>More Than a Platform — A National Health Mission</h2>
 
     <p>
-        HealthDex 369 is not just an app. It is a step toward a national transformation. Every test booked, every insight delivered, every family guided —
+        369 HealthDex is not just an app. It is a step toward a national transformation. Every test booked, every insight delivered, every family guided —
         brings us closer to a powerful vision:
     </p>
 
@@ -192,7 +192,7 @@
     </div>
 
     <div class="footer-brand">
-        <h3> HealthDex 369</h3>
+        <h3> 369 HealthDex</h3>
         <p>
             Your Family’s Health Companion.<br>
             Your Preventive Care Partner.<br>

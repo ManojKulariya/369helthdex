@@ -293,7 +293,22 @@
     });
   }
 
+  /* ------------------------------------------------------------------
+     8. Account-area sidebar: collapsible nav on mobile (dashboard, family,
+        addresses, ... — any page using the hd-dash shell)
+     ------------------------------------------------------------------ */
+  function initDashNav() {
+    var toggle = document.getElementById('hdDashNavToggle');
+    var sidebar = document.getElementById('hdDashSidebar');
+    if (!toggle || !sidebar) return;
+    toggle.addEventListener('click', function () {
+      var open = sidebar.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
   ready(function () {
+    initDashNav();
     initReveal();
     initCounters();
     initRipple();

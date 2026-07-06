@@ -50,7 +50,7 @@
             <div class="blog-featured-meta">
               <div class="blog-author">
                 <div class="blog-author-avatar">H</div>
-                <span class="blog-author-name">HealthDex 369</span>
+                <span class="blog-author-name">369 HealthDex</span>
               </div>
               <div class="blog-reading-time">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">

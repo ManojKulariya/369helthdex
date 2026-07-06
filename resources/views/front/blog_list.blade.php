@@ -19,7 +19,7 @@
                             <div class="lower-content">
                                 <h3><a href="{{ route('blog_detail', ['slug' => $c->slug]) }}" style="font-size:16px;">{{substr_replace($c->name, "   ", 45)}}</a></h3>
                                 <ul class="post-info">
-                                    <li><img src="" alt=""><a href="">HealthDex 369</a></li>   
+                                    <li><img src="" alt=""><a href="">369 HealthDex</a></li>   
                                     <li>{{ \Carbon\Carbon::parse($c->created_at)->format('d M Y') }} </li>
                                 </ul>   
                                 <p>{!! substr_replace($c->description, "   ", 85) !!}</p>

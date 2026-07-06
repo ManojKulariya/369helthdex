@@ -15,7 +15,7 @@
           </span>
           <span class="why-section-badge-text">Why Choose Us</span>
         </div>
-        <h2 class="why-section-title">Why HealthDex 369?</h2>
+        <h2 class="why-section-title">Why 369 HealthDex?</h2>
         <p class="why-section-description">Our mission is to deliver best quality healthcare results at affordable prices, right at your doorstep</p>
       </div>
     </div>

@@ -240,24 +240,16 @@ input[type="date"].underline-input:focus {
      $selected='';
      $timeAfterTwoHours = date("H:i", strtotime('+2 hours'));
 ?>
-<section class="page-title-two">
-   <div class="title-box centred bg-color-2 ">
-      <div class="auto-container">
-         <div class="title">
-            <h1>{{__('message.CheckOut')}}</h1>
-         </div>
-      </div>
+<section class="clinic-details bg-color-3 hd-checkout">
+   <div class="auto-container hd-checkout-head">
+      <nav class="hd-dash-breadcrumb" aria-label="Breadcrumb">
+         <a href="{{route('home')}}">{{__('message.Home')}}</a>
+         <i data-lucide="chevron-right"></i>
+         <span>{{__('message.CheckOut')}}</span>
+      </nav>
+      <h1 class="hd-dash-title">{{__('message.CheckOut')}}</h1>
+      <p class="hd-checkout-sub"><i data-lucide="shield-check"></i> Secure checkout — your details are protected</p>
    </div>
-   <div class="lower-content">
-      <div class="auto-container">
-         <ul class="bread-crumb clearfix">
-            <li><a href="{{route('home')}}">{{__('message.Home')}}</a></li>
-            <li>{{__('message.CheckOut')}}</li>
-         </ul>
-      </div>
-   </div>
-</section>
-<section class="clinic-details bg-color-3">
    <div class="auto-container">
        <p id="msg" style="color: white;background: red;padding: 11px;margin-bottom: 12px;display:none" ></p>
         @if(Session::has('message1'))
@@ -624,6 +616,11 @@ input[type="date"].underline-input:focus {
                                         <div class="btn-box" id="btnappointment">
                                             <button class="theme-btn-one" type="submit">{{__('message.Book Now')}}<i class="icon-Arrow-Right"></i></button>       
                                         </div>
+                                        <div class="hd-checkout-trust" aria-hidden="false">
+                                            <span><i data-lucide="shield-check"></i>Secure Payment</span>
+                                            <span><i data-lucide="lock"></i>SSL Protected</span>
+                                            <span><i data-lucide="badge-check"></i>NABL Certified Labs</span>
+                                        </div>
                                    
                               </form> 
                            </div>
@@ -784,7 +781,7 @@ input[type="date"].underline-input:focus {
       </div>
    </div>
 </section>
-<div class="modal fade" id="addmember">
+<div class="modal fade hd-form-modal" id="addmember">
    <div class="modal-dialog">
       <div class="modal-content">
          <!-- Modal Header -->
@@ -865,7 +862,7 @@ input[type="date"].underline-input:focus {
       </div>
    </div>
 </div>
-<div class="modal fade" id="addaddressmodel">
+<div class="modal fade hd-form-modal" id="addaddressmodel">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
          <!-- Modal Header -->
@@ -957,7 +954,7 @@ input[type="date"].underline-input:focus {
       </div>
     </div>
 </div>
-<div class="modal fade" id="add_members">
+<div class="modal fade hd-form-modal" id="add_members">
    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -1037,7 +1034,7 @@ input[type="date"].underline-input:focus {
     </div>
 </div>
 <!-- Modal Structure -->
-<div class="modal fade" id="couponModal">
+<div class="modal fade hd-form-modal" id="couponModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">

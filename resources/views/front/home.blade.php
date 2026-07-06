@@ -354,7 +354,7 @@ if ($cityName == '') {
                 <div class="app-phone-logo">
                   <i data-lucide="heart-pulse"></i>
                 </div>
-                <div class="app-phone-title">HealthDex 369</div>
+                <div class="app-phone-title">369 HealthDex</div>
                 <div class="app-phone-subtitle">Your Health Partner</div>
                 <div class="app-phone-cards">
                   <div class="app-phone-card">
@@ -492,6 +492,89 @@ if ($cityName == '') {
 
 <!----------------------- Why Pathkind Labs ----------------->
  @include('front.why_rdc')
+
+<!-- Premium Vision Section -->
+<section class="vision-premium-section reveal">
+  <div class="vision-bg" aria-hidden="true">
+    <span class="vision-blob vision-blob-1"></span>
+    <span class="vision-blob vision-blob-2"></span>
+    <span class="vision-pattern"></span>
+  </div>
+  <div class="auto-container">
+    <!-- Section Header -->
+    <div class="vision-section-header">
+      <div class="vision-section-title-wrapper">
+        <div class="vision-section-badge">
+          <span class="vision-section-badge-icon">
+            <i data-lucide="eye"></i>
+          </span>
+          <span class="vision-section-badge-text">Our Vision</span>
+        </div>
+        <h2 class="vision-section-title">Our Vision</h2>
+        <p class="vision-section-description">Building India's Most Trusted Preventive Healthcare Ecosystem</p>
+      </div>
+    </div>
+
+    <div class="vision-grid">
+      <!-- Left: the 2030 goal -->
+      <div class="vision-stat-card">
+        <span class="vision-float vision-float-1" aria-hidden="true"><i data-lucide="heart-pulse"></i></span>
+        <span class="vision-float vision-float-2" aria-hidden="true"><i data-lucide="users"></i></span>
+        <span class="vision-float vision-float-3" aria-hidden="true"><i data-lucide="activity"></i></span>
+
+        <div class="vision-stat-number" data-hd-counter>10 Crore</div>
+        <p class="vision-stat-label">Indians proactively managing their health through annual checkups, smart reports, and lifestyle coaching — by 2030.</p>
+
+        <div class="vision-illustration" aria-hidden="true">
+          <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" fill="none" role="presentation">
+            <rect x="24" y="92" width="34" height="44" rx="9" fill="#d1fae5"/>
+            <rect x="76" y="72" width="34" height="64" rx="9" fill="#a7f3d0"/>
+            <rect x="128" y="50" width="34" height="86" rx="9" fill="#6ee7b7"/>
+            <rect x="180" y="28" width="34" height="108" rx="9" fill="#34d399"/>
+            <path d="M14 78 H70 L84 52 L102 96 L116 70 H150 L162 84 H186" stroke="#047857" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="186" cy="84" r="6" fill="#047857"/>
+            <path d="M247 44c-8.6-8.4-22.6-8.4-31.2 0-8.6 8.4-8.6 22 0 30.4L247 105l31.2-30.6c8.6-8.4 8.6-22 0-30.4-8.6-8.4-22.6-8.4-31.2 0z" fill="#10b981"/>
+            <path d="M229 74h9l5-9 7 16 5-7h13" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right: the narrative -->
+      <div class="vision-content">
+        <p class="vision-lead">&ldquo;We want to become India's most trusted preventive healthcare ecosystem &mdash; not the largest, not the loudest, but <span>the most trusted</span>.&rdquo;</p>
+
+        <ul class="vision-points">
+          <li>
+            <span class="vision-point-icon"><i data-lucide="calendar-check"></i></span>
+            A future where the annual health checkup is as routine as paying a phone bill.
+          </li>
+          <li>
+            <span class="vision-point-icon"><i data-lucide="file-text"></i></span>
+            Where a diagnostic report is the beginning of a conversation &mdash; not a piece of paper filed away and forgotten.
+          </li>
+          <li>
+            <span class="vision-point-icon"><i data-lucide="heart-handshake"></i></span>
+            Where a health coach is not a luxury for the wealthy few, but a resource every Indian family can access.
+          </li>
+        </ul>
+
+        <p class="vision-callout">That future starts in Jamnagar.</p>
+        <p class="vision-closing">And it doesn't stop until it reaches every Tier-2 and Tier-3 city in India where quality preventive healthcare has been missing for too long.</p>
+      </div>
+    </div>
+
+    <!-- Mission quote -->
+    <div class="vision-quote-card">
+      <span class="vision-quote-pattern" aria-hidden="true"></span>
+      <span class="vision-quote-mark" aria-hidden="true">&rdquo;</span>
+      <span class="vision-quote-icon"><i data-lucide="quote"></i></span>
+      <p class="vision-quote-text">
+        Our mission isn't to become India's biggest healthcare company.<br>
+        <span>Our mission is to become the healthcare company India trusts the most.</span>
+      </p>
+    </div>
+  </div>
+</section>
 
 <!-- Premium Offers Section -->
 <section class="offers-premium-section reveal">

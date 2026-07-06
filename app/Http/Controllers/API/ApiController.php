@@ -55,6 +55,8 @@ use Carbon\Carbon;
 
 class ApiController extends Controller
 {
+    use \App\Http\Controllers\Concerns\CalculatesDrivingDistances;
+
     public $currentDate;
    
     public function __construct()
@@ -3020,15 +3022,17 @@ class ApiController extends Controller
     
     public function get_lab(Request $request)
     {
-        $userLat = $request->lat ?? 26.9124;
-        $userLng = $request->lng ?? 75.7873;
+        // Numeric-only origin: same defaults as before, and keeps raw request
+        // input out of the SQL expression below.
+        $userLat = is_numeric($request->lat) ? (float) $request->lat : 26.9124;
+        $userLng = is_numeric($request->lng) ? (float) $request->lng : 75.7873;
         $userCityId = $request->slug ?? 1;
 
         $perPage = $request->input('per_page', 10);
 
         $city_data = User::with('location')
             ->join('city', 'users.city', '=', 'city.id')
-            ->select('users.*', 'city.lat', 'city.lng', DB::raw("(6371 * acos(cos(radians($userLat)) * cos(radians(city.lat)) * cos(radians(city.lng) - radians($userLng)) + sin(radians($userLat)) * sin(radians(city.lat)))) AS distance"))
+            ->select('users.*', 'city.lat', 'city.lng', DB::raw("(6371 * acos(LEAST(1.0, GREATEST(-1.0, cos(radians($userLat)) * cos(radians(city.lat)) * cos(radians(city.lng) - radians($userLng)) + sin(radians($userLat)) * sin(radians(city.lat)))))) AS distance"))
             ->where('users.user_type', 2)
             // ->where('city.id',$userCityId)
             ->when($request->slug, function ($query, $userCityId) {
@@ -3036,6 +3040,16 @@ class ApiController extends Controller
                 })
             ->orderBy('distance')
             ->paginate($perPage);
+
+        // Same road-distance logic as the website (shared trait): overrides the
+        // straight-line value per lab with the Google Distance Matrix result,
+        // keeping the straight-line value as the fallback when the Google API
+        // is unavailable. The response structure is unchanged.
+        $city_data->setCollection(
+            $this->apply_driving_distances($city_data->getCollection(), $userLat, $userLng)
+                ->sortBy('distance')
+                ->values()
+        );
 
 
         if (count($city_data) > 0) {

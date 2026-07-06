@@ -16,90 +16,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 @stop
 @section('content')
-<section class="doctors-dashboard bg-color-3">
-   <div class="left-panel">
-      <div class="profile-box patient-profile">
-         <div class="upper-box">
-            <?php 
-                              if(Auth::user()->profile_pic!=""){
-                                  $path=url('/')."/storage/app/public/profile"."/".Auth::user()->profile_pic;
-                              }
-                              else{
-                                  $path=asset('public/img/default_user.png');
-                              }
-                              ?>
-           
-            <figure class="profile-image"><img src="{{$path}}" alt=""></figure>
-            <div class="title-box centred">
-               <div class="inner">
-                  <h3>{{Auth::user()->name}}</h3>
-                  <p><i class="fas fa-envelope"></i>{{Auth::user()->email}}</p>
-               </div>
-            </div>
-         </div>
-         <div class="profile-info">
-            <ul class="list clearfix">
-               <li><a href="{{route('dashboard')}}"><i class="fas fa-columns"></i>{{__("message.Dashboard")}}</a></li>
-               
-               <li><a href="{{route('my-family-member')}}"><i class="fas fa-clock"></i>{{__("message.My Family Members")}}</a></li>
-               <li><a href="{{route('my-addresses')}}" class="current"><i class="fas fa-comments"></i>{{__("message.My Addresses")}}</li>
-                <li><a href="{{route('my-home')}}"><i class="fas fa-comments"></i>Home Visit</li>
-                            <li><a href="{{route('my_prescription')}}"><i class="fas fa-comments"></i>My Prescription</li>
-               <li><a href="{{route('user-profile')}}"><i class="fas fa-user"></i>{{__("message.My Profile")}}</a></li>
-               <li><a href="{{route('user-change-password')}}"><i class="fas fa-unlock-alt"></i>{{__("message.Change Password")}}</a></li>
-               <li><a href="{{route('user-logout')}}"><i class="fas fa-sign-out-alt"></i>{{__("message.Logout")}}</a></li>
-            </ul>
-         </div>
-      </div>
-   </div>
-   <div class="right-panel">
-                <div class="content-container">
-                    <div class="outer-container">
-                        <div class="favourite-doctors">
-                            <div class="title-box row">
-                                <h3 class="col-md-6">{{__("message.My Addresses")}}</h3>
-                                <div class="btn-box col-md-6 tdr"><a href="javascript::void(0)" class="theme-btn-one" data-toggle="modal" data-target="#addaddress"><i class="icon-image" ></i>{{__("message.Add Address")}}</a></div>
-                            </div>
-                            <div class="doctors-list">
-                                <div class="row clearfix">
-                                 @if(count($myaddresses)>0)
-                                    @foreach($myaddresses as $ma)
-                                       <div class="col-xl-6 col-lg-6 col-md-12 doctors-block">
-                                           <div class="team-block-three">
-                                               <div class="inner-box">
-                                                   <div class="lower-content">
-                                                       <ul class="name-box clearfix">
-                                                           <li class="name"><h3><a href="doctors-details.html">{{$ma->name}}</a></h3></li>
-                                                           @if($ma->is_default=='1')
-                                                           <li><span style="font-size: small;">{{__("message.Default")}} </span></li>
-                                                           @endif
-                                                       </ul>
-                                                       <span class="designation"><i class="fas fa-map-marker-alt"></i> {{$ma->house_no}} , {{$ma->address}} , {{$ma->city}} , {{$ma->state}} , {{$ma->pincode}}</span>
-                                                       
+<section class="hd-dash-section">
+    <div class="auto-container">
+        <!-- Page head -->
+        <div class="hd-dash-head">
+            <nav class="hd-dash-breadcrumb" aria-label="Breadcrumb">
+                <a href="{{route('home')}}">{{__('message.Home')}}</a>
+                <i data-lucide="chevron-right"></i>
+                <a href="{{route('dashboard')}}">{{__('message.Dashboard')}}</a>
+                <i data-lucide="chevron-right"></i>
+                <span>{{__("message.My Addresses")}}</span>
+            </nav>
+            <h1 class="hd-dash-title">{{__("message.My Addresses")}}</h1>
+        </div>
 
-                                                       <div class="btn-box row">
-                     <button type="button" style="position: relative;display: inline-block;float: left;
-    font-size: 15px;Line-height: 26px;font-weight: 600;border: 2px solid #ebeef1;border-radius: 30px;   
-    padding: 7px 27px;text-align: center;background: #453f85;color: white;" data-toggle="modal" data-target="#editaddress" onclick="editaddress('{{$ma->id}}')">{{__("message.Edit")}} <i class="fa fa-edit"></i></button>
-                      <button type="submit" style="position: relative;display: inline-block;float: left;
-    font-size: 15px;Line-height: 26px;font-weight: 600;border: 2px solid #ebeef1;border-radius: 30px;   
-    padding: 7px 27px;text-align: center;background: #f01634;color: white;" onclick="deleteaddress('{{$ma->id}}')">Delete <i class="fa fa-trash"></i></button>
-                  </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                                    @endforeach
-                                 @endif 
-                                </div>
+        <div class="hd-dash-layout">
+            @include('front.hd_account_sidebar', ['hdSidebarActive' => 'addresses'])
+
+            <main class="hd-dash-main">
+                @if(Session::has('message'))
+                    <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">{{ Session::get('message') }}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span></button>
+                    </div>
+                    @endif
+
+                <!-- Header row -->
+                <div class="hd-fam-header">
+                    <div class="hd-fam-header-text">
+                        <h2>{{__("message.My Addresses")}}</h2>
+                        <p>Saved locations for quick home sample collection.</p>
+                    </div>
+                    <a href="javascript::void(0)" class="premium-btn premium-btn-primary" data-toggle="modal" data-target="#addaddress">
+                        <i data-lucide="map-pin-plus"></i>
+                        {{__("message.Add Address")}}
+                    </a>
+                </div>
+
+                @if(count($myaddresses)>0)
+                <div class="hd-fam-grid hd-addr-grid">
+                    @foreach($myaddresses as $ma)
+                    <div class="hd-fam-card">
+                        <div class="hd-fam-top">
+                            <span class="hd-fam-avatar"><i data-lucide="map-pin"></i></span>
+                            <div class="hd-fam-id">
+                                <h3>{{$ma->name}}</h3>
+                                @if($ma->is_default=='1')
+                                <span class="hd-fam-relation">{{__("message.Default")}}</span>
+                                @endif
                             </div>
-                         
+                        </div>
+
+                        <ul class="hd-fam-meta">
+                            <li><i data-lucide="navigation"></i>{{$ma->house_no}} , {{$ma->address}} , {{$ma->city}} , {{$ma->state}} , {{$ma->pincode}}</li>
+                        </ul>
+
+                        <div class="hd-fam-actions">
+                            <button type="button" class="hd-fam-btn hd-fam-btn-edit" data-toggle="modal" data-target="#editaddress" onclick="editaddress('{{$ma->id}}')">
+                                <i data-lucide="pencil"></i>
+                                {{__("message.Edit")}}
+                            </button>
+                            <button type="submit" class="hd-fam-btn hd-fam-btn-delete" onclick="deleteaddress('{{$ma->id}}')">
+                                <i data-lucide="trash-2"></i>
+                                Delete
+                            </button>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-            </div>
+                @else
+                <div class="hd-dash-card hd-fam-empty">
+                    <div class="hd-fam-empty-icon"><i data-lucide="map-pin"></i></div>
+                    <h3>No addresses saved yet.</h3>
+                    <p>Add an address so our phlebotomist knows exactly where to collect your sample.</p>
+                    <a href="javascript::void(0)" class="premium-btn premium-btn-primary" data-toggle="modal" data-target="#addaddress">
+                        <i data-lucide="map-pin-plus"></i>
+                        {{__("message.Add Address")}}
+                    </a>
+                </div>
+                @endif
+            </main>
+        </div>
+    </div>
 </section>
-<div class="modal" id="addaddress">
+<div class="modal hd-form-modal" id="addaddress">
    <div class="modal-dialog modal-lg">
       <div class="modal-content">
          <!-- Modal Header -->
@@ -161,7 +161,7 @@
                               @foreach($city as $c)
                                    <option value="{{$c->id}}">{{$c->name}}</option>
                               @endforeach
-                        </select>  
+                        </select>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                      <label>{{__("message.State")}}</label>
@@ -193,12 +193,12 @@
       </div>
    </div>
 </div>
-<div class="modal" id="editaddress">
+<div class="modal hd-form-modal" id="editaddress">
    <div class="modal-dialog modal-md">
       <div class="modal-content">
          <!-- Modal Header -->
          <div class="modal-header">
-            <h4 class="modal-title">{{__("message.Edit Address")}} s</h4>
+            <h4 class="modal-title">{{__("message.Edit Address")}}</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
          <!-- Modal body -->
@@ -218,7 +218,7 @@
                         </div>
                      </div>
                   </div>
-                  
+
                   <input type="hidden" name="lat" id="us2-lat-edit" value="{{$inputLatitude}}" />
                   <input type="hidden" name="long" id="us2-lon-edit" value="{{$inputLongitude}}" />
                   <div class="col-lg-6 col-md-6 col-sm-12 form-group">
@@ -249,7 +249,7 @@
                               @foreach($city as $c)
                                    <option value="{{$c->id}}">{{$c->name}}</option>
                               @endforeach
-                        </select>  
+                        </select>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                      <label>{{__("message.State")}}</label>

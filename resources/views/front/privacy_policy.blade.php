@@ -259,7 +259,7 @@
 </section>
 <section class="about-main-sec p-2">
     <section class="about-style-two px-4">
-        <h4 class="newstyle">HealthDex 369 – Privacy Policy</h4>
+        <h4 class="newstyle">369 HealthDex – Privacy Policy</h4>
         <!--<div class=" about-main mt-2">-->
         <!--    <div class="about-box" data-tab="inception">-->
         <!--        <i class="fas fa-microscope"></i>-->
@@ -288,7 +288,7 @@
 By visiting the Website/App or going through the Privacy Policy, as detailed below or the Terms of Use, which prescribes Terms and Conditions for use of Website/App or availing our Services, you agree to be bound by this Privacy Policy and to the use and disclosure of your personal information in accordance with the Privacy Policy.
 IF YOU DO NOT AGREE PLEASE DO NOT USE OR ACCESS THE WEBSITE/APP.
 
-The words "you" or "your" or "User" or "Customer" as used herein, refer to all individuals and/or entities accessing or using the Website/App for any reason. The words "we" or "us" or "our" or the "Company" as used herein, refer to HEalthDex 369 Ltd. and/or any of its Associate/Subsidiary/Group Company.
+The words "you" or "your" or "User" or "Customer" as used herein, refer to all individuals and/or entities accessing or using the Website/App for any reason. The words "we" or "us" or "our" or the "Company" as used herein, refer to 369 HealthDex Ltd. and/or any of its Associate/Subsidiary/Group Company.
 This Privacy Policy describes the information, which as part of our normal operations; we collect from you and what may happen to that information. Although this policy may seem long, we have prepared a detailed policy because we believe you should know as much as possible about the Website/App, our Services, and practices so that you can make informed decisions.
 This Privacy Policy is incorporated into and is subject to Terms of Use and the terms not defined here, have their meanings ascribed to them in the Terms of Use. This Privacy Policy and the Terms of Use are effective upon your visit of our Website/App, or you are going through the same. We encourage you to read the terms of the Privacy Policy and the Terms of Use in their entirety before you use the Website/App and / or avail of our Services.
 </p>

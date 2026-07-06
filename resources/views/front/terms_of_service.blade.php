@@ -275,7 +275,7 @@ html, body {
 </section>
 <section class="about-main-sec p-2">
     <section class="about-style-two px-4">
-        <h4 class="newstyle">HealthDex 369 – Terms of Use</h4>
+        <h4 class="newstyle">369 HealthDex – Terms of Use</h4>
         <!--<div class=" about-main mt-2">-->
         <!--    <div class="about-box" data-tab="inception">-->
         <!--        <i class="fas fa-microscope"></i>-->

@@ -283,8 +283,8 @@
     <div id="inception" class="tab-section">
         <section class="about-style-two px-4 Inception">
             <div class="about-21">
-                <h5 class="newstyle">1. About HealthDex 369</h5>
-                <p>HealthDex 369 is one of India’s leading and fastest-growing diagnostic networks, powered by fully automated technology, accurate reporting, and strong customer trust. We aim to build a transparent, profitable, and sustainable diagnostic franchise model across India.
+                <h5 class="newstyle">1. About 369 HealthDex</h5>
+                <p>369 HealthDex is one of India’s leading and fastest-growing diagnostic networks, powered by fully automated technology, accurate reporting, and strong customer trust. We aim to build a transparent, profitable, and sustainable diagnostic franchise model across India.
                 </p>
                 <style>
                     .about_icon_box{
@@ -376,7 +376,7 @@
         </section>
         <section class="about-style-two px-4 mt-2 Inception">
             <div class="about-21">
-                <h5 class="newstyle pb-2">3. Why Choose HealthDex 369 for Franchisee Partnership</h5>
+                <h5 class="newstyle pb-2">3. Why Choose 369 HealthDex for Franchisee Partnership</h5>
                 <div class="row mx-0">
                     <div class="col-12">
                         <ul class="about-ul">
@@ -445,7 +445,7 @@
         <section class="about-style-two px-4 Inception">
             <div class="about-21 about-21">
                 <h5 class="newstyle">7. Business Advantages</h5>
-                <p>HealthDex 369 ke saath partnership ke yeh mukhya faide hain:</p>
+                <p>369 HealthDex ke saath partnership ke yeh mukhya faide hain:</p>
                 <style>
                     .value{
                         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
@@ -705,7 +705,7 @@
                     <h6 class="newstyle mt-4">Local & Corporate Marketing</h6>
                     <ul class="pl-4 about-ul">
                       <li>Doctor referrals and clinic partnerships</li>
-                      <li>HealthDex 369s branding inside and outside the center</li>
+                      <li>369 HealthDex's branding inside and outside the center</li>
                       <li>Local advertising: flyers, banners, newspaper</li>
                       <li>Discounted health check-up packages</li>
                       <li>Corporate tie-ups and institutional camps</li>

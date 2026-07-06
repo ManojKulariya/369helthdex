@@ -42,7 +42,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- HealthDex Homepage Design System (single consolidated stylesheet) -->
-    <link rel="stylesheet" href="{{asset('public/hd-home.css')}}?v=hd8">
+    <link rel="stylesheet" href="{{asset('public/hd-home.css')}}?v=hd12">
 
     <!-- Add these links in the <head> section of your HTML file -->
 
@@ -110,7 +110,7 @@
                         <!-- Logo -->
                         <div class="luxury-logo">
                             <a href="{{route('home')}}">
-                                <img src="{{asset('public/img').'/'.$setting->logo}}" alt="HealthDex 369">
+                                <img src="{{asset('public/img').'/'.$setting->logo}}" alt="369 HealthDex">
                             </a>
                         </div>
                         
@@ -322,7 +322,7 @@
                         <!-- Brand Column -->
                         <div class="footer-brand">
                             <a href="{{route('home')}}" class="footer-logo">
-                                <img src="{{asset('public/img').'/'.$setting->footer_logo}}" alt="HealthDex 369">
+                                <img src="{{asset('public/img').'/'.$setting->footer_logo}}" alt="369 HealthDex">
                             </a>
                             <p class="footer-description">{{__('message.footer text')}}</p>
                             

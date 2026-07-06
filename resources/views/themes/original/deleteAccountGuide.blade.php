@@ -161,9 +161,9 @@
             </div>
             <div class="container-delete row">
                 <div class='col-6'>
-                    <b>HealthDex 369App:</b>
+                    <b>369 HealthDex App:</b>
                     <ol style="list-style: square;">
-                        <li>Delete your account from HealthDex 369</li>
+                        <li>Delete your account from 369 HealthDex</li>
                     </ol>
                 </div>
             </div>
@@ -172,12 +172,12 @@
                 <div id="getstarted">
                     <b>Please follow the below steps to delete your account</b>
                     <br><br>
-                    Step 1. Open the HealthDex 369 app on your mobile phone. If the app is not installed, please install the app
-                    first using the link below. You can also visit the Google Play Store or Apple App Store and search HealthDex 369to
+                    Step 1. Open the 369 HealthDex app on your mobile phone. If the app is not installed, please install the app
+                    first using the link below. You can also visit the Google Play Store or Apple App Store and search 369 HealthDex to
                     install the app.
                     <div class="row">
                         <div class="row-6">
-                            <b>HealthDex 369App Links</b>
+                            <b>369 HealthDex App Links</b>
                             <div style="display: flex; justify-content: center; gap: 15px; margin: 15px auto;">
                                 <a href="#" target="_blank">
                                     <img class="link-img-width" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png">
@@ -196,8 +196,8 @@
                     <br>
                     <div class='row'>
                         <div class='row-6'>
-                            <b>HealthDex 369App</b><br>
-                            <img class='img-size' alt="HealthDex 369" src="https://HealthDex 369oratory.com/public/assets/uploads/deleteAcoount/ss.jpeg">
+                            <b>369 HealthDex App</b><br>
+                            <img class='img-size' alt="369 HealthDex" src="https://HealthDex 369oratory.com/public/assets/uploads/deleteAcoount/ss.jpeg">
                         </div>
                     </div>
 
@@ -206,12 +206,12 @@
                     <br>
                     <div class='row'>
                         <div class='row-6'>
-                            <b>HealthDex 369App</b><br>
-                            <!--<img class='img-size' alt="HealthDex 369" src="https://HealthDex 369oratory.com/assets/uploads/deleteAcoount/ss.jpeg">-->
+                            <b>369 HealthDex App</b><br>
+                            <!--<img class='img-size' alt="369 HealthDex" src="https://HealthDex 369oratory.com/assets/uploads/deleteAcoount/ss.jpeg">-->
                         </div>
                     </div>
                     <br><br>
-                    <!--<img class='img-size' alt="HealthDex 369" src="https://HealthDex 369.com/assets/uploads/deleteAcoount/img3.png">-->
+                    <!--<img class='img-size' alt="369 HealthDex" src="https://HealthDex 369.com/assets/uploads/deleteAcoount/img3.png">-->
                     <br><br>
                     It will redirect you to the login screen. Now your account and data have been deleted.
                     <br><br>

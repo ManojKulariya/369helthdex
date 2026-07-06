@@ -16,92 +16,60 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 @stop
 @section('content')
-<section class="doctors-dashboard bg-color-3">
-   <div class="left-panel">
-      <div class="profile-box patient-profile">
-         <div class="upper-box">
-            <?php 
-                              if(Auth::user()->profile_pic!=""){
-                                  $path=url('/')."/storage/app/public/profile"."/".Auth::user()->profile_pic;
-                              }
-                              else{
-                                  $path=asset('public/img/default_user.png');
-                              }
-                              ?>
-           
-            <figure class="profile-image"><img src="{{$path}}" alt=""></figure>
-            <div class="title-box centred">
-               <div class="inner">
-                  <h3>{{Auth::user()->name}}</h3>
-                  <p><i class="fas fa-envelope"></i>{{Auth::user()->email}}</p>
-               </div>
-            </div>
-         </div>
-         <div class="profile-info">
-            <ul class="list clearfix">
-               <li><a href="{{route('dashboard')}}"><i class="fas fa-columns"></i>{{__('message.Dashboard')}}</a></li>
-              
-               <li><a href="{{route('my-family-member')}}"><i class="fas fa-clock"></i>{{__('message.My Family Members')}}</a></li>
-               <li><a href="{{route('my-addresses')}}"><i class="fas fa-comments"></i>{{__('message.My Addresses')}}</li>
-                <li><a href="{{route('my-home')}}"><i class="fas fa-comments"></i>Home Visit</li>
-                            <li><a href="{{route('my_prescription')}}"><i class="fas fa-comments"></i>My Prescription</li>
-               <li><a href="{{route('user-profile')}}"><i class="fas fa-user"></i>{{__('message.My Profile')}}</a></li>
-               <li><a href="{{route('user-change-password')}}"  class="current"><i class="fas fa-unlock-alt"></i>{{__('message.Change Password')}}</a></li>
-               <li><a href="{{route('user-logout')}}"><i class="fas fa-sign-out-alt"></i>{{__('message.Logout')}}</a></li>
-            </ul>
-         </div>
-      </div>
-   </div>
-   <div class="right-panel">
-      <div class="content-container">
-         <div class="outer-container">
-            <div class="add-listing change-password">
-               @if(Session::has('message'))
-               <div class="col-sm-12">
-                  <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">{{ Session::get('message') }}
-                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                     <span aria-hidden="true">&times;</span></button>
-                  </div>
-               </div>
-               @endif 
-               <form action="{{route('update-change-password')}}" method="post">
-                  {{csrf_field()}}
-                  <div class="single-box">
-                     <div class="title-box">
-                        <h3>{{__('message.Change Password')}}</h3>
-                     </div>
-                     <div class="inner-box">
-                        <div class="row clearfix">
-                           <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                              <label>{{__('message.Old Password')}}</label>
-                              <input type="password" name="old_password" id="old_password" required="" onchange="checkcurrentpassword(this.value)">
-                           </div>
-                           <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                           </div>
-                           <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                              <label>{{__('message.New Password')}}</label>
-                              <input type="password" name="npassword" id="npassword" required="">
-                           </div>
-                           <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                           </div>
-                           <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                              <label>{{__('message.Confirm Password')}}</label>
-                              <input type="password" onchange="checkbothpassword(this.value)" name="cpassword" id="cpassword" required="">
-                           </div>
-                           <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                           </div>
+<section class="hd-dash-section">
+    <div class="auto-container">
+        <!-- Page head -->
+        <div class="hd-dash-head">
+            <nav class="hd-dash-breadcrumb" aria-label="Breadcrumb">
+                <a href="{{route('home')}}">{{__('message.Home')}}</a>
+                <i data-lucide="chevron-right"></i>
+                <a href="{{route('dashboard')}}">{{__('message.Dashboard')}}</a>
+                <i data-lucide="chevron-right"></i>
+                <span>{{__('message.Change Password')}}</span>
+            </nav>
+            <h1 class="hd-dash-title">{{__('message.Change Password')}}</h1>
+        </div>
+
+        <div class="hd-dash-layout">
+            @include('front.hd_account_sidebar', ['hdSidebarActive' => 'password'])
+
+            <main class="hd-dash-main">
+                @if(Session::has('message'))
+                    <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">{{ Session::get('message') }}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span></button>
+                    </div>
+                    @endif
+
+                <div class="hd-dash-card hd-dash-form">
+                    <h3 class="hd-dash-card-title"><i data-lucide="lock-keyhole"></i>{{__('message.Change Password')}}</h3>
+
+                    <form action="{{route('update-change-password')}}" method="post">
+                        {{csrf_field()}}
+                        <div class="hd-auth-grid hd-pass-grid">
+                            <div class="hd-field-full form-group">
+                                <label>{{__('message.Old Password')}}</label>
+                                <input type="password" name="old_password" id="old_password" required="" onchange="checkcurrentpassword(this.value)">
+                            </div>
+                            <div class="hd-field-full form-group">
+                                <label>{{__('message.New Password')}}</label>
+                                <input type="password" name="npassword" id="npassword" required="">
+                            </div>
+                            <div class="hd-field-full form-group">
+                                <label>{{__('message.Confirm Password')}}</label>
+                                <input type="password" onchange="checkbothpassword(this.value)" name="cpassword" id="cpassword" required="">
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <div class="btn-box">
-                     <button type="submit" class="theme-btn-one">{{__('message.Save Change')}}<i class="icon-Arrow-Right"></i></button>
-                     <a href="javascript::void(0)" onclick="resetpassword()" class="cancel-btn">{{__('message.Cancel')}}</a>
-                  </div>
-               </form>
-            </div>
-         </div>
-      </div>
-   </div>
+
+                        <div class="hd-dash-form-actions">
+                            <button type="submit" class="theme-btn-one">{{__('message.Save Change')}}<i data-lucide="arrow-right"></i></button>
+                            <a href="javascript::void(0)" onclick="resetpassword()" class="cancel-btn">{{__('message.Cancel')}}</a>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
 </section>
 @stop
 @section('footer')

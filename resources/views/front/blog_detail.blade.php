@@ -61,7 +61,7 @@
                                     <div class="lower-content">
                                         <h3>{{$blog->name}}</h3>
                                         <ul class="post-info">
-                                            <li><img src="" alt=""><a href="">HealthDex 369</a></li>
+                                            <li><img src="" alt=""><a href="">369 HealthDex</a></li>
                                             <li>{{ \Carbon\Carbon::parse($blog->created_at)->format('Y-m-d') }}</li>
                                             
                                     <li>

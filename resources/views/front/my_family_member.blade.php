@@ -16,104 +16,178 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 @stop
 @section('content')
-<section class="doctors-dashboard bg-color-3">
-   <div class="left-panel">
-      <div class="profile-box patient-profile">
-         <div class="upper-box">
-            <?php 
-                              if(Auth::user()->profile_pic!=""){
-                                  $path=url('/')."/storage/app/public/profile"."/".Auth::user()->profile_pic;
-                              }
-                              else{
-                                  $path=asset('public/img/default_user.png');
-                              }
-                              ?>
-           
-            <figure class="profile-image"><img src="{{$path}}" alt=""></figure>
-            <div class="title-box centred">
-               <div class="inner">
-                  <h3>{{Auth::user()->name}}</h3>
-                  <p><i class="fas fa-envelope"></i>{{Auth::user()->email}}</p>
-               </div>
-            </div>
-         </div>
-         <div class="profile-info">
-            <ul class="list clearfix">
-               <li><a href="{{route('dashboard')}}" ><i class="fas fa-columns"></i>{{__("message.Dashboard")}}</a></li>
-              
-               <li><a href="{{route('my-family-member')}}" class="current"><i class="fas fa-clock"></i>{{__("message.My Family Members")}}</a></li>
-               <li><a href="{{route('my-addresses')}}"><i class="fas fa-comments"></i>{{__("message.My Addresses")}}</li>
-                <li><a href="{{route('my-home')}}"><i class="fas fa-comments"></i>Home Visit</li>
-                            <li><a href="{{route('my_prescription')}}"><i class="fas fa-comments"></i>My Prescription</li>
-               <li><a href="{{route('user-profile')}}"><i class="fas fa-user"></i>{{__("message.My Profile")}}</a></li>
-               <li><a href="{{route('user-change-password')}}"><i class="fas fa-unlock-alt"></i>{{__("message.Change Password")}}</a></li>
-               <li><a href="{{route('user-logout')}}"><i class="fas fa-sign-out-alt"></i>{{__("message.Logout")}}</a></li>
-            </ul>
-         </div>
-      </div>
-   </div>
-   <div class="right-panel">
-                <div class="content-container">
-                    <div class="outer-container">
-                        <div class="favourite-doctors">
-                            <div class="title-box row">
-                                <h3 class="col-md-6">{{__("message.My Family Members")}}</h3>
-                                <div class="btn-box col-md-6 tdr"><button data-toggle="modal" data-target="#addmember" class="theme-btn-one"><i class="icon-image"></i> {{__("message.Add Family Members")}}</button>
-                                </div>
-                            </div>
-                            <div class="doctors-list">
-@if(Session::has('message'))
-               <div class="col-sm-12">
-                  <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">{{ Session::get('message') }}
-                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                     <span aria-hidden="true">&times;</span></button>
-                  </div>
-               </div>
-               @endif 
-                                <div class="row clearfix">
-                                    
-                                 @if(count($myfamily)>0)
-                                    @foreach($myfamily as $ma)
-                                       <div class="col-xl-6 col-lg-6 col-md-12 doctors-block">
-                                        <div class="team-block-three">
-                                            <div class="inner-box">
-                                                <div class="lower-content">
-                                                    <ul class="name-box clearfix">
-                                                        <li class="name"><h3><a href="doctors-details.html">{{$ma->name}}</a></h3></li>
-                                                        <li style="font-size: small;top: 0px !important;">{{$ma->relation}}</li>
-                                                    </ul>
-                                                    <span class="designation" >{{$ma->gender}}</span>
-                                                    <div class="rating-box clearfix">
-                                                       <i class="fa fa-phone"></i> {{$ma->mobile_no}}
-                                                    </div>
-                                                    <!--<div class="rating-box clearfix">-->
-                                                    <!--   <i class="fa fa-envelope"></i>  {{$ma->email}}-->
-                                                    <!--</div>-->
-                                                    <!--<div class="rating-box clearfix">-->
-                                                    <!--   <i class="fa fa-birthday-cake"></i> {{$ma->dob}}-->
-                                                    <!--</div>-->
-                                                    
-                                                    <div class="btn-box row">
-                     <button type="button" style="position: relative;display: inline-block;float: left;
-    font-size: 15px;Line-height: 26px;font-weight: 600;border: 2px solid #ebeef1;border-radius: 30px;   
-    padding: 7px 27px;text-align: center;background: #453f85;color: white;" data-toggle="modal" data-target="#editmember" onclick="editmember('{{$ma->id}}')">{{__("message.Edit")}} <i class="fa fa-edit"></i></button>
-                      <button type="submit" style="position: relative;display: inline-block;float: left;
-    font-size: 15px;Line-height: 26px;font-weight: 600;border: 2px solid #ebeef1;border-radius: 30px;   
-    padding: 7px 27px;text-align: center;background: #f01634;color: white;" onclick="deletemember('{{$ma->id}}')">{{__("message.Delete")}} <i class="fa fa-trash"></i></button>
-                  </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach 
-                                 @endif 
-                                </div>
-                            </div>
-                         
-                        </div>
+@php
+    /* Display-only summary derived from the existing $myfamily collection. */
+    $hdFamTotal = count($myfamily);
+    $hdFamAdults = 0;
+    $hdFamChildren = 0;
+    $hdFamSeniors = 0;
+    foreach ($myfamily as $hdFamRow) {
+        if (is_numeric($hdFamRow->age)) {
+            $hdFamAge = (int) $hdFamRow->age;
+            if ($hdFamAge < 18) {
+                $hdFamChildren++;
+            } elseif ($hdFamAge >= 60) {
+                $hdFamSeniors++;
+            } else {
+                $hdFamAdults++;
+            }
+        }
+    }
+@endphp
+<section class="hd-dash-section">
+    <div class="auto-container">
+        <!-- Page head -->
+        <div class="hd-dash-head">
+            <nav class="hd-dash-breadcrumb" aria-label="Breadcrumb">
+                <a href="{{route('home')}}">{{__('message.Home')}}</a>
+                <i data-lucide="chevron-right"></i>
+                <a href="{{route('dashboard')}}">{{__('message.Dashboard')}}</a>
+                <i data-lucide="chevron-right"></i>
+                <span>{{__("message.My Family Members")}}</span>
+            </nav>
+            <h1 class="hd-dash-title">{{__("message.My Family Members")}}</h1>
+        </div>
+
+        <div class="hd-dash-layout">
+            <!-- Sidebar -->
+            <aside class="hd-dash-sidebar" id="hdDashSidebar">
+                <div class="hd-dash-profile">
+                    <?php
+                          if(Auth::user()->profile_pic!=""){
+                              $path=url('/')."/storage/profile"."/".Auth::user()->profile_pic;
+                          }
+                          else{
+                              $path=asset('public/img/default_user.png');
+                          }
+                          ?>
+                    <div class="hd-dash-avatar">
+                        <img src="{{$path}}" alt="{{Auth::user()->name}}">
+                    </div>
+                    <h3>{{Auth::user()->name}}</h3>
+                    <p><i data-lucide="mail"></i>{{Auth::user()->email}}</p>
+                </div>
+
+                <button type="button" class="hd-dash-nav-toggle" id="hdDashNavToggle" aria-expanded="false" aria-controls="hdDashNav">
+                    <i data-lucide="menu"></i>
+                    Account Menu
+                </button>
+
+                <nav class="hd-dash-nav" id="hdDashNav">
+                    <ul>
+                       <li><a href="{{route('dashboard')}}"><i data-lucide="layout-dashboard"></i>{{__("message.Dashboard")}}</a></li>
+                       <li><a href="{{route('my-family-member')}}" class="current"><i data-lucide="users"></i>{{__("message.My Family Members")}}</a></li>
+                       <li><a href="{{route('my-addresses')}}"><i data-lucide="map-pin"></i>{{__("message.My Addresses")}}</a></li>
+                       <li><a href="{{route('my-home')}}"><i data-lucide="house"></i>Home Visit</a></li>
+                       <li><a href="{{route('my_prescription')}}"><i data-lucide="file-text"></i>My Prescription</a></li>
+                       <li><a href="{{route('user-profile')}}"><i data-lucide="user-round"></i>{{__("message.My Profile")}}</a></li>
+                       <!-- <li><a href="{{route('user-change-password')}}"><i data-lucide="lock-keyhole"></i>{{__("message.Change Password")}}</a></li> -->
+                       <li><a href="{{route('user-logout')}}" class="hd-dash-logout"><i data-lucide="log-out"></i>{{__("message.Logout")}}</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main -->
+            <main class="hd-dash-main">
+                @if(Session::has('message'))
+                    <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">{{ Session::get('message') }}
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span></button>
+                    </div>
+                    @endif
+
+                <!-- Header row: title + add button -->
+                <div class="hd-fam-header">
+                    <div class="hd-fam-header-text">
+                        <h2>{{__("message.My Family Members")}}</h2>
+                        <p>Manage your family's healthcare profiles in one place.</p>
+                    </div>
+                    <button data-toggle="modal" data-target="#addmember" class="premium-btn premium-btn-primary">
+                        <i data-lucide="user-round-plus"></i>
+                        {{__("message.Add Family Members")}}
+                    </button>
+                </div>
+
+                <!-- Summary (derived from existing data) -->
+                <div class="hd-dash-stats">
+                    <div class="hd-dash-stat">
+                        <span class="hd-dash-stat-icon"><i data-lucide="users"></i></span>
+                        <div class="hd-dash-stat-value" data-hd-counter>{{ $hdFamTotal }}</div>
+                        <div class="hd-dash-stat-label">Total Family Members</div>
+                    </div>
+                    <div class="hd-dash-stat">
+                        <span class="hd-dash-stat-icon"><i data-lucide="user-round"></i></span>
+                        <div class="hd-dash-stat-value" data-hd-counter>{{ $hdFamAdults }}</div>
+                        <div class="hd-dash-stat-label">Adults</div>
+                    </div>
+                    <div class="hd-dash-stat">
+                        <span class="hd-dash-stat-icon"><i data-lucide="baby"></i></span>
+                        <div class="hd-dash-stat-value" data-hd-counter>{{ $hdFamChildren }}</div>
+                        <div class="hd-dash-stat-label">Children</div>
+                    </div>
+                    <div class="hd-dash-stat">
+                        <span class="hd-dash-stat-icon"><i data-lucide="heart-handshake"></i></span>
+                        <div class="hd-dash-stat-value" data-hd-counter>{{ $hdFamSeniors }}</div>
+                        <div class="hd-dash-stat-label">Senior Citizens</div>
                     </div>
                 </div>
-            </div>
+
+                <!-- Members -->
+                @if(count($myfamily)>0)
+                <div class="hd-fam-grid">
+                    @foreach($myfamily as $ma)
+                    <div class="hd-fam-card">
+                        <div class="hd-fam-top">
+                            <span class="hd-fam-avatar">{{ strtoupper(substr(trim((string) $ma->name), 0, 1)) ?: '?' }}</span>
+                            <div class="hd-fam-id">
+                                <h3>{{$ma->name}}</h3>
+                                <span class="hd-fam-relation">{{$ma->relation}}</span>
+                            </div>
+                        </div>
+
+                        <ul class="hd-fam-meta">
+                            <li><i data-lucide="user-round"></i>{{$ma->gender}}</li>
+                            @if($ma->age != '')
+                            <li><i data-lucide="hash"></i>{{$ma->age}} Years</li>
+                            @endif
+                            @if($ma->mobile_no != '')
+                            <li><i data-lucide="phone"></i>{{$ma->mobile_no}}</li>
+                            @endif
+                            @if($ma->email != '')
+                            <li><i data-lucide="mail"></i>{{$ma->email}}</li>
+                            @endif
+                            @if($ma->dob != '')
+                            <li><i data-lucide="cake"></i>{{$ma->dob}}</li>
+                            @endif
+                        </ul>
+
+                        <div class="hd-fam-actions">
+                            <button type="button" class="hd-fam-btn hd-fam-btn-edit" data-toggle="modal" data-target="#editmember" onclick="editmember('{{$ma->id}}')">
+                                <i data-lucide="pencil"></i>
+                                {{__("message.Edit")}}
+                            </button>
+                            <button type="submit" class="hd-fam-btn hd-fam-btn-delete" onclick="deletemember('{{$ma->id}}')">
+                                <i data-lucide="trash-2"></i>
+                                {{__("message.Delete")}}
+                            </button>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                @else
+                <div class="hd-dash-card hd-fam-empty">
+                    <div class="hd-fam-empty-icon"><i data-lucide="users"></i></div>
+                    <h3>No family members added yet.</h3>
+                    <p>Add your family members to book tests and manage their health in one place.</p>
+                    <button data-toggle="modal" data-target="#addmember" class="premium-btn premium-btn-primary">
+                        <i data-lucide="user-round-plus"></i>
+                        {{__("message.Add Family Members")}}
+                    </button>
+                </div>
+                @endif
+            </main>
+        </div>
+    </div>
 </section>
 <div class="modal" id="addmember">
    <div class="modal-dialog modal-lg">
@@ -126,7 +200,7 @@
          <form action="{{route('update-user-family')}}" method="post" class="registration-form">
          <!-- Modal body -->
          <div class="modal-body">
-            
+
                {{csrf_field()}}
                <div class="row clearfix">
                   <div class="col-lg-4 col-md-6 col-sm-12 form-group">
