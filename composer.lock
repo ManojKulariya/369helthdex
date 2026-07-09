@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6686c5f490b79e225721c47ab41c5f1",
+    "content-hash": "ad1f3c16234b0977502a2404aa13e6f3",
     "packages": [
         {
             "name": "anandsiddharth/laravel-paytm-wallet",
@@ -3101,6 +3101,128 @@
                 }
             ],
             "time": "2022-08-04T09:53:51+00:00"
+        },
+        {
+            "name": "nelexa/enum",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ne-Lexa/enum.git",
+                "reference": "8a8d967a8fab422eadba94174b91505e3fa5f7fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ne-Lexa/enum/zipball/8a8d967a8fab422eadba94174b91505e3fa5f7fe",
+                "reference": "8a8d967a8fab422eadba94174b91505e3fa5f7fe",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Nelexa\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ne-Lexa",
+                    "email": "alexey@nelexa.ru"
+                }
+            ],
+            "description": "PHP Enum implementation",
+            "homepage": "https://github.com/Ne-Lexa/enum",
+            "keywords": [
+                "enum",
+                "enumeration",
+                "enumerator"
+            ],
+            "support": {
+                "issues": "https://github.com/Ne-Lexa/enum/issues",
+                "source": "https://github.com/Ne-Lexa/enum/tree/1.1.1"
+            },
+            "time": "2020-11-27T19:17:09+00:00"
+        },
+        {
+            "name": "nelexa/google-play-scraper",
+            "version": "0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ne-Lexa/google-play-scraper.git",
+                "reference": "4c5100209db33c2338e910295c7406a4915be4cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ne-Lexa/google-play-scraper/zipball/4c5100209db33c2338e910295c7406a4915be4cb",
+                "reference": "4c5100209db33c2338e910295c7406a4915be4cb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "guzzlehttp/guzzle": "^6 | ^7",
+                "nelexa/enum": "^1.0",
+                "php": ">=7.1",
+                "psr/log": "*",
+                "psr/simple-cache": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0 | ^8.0 | ^9.0",
+                "symfony/cache": "*",
+                "symfony/var-dumper": "*",
+                "symfony/var-exporter": "*"
+            },
+            "suggest": {
+                "symfony/cache": "Install the implementation of the simple cache PSR-18. Full list of packages https://packagist.org/providers/psr/simple-cache-implementation"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nelexa\\GPlay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ne-Lexa",
+                    "email": "alexey@nelexa.ru"
+                }
+            ],
+            "description": "Scrapes app data from Google Play store.",
+            "keywords": [
+                "android",
+                "google",
+                "google play",
+                "gplay",
+                "scraper"
+            ],
+            "support": {
+                "issues": "https://github.com/Ne-Lexa/google-play-scraper/issues",
+                "source": "https://github.com/Ne-Lexa/google-play-scraper/tree/0.4.1"
+            },
+            "time": "2025-11-05T16:00:35+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -10617,12 +10739,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3|^8.0"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }

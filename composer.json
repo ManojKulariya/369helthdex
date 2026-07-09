@@ -17,6 +17,7 @@
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "nelexa/google-play-scraper": "^0.4.1",
         "razorpay/razorpay": "^2.8",
         "stephenjude/paystack-lite": "^4.0",
         "stripe/stripe-php": "^7.98",
