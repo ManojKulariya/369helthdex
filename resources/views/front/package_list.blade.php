@@ -6,7 +6,7 @@ $cityName = ucfirst(session()->get('cityName'));
 
 if($cityName == ''){
 
-$cityName='jaipur';
+$cityName='rajkot';
 
 }
 
@@ -45,7 +45,7 @@ Book Full Body Health Checkup Packages in {{$cityName}} | Reliable
 <section class="page-title-two">
  
   <div class="lower-content" style="padding:0px;">
-        <img class="img_gif" src="{{asset('public/front/Docpro/assets/images/banner/banner01.gif')}}" />
+        <img class="img_gif" src="{{asset('public/front/Docpro/assets/images/banner/1.png')}}" />
   </div>
 </section>
 <section class="pricing-section bg-color-3 sec-pad">
@@ -72,9 +72,6 @@ Book Full Body Health Checkup Packages in {{$cityName}} | Reliable
   </div>
 </section>
   @include('front.how_book')
-<!----------------------- Why Pathkind Labs ----------------->
- @include('front.why_rdc')
-
  
 @stop
 

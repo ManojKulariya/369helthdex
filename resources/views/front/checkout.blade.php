@@ -385,9 +385,12 @@ input[type="date"].underline-input:focus {
                                             <div class="col-10">
                                                 
                                                 <label for="member_{{ $row->id }}" style="margin: 0;">
+                                                    <span class="hd-mem-avatar" aria-hidden="true">{{ strtoupper(substr(trim((string) $row->name), 0, 1)) ?: '?' }}</span>
+                                                    <span class="hd-mem-info">
                                                     <b>{{ $row->name }}</b> <br>
                                                     {{$row->relation}}<br>
                                                     {{$row->gender}} | {{$row->age}}
+                                                    </span>
                                                 </label>
                                             </div>
                                         </div>
@@ -585,13 +588,13 @@ input[type="date"].underline-input:focus {
                                <div class="row">
                                     <input id="payment_type_stripe " type="radio"   onchange="changeform(this.value)" name="payment_method" value="RAZORPAY" />
                                     <?php $stripe_img = asset("public/img/rz.png"); ?>
-                                    <label class="drinkcard-ccs ml-2 mt-2" for="payment_type_stripe">UPI/ Credit Card/ Debit Card/ Netbanking</label>
+                                    <label class="drinkcard-ccs ml-2 mt-2" for="payment_type_stripe"><i data-lucide="credit-card"></i>UPI/ Credit Card/ Debit Card/ Netbanking</label>
                               
                               </div>
                                <div class="row">
                                    <input id="payment_type_cod" type="radio"  onchange="changeform(this.value)" name="payment_method" value="cod" />
                                  <?php $cod_img = asset("public/img/cod.png"); ?>
-                                 <label class="drinkcard-csc ml-2 mt-2"  for="payment_type_cod">Cash/ Card on Sample Collection</label>
+                                 <label class="drinkcard-csc ml-2 mt-2"  for="payment_type_cod"><i data-lucide="banknote"></i>Cash/ Card on Sample Collection</label>
                              
                              
                                </div>
@@ -634,19 +637,54 @@ input[type="date"].underline-input:focus {
          
          <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
              @if(isset($selectedtest->name))
+             @php
+                /* Display-only breakdown of the selected test/package so pricing
+                   is visible immediately on load. Handles either column order:
+                   the lower of price/mrp is the selling price. */
+                $hdSelPrice = (float) ($selectedtest->price ?? 0);
+                $hdSelMrp = (float) ($selectedtest->mrp ?? 0);
+                $hdSelFinal = $hdSelMrp > 0 ? $hdSelMrp : $hdSelPrice;
+                $hdSelOriginal = 0;
+                $hdSelDiscountPer = 0;
+                $hdSelDiscountAmt = 0;
+                if ($hdSelPrice > 0 && $hdSelMrp > 0 && round($hdSelPrice) != round($hdSelMrp)) {
+                    $hdSelFinal = min($hdSelPrice, $hdSelMrp);
+                    $hdSelOriginal = max($hdSelPrice, $hdSelMrp);
+                    $hdSelDiscountAmt = $hdSelOriginal - $hdSelFinal;
+                    $hdSelDiscountPer = round(100 * $hdSelDiscountAmt / $hdSelOriginal);
+                }
+             @endphp
              <div class="clinic-sidebar">
                <div class="form-widget">
                   <div class="form-title">
                      <h3 style="font-size:16px;">Selected Test/Package</h3>
                      <span style="color:white;">{{$selectedtest->name}} </span>
-                      
-                      @if($selectedtest->price > 0 )
-                      <p><span style="text-decoration:line-through;color:#f9f9f9;"> {{$selectedtest->price}}</span> |  <span style="color:#fff;">{{  $selectedtest->mrp }}</span></p>
-                      @else
-                      <p><span style="color:#fff;"> {{$selectedtest->mrp}}</span></p>
-                      @endif
-                    
                   </div>
+                  <ul class="hd-sel-breakdown">
+                     @if($hdSelOriginal > 0)
+                     <li>
+                        <span>Original Price</span>
+                        <span class="hd-sel-strike">{{$currency ?? '₹'}}{{ number_format($hdSelOriginal, 2, '.', '') }}</span>
+                     </li>
+                     <li>
+                        <span>Discount <em class="hd-sel-badge">{{ $hdSelDiscountPer }}% OFF</em></span>
+                        <span class="hd-sel-save">- {{$currency ?? '₹'}}{{ number_format($hdSelDiscountAmt, 2, '.', '') }}</span>
+                     </li>
+                     @endif
+                     <li>
+                        <span>Final Price</span>
+                        <span>{{$currency ?? '₹'}}{{ number_format($hdSelFinal, 2, '.', '') }}</span>
+                     </li>
+                     <li class="hd-sel-note">
+                        <span>Home Collection Charge</span>
+                        <span>Calculated after address selection</span>
+                     </li>
+                     <li class="hd-sel-total">
+                        <span>Total Payable</span>
+                        <span>{{$currency ?? '₹'}}{{ number_format($hdSelFinal, 2, '.', '') }}</span>
+                     </li>
+                  </ul>
+                  <p class="hd-sel-hint"><i data-lucide="info"></i>Select a family member above to add this to your cart.</p>
                 </div>
              </div>
              @endif

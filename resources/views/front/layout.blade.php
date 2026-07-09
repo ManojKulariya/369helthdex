@@ -42,7 +42,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- HealthDex Homepage Design System (single consolidated stylesheet) -->
-    <link rel="stylesheet" href="{{asset('public/hd-home.css')}}?v=hd12">
+    <link rel="stylesheet" href="{{asset('public/hd-home.css')}}?v=hd24">
 
     <!-- Add these links in the <head> section of your HTML file -->
 
@@ -117,8 +117,8 @@
                         <!-- Navigation -->
                         <nav class="luxury-nav d-none d-lg-flex">
                             <a href="{{route('home')}}" class="luxury-nav-link {{Session::get('active_menu')==1 ? 'active' : ''}}">Home</a>
-                            <a href="{{route('popular-packages',['city'=>$cityName ?? 'Jaipur'])}}" class="luxury-nav-link {{Session::get('active_menu')==4 ? 'active' : ''}}">Packages</a>
-                            <a href="{{route('popular-blood-tests',['city'=>$cityName ?? 'Jaipur'])}}" class="luxury-nav-link {{Session::get('active_menu')==11 ? 'active' : ''}}">Tests</a>
+                            <a href="{{route('popular-packages',['city'=>$cityName ?? 'rajkot'])}}" class="luxury-nav-link {{Session::get('active_menu')==4 ? 'active' : ''}}">Packages</a>
+                            <a href="{{route('popular-blood-tests',['city'=>$cityName ?? 'rajkot'])}}" class="luxury-nav-link {{Session::get('active_menu')==11 ? 'active' : ''}}">Tests</a>
                             <a href="{{route('aboutus')}}" class="luxury-nav-link {{Session::get('active_menu')==7 ? 'active' : ''}}">About</a>
                             <a href="{{route('blog')}}" class="luxury-nav-link {{Session::get('active_menu')==71 ? 'active' : ''}}">Blog</a>
                             <a href="{{route('contact-us')}}" class="luxury-nav-link {{Session::get('active_menu')==6 ? 'active' : ''}}">Contact</a>
@@ -132,7 +132,7 @@
 
                                         $cityName = session()->get('cityName');
                                         if($cityName == ''){
-                                        $cityName='jaipur';
+                                        $cityName='rajkot';
                                         }
 
                                         $userLng = session()->get('longitudes');
@@ -195,7 +195,7 @@
                                         </a>
 
                                         <!-- Sticky CTA -->
-                                        <a href="{{route('popular-packages',['city'=>$cityName ?? 'Jaipur'])}}" class="luxury-header-cta d-none d-xl-inline-flex">
+                                        <a href="{{route('popular-packages',['city'=>$cityName ?? 'rajkot'])}}" class="luxury-header-cta d-none d-xl-inline-flex">
                                             <span>Book a Test</span>
                                             <i data-lucide="arrow-right"></i>
                                         </a>
@@ -303,7 +303,7 @@
                         <p class="footer-cta-description">Our team is ready to assist you with test selection and home sample collection</p>
                     </div>
                     <div class="footer-cta-buttons">
-                        <a href="{{route('popular-packages',['city'=>$cityName ?? 'Jaipur'])}}" class="footer-btn footer-btn-primary">
+                        <a href="{{route('popular-packages',['city'=>$cityName ?? 'rajkot'])}}" class="footer-btn footer-btn-primary">
                             Book Now
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                 <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
@@ -422,13 +422,13 @@
                         <div class="footer-column">
                             <h4 class="footer-title">Patients</h4>
                             <div class="footer-links">
-                                <a href="{{route('popular-blood-tests',['city'=>$cityName ?? 'Jaipur'])}}" class="footer-link">
+                                <a href="{{route('popular-blood-tests',['city'=>$cityName ?? 'rajkot'])}}" class="footer-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
                                     </svg>
                                     Popular Tests
                                 </a>
-                                <a href="{{route('popular-packages',['city'=>$cityName ?? 'Jaipur'])}}" class="footer-link">
+                                <a href="{{route('popular-packages',['city'=>$cityName ?? 'rajkot'])}}" class="footer-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />
                                     </svg>
@@ -523,7 +523,9 @@
         <span class="hd-callback-fab-label">Need Help?</span>
     </button>
     <div class="floating-whatsapp-a">
-        <a aria-label="whatsapp" href="https://wa.me/919828112340?text=hi">
+        <a aria-label="WhatsApp"
+        href="https://wa.me/919828112340?text=Hi%21%20I%27m%20interested%20in%20your%20diagnostic%20services.%20Please%20help%20me%20with%20test%20booking%20and%20available%20health%20packages."
+        target="_blank">
             <img src="https://rdccare.com/public/img/whatsapp.png" alt="Chat with us on WhatsApp" loading="lazy" />
         </a>
     </div>
@@ -721,30 +723,48 @@
 
     <script src="{{asset('public/front.js')}}"></script>
 
-    <div class="modal" id="needhelp">
+    <div class="modal fade hd-help-modal" id="needhelp">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content text-center p-2">
-            
+        <div class="modal-content">
+
             <!-- Modal Header -->
-            <div class="modal-header border-0 d-block position-relative">
-                <h5 class="modal-title" style="color:#1F3E6D;">Need help in booking tests?</h5>
-                <p><small>Please share your details, our health advisor will call you or you can call us at </small>
-                    <a href="tel:+919828112340" style="color:#1F3E6D;"><strong>+91-9828112340</strong></a></p>
+            <div class="modal-header hd-help-head">
+                <span class="hd-help-glow" aria-hidden="true"></span>
+                <span class="hd-help-icon"><i data-lucide="headset"></i></span>
+                <div class="hd-help-head-text">
+                    <h5 class="modal-title">Need help in booking tests?</h5>
+                    <p>Our healthcare experts will help you book the right test.</p>
+                </div>
                 <!-- Close Button -->
-                <button type="button" class="close" data-dismiss="modal"  style="position: absolute; top: 6px; right: 5px; color: #1F3E6D;">&times;</button>
+                <button type="button" class="close hd-help-close" data-dismiss="modal" aria-label="Close">&times;</button>
             </div>
             <!-- Modal Body -->
-            <div class="modal-body">
+            <div class="modal-body hd-help-body">
+                <p class="hd-help-sub">Share your details and our health advisor will call you back shortly.</p>
                 <form action="{{route('save_callback')}}" method="post" id="callback-form">
                 @csrf
-                    <div class="form-group">
-                        <input type="text" class="form-control text-center" name="name" id="name" placeholder="Enter Your Name" required>
+                    <div class="form-group hd-help-field">
+                        <i data-lucide="user-round"></i>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter Your Name" required>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control text-center" name="number" id="phone" placeholder="Enter Your Number" required>
+                    <div class="form-group hd-help-field">
+                        <i data-lucide="phone"></i>
+                        <input type="text" class="form-control" name="number" id="phone" placeholder="Enter Your Number" required>
                     </div>
-                    <button type="submit" class="btn btn-block" style="background-color: #eb0401; color: white; border-radius: 2px; font-weight: normal;">Submit</button>
+                    <button type="submit" class="hd-help-submit">Request Callback<i data-lucide="arrow-right"></i></button>
                 </form>
+                <div class="hd-help-divider">or reach us directly</div>
+                <div class="hd-help-contacts">
+                    <a href="tel:{{$setting->phone}}" class="hd-help-call">
+                        <i data-lucide="phone-call"></i>
+                        {{$setting->phone}}
+                    </a>
+                    <a href="https://wa.me/919828112340?text=hi" target="_blank" rel="noopener noreferrer" class="hd-help-wa">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                </div>
+                <p class="hd-help-trust"><i data-lucide="shield-check"></i>NABL certified labs &middot; Free home sample collection</p>
             </div>
 
         </div>

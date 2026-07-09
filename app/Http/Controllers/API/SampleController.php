@@ -1162,15 +1162,15 @@ class SampleController extends Controller
                 if($ct){
                     $cityname = $ct->city;
                 }else{
-                    $cityname = 'Jaipur'; 
+                    $cityname = 'rajkot'; 
                 }
                 
                 
             }else{
-                $cityname = 'Jaipur';
+                $cityname = 'rajkot';
             }
         }else{
-            $cityname = 'Jaipur';
+            $cityname = 'rajkot';
         }
         
         $branchIds = $this->getdefaultcityid($cityname);

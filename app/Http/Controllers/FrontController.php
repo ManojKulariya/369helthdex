@@ -61,6 +61,8 @@ use Carbon\Carbon; // Make sure to import Carbon if not already imported
 use Razorpay\Api\Api;
 use App\Events\TestOrderReceived;
 use App\Models\Wallet;
+use Nelexa\GPlay\GPlayApps;
+
 
 
 class FrontController extends Controller
@@ -563,7 +565,7 @@ class FrontController extends Controller
             $data->prescription = $picture;
         }
 
-        //    $data->user_id = Auth::id();
+        $data->user_id = Auth::id();
         $data->name = $request->name;
         $data->email = $request->email;
         $data->gender = $request->gender;
@@ -1171,7 +1173,31 @@ class FrontController extends Controller
             $data_popular = $uniquePkg;
         
         $setting = Setting::find(1);
+        $playStoreData = [
+            'rating' => null,
+            'downloads' => null,
+            'ratings_count' => null,
+            'reviews_count' => null,
+            'version' => null,
+        ];
+
+        try {
+            $gplay = new GPlayApps();
+
+            $app = $gplay->getAppInfo('com.shreelab');
+
+            $playStoreData = [
+                'rating' => $app->getScore(),
+                'downloads' => $app->getInstalls(),
+                'reviews_count' => $app->getReviews(),
+            ];
+
+        } catch (\Exception $e) {
+            \Log::error('Play Store Error: ' . $e->getMessage());
+        }
         $data_feedback = Feedback::with('userdata')->orderby('id', 'DESC')->get();
+        $totalSamples = Orders::where('status', 7)->count();
+        $totaltests = Parameter::whereNull('deleted_at')->count();
         
         $blogdata = Blog::orderBy('id', 'DESC')->take(6)->get();
         
@@ -1179,7 +1205,7 @@ class FrontController extends Controller
         Session::put("active_menu", "1");
         return view("front.home")->with('lab', $lab)->with('test', $test)->with('offer', $offer)->with("category", $category)
             ->with("setting", $setting)->with("data_popular", $data_popular)->with("data_feedback", $data_feedback)->with("blogdata", $blogdata)
-            ->with("contentdata", $contentdata)->with("totalcartmember", $this->gettotalcartmember());
+            ->with("contentdata", $contentdata)->with("totalcartmember", $this->gettotalcartmember())->with("playStoreData", $playStoreData)->with("totalSamples", $totalSamples)->with("totaltests", $totaltests);
     }
     
     public function save_contact_detail(Request $request)
@@ -1288,7 +1314,6 @@ class FrontController extends Controller
                                 ->whereIn('profile_branch.branch_id', [$branchIds])->find($item->id);
                 if($itemData){
                     $arr = explode(",", $itemData->no_of_parameter);
-                    $no_of_parameter = count($arr);
                     $ls = array();
                     $mrp = 0;
                     foreach ($arr as $a) {
@@ -1298,46 +1323,13 @@ class FrontController extends Controller
                             $ls[] = Parameter::find($a) ? Parameter::find($a)->name : '';
                         }
                     }
+                    // Same shape as show_test_list(): numeric count + comma list,
+                    // rendered with the exact same premium card as the Tests page.
+                    $itemData->no_of_parameter = count($arr);
                     $itemData->paramater_data = implode(",", $ls);
-                    $html .='<div class="col-lg-4 col-md-6 col-sm-12 pricing-block">
-                              <div class="pricing-block-one">
-                                <div class="pricing-table">
-                                  <div class="box_badges" style="font-size:11px;">'.$no_of_parameter.'<br/>Parameters</div>
-                                    <div class="table-header"> 
-                                      <h2 style="font-size:16px;"><a href="' . route('profile', ['city' => $cityName, 'id' => $itemData->slug]) . '" style="text-decoration: none; color: inherit;">' . $itemData->profile_name .'</a></h2>
-                                    </div>
-                                <div class="table-content">
-                                    <div class="row" style="font-size:12px;line-height:1.2;">';
-                                        $arr = explode(",", $itemData->paramater_data); // Convert the data to an array
-                                        $arr = array_slice($arr, 0, 8); // Limit to the first 8 items
-                                        $chunks = array_chunk($arr, 4); // Split into chunks of 4
-                                        foreach ($chunks as $chunk){
-                                            $html .='<div class="col-6">';
-                                                    foreach ($chunk as $item){
-                                                        $html .='&#10003; '.$item.'<br>';
-                                                    }
-                                            $html .='</div>';
-                                        }
-                                        
-                                $html .='</div>
-                                    <a href="'.route('profile', ['city'=>$cityName,'id' => $itemData->slug ]) .'" class="more-link">+ Know More</a>
-                                </div>
-                                <div class="table-footer">';
-                        		  if($itemData->price > 0 ){
-                            	   $html .='<h4><span class="price">'.number_format($itemData->price,2,'.','').'</span> / <span class="discount_price">'.number_format($itemData->mrp,2,'.','').'</span> </h4>';
-                                  }else{
-                                   $html .='<h4><span class="discount_price">'.number_format($itemData->mrp,2,'.','').'</span></h4>';
-                                    }
-                        $html .='<div class="btn-box">
-                                <a href="'.route('checkouts', ['id' => $itemData->id, 'type' => 3, 'parameter' => $no_of_parameter ?? '0']).'" class="theme-btn-one">
-                                    Book Now<i class="icon-Arrow-Right"></i>
-                                </a>
-                                
-                            </div>
-                        </div>';
-                    $html .='</div>
-                                </div>
-                                    </div>';
+                    $html .= '<div class="col-lg-4 col-md-6 col-sm-12 pricing-block">'
+                            . view('front.card_test', ['pl' => $itemData, 'cityName' => $cityName])->render()
+                            . '</div>';
                 }
             }elseif($item->typetable === 'parameter'){
                 $itemData = Parameter::join('parameter_branch', 'parameters.id', '=', 'parameter_branch.parameter_id')
@@ -1345,30 +1337,14 @@ class FrontController extends Controller
                                         ->whereIn('parameter_branch.branch_id', [$branchIds])
                                         ->find($item->id);
                 if($itemData){
-                    $no_of_parameter = 1;
+                    $itemData->no_of_parameter = 1;
                     $itemData->price = $itemData->mrp;
-                    $html .='<div class="col-lg-4 col-md-6 col-sm-12 pricing-block">
-                              <div class="pricing-block-one">
-                                <div class="pricing-table">
-                                  <div class="box_badges" style="font-size:11px;">'.$no_of_parameter.'<br/>Parameters</div>
-                                    <div class="table-header"> 
-                                      <h2 style="font-size:16px;"><a href="' . route('parameter', ['city' => $cityName, 'id' => $itemData->slug]) . '" style="text-decoration: none; color: inherit;">' . $itemData->name .'</a></h2>
-                                    </div>
-                                <div class="table-footer">';
-                        		  //if($itemData->price > 0 ){
-                            // 	   $html .='<h4><span class="price">'.number_format($itemData->price,2,'.','').'</span> / <span class="discount_price">'.number_format($itemData->mrp,2,'.','').'</span> </h4>';
-                            //       }else{
-                                   $html .='<h4><span class="discount_price">'.number_format($itemData->mrp,2,'.','').'</span></h4>';
-                                    // }
-                        $html .='<div class="btn-box">
-                                <a href="'.route('checkouts', ['id' => $itemData->id, 'type' => 2, 'parameter' => $no_of_parameter ?? '0']).'" class="theme-btn-one">
-                                    Book Now<i class="icon-Arrow-Right"></i>
-                                </a>
-                            </div>
-                        </div>';
-                    $html .='</div>
-                                </div>
-                                    </div>';
+                    // A single parameter has no route('profile') detail page or
+                    // type=3 checkout of its own, so pass its own route/type
+                    // through to the same reusable test card component.
+                    $html .= '<div class="col-lg-4 col-md-6 col-sm-12 pricing-block">'
+                            . view('front.card_test', ['pl' => $itemData, 'cityName' => $cityName, 'hdRouteName' => 'parameter', 'hdCheckoutType' => 2])->render()
+                            . '</div>';
                 }
             }else{
                 $itemData = Package::join('package_branch', 'packages.id', '=', 'package_branch.package_id')
@@ -1399,49 +1375,13 @@ class FrontController extends Controller
                         }
                         $ls[]=$p_data;
                     }
+                    // Same shape as show_package_list(): numeric count + array of
+                    // ['name'=>..] rows, rendered with the Packages page's card.
+                    $itemData->no_of_parameter = $parameter;
                     $itemData->paramater_data = $ls;
-                    $html .='<div class="col-lg-4 col-md-6 col-sm-12 pricing-block">
-                                <div class="pricing-block-one">
-                                    <div class="pricing-table">
-                                      <div class="box_badges" style="font-size:11px;">'.$parameter.'<br/>Parameters</div>
-                                      <div class="table-header"> 
-                                        <h2 style="font-size:16px;"><a href="' . route('package', ['city' => $cityName, 'id' => $itemData->slug]) . '" style="text-decoration: none; color: inherit;">' . $itemData->name . '</a></h2>
-                                      </div>
-                                 <div class="table-content">
-                                     <div class="row" style="font-size:12px;line-height:1.2;">';
-                                        $arrs = array_slice($itemData->paramater_data, 0, 8); // Get only the first 8 items
-                                        $chunks = array_chunk($arrs, 4);
-                                        foreach ($chunks as $chunk){
-                                            $html .='<div class="col-6">';
-                                                foreach ($chunk as $arr){
-                                                    $html .='&#10003; '.$arr['name'];
-                                                    if(isset($arr['count'])){
-                                                        $html .='('. $arr['count'] .')'; 
-                                                    }
-                                                    $html .='<br>';
-                                                }
-                                            $html .='</div>';
-                                        }
-                                    $html .='</div>
-                                    <a href="'.route('package', ['city'=>$cityName,'id' => $itemData->slug ]).'" class="more-link">+ Know More</a>
-                                  </div>
-                                <div class="table-footer">';
-                                    if($itemData->price > 0 ){
-                                    $html .='<div>
-                                      <h3><span class="price">'.number_format($itemData->price,2,'.','').'</span>/
-                                            <span class="discount_price">'.number_format($itemData->mrp,2,'.','').'</span></h3>
-                                    </div>';
-                                    }else{
-                                    $html .='<div>
-                                      <h3><span class="discount_price">'.number_format($itemData->mrp,2,'.','').'</span></h3>
-                                    </div>';
-                                    }
-                                   $html .='<div class="btn-box"><a href="'.route('checkouts', ['id' => $itemData->id, 'type' => 1, 'parameter' => $parameter ?? '0']).'" class="book_now">Book Now<i class="icon-Arrow-Right"></i></a></div>
-                                  </div>';
-                    
-                    $html .='</div>
-                                </div>
-                                    </div>';
+                    $html .= '<div class="col-lg-4 col-md-6 col-sm-12 pricing-block">'
+                            . view('front.card', ['pl' => $itemData, 'cityName' => $cityName])->render()
+                            . '</div>';
                 }
             }
         }
@@ -2602,6 +2542,30 @@ class FrontController extends Controller
         Session::flash('alert-class', 'alert-danger');
         return redirect()->back();
 
+    }
+
+    /**
+     * Track Appointment page — read-only view over the existing order data.
+     * Same ownership rule as show_printorder: the order must belong to the
+     * logged-in user.
+     */
+    public function show_track_order($id)
+    {
+        $data = Orders::with('useraddressdetails', 'partiallyreports', 'franchise', 'sampleboyDetails')
+            ->where("user_id", Auth::id())
+            ->where("id", $id)
+            ->first();
+        if ($data) {
+            $data->orderdata = OrdersData::with("memberdetails")->where("order_id", $id)->get();
+            $popular_package = Popular_package::whereNull('deleted_at')->get();
+            $category = Category::where('is_deleted', '0')->get();
+            $setting = Setting::find(1);
+            $getcurrency = explode("-", $setting->currency);
+            return view("front.track_order")->with("category", $category)->with("popular_package", $popular_package)->with("setting", $setting)->with("data", $data)->with("currency", $getcurrency[1])->with("totalcartmember", $this->gettotalcartmember());
+        }
+        Session::flash('message', "Data Not Found");
+        Session::flash('alert-class', 'alert-danger');
+        return redirect()->route('dashboard');
     }
 
     public function show_admin_printorder($id)

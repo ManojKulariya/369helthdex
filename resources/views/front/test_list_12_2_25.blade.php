@@ -5,7 +5,7 @@
 $cityName = session()->get('cityName');
 
  if($cityName == ''){
-     $cityName='jaipur';
+     $cityName='rajkot';
  }
  
 @endphp

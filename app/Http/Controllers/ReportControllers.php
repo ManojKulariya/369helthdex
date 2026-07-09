@@ -14,11 +14,139 @@ use Razorpay\Api\Api;
 
 class ReportControllers extends Controller
 {
+    /* AppID of the lab on elabassist; also the default LabID (see getPatientReport). */
+    private $reportAppId = "4bee96ca-3ea8-4e89-a575-04d2beed400c";
+
+    private function reportLabId()
+    {
+        $labId = env('REPORT_LAB_ID');
+        return $labId ? $labId : $this->reportAppId;
+    }
+
+    /* Log the phone number into the external report system and store the
+       session the rest of this module already relies on. */
+    private function externalReportLogin($phone)
+    {
+        $phone = preg_replace('/\D/', '', (string) $phone);
+        if (strlen($phone) < 10) {
+            return null;
+        }
+        $in = ['UserName' => $phone, 'Password' => $phone, 'Task' => 3, 'AppID' => $this->reportAppId];
+        $result = $this->callAPI("POST", "http://elabcorpsupport.elabassist.com/services/globaluserservice.svc/UserRegistration", json_encode(['objSP' => $in]));
+        $result = json_decode($result, true);
+        if (isset($result["d"]["Result"]) && $result["d"]["Result"] == "Success") {
+            session(['some_name' => $result["d"], 'report_phone' => $phone]);
+            session()->forget('report_allowed_ids');
+            return $result["d"];
+        }
+        Log::warning('Report auto-login failed for phone ' . substr($phone, -4));
+        return null;
+    }
+
+    /* Fetch the logged-in report user's registrations, newest first.
+       Also remembers the TestRegnIDs the user owns for download checks. */
+    private function fetchReportList($userFID = null)
+    {
+        if ($userFID === null) {
+            $user = session('some_name');
+            $userFID = isset($user["UserFID"]) ? $user["UserFID"] : null;
+        }
+        if (!$userFID) {
+            return [];
+        }
+        $postdata = json_encode([
+            "UserFID" => $userFID,
+            "LabID" => $this->reportLabId(),
+            "FromDate" => "",
+            "ToDate" => "",
+            "LabCode" => "",
+            "PatientName" => "",
+            "UserType" => "1",
+            "EntityId" => 0,
+            "EntityTypeId" => 0,
+        ]);
+        $result = $this->callAPI("POST", "http://elabcorpsupport.elabassist.com/Services/GlobalUserService.svc/TestReportList", $postdata);
+        $result = json_decode($result, true);
+        $list = (isset($result["d"]) && is_array($result["d"])) ? $result["d"] : [];
+        usort($list, function ($a, $b) {
+            return $this->regnEpoch($b) - $this->regnEpoch($a);
+        });
+        $user = session('some_name');
+        if ($user && isset($user["UserFID"]) && $user["UserFID"] == $userFID) {
+            session(['report_allowed_ids' => array_map(function ($row) {
+                return (string) (isset($row['TestRegnID']) ? $row['TestRegnID'] : '');
+            }, $list)]);
+        }
+        return $list;
+    }
+
+    private function regnEpoch($row)
+    {
+        /* RegnDateTime looks like "/Date(1771588303000+0530)/" */
+        if (isset($row['RegnDateTime']) && preg_match('/(\d{10,})/', (string) $row['RegnDateTime'], $m)) {
+            return (int) substr($m[1], 0, 10);
+        }
+        return 0;
+    }
+
+    /* Derive display status + action flags from the raw registration row. */
+    private function decorateReport($row)
+    {
+        $balance = (float) (isset($row['BalanceAmt']) ? $row['BalanceAmt'] : 0);
+        $pdfReady = trim((string) (isset($row['PDFFileName']) ? $row['PDFFileName'] : '')) !== '';
+        $collected = !empty($row['patientSampleCollected']) || trim((string) (isset($row['strSampleCollectionDate']) ? $row['strSampleCollectionDate'] : '')) !== '';
+        if ($pdfReady) {
+            $row['hd_status'] = 'ready';
+        } elseif ($collected) {
+            $row['hd_status'] = 'processing';
+        } else {
+            $row['hd_status'] = 'pending';
+        }
+        $row['hd_pay_due'] = $balance > 0;
+        $row['hd_can_download'] = $pdfReady && $balance <= 0;
+        return $row;
+    }
+
+    /* Ownership check used before serving any report file. */
+    private function userOwnsTestRegn($testRegnID)
+    {
+        $testRegnID = (string) $testRegnID;
+        if ($testRegnID === '') {
+            return false;
+        }
+        $allowed = session('report_allowed_ids');
+        if (!is_array($allowed) && session('some_name')) {
+            $this->fetchReportList();
+            $allowed = session('report_allowed_ids');
+        }
+        if (is_array($allowed) && in_array($testRegnID, $allowed, true)) {
+            return true;
+        }
+        /* Site-login users: reports attached to their own orders (dashboard flow). */
+        if (Auth::check()) {
+            $ownsOrderReport = \App\Models\Report::where('test_reg_id', $testRegnID)
+                ->whereIn('order_id', \App\Models\Orders::where('user_id', Auth::user()->id)->pluck('id'))
+                ->exists();
+            if ($ownsOrderReport) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function show_login(){
+        if (session('some_name')) {
+            return redirect()->route('helthdex-report');
+        }
+        if (Auth::check()) {
+            /* Already logged into the site: reuse that identity, never re-ask. */
+            $this->externalReportLogin(Auth::user()->phone);
+            return redirect()->route('helthdex-report');
+        }
         $setting = Setting::find(1);
         return view("front.reportlogin")->with('title','Download Report')->with('setting',$setting);
     }
-    
+
     public function check_login(Request $request)
 	{
 		/**LOGIN */
@@ -33,12 +161,14 @@ class ReportControllers extends Controller
 		$returnval = $result;
 
 		$result = json_decode($result, true);
-		$result = $result["d"];
-		if ($result["Result"] == "Success") {
+		$result = isset($result["d"]) ? $result["d"] : null;
+		if ($result && isset($result["Result"]) && $result["Result"] == "Success") {
 		    session(['some_name' => $result]);
+		    session(['report_phone' => preg_replace('/\D/', '', (string) $request->input('UserName'))]);
+		    session()->forget('report_allowed_ids');
 		} else {
 			return redirect()->route('home');
-			
+
 		}
 		echo $returnval;
 
@@ -149,32 +279,58 @@ class ReportControllers extends Controller
         }
     }
     public function show_reports(){
-        
-		if (session('some_name')) {
-			$user = session('some_name');
-			$method = "POST";
-			$postdata = [
-				"UserFID" => $user["UserFID"],
-				"LabID" => env('REPORT_LAB_ID'), // TEST_LAB_ID
-				"FromDate" => "",
-				"ToDate" => "",
-				"LabCode" => "",
-				"PatientName" => "",
-				"UserType" => "1",
-				"EntityId" => 0,
-				"EntityTypeId" => 0,
-			];
-			$postdata = json_encode($postdata);
-			$url = "http://elabcorpsupport.elabassist.com/Services/GlobalUserService.svc/TestReportList";
-			$result = $this->callAPI($method, $url, $postdata);
-			$result = json_decode($result, true);
-			$data["reportlist"] = $result["d"];
-// 			dd($data["reportlist"]);
-			$setting = Setting::find(1);
-			return view("front.report_list")->with('data',$data)->with('title','Patient Report With Details')->with('setting',$setting);
-		} else {
-			return redirect()->route('reliable-report');
+
+		if (!session('some_name') && Auth::check()) {
+			/* Site-login users are recognised automatically - no second login. */
+			$this->externalReportLogin(Auth::user()->phone);
 		}
+		if (!session('some_name') && !Auth::check()) {
+			/* Guests must verify via OTP first (was a redirect to itself = loop). */
+			return redirect()->route('download-report');
+		}
+
+		$reportlist = array_map([$this, 'decorateReport'], $this->fetchReportList());
+		$first = count($reportlist) ? $reportlist[0] : null;
+		$ready = 0;
+		foreach ($reportlist as $row) {
+			if ($row['hd_status'] == 'ready') {
+				$ready++;
+			}
+		}
+		$hdReportUser = [
+			'name'   => Auth::check() ? Auth::user()->name : (($first && trim((string) $first['PatientName']) !== '') ? $first['PatientName'] : 'Guest User'),
+			'phone'  => (Auth::check() && Auth::user()->phone) ? Auth::user()->phone : session('report_phone', $first ? $first['PatientMobile'] : ''),
+			'email'  => Auth::check() ? Auth::user()->email : (($first && !empty($first['PatientEmail'])) ? $first['PatientEmail'] : ''),
+			'total'  => count($reportlist),
+			'ready'  => $ready,
+			'latest' => $first ? $first['RegnDateTimeString'] : null,
+		];
+
+		$data["reportlist"] = $reportlist;
+		$setting = Setting::find(1);
+		return view("front.report_list")->with('data',$data)->with('hdReportUser',$hdReportUser)->with('title','Download Report')->with('setting',$setting);
+    }
+
+    public function show_report_details($id){
+		if (!session('some_name') && Auth::check()) {
+			$this->externalReportLogin(Auth::user()->phone);
+		}
+		if (!session('some_name')) {
+			return redirect()->route('download-report');
+		}
+		$report = null;
+		/* Ownership: the row must exist in this user's own report list. */
+		foreach ($this->fetchReportList() as $row) {
+			if ((string) (isset($row['TestRegnID']) ? $row['TestRegnID'] : '') === (string) $id) {
+				$report = $this->decorateReport($row);
+				break;
+			}
+		}
+		if (!$report) {
+			return redirect()->route('helthdex-report');
+		}
+		$setting = Setting::find(1);
+		return view("front.report_details")->with('report',$report)->with('title','Report Details')->with('setting',$setting);
     }
     public function show_reports_api(Request $request){
     $UserFID = $request->get("UserFID");
@@ -227,6 +383,27 @@ class ReportControllers extends Controller
         $labID = "4bee96ca-3ea8-4e89-a575-04d2beed400c";
         // $testRegnID ='1125365' ;
         $testRegnID = $request->testRegnID;
+
+        /* Ownership check: serve a report only to its owner.
+           - Web: report session (OTP) or site login owning the order report.
+           - App: pass the UserFID obtained from check_login_api; the report
+             must belong to that user's own list. */
+        $authorized = $this->userOwnsTestRegn($testRegnID);
+        if (!$authorized && $request->get('UserFID')) {
+            foreach ($this->fetchReportList($request->get('UserFID')) as $row) {
+                if ((string) (isset($row['TestRegnID']) ? $row['TestRegnID'] : '') === (string) $testRegnID) {
+                    $authorized = true;
+                    break;
+                }
+            }
+        }
+        if (!$authorized) {
+            if (!session('some_name') && !Auth::check() && !$request->get('UserFID')) {
+                return redirect()->route('download-report');
+            }
+            return response()->json(['success' => false, 'msg' => 'You are not authorized to access this report.'], 403);
+        }
+
         // Check if TestRegnID is valid
         if ($testRegnID > 0 || $testRegnID != "") {
             
@@ -255,7 +432,9 @@ class ReportControllers extends Controller
 
                             if ($fileResponse->ok()) {
                                 // Create the response for file download
-                                return response($fileResponse->body())->header('Content-Type', 'application/pdf')->header('Content-Disposition', 'attachment; filename="report.pdf"');
+                                // inline=1 opens the PDF in the browser (used by View / Print)
+                                $disposition = $request->get('inline') ? 'inline' : 'attachment';
+                                return response($fileResponse->body())->header('Content-Type', 'application/pdf')->header('Content-Disposition', $disposition . '; filename="report.pdf"');
                                 // return response()->json(['success' => true,'data'=>$fileUrl ,'msg' => 'PDF FILE']);
                             } else {
                                 return response()->json(['success' => false, 'msg' => 'Your report is not ready yet. Please contact coustomer support +91-9828112340']);
@@ -323,6 +502,12 @@ class ReportControllers extends Controller
 		$amount = $request->paymentAmount;
 		$testregnid = $request->testregnid;
 		$user = session('some_name');
+		if (!$user || empty($user['UserFID'])) {
+			return redirect()->route('download-report');
+		}
+		if (!$this->userOwnsTestRegn($testregnid)) {
+			return redirect()->route('helthdex-report');
+		}
 		$UserFID = $user['UserFID'];
 		$tid = uniqid();
 // 		$amount =1;
@@ -348,7 +533,7 @@ class ReportControllers extends Controller
             session()->flash('payment_status', 'Payment was canceled by the user.');
         }
         
-        return view('reliable-report'); // Adjust the view as needed
+        return view('helthdex-report'); // Adjust the view as needed
     }
 
     public function verifyPayment(Request $request)
@@ -371,12 +556,12 @@ class ReportControllers extends Controller
             $api->utility->verifyPaymentSignature($attributes);
             $this->UpdatePayment($UserFID,$testregnid,$amount);
             session()->flash('payment_status', 'Payment Successful!');
-            return redirect()->route('reliable-report');
+            return redirect()->route('helthdex-report');
             
             // return response()->json(['status' => 'Payment Successful', 'amount' => $amount, 'testregnid' => $testregnid, 'UserFID' => $UserFID, 'tid' => $tid]);
         } catch (\Exception $e) {
             session()->flash('payment_status', 'Payment Verification Failed!');
-    		return redirect()->route('reliable-report');
+    		return redirect()->route('helthdex-report');
             // return response()->json(['status' => 'Payment Verification Failed']);
         }
     }
@@ -403,7 +588,7 @@ class ReportControllers extends Controller
 		$mydata = $this->callAPI($method, $url, $postdata);
 		$mydata = json_decode($mydata, true);
 // 		return;
-        // $url = route('reliable-report');
+        // $url = route('helthdex-report');
         // return redirect($url);
 
 	}

@@ -1,0 +1,1027 @@
+/* ==========================================================================
+   369 HealthDex — Premium Admin Panel skin
+   A non-destructive CSS layer over the existing Azea admin template.
+   Loaded AFTER all theme CSS so these rules win on specificity/order.
+   Targets only the template's existing classes — no HTML structure,
+   JS-bound selectors (sidemenu.js: .app-sidebar/.side-menu/.slide-menu/
+   .is-expanded), routes, or Blade variables were changed to make this work.
+   ========================================================================== */
+
+/* @import must precede every other rule or the browser silently drops it —
+   this line previously sat below :root and Inter never actually loaded. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Same tokens as public/hd-home.css (the frontend design system) —
+     values copied 1:1, only the variable prefix differs, so the admin
+     panel is guaranteed to share the exact frontend palette. */
+  --adm-green-50: #ecfdf5;
+  --adm-green-100: #d1fae5;
+
+  --adm-brand: #059669;
+  --adm-brand-strong: #047857;
+  --adm-brand-soft: #10b981;
+  --adm-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --adm-gradient-hover: linear-gradient(135deg, #059669 0%, #047857 100%);
+  /* Dark rail surface — not a frontend token (the homepage has no sidebar to
+     mirror), but built from the frontend's own --hd-ink-900 down to the
+     brand green rather than an unrelated hue, so it stays in the same
+     green/ink family the rest of the palette uses. */
+  --adm-gradient-dark: linear-gradient(160deg, #0b1a13 0%, #0f2a1e 60%, #103524 100%);
+
+  --adm-ink-900: #0b1a13;
+  --adm-ink-800: #0f172a;
+  --adm-ink-700: #334155;
+  --adm-ink-600: #475569;
+  --adm-ink-500: #64748b;
+  --adm-ink-400: #94a3b8;
+
+  --adm-surface: #ffffff;
+  --adm-surface-2: #f7faf9;
+  --adm-surface-3: #f1f6f4;
+  --adm-surface-green: #f0fdf4;
+  --adm-border: #e7edf1;
+  --adm-border-2: #dbe4ea;
+  --adm-border-green: rgba(16, 185, 129, .18);
+
+  --adm-shadow-xs: 0 1px 2px rgba(15, 23, 42, .06);
+  --adm-shadow-sm: 0 2px 10px rgba(15, 23, 42, .06);
+  --adm-shadow-md: 0 12px 34px -14px rgba(15, 23, 42, .20);
+  --adm-shadow-lg: 0 34px 64px -24px rgba(15, 23, 42, .28);
+  --adm-shadow-green: 0 16px 34px -12px rgba(5, 150, 105, .42);
+
+  --adm-r-xs: 10px;
+  --adm-r-sm: 14px;
+  --adm-r-md: 18px;
+  --adm-r-lg: 22px;
+  --adm-r-xl: 28px;
+  --adm-r-pill: 999px;
+
+  --adm-t: .2s;
+  --adm-ease: cubic-bezier(.4, 0, .2, 1);
+  --adm-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --adm-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body.app {
+  font-family: var(--adm-font);
+  background: var(--adm-surface-2) !important;
+}
+
+body.app * {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   SIDEBAR — light, same surface language as the frontend (white canvas,
+   green gradient accents, soft green hovers). The body keeps its original
+   `dark-menu` class because the theme's JS/switcher reference it, so every
+   color rule here is doubled with a `.dark-menu`-prefixed twin at equal-or-
+   higher specificity to out-cascade the skin's dark palette.
+   ========================================================================== */
+.app-sidebar,
+.dark-menu .app-sidebar {
+  background: #fff !important;
+  border-right: 1px solid var(--adm-border) !important;
+  box-shadow: var(--adm-shadow-sm);
+}
+
+/* 270px rail (was 250px). Everything the theme keyed to 250px is re-keyed
+   here so nothing overlaps: content margin, header padding, footer padding,
+   the hover re-expand width, and the mobile off-canvas park position. */
+@media (min-width: 768px) {
+  .app-sidebar { width: 270px; }
+  .app-content { margin-left: 270px !important; }
+  .app-header { padding-left: 270px !important; }
+  .sidebar-mini.sidenav-toggled .app-header { padding-left: 70px !important; }
+  footer.footer { padding-left: 270px !important; }
+  .sidebar-mini.sidenav-toggled footer.footer { padding-left: 70px !important; }
+  .sidebar-mini.sidenav-toggled.sidenav-toggled1 .app-sidebar { width: 270px; }
+  /* the logo box is position:fixed in the theme — keep it pinned but match
+     each rail width */
+  .app-sidebar__logo { width: 270px !important; }
+  .sidenav-toggled .app-sidebar__logo { width: 70px !important; }
+  .sidenav-toggled.sidenav-toggled1 .app-sidebar__logo { width: 270px !important; }
+  /* flow below that fixed 60px logo: the quick-find box carries the
+     clearance (the theme instead used margin-top:90px on .side-menu, which
+     left the search buried underneath the logo — the "blank strip" bug);
+     when the collapsed rail hides the search, the menu takes it back */
+  /* !important because the component's own shorthand `margin:` lower in the
+     file would otherwise reset this longhand */
+  .adm-sidebar-search { margin-top: calc(60px + .9rem) !important; }
+  .side-menu { margin-top: 0 !important; }
+  .sidenav-toggled .side-menu { margin-top: calc(60px + .5rem) !important; }
+}
+@media (max-width: 767px) {
+  /* offcanvas drawer: park fully outside (theme's -265px would leave a
+     5px sliver of the wider rail showing), slide over the header when
+     open, and dim the page behind it */
+  .app .app-sidebar { left: -290px; margin-top: 0 !important; }
+  .app.sidenav-toggled .app-sidebar { left: 0; }
+  .app-sidebar__overlay {
+    background: rgba(11, 26, 19, .45);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+  /* the theme hides the logo box on mobile (the header used to carry the
+     brand); since the drawer now slides over the header, give it its own
+     logo — statically positioned so it can't leak out of the parked drawer
+     the way the theme's position:fixed would */
+  .app-sidebar__logo {
+    display: flex !important;
+    position: static !important;
+    width: 100% !important;
+  }
+  .adm-sidebar-search { margin-top: .9rem !important; }
+  .side-menu { margin-top: 0 !important; }
+}
+
+.app-sidebar__logo,
+.dark-menu .app-sidebar__logo {
+  background: #fff !important;
+  padding: 0 1.4rem !important;
+  border-bottom: 1px solid var(--adm-border);
+  display: flex !important;
+  align-items: center;
+  height: 60px !important;
+}
+
+.app-sidebar__logo .header-brand-img {
+  max-height: 36px;
+  width: auto;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.side-menu {
+  padding: .9rem .9rem 2rem !important;
+}
+
+.side-item.side-item-category,
+.dark-menu .side-item.side-item-category {
+  color: var(--adm-ink-400) !important;
+  font-size: .68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase;
+  padding: 1.4rem .65rem .55rem !important;
+  margin-top: .3rem;
+  border-top: 1px solid var(--adm-border);
+}
+.side-item.side-item-category:first-child,
+.dark-menu .side-item.side-item-category:first-child {
+  margin-top: 0;
+  border-top: none;
+  padding-top: .5rem !important;
+}
+
+.side-menu .slide {
+  margin-bottom: .2rem;
+}
+
+.side-menu__item {
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  gap: .75rem;
+  padding: .68rem .85rem !important;
+  border-radius: var(--adm-r-sm) !important;
+  color: var(--adm-ink-600) !important;
+  font-size: .88rem !important;
+  font-weight: 500 !important;
+  transition: background 280ms var(--adm-ease), color 280ms var(--adm-ease), box-shadow 280ms var(--adm-ease) !important;
+}
+
+.side-menu__item:hover,
+.dark-menu .side-menu__item:hover,
+.side-menu__item:focus,
+.dark-menu .side-menu__item:focus {
+  background: var(--adm-surface-green) !important;
+  color: var(--adm-ink-900) !important;
+}
+
+.side-menu__item.active,
+.slide.active > .side-menu__item,
+.dark-menu .side-menu__item.active,
+.dark-menu .slide.active > .side-menu__item {
+  background: var(--adm-gradient) !important;
+  color: #fff !important;
+  box-shadow: var(--adm-shadow-green);
+}
+/* small indicator bar hugging the sidebar's left edge (.side-menu has a
+   .9rem gutter, so -.9rem lands exactly on the edge) */
+.side-menu__item.active::before,
+.slide.active > .side-menu__item::before {
+  content: '';
+  position: absolute;
+  left: -.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 22px;
+  border-radius: var(--adm-r-pill);
+  background: var(--adm-brand);
+}
+
+/* The theme's own .side-menu .side-menu__icon rule carries width:40px;
+   height:40px;padding:8px — combined with our global box-sizing:border-box
+   reset and the UA's svg:not(:root){overflow:hidden}, that padding eats the
+   entire content box once we size the icon down, clipping the glyph to an
+   invisible sliver (the "icons missing" bug). Zero the padding. It also
+   hardcodes fill:#664dc9 and color:#664dc9 on this class — these are
+   stroke-only Lucide icons, so fill goes back to none and the stroke color
+   is pinned explicitly per state (inherit is unreliable here: the dark-menu
+   skin sets its own colors at (0,2,0)+). */
+.side-menu__icon,
+.dark-menu .side-menu__icon {
+  flex: 0 0 auto;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  fill: none !important;
+  color: var(--adm-ink-500) !important;
+  transition: color 280ms var(--adm-ease);
+}
+.side-menu__item:hover .side-menu__icon,
+.side-menu__item:focus .side-menu__icon,
+.dark-menu .side-menu__item:hover .side-menu__icon,
+.dark-menu .side-menu__item:focus .side-menu__icon {
+  color: var(--adm-brand) !important;
+  fill: none !important;
+}
+.side-menu__item.active .side-menu__icon,
+.slide.active > .side-menu__item .side-menu__icon,
+.dark-menu .side-menu__item.active .side-menu__icon,
+.dark-menu .slide.active > .side-menu__item .side-menu__icon {
+  color: #fff !important;
+  fill: none !important;
+}
+
+.side-menu__label,
+.dark-menu .side-menu__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: inherit !important;
+}
+/* the dark-menu skin pins the LABEL white on hover/focus at (0,4,0) — on a
+   light-green hover that's invisible text; re-pin per state */
+.dark-menu .side-menu__item:hover .side-menu__label,
+.dark-menu .side-menu__item:focus .side-menu__label {
+  color: var(--adm-ink-900) !important;
+}
+.dark-menu .side-menu__item.active .side-menu__label,
+.dark-menu .slide.active > .side-menu__item .side-menu__label {
+  color: #fff !important;
+}
+
+.side-menu__item .angle {
+  flex: 0 0 auto;
+  width: .8rem; height: .8rem;
+  margin-left: auto;
+  transition: transform 280ms var(--adm-ease-out);
+  opacity: .55;
+}
+.slide.is-expanded > .side-menu__item .angle {
+  transform: rotate(90deg);
+}
+
+.slide-menu {
+  padding: .25rem 0 .35rem 0 !important;
+  margin: 0 0 0 1.7rem !important;
+  border-left: 1.5px solid var(--adm-border-2);
+}
+
+.slide-menu .slide-item,
+.dark-menu .slide-menu .slide-item {
+  display: block;
+  padding: .5rem .8rem !important;
+  margin-left: .6rem;
+  border-radius: var(--adm-r-xs);
+  color: var(--adm-ink-500) !important;
+  font-size: .84rem !important;
+  transition: background 280ms var(--adm-ease), color 280ms var(--adm-ease);
+}
+.slide-menu .slide-item:hover,
+.dark-menu .slide-menu .slide-item:hover {
+  background: var(--adm-surface-green) !important;
+  color: var(--adm-ink-900) !important;
+}
+.slide-menu .slide-item.active,
+.dark-menu .slide-menu .slide-item.active {
+  background: var(--adm-surface-green) !important;
+  color: var(--adm-brand-strong) !important;
+  font-weight: 600;
+}
+
+/* Thin scrollbar in the brand's green scale */
+.sidebar-container::-webkit-scrollbar { width: 6px; }
+.sidebar-container::-webkit-scrollbar-thumb { background: var(--adm-green-100); border-radius: 999px; }
+.sidebar-container::-webkit-scrollbar-thumb:hover { background: var(--adm-green-50); background: #a7f3d0; }
+.sidebar-container::-webkit-scrollbar-track { background: transparent; }
+
+/* Sidebar quick-filter (new, client-side only — filters the menu items already in the DOM) */
+.adm-sidebar-search {
+  position: relative;
+  margin: .35rem 1rem 1rem;
+}
+.adm-sidebar-search input {
+  width: 100%;
+  height: 38px;
+  padding: 0 .9rem 0 2.3rem;
+  border-radius: var(--adm-r-pill);
+  border: 1px solid var(--adm-border);
+  background: var(--adm-surface-2);
+  color: var(--adm-ink-800);
+  font-family: var(--adm-font);
+  font-size: .82rem;
+  outline: none;
+  transition: background 280ms var(--adm-ease), border-color 280ms var(--adm-ease), box-shadow 280ms var(--adm-ease);
+}
+.adm-sidebar-search input::placeholder { color: var(--adm-ink-400); }
+.adm-sidebar-search input:focus {
+  background: #fff;
+  border-color: var(--adm-border-green);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, .12);
+}
+.adm-sidebar-search svg {
+  position: absolute; left: .8rem; top: 50%; transform: translateY(-50%);
+  width: 15px; height: 15px; color: var(--adm-ink-400); pointer-events: none;
+}
+.side-item.adm-hidden-by-search,
+.slide.adm-hidden-by-search { display: none !important; }
+
+/* ==========================================================================
+   SIDEBAR — COLLAPSED (icon rail) MODE
+   sidemenu.js toggles `.sidenav-toggled` on <body class="app"> when the
+   header hamburger is clicked, and adds `.sidenav-toggled1` on top while
+   the pointer is over the rail — no JS/classes changed here, only how those
+   existing states are painted.
+   Desktop-only: below 768px the SAME `.sidenav-toggled` class means "drawer
+   open" (full-width offcanvas), where icon-rail styling must not apply.
+   ========================================================================== */
+@media (min-width: 768px) {
+.sidenav-toggled .adm-sidebar-search { display: none !important; }
+
+.sidenav-toggled:not(.sidenav-toggled1) .side-item.side-item-category {
+  padding: 1rem 0 .5rem !important;
+  font-size: 0 !important;
+  text-align: center;
+}
+.sidenav-toggled:not(.sidenav-toggled1) .side-item.side-item-category::after {
+  content: '';
+  display: block;
+  width: 20px; height: 2px;
+  margin: 0 auto;
+  border-radius: 2px;
+  background: var(--adm-border-2);
+}
+.sidenav-toggled:not(.sidenav-toggled1) .side-item.side-item-category:first-child::after { display: none; }
+
+/* Center the icon only in the true icon-only rail state. Once the theme's
+   own hover class (.sidenav-toggled1) puts the label back in-flow at full
+   width, centering a now-two-child flex row (icon + inline label) inside a
+   box sized for icon-only content pushes the icon past the left edge,
+   where the item's own overflow:hidden (set by the theme for this state)
+   clips it down to a sliver — so this must stay scoped to the resting
+   collapsed state, matching the label/tooltip scoping above. */
+.sidenav-toggled:not(.sidenav-toggled1) .side-menu__item {
+  justify-content: center !important;
+  gap: 0 !important;
+  padding: .7rem 0 !important;
+}
+.sidenav-toggled:not(.sidenav-toggled1) .side-menu__item .angle { display: none !important; }
+/* no room for the edge indicator bar on the 71px rail */
+.sidenav-toggled .side-menu__item.active::before,
+.sidenav-toggled .slide.active > .side-menu__item::before { display: none !important; }
+
+/* The per-item flyout label the theme shows on :hover/:focus while collapsed
+   (but the whole-sidebar hover class, .sidenav-toggled1, hasn't kicked in
+   yet — e.g. keyboard focus) doubles as our "tooltip" — restyle it to match
+   the rest of the panel (it was plain white-on-white before, since
+   .side-menu__label inherits the rail's white text color). Scoped to
+   :not(.sidenav-toggled1) so it doesn't collide with the inline label
+   styling below once the rail is fully hover-expanded. */
+.sidenav-toggled:not(.sidenav-toggled1) .side-menu__label {
+  color: var(--adm-ink-800) !important;
+  background: #fff !important;
+  font-weight: 600 !important;
+  font-size: .82rem !important;
+  border-radius: var(--adm-r-sm) !important;
+  box-shadow: var(--adm-shadow-lg) !important;
+  left: 60px !important;
+}
+
+/* Flyout submenus (Lab Components, Users, Blog, Content) in collapsed mode
+   need their own solid background — the expanded-mode .slide-menu styling
+   is transparent, which is unreadable once absolutely positioned over the
+   page. */
+.sidenav-toggled .slide-menu {
+  margin: 0 !important;
+  padding: .4rem !important;
+  border-left: none;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-sm);
+  background: #fff;
+  box-shadow: var(--adm-shadow-lg);
+}
+
+/* The theme's own hover behavior (sidemenu.js adds .sidenav-toggled1 while
+   the pointer is over the rail) temporarily re-expands the rail to 250px
+   with inline labels. Since .app-sidebar is position:fixed, this overlays
+   the page instead of reflowing it (.app-content's margin-left is driven
+   by .sidenav-toggled alone, not .sidenav-toggled1) — so it behaves like a
+   flyout/tooltip in effect, not a layout shift, and is left as the theme
+   designed it. Only the label's own type styling is normalized here so it
+   matches the rest of the panel while expanded. */
+.sidenav-toggled.sidenav-toggled1 .side-menu__label {
+  font-family: var(--adm-font) !important;
+  font-weight: 500 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  margin-left: 0 !important;
+}
+/* the theme's hover-expand rule re-adds padding:8px !important at (0,5,0),
+   which squeezes the 20px icon box down to a 4px sliver — same clipping
+   mechanism as everywhere else; match its specificity to zero it */
+.sidebar-mini.sidenav-toggled.sidenav-toggled1 .app-sidebar .side-menu__icon {
+  padding: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 0 !important;
+}
+} /* end @media (min-width: 768px) — collapsed icon-rail mode */
+
+/* ==========================================================================
+   TOP HEADER
+   ========================================================================== */
+/* The theme positions .app-header with position:fixed and compensates by
+   giving .app-content a matching margin-top (50px in the original theme).
+   Keep fixed (not sticky) and resize that compensation to match our new
+   height, so the header takes exactly its own height and nothing more —
+   this is what was producing the tall, mostly-empty header before. */
+.app-header.header {
+  background: rgba(255, 255, 255, .9) !important;
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border-bottom: 1px solid var(--adm-border) !important;
+  box-shadow: var(--adm-shadow-sm);
+  position: fixed !important;
+  height: 60px !important;
+  display: flex !important;
+  align-items: center;
+  z-index: 891;
+}
+.app-header .container-fluid { width: 100%; }
+.app-header .container-fluid,
+.app-header .d-flex { height: 100%; }
+.app-header .d-flex { align-items: center; }
+
+@media (min-width: 768px) {
+  .app-content {
+    margin-top: 60px !important;
+    /* matches the sidebar's own 0.3s width/left transition so collapsing
+       moves rail and content in one motion instead of a snap */
+    transition: margin-left .3s ease;
+  }
+}
+.app-content { min-height: calc(100vh - 60px) !important; }
+
+/* Mobile: the theme centers the logo inside the header itself (the sidebar's
+   own logo box is hidden below 768px) and originally reserved ~76px with a
+   16px top-margin nudge on the logo — that math no longer applies at our
+   height, so it was pushing the logo/toggle/profile row tall enough to
+   collide with the page heading beneath it. Reset it to sit cleanly in a
+   single centered row instead. */
+@media (max-width: 767px) {
+  .app-header.header { height: 56px !important; }
+  .app-content { margin-top: 56px !important; }
+  .app-content { min-height: calc(100vh - 56px) !important; }
+  /* The sidebar (opened via the hamburger) already carries the branded
+     logo; showing a second copy in the cramped mobile header is what was
+     colliding with the page heading, so it's hidden here — same as it
+     already is on desktop, where the sidebar's own logo is the only copy. */
+  .app-header .header-brand { display: none !important; }
+  .app-sidebar__toggle { margin-left: .5rem !important; }
+}
+
+.app-header .header-brand-img { max-height: 26px; }
+
+/* Kill the theme's stray vertical divider lines in the header */
+.app-sidebar__toggle {
+  border-right: none !important;
+  margin-left: 1.1rem !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 100%;
+}
+.header-notify,
+.profile-dropdown,
+.navbar-collapse,
+.main-header-end { border: none !important; }
+/* the dark-header skin re-adds these with !important at higher specificity
+   (visible as a stray divider after the avatar in the mobile bar) */
+.dark-header .profile-dropdown,
+.dark-header.dark-mode .profile-dropdown,
+.dark-header .header .main-header-end .nav-link.icon,
+.dark-header.dark-mode .header .main-header-end .nav-link.icon { border: none !important; }
+
+/* Balanced, centered spacing for the right-hand header cluster.
+   Scoped to >=768px only: below that, #navbarSupportedContent-4 is a real
+   Bootstrap .collapse that must stay display:none until the 3-dot toggler
+   opens it — forcing display:flex here unconditionally (the earlier bug)
+   made it always render, overlapping the page heading on mobile and
+   widening the header past the viewport. */
+.main-header-end { display: flex !important; align-items: center !important; }
+@media (min-width: 768px) {
+  .main-header-end .navbar,
+  .main-header-end .navbar-collapse,
+  .main-header-end .d-flex.order-lg-2 {
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+.main-header-end .d-flex.order-lg-2 { gap: .6rem; }
+.profile-dropdown { display: flex !important; align-items: center; }
+.profile-dropdown .nav-link { display: flex !important; align-items: center; }
+
+.app-sidebar__toggle .open-toggle {
+  display: flex !important; align-items: center; justify-content: center;
+  width: 38px !important; height: 38px !important; border-radius: var(--adm-r-sm);
+  color: var(--adm-ink-700) !important;
+  transition: background var(--adm-t) var(--adm-ease);
+}
+.app-sidebar__toggle .open-toggle:hover { background: var(--adm-surface-green); color: var(--adm-brand-strong) !important; }
+.adm-toggle-icon {
+  width: 21px !important; height: 21px !important;
+  display: block !important;
+  flex: 0 0 auto;
+}
+
+.header-notify { display: flex !important; align-items: center; }
+/* Pin the bell anchor's real geometry. The theme's own rule
+   `.header .main-header-end .nav-link.icon{padding:2.38rem .75rem !important;
+   border-right:1px solid ...}` is (0,4,0)-specific with !important padding:
+   under border-box that padding exceeds the 40px height, so the box blows
+   up to ~90px and overflows the 60px header — and its border-right, bent
+   around our border-radius:50%, painted the giant curved-line artifact that
+   haunted every header screenshot. Matching the selector at equal
+   specificity later in the cascade neutralizes both. */
+.header .main-header-end .nav-link.icon {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+.header-notify .nav-link.icon {
+  position: relative !important;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  color: var(--adm-ink-600);
+  transition: background var(--adm-t) var(--adm-ease), color var(--adm-t) var(--adm-ease);
+}
+.header-notify .nav-link.icon:hover { background: var(--adm-surface-green); color: var(--adm-brand-strong); }
+/* The bell is a Lucide stroke icon (fill="none" stroke="currentColor"), but
+   the theme's dark-header skin hardcodes .header-icon{fill:#fff !important},
+   which would flood the outline into a solid white blob — force fill back
+   off; the stroke follows the anchor's color (incl. hover) on its own.
+   padding:8px from the theme is zeroed for the same clipping reason as the
+   sidebar icons above. */
+.header-notify .header-icon,
+.dark-header .header-notify .header-icon {
+  fill: none !important;
+  /* theme sets color:#664dc9 (purple) directly on .header-icon, which beats
+     the anchor's color for stroke:currentColor; `inherit` is no good either
+     because the dark-header skin turns the inherited color white. Pin the
+     ink explicitly, with a matching explicit hover below. */
+  color: var(--adm-ink-600) !important;
+  width: 22px !important; height: 22px !important;
+  padding: 0 !important;
+}
+.header-notify .nav-link.icon:hover .header-icon {
+  color: var(--adm-brand-strong) !important;
+}
+.header-notify .pulse {
+  position: absolute !important; top: 6px !important; right: 6px !important;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--adm-gradient);
+  box-shadow: 0 0 0 2px #fff;
+  /* The theme's own @keyframes pulse animates box-shadow through a hardcoded
+     pink (rgba(247,45,102,...)) ring — override with a green version so the
+     ping stays on-brand instead of flashing an unrelated color. */
+  animation: adm-pulse-green 2s infinite;
+}
+@keyframes adm-pulse-green {
+  0%   { box-shadow: 0 0 0 0 rgba(5, 150, 105, .55); }
+  70%  { box-shadow: 0 0 0 9px rgba(5, 150, 105, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+}
+
+.dropdown-menu.dropdown-menu-arrow {
+  border: 1px solid var(--adm-border) !important;
+  border-radius: var(--adm-r-md) !important;
+  box-shadow: var(--adm-shadow-lg) !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+.dropdown-header {
+  padding: 1rem 1.1rem !important;
+  background: var(--adm-surface-green);
+  border-bottom: 1px solid var(--adm-border);
+}
+.dropdown-header h6 { font-weight: 700; color: var(--adm-ink-800); }
+/* theme's bg-secondary badge is purple — keep the "New" chip on-brand */
+.dropdown-header .badge {
+  background: var(--adm-gradient) !important;
+  color: #fff !important;
+}
+.notify-menu .dropdown-item {
+  padding: .75rem 1.1rem !important;
+  border-color: var(--adm-border) !important;
+  transition: background var(--adm-t) var(--adm-ease);
+}
+.notify-menu .dropdown-item:hover { background: var(--adm-surface-green); }
+.notifyimg {
+  width: 36px; height: 36px; border-radius: var(--adm-r-sm);
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-right: .8rem; border: none !important;
+  background: var(--adm-gradient) !important; color: #fff !important;
+}
+.dropdown-menu .btn-primary {
+  background: var(--adm-gradient) !important; border: none !important;
+  border-radius: var(--adm-r-pill) !important; font-weight: 600;
+}
+
+.profile-dropdown .header-avatar1 img {
+  width: 38px; height: 38px; object-fit: cover;
+  border: 2px solid var(--adm-border-green);
+  transition: border-color var(--adm-t) var(--adm-ease);
+}
+.profile-dropdown .header-avatar1:hover img { border-color: var(--adm-brand); }
+
+/* Name + caret next to the avatar — fills the header's dead right-hand
+   space and makes the profile control read as a real account menu rather
+   than a bare, unlabeled photo. */
+.adm-profile-toggle {
+  display: flex !important; align-items: center; gap: .55rem;
+  padding: .4rem .6rem .4rem .4rem !important;
+  border-radius: var(--adm-r-pill);
+  transition: background var(--adm-t) var(--adm-ease);
+}
+.adm-profile-toggle:hover { background: var(--adm-surface-green); }
+.adm-profile-name {
+  font-size: .85rem; font-weight: 600; color: var(--adm-ink-700);
+  max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.adm-profile-caret { width: 14px; height: 14px; color: var(--adm-ink-400); flex: 0 0 auto; }
+@media (max-width: 991px) {
+  .adm-profile-name, .adm-profile-caret { display: none; }
+}
+
+/* A soft divider between the notification bell and the profile control —
+   replaces the theme's harsh 1px #e6ebf1 borders removed above with one
+   deliberate, understated separator instead of none at all. */
+.header-notify { margin-right: .35rem; padding-right: .85rem; position: relative; }
+.header-notify::after {
+  content: '';
+  position: absolute; top: 50%; right: 0; transform: translateY(-50%);
+  width: 1px; height: 22px;
+  background: var(--adm-border);
+}
+.profile-dropdown .dropdown-item {
+  display: flex; align-items: center;
+  padding: .7rem 1.1rem !important;
+  font-size: .85rem; color: var(--adm-ink-700) !important;
+  transition: background var(--adm-t) var(--adm-ease), color var(--adm-t) var(--adm-ease);
+}
+.profile-dropdown .dropdown-item:hover { background: var(--adm-surface-green); color: var(--adm-brand-strong) !important; }
+.profile-dropdown .dropdown-item svg { color: var(--adm-brand); }
+.adm-dd-icon { width: 16px; height: 16px; flex: 0 0 auto; }
+.notifyimg svg { width: 16px; height: 16px; }
+
+/* Mobile: the opened notification/profile collapse renders as a bar just
+   below the header — give it a deliberate full-width surface instead of the
+   theme's partial white patch floating over the page heading. */
+@media (max-width: 767px) {
+  #navbarSupportedContent-4 {
+    position: fixed !important;
+    top: 56px !important; left: 0 !important; right: 0 !important;
+    margin: 0 !important;
+    padding: .5rem 1rem !important;
+    background: #fff !important;
+    border-bottom: 1px solid var(--adm-border);
+    box-shadow: var(--adm-shadow-md);
+    z-index: 890;
+  }
+  #navbarSupportedContent-4 .d-flex.order-lg-2 {
+    align-items: center;
+    gap: .6rem;
+  }
+}
+
+/* Mobile 3-dot toggler (opens the notification/profile collapse below md).
+   Its icon was a `fe fe-more-vertical` glyph from the theme's icon font,
+   whose @font-face has no src — it has never rendered. Replaced with an
+   inline SVG in the blade; styled here. */
+.app-header .navbar-toggler {
+  border: none !important;
+  box-shadow: none !important;
+  padding: .4rem !important;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--adm-ink-600);
+}
+.adm-toggler-icon { width: 22px; height: 22px; flex: 0 0 auto; }
+
+/* ==========================================================================
+   HEADER SEARCH — client-side "jump to menu" only. It reads the links the
+   sidebar already rendered and navigates via their existing hrefs; no
+   endpoint is called and no data is fetched.
+   ========================================================================== */
+.adm-header-search {
+  position: relative;
+  display: none;
+  align-items: center;
+  margin-left: 1.25rem;
+  width: min(340px, 32vw);
+}
+@media (min-width: 768px) { .adm-header-search { display: flex; } }
+.adm-header-search > svg {
+  position: absolute; left: .85rem;
+  width: 15px; height: 15px;
+  color: var(--adm-ink-400);
+  pointer-events: none;
+}
+.adm-header-search input {
+  width: 100%; height: 38px;
+  padding: 0 1rem 0 2.4rem;
+  border-radius: var(--adm-r-pill);
+  border: 1px solid var(--adm-border);
+  background: var(--adm-surface-2);
+  font-family: var(--adm-font);
+  font-size: .84rem; font-weight: 500;
+  color: var(--adm-ink-800);
+  outline: none;
+  transition: border-color var(--adm-t) var(--adm-ease), background var(--adm-t) var(--adm-ease), box-shadow var(--adm-t) var(--adm-ease);
+}
+.adm-header-search input::placeholder { color: var(--adm-ink-400); }
+.adm-header-search input:focus {
+  background: #fff;
+  border-color: var(--adm-border-green);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, .12);
+}
+.adm-header-search-results {
+  display: none;
+  position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+  background: #fff;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-sm);
+  box-shadow: var(--adm-shadow-lg);
+  padding: .35rem;
+  z-index: 1000;
+  overflow: hidden;
+}
+.adm-header-search.is-open .adm-header-search-results { display: block; }
+.adm-header-search-row {
+  display: block;
+  padding: .55rem .8rem;
+  border-radius: var(--adm-r-xs);
+  font-size: .84rem; font-weight: 500;
+  color: var(--adm-ink-700);
+  text-decoration: none;
+  transition: background var(--adm-t) var(--adm-ease), color var(--adm-t) var(--adm-ease);
+}
+.adm-header-search-row:hover { background: var(--adm-surface-green); color: var(--adm-brand-strong); }
+.adm-header-search-empty { padding: .55rem .8rem; font-size: .8rem; color: var(--adm-ink-400); }
+
+/* ==========================================================================
+   FOOTER — theme keeps the sidebar offset via its own padding-left
+   (250px/70px at ≥768px); only the look and inner layout change here.
+   ========================================================================== */
+footer.footer.adm-footer {
+  background: var(--adm-surface);
+  border-top: 1px solid var(--adm-border);
+  box-shadow: none;
+}
+.adm-footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: .5rem 1.5rem;
+  /* theme's own footer padding-left is exactly the sidebar width (250px),
+     so without this the text would start flush against the rail; 1.75rem
+     matches the content column's gutter, .5rem tops up the right side to
+     the same 1.75rem total */
+  padding: 0 .5rem 0 1.75rem;
+  font-family: var(--adm-font);
+  font-size: .8rem; font-weight: 500;
+  color: var(--adm-ink-500);
+}
+@media (max-width: 767px) {
+  .adm-footer-inner { padding: 0 1rem; }
+}
+.adm-footer-inner strong { color: var(--adm-ink-700); font-weight: 700; }
+.adm-footer-meta { display: inline-flex; align-items: center; gap: .5rem; }
+.adm-footer-badge {
+  padding: .15rem .6rem;
+  border-radius: var(--adm-r-pill);
+  background: var(--adm-surface-green);
+  color: var(--adm-brand-strong);
+  font-weight: 700; font-size: .72rem;
+}
+@media (max-width: 576px) {
+  .adm-footer-inner { justify-content: center; text-align: center; }
+}
+
+/* Back-to-top (shown by the theme's custom.js on scroll — display untouched) */
+#back-to-top {
+  background: var(--adm-gradient) !important;
+  border-radius: var(--adm-r-sm) !important;
+  box-shadow: var(--adm-shadow-green);
+}
+#back-to-top svg {
+  width: 20px; height: 20px;
+  color: #fff;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   PAGE HEADER
+   ========================================================================== */
+.page-header {
+  padding: 1.85rem 1.75rem .5rem !important;
+  margin: 0 !important;
+  display: block !important;
+}
+.page-header .page-title {
+  font-family: var(--adm-font);
+  font-weight: 800 !important;
+  letter-spacing: -.02em;
+  color: var(--adm-ink-900) !important;
+  font-size: 1.65rem !important;
+  line-height: 1.2;
+}
+.adm-page-sub {
+  margin: .3rem 0 0;
+  font-size: .92rem;
+  color: var(--adm-ink-500);
+  font-weight: 500;
+}
+
+.app-content.main-content { background: var(--adm-surface-2); min-height: 100vh; }
+
+/* ==========================================================================
+   KPI CARDS
+   ========================================================================== */
+.adm-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.15rem;
+  padding: 0 1.75rem;
+  margin-bottom: .5rem;
+}
+.adm-kpi-card {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-lg);
+  box-shadow: var(--adm-shadow-sm);
+  padding: 1.35rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform var(--adm-t) var(--adm-ease-out), box-shadow var(--adm-t) var(--adm-ease), border-color var(--adm-t) var(--adm-ease);
+}
+.adm-kpi-card .adm-kpi-top { margin-bottom: 1.15rem; }
+.adm-kpi-card .adm-kpi-value { margin-bottom: .3rem; }
+.adm-kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--adm-shadow-md);
+  border-color: var(--adm-border-green);
+}
+.adm-kpi-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.adm-kpi-icon {
+  width: 46px; height: 46px; border-radius: var(--adm-r-sm);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--adm-gradient); color: #fff;
+  box-shadow: var(--adm-shadow-green);
+  font-size: 1.15rem;
+}
+.adm-kpi-icon svg { width: 1.3rem; height: 1.3rem; flex: 0 0 auto; }
+.adm-kpi-trend {
+  display: inline-flex; align-items: center; gap: .25rem;
+  font-size: .74rem; font-weight: 700; padding: .25rem .55rem;
+  border-radius: var(--adm-r-pill);
+  background: var(--adm-surface-green); color: var(--adm-brand-strong);
+}
+.adm-kpi-trend.is-muted { background: var(--adm-surface-2); color: var(--adm-ink-500); }
+.adm-kpi-value {
+  font-family: var(--adm-font); font-weight: 800; letter-spacing: -.02em;
+  font-size: 1.65rem; color: var(--adm-ink-900); line-height: 1.1;
+}
+.adm-kpi-label { font-size: .82rem; font-weight: 600; color: var(--adm-ink-500); }
+
+/* ==========================================================================
+   SECTION SHELL (charts / tables / quick actions all reuse this) //
+   ========================================================================== */
+.adm-section {
+  padding: 0 1.75rem;
+  margin-top: 1.75rem;
+}
+.adm-section-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1rem;
+}
+.adm-section-title {
+  font-family: var(--adm-font); font-weight: 800; letter-spacing: -.01em;
+  font-size: 1.05rem; color: var(--adm-ink-900); margin: 0;
+  display: flex; align-items: center; gap: .55rem;
+}
+.adm-section-title svg,
+.adm-section-title i {
+  color: var(--adm-brand);
+  width: 1.15rem; height: 1.15rem; flex: 0 0 auto;
+}
+.adm-section-sub { font-size: .82rem; color: var(--adm-ink-500); margin: .2rem 0 0; }
+
+.adm-card {
+  background: #fff;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-lg);
+  box-shadow: var(--adm-shadow-sm);
+  padding: 1.4rem;
+}
+
+/* ==========================================================================
+   CHARTS
+   ========================================================================== */
+.adm-charts-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 1.15rem;
+}
+.adm-chart-card { min-height: 320px; display: flex; flex-direction: column; }
+.adm-chart-canvas-wrap { position: relative; flex: 1 1 auto; min-height: 220px; }
+.adm-chart-legend { display: flex; flex-wrap: wrap; gap: .6rem 1.1rem; margin-top: 1rem; }
+.adm-chart-legend-item { display: flex; align-items: center; gap: .45rem; font-size: .8rem; font-weight: 600; color: var(--adm-ink-600); }
+.adm-chart-legend-dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; }
+
+/* ==========================================================================
+   QUICK ACTIONS
+   ========================================================================== */
+.adm-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+}
+.adm-quick-card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: .75rem;
+  background: #fff;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-lg);
+  box-shadow: var(--adm-shadow-sm);
+  padding: 1.25rem;
+  text-decoration: none;
+  transition: transform var(--adm-t) var(--adm-ease-out), box-shadow var(--adm-t) var(--adm-ease), border-color var(--adm-t) var(--adm-ease);
+}
+.adm-quick-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--adm-shadow-md);
+  border-color: var(--adm-border-green);
+}
+.adm-quick-icon {
+  width: 42px; height: 42px; border-radius: var(--adm-r-sm);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--adm-surface-green); color: var(--adm-brand-strong);
+  font-size: 1.1rem;
+  transition: background var(--adm-t) var(--adm-ease), color var(--adm-t) var(--adm-ease);
+}
+.adm-quick-icon svg { width: 1.25rem; height: 1.25rem; flex: 0 0 auto; }
+.adm-quick-card:hover .adm-quick-icon { background: var(--adm-gradient); color: #fff; }
+.adm-quick-title { font-weight: 700; font-size: .9rem; color: var(--adm-ink-800); }
+.adm-quick-desc { font-size: .78rem; color: var(--adm-ink-500); }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1400px) {
+  .adm-kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .adm-quick-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 1200px) {
+  .adm-charts-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 992px) {
+  .adm-kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .adm-quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 576px) {
+  .adm-kpi-grid, .adm-quick-grid { grid-template-columns: 1fr; padding: 0 1rem; }
+  .adm-section { padding: 0 1rem; }
+  .page-header { padding: 1.25rem 1rem .25rem !important; }
+}

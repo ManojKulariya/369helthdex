@@ -53,7 +53,7 @@
         <div class="why-feature-icon-wrapper">
           <i data-lucide="flask-conical" class="why-feature-icon"></i>
         </div>
-        <h4 class="why-feature-title">4000+ Tests</h4>
+        <h4 class="why-feature-title">{{ ($totaltests ?? 0) < 50 ? '1K+' : number_format($totaltests) . '+' }} Tests</h4>
         <p class="why-feature-description">Comprehensive test menu covering all major health conditions. From basic to advanced diagnostics.</p>
         <div class="why-trust-badge">
           <i data-lucide="check" class="why-trust-badge-icon"></i>
@@ -66,7 +66,7 @@
         <div class="why-feature-icon-wrapper">
           <i data-lucide="building-2" class="why-feature-icon"></i>
         </div>
-        <h4 class="why-feature-title">75+ Labs</h4>
+        <h4 class="why-feature-title">{{ count($lab) }}+ Labs</h4>
         <p class="why-feature-description">Wide network of certified laboratories across multiple states ensuring accessibility.</p>
         <div class="why-trust-badge">
           <i data-lucide="check" class="why-trust-badge-icon"></i>
@@ -79,7 +79,7 @@
         <div class="why-feature-icon-wrapper">
           <i data-lucide="users" class="why-feature-icon"></i>
         </div>
-        <h4 class="why-feature-title">25M+ Samples</h4>
+        <h4 class="why-feature-title">{{ ($totalSamples ?? 0) < 50 ? '1K+' : number_format($totalSamples) . '+' }}Samples</h4>
         <p class="why-feature-description">Successfully completed testing of more than 25 million patient samples with accuracy.</p>
         <div class="why-trust-badge">
           <i data-lucide="check" class="why-trust-badge-icon"></i>

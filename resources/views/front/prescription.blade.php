@@ -17,111 +17,253 @@ Prescription
 @stop
 @section('content')
 
-<section class="page-title-two">
-    <div class="title-box centred bg-color-2">
-        <div class="pattern-layer">
-            <div class="pattern-1" style="background-image: url(assets/images/shape/shape-70.png);"></div>
-            <div class="pattern-2" style="background-image: url(assets/images/shape/shape-71.png);"></div>
+<section class="hd-dash-section">
+    <div class="auto-container">
+        <!-- Page head -->
+        <div class="hd-dash-head">
+            <nav class="hd-dash-breadcrumb" aria-label="Breadcrumb">
+                <a href="{{route('home')}}">{{__("message.Home")}}</a>
+                <i data-lucide="chevron-right"></i>
+                <span>Upload Prescription</span>
+            </nav>
+            <h1 class="hd-dash-title">Upload Your Prescription</h1>
+            <p class="hd-rx-hero-sub">Share your doctor's prescription with us and our healthcare team will help you book the right tests — quick, secure and hassle-free.</p>
         </div>
-        <div class="auto-container">
-            <div class="title">
-                <h1>Upload Prescription</h1>
-            </div>
-        </div>
-    </div>
-    <div class="lower-content">
-        <div class="auto-container">
-            <ul class="bread-crumb clearfix">
-                <li><a href="{{route('home')}}">{{__("message.Home")}}</a></li>
-                <li>Prescription</li>
-            </ul>
-        </div>
-    </div>
-</section>
 
-<section class="doctors-dashboard bg-color-3">
-    <div class="right-panel">
-        <div class="content-container">
-            <div class="outer-container">
-                <div class="add-listing change-password">
-                    @if(Session::has('message'))
-                    <div class="col-sm-12">
-                        <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show"
-                            role="alert">{{ Session::get('message') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
+        @if(Session::has('message'))
+        <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">{{ Session::get('message') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+        </div>
+        @endif
+
+        <form action="{{route('save_prescription')}}" method="post" enctype="multipart/form-data" id="hdRxForm">
+            {{csrf_field()}}
+
+            <!-- Upload zone -->
+            <div class="hd-dash-card hd-rx-upload-card">
+                <h3 class="hd-dash-card-title"><i data-lucide="file-up"></i>Prescription File</h3>
+
+                <div class="hd-rx-upload-grid">
+                    <div>
+                        <label for="hdRxFileInput" class="hd-rx-dropzone" id="hdRxDropzone">
+                            <input type="file" name="prescription" id="hdRxFileInput" accept=".jpeg,.jpg,.png,.pdf" required="">
+                            <span class="hd-rx-dropzone-icon"><i data-lucide="upload-cloud"></i></span>
+                            <span class="hd-rx-dropzone-title">Drag &amp; drop your prescription here</span>
+                            <span class="hd-rx-dropzone-sub">or <span class="hd-rx-dropzone-browse">click to browse</span> from your device</span>
+                        </label>
+
+                        <!-- Selected file preview -->
+                        <div class="hd-rx-preview" id="hdRxPreview" hidden>
+                            <span class="hd-rx-preview-icon" id="hdRxPreviewIcon"><i data-lucide="file-text"></i></span>
+                            <span class="hd-rx-preview-info">
+                                <strong id="hdRxPreviewName"></strong>
+                                <span id="hdRxPreviewSize"></span>
+                            </span>
+                            <button type="button" class="hd-rx-preview-remove" id="hdRxPreviewRemove" aria-label="Remove selected file">
+                                <i data-lucide="x"></i>
+                            </button>
+                        </div>
+
+                        <div class="hd-rx-info-box">
+                            <i data-lucide="info"></i>
+                            <span>Accepted formats: <strong>JPG, PNG, PDF</strong>. Please make sure the prescription is clear and fully readable.</span>
                         </div>
                     </div>
-                    @endif
-                    <form action="{{route('save_prescription')}}" method="post" enctype="multipart/form-data">
-                        {{csrf_field()}}
-                        <div class="single-box">
-                            <div class="title-box">
-                                <h3>Upload Prescription</h3>
-                            </div>
-                            <div class="inner-box">
-                                <div class="row clearfix">
 
-                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                                        <label>Prescription (jpeg, jpg, png, pdf)</label>
-                                        <input type="file" name="prescription" accept=".jpeg,.jpg,.png,.pdf"
-                                            required="">
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                                        <label>{{__('message.Name')}}</label>
-                                        <input type="text" name="name" id="name" required="">
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                                        <label>{{__('message.email')}}</label>
-                                        <input type="email" name="email" id="email">
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                                        <label>Number</label>
-                                        <input type="text" name="number" id="email" required>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                        <label>Location</label>
-                                        <select id="cityid" name="location_id" size="3" required class="form-control">
-                                            <option value="">Select Location</option>
-                                            @foreach($city as $c)
-                                            <option value="{{$c->id}}">{{$c->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                        <label>Gender</label>
-                                        <select name="gender" required size="3" class="form-control">
-                                            <option value="">Select Gender</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                        <label>Date Of Birth</label>
-                                        <input type="date" name="d_o_b" max="{{ date('Y-m-d') }}" required="">
-                                    </div>
-                                    <div class="col-lg-12 col-md-6 col-sm-12 form-group">
-                                        <input type="checkbox" value="1" name="is_agree" required="">
-                                        <label>I agree to Terms of use and Privacy Policey </label>
-                                    </div>
-                                </div>
-                                <div class="btn-box">
-                            <button type="submit" class="theme-btn-one">{{__('message.Save')}}<i
-                                    class="icon-Arrow-Right"></i>
+                    <!-- Illustration -->
+                    <div class="hd-rx-illustration" aria-hidden="true">
+                        <span class="hd-rx-illu-float hd-rx-illu-float-1"><i data-lucide="image"></i></span>
+                        <span class="hd-rx-illu-float hd-rx-illu-float-2"><i data-lucide="file-check-2"></i></span>
+                        <span class="hd-rx-illu-float hd-rx-illu-float-3"><i data-lucide="shield-check"></i></span>
+                        <div class="hd-rx-illu-core">
+                            <i data-lucide="clipboard-plus"></i>
                         </div>
-                            </div>
-                            
-                        </div>
-                        
-                    </form>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Patient details -->
+            <div class="hd-dash-card hd-rx-details-card">
+                <h3 class="hd-dash-card-title"><i data-lucide="user-round"></i>Patient Details</h3>
+
+                <div class="hd-auth-grid">
+                    <div class="hd-field">
+                        <label for="hdRxName">{{__('message.Name')}}</label>
+                        <div class="hd-input-wrap">
+                            <i data-lucide="user-round"></i>
+                            <input type="text" name="name" id="hdRxName" required="">
+                        </div>
+                    </div>
+
+                    <div class="hd-field">
+                        <label for="hdRxEmail">{{__('message.email')}}</label>
+                        <div class="hd-input-wrap">
+                            <i data-lucide="mail"></i>
+                            <input type="email" name="email" id="hdRxEmail">
+                        </div>
+                    </div>
+
+                    <div class="hd-field">
+                        <label for="hdRxNumber">Number</label>
+                        <div class="hd-input-wrap">
+                            <i data-lucide="phone"></i>
+                            <input type="text" name="number" id="hdRxNumber" required>
+                        </div>
+                    </div>
+
+                    <div class="hd-field">
+                        <label for="cityid">Location</label>
+                        <div class="hd-input-wrap">
+                            <i data-lucide="map-pin"></i>
+                            <select id="cityid" name="location_id" required class="form-control">
+                                <option value="">Select Location</option>
+                                @foreach($city as $c)
+                                <option value="{{$c->id}}">{{$c->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="hd-field">
+                        <label for="hdRxGender">Gender</label>
+                        <div class="hd-input-wrap">
+                            <i data-lucide="users-round"></i>
+                            <select name="gender" id="hdRxGender" required class="form-control">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="hd-field">
+                        <label for="hdRxDob">Date Of Birth</label>
+                        <div class="hd-input-wrap">
+                            <i data-lucide="cake"></i>
+                            <input type="date" name="d_o_b" id="hdRxDob" max="{{ date('Y-m-d') }}" required="">
+                        </div>
+                    </div>
+
+                    <div class="hd-field hd-field-full">
+                        <label class="custom-control material-checkbox">
+                            <input type="checkbox" value="1" name="is_agree" class="material-control-input" required="">
+                            <span class="material-control-indicator"></span>
+                            <span class="description">I agree to the Terms of Use and Privacy Policy</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="hd-rx-submit-row">
+                    <button type="submit" class="hd-contact-submit" id="hdRxSubmitBtn">
+                        <span class="hd-contact-submit-text">Upload Prescription</span>
+                        <i data-lucide="upload" class="hd-contact-submit-icon"></i>
+                        <span class="hd-contact-submit-spinner" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Trust section -->
+        <div class="hd-rx-trust">
+            <div class="hd-rx-trust-item">
+                <span class="hd-rx-trust-icon"><i data-lucide="lock"></i></span>
+                <span>Secure Upload</span>
+            </div>
+            <div class="hd-rx-trust-item">
+                <span class="hd-rx-trust-icon"><i data-lucide="badge-check"></i></span>
+                <span>NABL Partner Labs</span>
+            </div>
+            <div class="hd-rx-trust-item">
+                <span class="hd-rx-trust-icon"><i data-lucide="shield-check"></i></span>
+                <span>100% Privacy Protected</span>
             </div>
         </div>
     </div>
 </section>
 
+<script>
+(function () {
+    var input = document.getElementById('hdRxFileInput');
+    var dropzone = document.getElementById('hdRxDropzone');
+    var preview = document.getElementById('hdRxPreview');
+    var previewName = document.getElementById('hdRxPreviewName');
+    var previewSize = document.getElementById('hdRxPreviewSize');
+    var previewIcon = document.getElementById('hdRxPreviewIcon');
+    var removeBtn = document.getElementById('hdRxPreviewRemove');
+    if (!input || !dropzone) { return; }
+
+    function humanSize(bytes) {
+        if (bytes < 1024) { return bytes + ' B'; }
+        if (bytes < 1024 * 1024) { return (bytes / 1024).toFixed(1) + ' KB'; }
+        return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+    }
+
+    function showPreview(file) {
+        if (!file) { return; }
+        previewName.textContent = file.name;
+        previewSize.textContent = humanSize(file.size);
+        var isPdf = /\.pdf$/i.test(file.name);
+        previewIcon.innerHTML = '<i data-lucide="' + (isPdf ? 'file-text' : 'image') + '"></i>';
+        preview.hidden = false;
+        dropzone.classList.add('has-file');
+        if (window.lucide) { lucide.createIcons(); }
+    }
+
+    input.addEventListener('change', function () {
+        if (input.files && input.files[0]) {
+            showPreview(input.files[0]);
+        }
+    });
+
+    if (removeBtn) {
+        removeBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            input.value = '';
+            preview.hidden = true;
+            dropzone.classList.remove('has-file');
+        });
+    }
+
+    ['dragenter', 'dragover'].forEach(function (evt) {
+        dropzone.addEventListener(evt, function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.classList.add('is-dragover');
+        });
+    });
+    ['dragleave', 'drop'].forEach(function (evt) {
+        dropzone.addEventListener(evt, function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.classList.remove('is-dragover');
+        });
+    });
+    dropzone.addEventListener('drop', function (e) {
+        var files = e.dataTransfer && e.dataTransfer.files;
+        if (!files || !files.length) { return; }
+        // The backend accepts a single prescription file, so only the
+        // first dropped file is used even if several are dropped.
+        if (typeof DataTransfer !== 'undefined') {
+            var dt = new DataTransfer();
+            dt.items.add(files[0]);
+            input.files = dt.files;
+        } else {
+            input.files = files;
+        }
+        showPreview(input.files[0]);
+    });
+
+    var form = document.getElementById('hdRxForm');
+    var submitBtn = document.getElementById('hdRxSubmitBtn');
+    if (form && submitBtn) {
+        form.addEventListener('submit', function () {
+            submitBtn.classList.add('is-loading');
+            submitBtn.disabled = true;
+        });
+    }
+})();
+</script>
 
 @stop
 @section('footer')

@@ -64,7 +64,7 @@
             },
             "modal": {
                 "ondismiss": function() {
-                     window.location.href = "{{ route('reliable-report') }}";
+                     window.location.href = "{{ route('helthdex-report') }}";
                 }
             }
         };

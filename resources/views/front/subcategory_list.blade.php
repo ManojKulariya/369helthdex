@@ -2,7 +2,7 @@
 @php 
 $cityName = session()->get('cityName');
 if($cityName == ''){
-$cityName='jaipur';
+$cityName='rajkot';
 }
 @endphp
 @section('title')

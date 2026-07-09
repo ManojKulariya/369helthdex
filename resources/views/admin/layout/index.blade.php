@@ -74,12 +74,12 @@
 			.reqfield{
 				color: red;
 			}
-			.dark-menu .app-sidebar__logo{
-			        background: #233646 !important;
-			}
 		</style>
 		<script type="text/javascript" src='https://maps.google.com/maps/api/js?key={{Config::get("mapdetail.key")}}&sensor=false&libraries=places'></script>
 		<link href="//use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+		<!-- 369 HealthDex — Premium Admin skin (CSS-only layer over the theme above) -->
+		<link rel="stylesheet" href="{{ asset('admin-premium.css') }}?v=27">
 	</head>
 	<body class="app sidebar-mini light-mode dark-header layout-fullwidth dark-menu">
 		
@@ -118,20 +118,19 @@
 			</div>
 		</div>
 		<!--Footer-->
-			<footer class="footer">
-				<div class="container">
-					<div class="row align-items-center flex-row-reverse">
-						<div class="col-md-12 col-sm-12 text-center">
-							{{__("message.Copyright ©")}} {{date('Y')}} <a href="javascript:void0;">{{__("message.Freaktemplate")}}</a>. {{__("message.Designed with")}} <span class="fa fa-heart text-danger"></span> {{__("message.by")}} <a href="javascript:void0;"> {{__("message.Freaktemplate")}} </a> {{__("message.All rights reserved")}}
-						</div>
-					</div>
+			<footer class="footer adm-footer">
+				<div class="adm-footer-inner">
+					{{-- this site's translation strings already carry the company name
+					     ("Copyright © to HealthDex") and credit ("Powered by Icreators") --}}
+					<span>{{__("message.Copyright ©")}} {{date('Y')}}. {{__("message.All rights reserved")}}</span>
+					<span class="adm-footer-meta">Admin Panel <span class="adm-footer-badge">v1.0</span></span>
 				</div>
 			</footer>
 		<!-- End Footer-->
 			<!-- Back to top -->
-			
 
-		<a href="#top" id="back-to-top"><i class="fe fe-chevron-up"></i></a>
+
+		<a href="#top" id="back-to-top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></a>
 
 		<!-- Jquery js-->
 		<script src="{{ asset('public/assets/js/jquery.min.js')}}"></script>
@@ -202,9 +201,15 @@
         <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 		<script type="text/javascript" src="{{asset('public/admin.js?v=sadyutyfdg')}}"></script>
 		<script type="text/javascript">
-            CKEDITOR.replace('description', {
-              versionCheck: false
-            });
+            // Only init when the page actually has a "description" field —
+            // CKEDITOR.replace throws on every screen without one (a console
+            // error on the dashboard and most list pages). Behavior where the
+            // field exists is unchanged.
+            if (window.CKEDITOR && (document.getElementById('description') || document.getElementsByName('description').length)) {
+                CKEDITOR.replace('description', {
+                  versionCheck: false
+                });
+            }
 		</script>
 
 	</body>

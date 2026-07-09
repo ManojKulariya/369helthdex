@@ -37,7 +37,7 @@ $cityName = ucfirst(session()->get('cityName'));
 
 if ($cityName == '') {
 
-    $cityName = 'Jaipur';
+    $cityName = 'rajkot';
 
 }
 
@@ -473,15 +473,19 @@ if ($cityName == '') {
                 <i data-lucide="star" style="fill: currentColor;"></i>
                 <i data-lucide="star" style="fill: currentColor;"></i>
               </div>
-              <span class="app-rating-value">4.9 Rating</span>
+              <span class="app-rating-value">{{ (!empty($playStoreData['rating']) && $playStoreData['rating'] > 0) ? $playStoreData['rating'] : '4.9' }} Rating</span>
             </div>
             <div class="app-stat-item">
-              <span class="app-stat-value">25M+</span>
+              <span class="app-stat-value">{{ $playStoreData['downloads'] ?? '25M+' }}</span>
               <span class="app-stat-label">Downloads</span>
             </div>
             <div class="app-stat-item">
-              <span class="app-stat-value">Trusted</span>
-              <span class="app-stat-label">by Thousands</span>
+              <span class="app-stat-value">{{ ($totalSamples ?? 0) < 50 ? '1K+' : number_format($totalSamples) . '+' }}</span>
+              <span class="app-stat-label">Samples Tested</span>
+            </div>
+            <div class="app-stat-item">
+              <span class="app-stat-value">{{ ($totaltests ?? 0) < 50 ? '1K+' : number_format($totaltests) . '+' }}</span>
+              <span class="app-stat-label">Tests Available</span>
             </div>
           </div>
         </div>

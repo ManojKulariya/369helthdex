@@ -114,7 +114,7 @@
 
     <!-- Action Buttons -->
     <div class="premium-package-actions">
-      <a href="{{ isset($pl) ? route('package', ['city' => $cityName ?? 'Jaipur', 'id' => $pl->slug ?? '']) : '#' }}" class="premium-btn premium-btn-secondary">
+      <a href="{{ isset($pl) ? route('package', ['city' => $cityName ?? 'rajkot', 'id' => $pl->slug ?? '']) : '#' }}" class="premium-btn premium-btn-secondary">
         View Details
       </a>
       <a href="{{ isset($pl) ? route('checkouts', ['id' => $pl->id ?? '', 'type' => 1, 'parameter' => $pl->no_of_parameter ?? 0]) : '#' }}" class="premium-btn premium-btn-primary">

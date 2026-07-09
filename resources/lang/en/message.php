@@ -269,6 +269,8 @@
 		//admin.layout.sidebar
 		"Main"=>"Main",
 		"Sales"=>"Sales",
+		"Management"=>"Management",
+		"Marketing"=>"Marketing",
 		"Orders"=>"Orders",
 		"csc"=>"csc",
 		"Lab Components"=>"Lab Components",

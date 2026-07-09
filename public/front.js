@@ -25,7 +25,7 @@ function checkconfirmpassword(val){
  }
  function fnGetPatientReport(TestRegnID) {
     if (TestRegnID > 0) {
-        var url = $("#url_path").val() + "/reliable-report-download-api?testRegnID=" + TestRegnID;
+        var url = $("#url_path").val() + "/helthdex-report-download-api?testRegnID=" + TestRegnID;
         window.open(url, '_blank');
     } else {
         alert("Invalid Test Registration ID.");

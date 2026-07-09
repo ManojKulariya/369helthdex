@@ -1,4 +1,10 @@
 @php
+  /* Reused by other listings (e.g. search results) for item types that
+     link to a different detail route / checkout type than a profile.
+     Defaults below match this card's original, unconditional behaviour. */
+  $hdRouteName = $hdRouteName ?? 'profile';
+  $hdCheckoutType = $hdCheckoutType ?? 3;
+
   /* Pricing — display-only. Handles either column order (price/mrp) coming
      from the backend: the lower value is the selling price, the higher one
      is the original price. Nothing is hardcoded. */
@@ -114,10 +120,10 @@
 
     <!-- Action Buttons -->
     <div class="premium-test-actions">
-      <a href="{{ isset($pl) ? route('profile', ['city' => $cityName ?? 'Jaipur', 'id' => $pl->slug ?? '']) : '#' }}" class="premium-btn premium-btn-secondary">
+      <a href="{{ isset($pl) ? route($hdRouteName, ['city' => $cityName ?? 'rajkot', 'id' => $pl->slug ?? '']) : '#' }}" class="premium-btn premium-btn-secondary">
         View Details
       </a>
-      <a href="{{ isset($pl) ? route('checkouts', ['id' => $pl->id ?? '', 'type' => 3, 'parameter' => $pl->no_of_parameter ?? 0]) : '#' }}" class="premium-btn premium-btn-primary">
+      <a href="{{ isset($pl) ? route('checkouts', ['id' => $pl->id ?? '', 'type' => $hdCheckoutType, 'parameter' => $pl->no_of_parameter ?? 0]) : '#' }}" class="premium-btn premium-btn-primary">
         Book Now
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
           <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd" />

@@ -12,7 +12,7 @@ $cityName = ucfirst(session()->get('cityName'));
 
 if ($cityName == '') {
 
-   $cityName = 'Jaipur';
+   $cityName = 'rajkot';
    
 
 }

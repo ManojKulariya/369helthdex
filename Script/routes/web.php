@@ -613,14 +613,14 @@ Route::group(['middleware' => ['receivercheckexists']], function () {
     Route::get("otpsend_report", [ReportControllers::class, "otpsend"]); 
     Route::get("otpverify_report", [ReportControllers::class, "otp_verify"]);
     
-    Route::any("reliable-report", [ReportControllers::class, "show_reports"])->name("reliable-report");
+    Route::any("helthdex-report", [ReportControllers::class, "show_reports"])->name("helthdex-report");
     
     
     
     Route::get("check_login_api", [ReportControllers::class, "check_login_api"]);
-    Route::get("reliable-report-api", [ReportControllers::class, "show_reports_api"])->name("reliable-report-api");
+    Route::get("helthdex-report-api", [ReportControllers::class, "show_reports_api"])->name("helthdex-report-api");
     
-    Route::get("reliable-report-download-api", [ReportControllers::class, "getPatientReport"])->name("reliable-report-api-download");
+    Route::get("helthdex-report-download-api", [ReportControllers::class, "getPatientReport"])->name("helthdex-report-api-download");
     
     Route::get("cc_request", [ReportControllers::class, "cc_request"])->name("cc_request");
     

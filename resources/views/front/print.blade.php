@@ -208,7 +208,11 @@
             <div class="box">
                 <p><span class="highlight">Customer Billing Details</span></p>
                 <p class="highlight-red">{{ $data->customer->name }}</p>
+                @if($data->useraddressdetails)
                 <p>{{$data->useraddressdetails->house_no}},{{$data->useraddressdetails->address}}</p>
+                @else
+                <p>{{ $data->visit_type == 1 ? 'Lab Visit' : 'Address not provided' }}</p>
+                @endif
                 <p>{{ $data->customer->phone }}</p>
                 <p>{{ $data->customer->email }}</p>
             </div>

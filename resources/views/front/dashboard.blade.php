@@ -21,7 +21,7 @@
     /* Display helpers only — all data stays exactly as the controller sends it. */
     $hdDashCity = session()->get('cityName');
     if ($hdDashCity == '') {
-        $hdDashCity = 'jaipur';
+        $hdDashCity = 'rajkot';
     }
     $hdDashHour = (int) date('H');
     if ($hdDashHour < 12) {
@@ -184,6 +184,7 @@
                                     <th>Sample Boy</th>
                                     <th>{{__('message.Paid Amount')}}</th>
                                     <th>{{__('message.Print')}}</th>
+                                    <th>Track</th>
                                     <th>{{__('message.Status')}}</th>
                                 </tr>
                             </thead>
@@ -208,6 +209,11 @@
                                             </a>
 
 
+                                        </td>
+                                        <td>
+                                            <a href="{{route('track-order', ['id' => $d->id ])}}" class="hd-track-btn">
+                                                <i data-lucide="map-pin-check-inside"></i>Track
+                                            </a>
                                         </td>
                                         <td>
                                             @if($d->status=='1')

@@ -5,7 +5,7 @@
 $cityName = session()->get('cityName');
 
  if($cityName == ''){
-     $cityName='jaipur';
+     $cityName='rajkot';
  }
  
 @endphp
@@ -49,7 +49,7 @@ Book a Blood Test at home Online in {{$cityName}}, Best Diagnostic lab in {{$cit
 <section class="page-title-two">
  
   <div class="lower-content" style="padding:0px;">
-        <img class="img_gif" src="{{asset('public/front/Docpro/assets/images/banner/banner01.gif')}}" />
+        <img class="img_gif" src="{{asset('public/front/Docpro/assets/images/banner/2.png')}}" />
      
   </div>
   
