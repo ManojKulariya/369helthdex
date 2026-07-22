@@ -1,4 +1,4 @@
-@extends('manager.layout.index')
+@extends('admin.layout.index')
 @section('title')
 Report List
 @stop

@@ -41,8 +41,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <!-- Centralized brand color/design tokens — MUST load before every other
+         project stylesheet below; hd-home.css reads its brand variables
+         from this file. -->
+    <link rel="stylesheet" href="{{asset('public/theme.css')}}?v=4">
+
     <!-- HealthDex Homepage Design System (single consolidated stylesheet) -->
-    <link rel="stylesheet" href="{{asset('public/hd-home.css')}}?v=hd24">
+    <link rel="stylesheet" href="{{asset('public/hd-home.css')}}?v=hd32">
 
     <!-- Add these links in the <head> section of your HTML file -->
 

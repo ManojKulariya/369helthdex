@@ -1,0 +1,169 @@
+/* ==========================================================================
+   369 HealthDex — Centralized Design Tokens
+   ONE file, loaded before every other stylesheet (frontend + admin). Every
+   color/radius/shadow used anywhere in the project should trace back to a
+   variable defined here — change a value in this file and the whole site
+   (frontend and admin) updates together.
+
+   Palette source: the real 369 HealthDex logo (public/img/*.png — the
+   flower-of-life mark + "369 HealthDex" wordmark), sampled directly from
+   the logo's own pixels (Python/PIL dominant-color extraction), not
+   guessed from memory:
+     - Teal / deep cyan  #0a6c79  → --primary-color   (the dots + wordmark)
+     - Warm orange       #f67f2d  → --secondary-color  (the mandala + "36")
+   Every other token below is a tint/shade built outward from those two
+   anchors, plus a small set of standard UI status colors (success/warning/
+   danger/info) chosen to harmonize with the teal+orange brand pair.
+   ========================================================================== */
+
+:root {
+  /* ---- Primary — teal, from the logo's dots/wordmark ---- */
+  --primary-color:  #0a6c79;
+  --primary-hover:  #085a65;
+  --primary-light:  #e3f2f3;
+  --primary-dark:   #064c54;
+  --primary-soft:   #12909f; /* lighter, mid-tone teal — gradient stop */
+
+  /* Full tint/shade ramp, same hue as --primary-color (187°), saturation
+     tapered toward the light end for a calm/muted healthcare feel rather
+     than a neon-cyan tint. Generated via HSL from the sampled brand hex,
+     not hand-picked — hd-home.css's and admin-premium.css's own
+     --hd-green- and --adm-green- scales point at these instead of an
+     unrelated emerald. */
+  --primary-50:  #f2f7f8;
+  --primary-100: #dfeff1;
+  --primary-200: #c0e3e7;
+  --primary-300: #8cd0d9;
+  --primary-400: #3ebbcc;
+  --primary-500: #1d95a5;
+  --primary-600: #0a6c79; /* = --primary-color */
+  --primary-700: #08545e; /* = --primary-hover */
+  --primary-800: #05373d; /* darker than --primary-dark, deepest shade */
+
+  /* ---- Secondary — warm orange, from the logo's mandala/"36" ---- */
+  --secondary-color: #f67f2d;
+  --secondary-hover:  #e56d1c;
+  --secondary-light:  #fef1e6;
+
+  /* ---- Named accents (explicit request — same hues as primary/secondary,
+     exposed under accent-* names too since some components reach for
+     "accent-orange" specifically rather than "secondary"). --accent-green
+     is deliberately NOT the same hue as --primary-color: success/positive
+     status indicators use a conventional green regardless of brand color
+     (same reasoning --danger-color stays red, not brand-tinted), so a
+     "success" badge doesn't look identical to a plain brand-teal button.
+     Matches --success-color below exactly — one concept, two names. ---- */
+  --accent-orange: #f67f2d;
+  --accent-blue:   #2563eb;
+  --accent-green:  #10b981;
+
+  /* ---- Accent / CTA — restored to the logo's own ORANGE (its own ramp,
+     independent of --primary-*), per the two-color brand rule: Navy/teal
+     is --primary-* (header, navigation, footer, headings, icons, links,
+     card titles, borders, section titles, sidebar, text highlights).
+     Orange is --accent-* (primary/CTA buttons, active tabs/menu/nav,
+     hover states, package prices, discount badges, section labels,
+     pagination active, toggle ON, checked checkbox/radio, input focus,
+     card accent, chips, badges, feature highlights). Both colors are
+     sampled directly from the logo's own pixels (see the file header
+     comment above) — nothing here is invented or guessed. Same
+     tint/shade-ramp method as --primary-*, anchored at --secondary-color. */
+  --accent-color:  #f67f2d; /* = --secondary-color */
+  --accent-hover:  #da600b;
+  --accent-light:  #fef1e6;
+  --accent-dark:   #843c0b;
+  --accent-soft:   #f08f4c; /* lighter, mid-tone orange, gradient stop */
+
+  --accent-50:  #fdf3ec;
+  --accent-100: #fce4d5;
+  --accent-200: #f8cdaf;
+  --accent-300: #f4ac7b;
+  --accent-400: #f08f4c;
+  --accent-500: #f67f2d; /* = --accent-color */
+  --accent-600: #da600b;
+  --accent-700: #b8510a;
+  --accent-800: #843c0b;
+
+  /* ---- Gradients ---- */
+  --gradient-primary:       linear-gradient(135deg, var(--primary-soft) 0%, var(--primary-color) 100%);
+  --gradient-primary-hover: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  --gradient-primary-soft:  linear-gradient(135deg, var(--primary-light) 0%, #d3e9ea 100%);
+  /* --gradient-accent* is the orange gradient — every button/tab/badge/CTA
+     sitewide reads this, distinct from the header/navbar's teal above. */
+  --gradient-accent:       linear-gradient(135deg, var(--accent-soft) 0%, var(--accent-color) 100%);
+  --gradient-accent-hover: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
+  --gradient-accent-soft:  linear-gradient(135deg, var(--accent-light) 0%, #fbe0c8 100%);
+
+  /* ---- Status colors — matched to the values already proven in use across
+     BOTH admin-premium.css and hd-home.css's own badges/buttons/alerts/
+     toasts (not invented fresh), reconciled to one canonical value per role
+     where the two files had each independently settled on a slightly
+     different shade of the same color for the same job. ---- */
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color:  #dc2626; /* hd-home.css's dominant danger text/icon red */
+  --info-color:    #2563eb;
+
+  /* Lighter/brighter variant — solid-fill buttons, hover-brighten, gradient
+     starts (admin-premium.css's button red was this brighter shade) */
+  --success-light: var(--primary-soft);
+  --warning-light: #fbbf24;
+  --danger-light:  #ef4444;
+
+  /* Darker variant — hover-darken on a solid button, or "strong" text
+     color on a pale tint background (both roles share the one shade) */
+  --success-hover: var(--primary-hover);
+  --warning-hover: #d97706;
+  --danger-hover:  #b91c1c;
+
+  /* Soft tint + strong-text + border trio for each status, for badge/alert
+     treatments (bg = soft tint, strong = readable text on that tint,
+     border = a pale outline one notch stronger than the bg tint). Values
+     consolidated from near-duplicate shades hd-home.css and
+     admin-premium.css had each separately settled on for the same role
+     (e.g. #ecfdf5 vs #d1fae5, both "pale success green") — picking one
+     canonical value per role is the actual point of centralizing this. */
+  --success-bg: #d1fae5; --success-strong: #059669; --success-border: #a7f3d0;
+  --warning-bg: #fef3c7; --warning-strong: #92400e; --warning-border: #fde68a;
+  --danger-bg:  #fee2e2; --danger-strong:  #b91c1c; --danger-border: #fecaca;
+  --info-bg:    #dbeafe; --info-strong:    #1d4ed8; --info-border: #bfdbfe;
+
+  /* ---- Text ---- */
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-muted:     #94a3b8;
+  --text-on-brand:  #ffffff;
+
+  /* ---- Backgrounds / surfaces ---- */
+  --background: #ffffff;
+  --surface:    #ffffff;
+  --surface-2:  #f7faf9;
+  --surface-3:  #f1f6f4;
+
+  /* ---- Borders ---- */
+  --border-color: #e7edf1;
+  --border-light: #f0f4f3;
+  --border-strong: #dbe4ea;
+
+  /* ---- Shadows (neutral ink-based — not brand-tinted, so they read the
+     same regardless of which brand color is active) ---- */
+  --shadow-sm: 0 2px 10px rgba(15, 23, 42, .06);
+  --shadow-md: 0 12px 34px -14px rgba(15, 23, 42, .20);
+  --shadow-lg: 0 34px 64px -24px rgba(15, 23, 42, .28);
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, .06);
+  /* Brand-tinted shadow, for buttons/active states that want a colored glow
+     instead of a neutral one — derived from --primary-color, not hardcoded. */
+  --shadow-primary: 0 16px 34px -12px rgba(10, 108, 121, .42);
+  /* --shadow-accent/--border-accent are the orange-tinted glow/outline for
+     buttons/badges/CTAs, distinct from --shadow-primary's teal tint above. */
+  --shadow-accent: 0 16px 34px -12px rgba(246, 127, 45, .42);
+  --border-accent: rgba(246, 127, 45, .18);
+  --surface-accent: var(--accent-light);
+
+  /* ---- Radius scale ---- */
+  --radius-sm: 14px;
+  --radius-md: 18px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+}

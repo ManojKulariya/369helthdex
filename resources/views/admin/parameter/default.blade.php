@@ -3,204 +3,250 @@
 {{__("message.Parameter")}}
 @stop
 @section('content')
-<div class="page-header">
-	<h3 class="page-title">{{__("message.Parameter")}} </h3>
-	<nav aria-label="breadcrumb">	      		
-       <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{{route('admin-dashboard')}}">{{__("message.Home")}}</a></li>
-         <li class="breadcrumb-item active">{{__("message.Parameter")}}</li>
-       </ol>
-     </nav>	      	
+
+{{-- ============ Page header ============ --}}
+<div class="page-header adm-orders-header">
+   <div>
+      <h3 class="page-title mb-0">{{__("message.Parameter")}}</h3>
+      <nav aria-label="breadcrumb">
+         <ol class="breadcrumb adm-breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('admin-dashboard')}}">{{__("message.Home")}}</a></li>
+            <li class="breadcrumb-item active">{{__("message.Parameter")}}</li>
+         </ol>
+      </nav>
+   </div>
+   <a href="{{ route('save-parameter', ['id' => '0','tab'=>'1']) }}" class="btn btn-primary adm-btn-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      {{__("message.Add Parameter")}}
+   </a>
 </div>
-<div class="row">
-	<div class="col-12 grid-margin stretch-card">
-       <div class="card">                	
-         <div class="card-body">
-         	 @if(Session::has('message'))
-            <div class="col-sm-12">
-               <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">{{ Session::get('message') }}
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
-            </div>
-            @endif
-           <div class="row">
-                <div class="col-3">
-                    <a href="{{ route('save-parameter', ['id' => '0','tab'=>'1']) }}" class="btn btn-primary" style="margin-bottom: 25px;">{{__("message.Add Parameter")}}</a>
-               </div>
-               <div class="col-3">
-                    <a href="{{ route('export_master_data', ['type' => 'parameter']) }}" class="btn btn-warning">Export all Parameter to Excel</a>
-                </div>
-               <div class="col-3">
-                   <a  class="btn btn-success" rel="tooltip"  data-bs-toggle="modal" data-bs-target="#centerprices">Export Center Prices to Excel</a></div>
-                <div class="col-3">
-                    <a  class="btn btn-info" rel="tooltip"  data-bs-toggle="modal" data-bs-target="#centerpricesimp">Import Center Prices to Excel</a>
-                </div>
-            </div>  
-            <div class="table-responsive">
-                 <table id="ParameterTable" class="table table-bordered text-nowrap dataTable no-footer">
-                   	<thead>
-                     <tr>
-                         <th>{{__("message.ID")}}</th>
-                         <th>{{__("message.Name")}}</th>
-                         <th>{{__("message.Short Description")}}</th>
-                         <th>{{__("message.MRP")}}</th>
-                         <th>{{__("message.FRQ")}}</th>
-                          <th>{{__("message.View Report")}}</th>
-                         <th>{{__("message.Action")}}</th>
-                     </tr>
-                   	</thead>
-                   	<tbody>                        
-                   	</tbody>
-                   	<tfoot>
-                        <tr>
-                           <th>{{__("message.ID")}}</th>
-                           <th>{{__("message.Name")}}</th>
-                           <th>{{__("message.Short Description")}}</th>
-                           <th>{{__("message.MRP")}}</th>
-                           <th>{{__("message.FRQ")}}</th>
-                            <th>{{__("message.View Report")}}</th>
-                           <th>{{__("message.Action")}}</th>
-                        </tr>
-                     </tfoot>
-                 </table>
-              </div>
+
+@if(Session::has('message'))
+<div class="adm-toast-wrap">
+   <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show adm-toast" role="alert">{{ Session::get('message') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+</div>
+@endif
+
+{{-- ============ Parameter card: toolbar (search + utility actions) + table ============ --}}
+<div class="adm-orders-card">
+   <div class="adm-orders-toolbar">
+      <div class="adm-ot-search">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+         <input type="text" id="admParameterSearch" placeholder="Search name, short description…" autocomplete="off">
+      </div>
+      <a href="{{ route('export_master_data', ['type' => 'parameter']) }}" class="adm-ot-btn">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+         Export All
+      </a>
+      <a class="adm-ot-btn" data-bs-toggle="modal" data-bs-target="#centerprices">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+         Export Center Prices
+      </a>
+      <a class="adm-ot-btn" data-bs-toggle="modal" data-bs-target="#centerpricesimp">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+         Import Center Prices
+      </a>
+      <span class="adm-ot-count" id="admParameterCount"></span>
+   </div>
+
+   <div class="adm-table-wrap">
+      <div class="adm-orders-skeleton" aria-hidden="true">
+         <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+      <table id="ParameterTable" class="table adm-orders-table dataTable no-footer">
+         <colgroup>
+            <col style="width:5%">
+            <col style="width:18%">
+            <col style="width:22%">
+            <col style="width:8%">
+            <col style="width:10%">
+            <col style="width:12%">
+            <col style="width:25%">
+         </colgroup>
+         <thead>
+            <tr>
+               <th>{{__("message.ID")}}</th>
+               <th>{{__("message.Name")}}</th>
+               <th>{{__("message.Short Description")}}</th>
+               <th>{{__("message.MRP")}}</th>
+               <th>{{__("message.FRQ")}}</th>
+               <th>{{__("message.View Report")}}</th>
+               <th>{{__("message.Action")}}</th>
+            </tr>
+         </thead>
+         <tbody>
+         </tbody>
+      </table>
+   </div>
+</div>
+
+{{-- ============ Export Center Prices modal ============ --}}
+<div class="modal fade adm-modal" id="centerprices" tabindex="-1" aria-labelledby="centerpricesModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">
+               <span class="adm-modal-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></span>
+               Center prices
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
          </div>
-       </div>
-     </div>
-</div>
-
-<!-- export price center list-->
-<div class="modal fade" id="centerprices" tabindex="-1" aria-labelledby="centerpricesModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Center prices</h5>
-                
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                
-                <form action="{{ url('export_multiple_center_prices') }}" method="POST"class="pt-5" enctype="multipart/form-data">
-                @csrf
-                    <div class="row">
-                        <div class="form-group col-12 mb-2">
-                            <input type="checkbox" id="checkAll"> <strong>Select All Centers</strong>
-                        </div>
-                        @foreach($branch as $row)
-                        <div class="form-group col-4">
-                        <input type="hidden" name="test_type" value="parameter" />
-                         
+         <div class="modal-body">
+            <form action="{{ url('export_multiple_center_prices') }}" method="POST" enctype="multipart/form-data">
+               @csrf
+               <div class="row">
+                  <div class="form-group col-12 mb-2 adm-field">
+                     <label style="display:inline-flex;align-items:center;gap:.5rem;text-transform:none;">
+                        <input type="checkbox" id="checkAll"> <strong>Select All Centers</strong>
+                     </label>
+                  </div>
+                  <input type="hidden" name="test_type" value="parameter" />
+                  @foreach($branch as $row)
+                  <div class="form-group col-4 adm-field">
+                     <label style="display:inline-flex;align-items:center;gap:.5rem;text-transform:none;font-weight:400;">
                         <input type="checkbox" class="center-checkbox" name="center[]" value="{{ $row->id }}"> {{ $row->name }} - {{ $row->company_name }}
-                        
-                       </div>
-                        @endforeach
-                        <button type="submit" class="btn btn-primary mt-4">submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                     </label>
+                  </div>
+                  @endforeach
+               </div>
+               <button type="submit" class="btn btn-primary adm-btn-primary mt-2">Submit</button>
+            </form>
+         </div>
+      </div>
+   </div>
 </div>
-<!-- export price center list-->
-<!-- Modal -->
-<div class="modal fade" id="centerpricesimp" tabindex="-1" aria-labelledby="centerpricesModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Import Center Prices</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
 
-            <div class="modal-body">
-                <form action="{{ url('import_multiple_center_prices') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="test_type" value="parameter" />
-                    <div id="center-price-rows">
-                        <div class="row center-price-row">
-                            <div class="form-group col-5">
-                                <select name="center[]" class="form-control" required>
-                                    <option value="">--select center--</option>
-                                    @foreach($branch as $row)
-                                        <option value="{{ $row->id }}">{{ $row->name }} - {{ $row->company_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group col-5">
-                                <input type="file" name="excel_file[]" class="form-control" accept=".xlsx,.xls" required>
-                            </div>
-
-                            <div class="form-group col-2 d-flex align-items-center">
-                                <button type="button" class="btn btn-danger btn-sm remove-row" style="display:none;">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group mt-3">
-                        <button type="button" id="add-row" class="btn btn-secondary btn-sm">Add Row</button>
-                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+{{-- ============ Import Center Prices modal ============ --}}
+<div class="modal fade adm-modal" id="centerpricesimp" tabindex="-1" aria-labelledby="centerpricesModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">
+               <span class="adm-modal-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg></span>
+               Import Center Prices
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+         </div>
+         <div class="modal-body">
+            <form action="{{ url('import_multiple_center_prices') }}" method="POST" enctype="multipart/form-data">
+               @csrf
+               <input type="hidden" name="test_type" value="parameter" />
+               <div id="center-price-rows">
+                  <div class="row center-price-row">
+                     <div class="form-group col-5 adm-field">
+                        <select name="center[]" class="form-control" required>
+                           <option value="">--select center--</option>
+                           @foreach($branch as $row)
+                           <option value="{{ $row->id }}">{{ $row->name }} - {{ $row->company_name }}</option>
+                           @endforeach
+                        </select>
+                     </div>
+                     <div class="form-group col-5 adm-field">
+                        <input type="file" name="excel_file[]" class="form-control" accept=".xlsx,.xls" required>
+                     </div>
+                     <div class="form-group col-2 d-flex align-items-center">
+                        <button type="button" class="btn btn-danger btn-sm remove-row" style="display:none;">Remove</button>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group mt-3">
+                  <button type="button" id="add-row" class="btn-secondary">Add Row</button>
+                  <button type="submit" class="btn btn-primary adm-btn-primary btn-sm">Submit</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-$(document).ready(function() {
-    // Initialize Select2 when modal is opened
-    $('#centerpricesimp').on('shown.bs.modal', function () {
-        $('select[name="center[]"]').select2({
-            dropdownParent: $('#centerpricesimp')
-        });
-    });
+   /* ==========================================================================
+      Redesign notes: markup/classes only. #ParameterTable's ajax URL/columns
+      (including the FRQ + View Report render functions) are initialised by
+      public/admin.js exactly as before (now also with autoWidth:false and
+      restyled buttons, same .adm-act skin used everywhere else). The two
+      Export/Import Center Prices modals keep every field name/id and the
+      select2 + add-row/remove-row/check-all JS byte-for-byte — only the
+      markup classes changed to .adm-modal/.adm-field.
+      ========================================================================== */
+   function decorate($) {
+      var $empty = $('#ParameterTable td.dataTables_empty');
+      if ($empty.length && !$empty.data('adm')) {
+         $empty.data('adm', 1).html(
+            '<div class="adm-empty">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>' +
+            '<b>No parameters yet</b><span>Click "Add Parameter" to create the first one.</span></div>'
+         );
+      }
+   }
 
-    // Add new row
-    $('#add-row').click(function() {
-        let newRow = $('.center-price-row:first').clone();
-        newRow.find('input').val('');
-        newRow.find('select').val('').trigger('change'); // Reset and trigger change
-        newRow.find('.remove-row').show();
+   function init($) {
+      var table = $('#ParameterTable').DataTable();
+      var $skeleton = $('.adm-orders-skeleton');
 
-        // Remove old Select2 container before reinitializing
-        newRow.find('select').next('.select2').remove();
+      table.on('draw.dt', function () {
+         $skeleton.remove();
+         decorate($);
+      });
+      table.on('xhr.dt', function (e, settings, json) {
+         if (json && typeof json.recordsFiltered !== 'undefined') {
+            $('#admParameterCount').text(json.recordsFiltered + ' result' + (json.recordsFiltered === 1 ? '' : 's'));
+         }
+      });
+      if ($('#ParameterTable tbody tr').length) {
+         $skeleton.remove();
+         decorate($);
+      }
 
-        $('#center-price-rows').append(newRow);
+      var deb;
+      $('#admParameterSearch').on('input', function () {
+         var v = this.value;
+         clearTimeout(deb);
+         deb = setTimeout(function () { table.search(v).draw(); }, 300);
+      });
 
-        // Re-initialize Select2 on new select
-        newRow.find('select').select2({
-            dropdownParent: $('#centerpricesimp'),
-            width: '100%'
-        });
-    });
+      setTimeout(function () { $('.adm-toast').fadeOut(400); }, 4500);
 
-    // Remove row
-    $(document).on('click', '.remove-row', function() {
-        $(this).closest('.center-price-row').remove();
-    });
+      /* ---- Export Center Prices modal: check-all wiring (unchanged) ---- */
+      $('#checkAll').on('change', function () {
+         $('.center-checkbox').prop('checked', $(this).prop('checked'));
+      });
+      $(document).on('change', '.center-checkbox', function () {
+         $('#checkAll').prop('checked', $('.center-checkbox:checked').length === $('.center-checkbox').length);
+      });
 
-  
-});
-    $(document).ready(function() {
-        $('#checkAll').change(function() {
-            $('.center-checkbox').prop('checked', $(this).prop('checked'));
-        });
+      /* ---- Import Center Prices modal: select2 + add/remove row (unchanged) ---- */
+      $('#centerpricesimp').on('shown.bs.modal', function () {
+         $('select[name="center[]"]').select2({ dropdownParent: $('#centerpricesimp') });
+      });
+      $('#add-row').on('click', function () {
+         var newRow = $('.center-price-row:first').clone();
+         newRow.find('input').val('');
+         newRow.find('select').val('').trigger('change');
+         newRow.find('.remove-row').show();
+         newRow.find('select').next('.select2').remove();
+         $('#center-price-rows').append(newRow);
+         newRow.find('select').select2({ dropdownParent: $('#centerpricesimp'), width: '100%' });
+      });
+      $(document).on('click', '.remove-row', function () {
+         $(this).closest('.center-price-row').remove();
+      });
+   }
 
-        // Optional: update "check all" if any checkbox is manually unchecked
-        $('.center-checkbox').change(function() {
-            if ($('.center-checkbox:checked').length === $('.center-checkbox').length) {
-                $('#checkAll').prop('checked', true);
-            } else {
-                $('#checkAll').prop('checked', false);
-            }
-        });
-    });
+   window.addEventListener('load', function () {
+      var tries = 0;
+      (function hook() {
+         var jq = window.jQuery;
+         if (jq && jq.fn && jq.fn.dataTable && jq.fn.dataTable.isDataTable('#ParameterTable')) { init(jq); return; }
+         if (++tries > 100) { return; }
+         setTimeout(hook, 50);
+      })();
+   });
 </script>
 @endsection

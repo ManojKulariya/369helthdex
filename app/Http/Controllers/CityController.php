@@ -27,14 +27,17 @@ class CityController extends Controller
             ->editColumn('default', function ($city) {
                 return $city->default;
             }) 
-            ->editColumn('action', function ($city) { 
+            ->editColumn('action', function ($city) {
                 $edittext =__('message.Edit');
-                $deletetext = __('message.Delete');  
+                $deletetext = __('message.Delete');
                 $edit = url('savecity',array('id'=>$city->id));
                 $delete = url('deletecity',array('id'=>$city->id));
-                           
-                return '<a  href="'.$edit.'" rel="tooltip"  class="btn btn-success" data-original-title="banner" style="margin-right: 10px;color: white !important;">'.$edittext.'</a><a onclick="delete_record(' . "'" . $delete. "'" . ')" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">'.$deletetext.'</a>';              
-            })           
+                return '<div class="adm-row-actions">'
+                    .'<a href="'.$edit.'" class="adm-act adm-act--green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>'.$edittext.'</a>'
+                    .'<a onclick="delete_record(' . "'" . $delete. "'" . ')" class="adm-act adm-act--red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>'.$deletetext.'</a>'
+                    .'</div>';
+            })
+            ->rawColumns(['action'])
             ->make(true);
     }
 

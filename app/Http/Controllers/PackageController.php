@@ -155,18 +155,22 @@ class PackageController extends Controller
                     $copy_package = url('copy_package', array('id' => $package->id));
                     $p_data = json_encode($package->paramater_data);
                     $reco = $package->test_recommended_for . ' ' . $package->test_recommended_for_age;
-                
-                    return $package->name . ' - ' . $package->no_of_parameter . '
-                        <br><i class="fa fa-eye text-primary" style="cursor: pointer;" title="view parameter" onclick="showPackageDetails(
-                            ' . htmlspecialchars(json_encode('Package'), ENT_QUOTES, 'UTF-8') . ',
-                            ' . htmlspecialchars($p_data, ENT_QUOTES, 'UTF-8') . ',
-                            ' . htmlspecialchars(json_encode($package->name), ENT_QUOTES, 'UTF-8') . ',
-                            ' . htmlspecialchars(json_encode($package->sample_type), ENT_QUOTES, 'UTF-8') . ',
-                            ' . htmlspecialchars(json_encode($package->fasting_time), ENT_QUOTES, 'UTF-8') . ',
-                            ' . htmlspecialchars(json_encode($reco), ENT_QUOTES, 'UTF-8') . ',
-                            ' . htmlspecialchars(json_encode($package->report_time), ENT_QUOTES, 'UTF-8') . '
-                        )"></i>&nbsp; 
-                        <a href="'.$copy_package.'" title="copy package">  &nbsp;<i class="fa fa-copy"></i></a> <small>'.$package->copy.'</small>';
+
+                    return '<span class="adm-cart-name">'.$package->name.' - '.$package->no_of_parameter.'</span>'
+                        .'<div class="adm-row-actions" style="margin-top:.4rem;">'
+                        .'<button type="button" class="adm-cat-eye" title="View parameter" onclick="showPackageDetails('
+                            . htmlspecialchars(json_encode('Package'), ENT_QUOTES, 'UTF-8') . ','
+                            . htmlspecialchars($p_data, ENT_QUOTES, 'UTF-8') . ','
+                            . htmlspecialchars(json_encode($package->name), ENT_QUOTES, 'UTF-8') . ','
+                            . htmlspecialchars(json_encode($package->sample_type), ENT_QUOTES, 'UTF-8') . ','
+                            . htmlspecialchars(json_encode($package->fasting_time), ENT_QUOTES, 'UTF-8') . ','
+                            . htmlspecialchars(json_encode($reco), ENT_QUOTES, 'UTF-8') . ','
+                            . htmlspecialchars(json_encode($package->report_time), ENT_QUOTES, 'UTF-8') . ')">'
+                            .'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>'
+                        .'</button>'
+                        .'<a href="'.$copy_package.'" class="adm-cat-eye" title="Copy package"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></a>'
+                        .'<small style="color:var(--adm-ink-400);">'.$package->copy.'</small>'
+                        .'</div>';
                 })
 
 
@@ -179,25 +183,28 @@ class PackageController extends Controller
             ->editColumn('status', function ($package) {
                 $statuspath =  url('update_status', array('id' => $package->id,'status'=>$package->status == 1 ? 0 : 1 ));
                 if($package->status == 1){
-                    return '<a  href="' . $statuspath . '" rel="tooltip"  class="btn btn-success" data-original-title="banner" style="margin-right: 10px;color: white !important;">Active</a>';
+                    return '<a href="' . $statuspath . '" class="adm-act adm-act--green" style="width:auto;display:inline-flex !important;">Active</a>';
                 }else{
-                    return '<a href="' . $statuspath . '" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">Inactive</a>';
+                    return '<a href="' . $statuspath . '" class="adm-act adm-act--gray" style="width:auto;display:inline-flex !important;">Inactive</a>';
                 }
-             
+
             })
             ->editColumn('action', function ($package) {
                 $path = url('frq', array('id' => $package->id, 'tab' => '1'));
-    
+
                 $frqtext = 'View FRQ';
                 $edittext = __('message.Edit');
                 $deletetext = __('message.Delete');
                 $edit = url('save_package', array('id' => $package->id, 'tab' => '1'));
                 $delete = url('deletepackage', array('id' => $package->id));
 
-                return '<a  href="' . $edit . '" rel="tooltip"  class="btn btn-success" data-original-title="banner" style="margin-right: 10px;color: white !important;">' . $edittext . '</a>
-                <a onclick="delete_record(' . "'" . $delete . "'" . ')" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">' . $deletetext . '</a>
-                <br><a href="'.$path.'" class="btn btn-primary mt-1">'.$frqtext.'</a>';
+                return '<div class="adm-row-actions" style="flex-wrap:wrap;">'
+                    .'<a href="'.$edit.'" class="adm-act adm-act--green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>'.$edittext.'</a>'
+                    .'<a onclick="delete_record(' . "'" . $delete . "'" . ')" class="adm-act adm-act--red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>'.$deletetext.'</a>'
+                    .'<a href="'.$path.'" class="adm-act adm-act--green">'.$frqtext.'</a>'
+                    .'</div>';
             })
+            ->rawColumns(['name', 'status', 'action'])
             ->make(true);
     }
 
@@ -485,8 +492,12 @@ class PackageController extends Controller
                 $edit = url('save_parameter', array('id' => $parameter->id, 'tab' => '1'));
                 $delete = url('delete_parameter', array('id' => $parameter->id));
 
-                return '<a  href="' . $edit . '" rel="tooltip"  class="btn btn-success" data-original-title="banner" style="margin-right: 10px;color: white !important;">' . $edittext . '</a><a onclick="delete_record(' . "'" . $delete . "'" . ')" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">' . $deletetext . '</a>';
+                return '<div class="adm-row-actions">'
+                    .'<a href="'.$edit.'" class="adm-act adm-act--green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>'.$edittext.'</a>'
+                    .'<a onclick="delete_record(' . "'" . $delete . "'" . ')" class="adm-act adm-act--red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>'.$deletetext.'</a>'
+                    .'</div>';
             })
+            ->rawColumns(['action'])
             ->make(true);
     }
 
@@ -557,8 +568,12 @@ class PackageController extends Controller
                 $edittext = __('message.Edit');
                 $deletetext = __('message.Delete');
                 $delete = url('delete_frq', array('id' => $frq->id));
-                return '<a  onclick="edit_frq(' . $frq->id . ')" rel="tooltip"  data-bs-toggle="modal" data-bs-target="#editfrq" class="btn btn-success" data-original-title="banner" style="margin-right: 10px;color: white !important;">' . $edittext . '</a><a onclick="delete_record(' . "'" . $delete . "'" . ')" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">' . $deletetext . '</a>';
+                return '<div class="adm-row-actions">'
+                    .'<a onclick="edit_frq(' . $frq->id . ')" data-bs-toggle="modal" data-bs-target="#editfrq" class="adm-act adm-act--green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>' . $edittext . '</a>'
+                    .'<a onclick="delete_record(' . "'" . $delete . "'" . ')" class="adm-act adm-act--red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>' . $deletetext . '</a>'
+                    .'</div>';
             })
+            ->rawColumns(['action'])
             ->make(true);
     }
 
@@ -721,8 +736,12 @@ class PackageController extends Controller
                 $deletetext = __('message.Delete');
                 $edit = url('save_profile', array('id' => $pro->id));
                 $delete = url('delete_profile', array('id' => $pro->id));
-                return '<a  href="' . $edit . '" rel="tooltip"  class="btn btn-success" data-original-title="banner" style="margin-right: 10px;color: white !important;">' . $edittext . '</a><a onclick="delete_record(' . "'" . $delete . "'" . ')" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">' . $deletetext . '</a>';
+                return '<div class="adm-row-actions">'
+                    .'<a href="'.$edit.'" class="adm-act adm-act--green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>'.$edittext.'</a>'
+                    .'<a onclick="delete_record(' . "'" . $delete . "'" . ')" class="adm-act adm-act--red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>'.$deletetext.'</a>'
+                    .'</div>';
             })
+            ->rawColumns(['action'])
             ->make(true);
     }
 

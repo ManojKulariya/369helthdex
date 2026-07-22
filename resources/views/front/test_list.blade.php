@@ -58,7 +58,7 @@ Book a Blood Test at home Online in {{$cityName}}, Best Diagnostic lab in {{$cit
 
 <div class="auto-container">
     <div class="inner-box" style="padding: 1px 1px 14px 1px !important;">
-           <h3 style="color:#2aa48c !important;">Popular Tests</h3>
+           <h3 style="color:#0a6c79 !important;">Popular Tests</h3>
         </div>
 
 <div class="clinic-block-one">

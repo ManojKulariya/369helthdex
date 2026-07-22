@@ -29,7 +29,22 @@
 
 @php
 
-$imagePaths = unserialize($setting->main_banner);
+// Root cause of "uploaded Main Banner never shows on the homepage": this
+// variable was computed here but never actually referenced anywhere in
+// this file — the hero's <img> below was hardcoded to a static asset
+// instead. Admin > Settings > Website Setting > Main Banner already saves
+// correctly (verified against the live DB + disk file), the wiring into
+// the view was just missing. Main Banner supports multiple uploaded
+// images (a gallery, with individual Remove buttons in the admin), but
+// the current hero design has a single image slot — showing the most
+// recently uploaded one (last element; new uploads are appended) here
+// keeps the exact existing layout/design unchanged while actually
+// reflecting the latest upload. Falls back to the original static image
+// only when no banner has ever been uploaded.
+$imagePaths = $setting->main_banner ? unserialize($setting->main_banner) : false;
+$heroBannerUrl = (is_array($imagePaths) && count($imagePaths))
+    ? asset('public') . end($imagePaths)
+    : asset('public/img/hero-quality-trust.png');
 
 $search_banner = asset('public/img') . '/' . $setting->search_banner;
 
@@ -115,7 +130,7 @@ if ($cityName == '') {
       <!-- Right Visual -->
       <div class="luxury-hero-visual">
         <div class="luxury-hero-visual-frame" data-hd-parallax="12">
-          <img src="{{ asset('public/img/hero-quality-trust.png') }}" alt="Quality diagnostics you can trust — NABL accredited labs, home sample collection and accurate reports" class="luxury-hero-main-image" fetchpriority="high" decoding="async">
+          <img src="{{ $heroBannerUrl }}" alt="Quality diagnostics you can trust — NABL accredited labs, home sample collection and accurate reports" class="luxury-hero-main-image" fetchpriority="high" decoding="async">
         </div>
 
         <div class="luxury-hero-chip luxury-hero-chip-1" data-hd-parallax="26">
@@ -531,13 +546,13 @@ if ($cityName == '') {
 
         <div class="vision-illustration" aria-hidden="true">
           <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" fill="none" role="presentation">
-            <rect x="24" y="92" width="34" height="44" rx="9" fill="#d1fae5"/>
-            <rect x="76" y="72" width="34" height="64" rx="9" fill="#a7f3d0"/>
-            <rect x="128" y="50" width="34" height="86" rx="9" fill="#6ee7b7"/>
-            <rect x="180" y="28" width="34" height="108" rx="9" fill="#34d399"/>
-            <path d="M14 78 H70 L84 52 L102 96 L116 70 H150 L162 84 H186" stroke="#047857" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="186" cy="84" r="6" fill="#047857"/>
-            <path d="M247 44c-8.6-8.4-22.6-8.4-31.2 0-8.6 8.4-8.6 22 0 30.4L247 105l31.2-30.6c8.6-8.4 8.6-22 0-30.4-8.6-8.4-22.6-8.4-31.2 0z" fill="#10b981"/>
+            <rect x="24" y="92" width="34" height="44" rx="9" fill="var(--accent-100)"/>
+            <rect x="76" y="72" width="34" height="64" rx="9" fill="var(--accent-200)"/>
+            <rect x="128" y="50" width="34" height="86" rx="9" fill="var(--accent-300)"/>
+            <rect x="180" y="28" width="34" height="108" rx="9" fill="var(--accent-400)"/>
+            <path d="M14 78 H70 L84 52 L102 96 L116 70 H150 L162 84 H186" stroke="var(--accent-hover)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="186" cy="84" r="6" fill="var(--accent-hover)"/>
+            <path d="M247 44c-8.6-8.4-22.6-8.4-31.2 0-8.6 8.4-8.6 22 0 30.4L247 105l31.2-30.6c8.6-8.4 8.6-22 0-30.4-8.6-8.4-22.6-8.4-31.2 0z" fill="var(--accent-color)"/>
             <path d="M229 74h9l5-9 7 16 5-7h13" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>

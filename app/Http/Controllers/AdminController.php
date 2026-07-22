@@ -1507,8 +1507,8 @@ class AdminController extends Controller
      
      
         $setting->save();
-     
-        Session::flash(' Info Save Successfully');
+
+        Session::flash('message', 'Info Save Successfully');
         Session::flash('alert-class', 'alert-success');
         return redirect('setting/'.$no);
     }
@@ -1535,11 +1535,24 @@ class AdminController extends Controller
                 return $contact->message;
             })     
             ->editColumn('action', function ($contact) {
-                
+
                 $deletetext = __('message.Delete');
                 $delete = url('deletecontact',array('id'=>$contact->id));
-                return '<a  href="https://mail.google.com/mail/?view=cm&fs=1&to='.$contact->email.'&su='.$contact->subject.'&body='.$contact->message.'" rel="tooltip"  target="blank" class="m-b-10 m-l-5" data-original-title="Remove"><i class="fa fa-envelope f-s-25" style="margin-right: 10px;font-size: x-large;color:black"></i></a><a onclick="delete_record(' . "'" . $delete. "'" . ')" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">'.$deletetext.'</a>';              
-            })           
+                // The mailto/Gmail-compose params were previously concatenated
+                // raw — any subject/message containing "&", "#", "%" or a
+                // newline (all common in free-text submissions) broke the
+                // link by prematurely truncating or corrupting the query
+                // string. urlencode() each dynamic piece instead.
+                $gmail = 'https://mail.google.com/mail/?view=cm&fs=1'
+                    .'&to='.urlencode($contact->email)
+                    .'&su='.urlencode($contact->subject)
+                    .'&body='.urlencode($contact->message);
+                return '<div class="adm-row-actions">'
+                    .'<a href="'.$gmail.'" target="_blank" class="adm-cat-eye" title="Reply by email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>'
+                    .'<a onclick="delete_record(' . "'" . $delete. "'" . ')" class="adm-act adm-act--red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>'.$deletetext.'</a>'
+                    .'</div>';
+            })
+            ->rawColumns(['action'])
             ->make(true);
     }
 

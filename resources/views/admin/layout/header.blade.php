@@ -83,7 +83,7 @@
                      <div class="dropdown profile-dropdown d-flex">
                         <a href="javascript:void0;" class="nav-link pe-0 leading-none adm-profile-toggle" data-bs-toggle="dropdown">
                         <span class="header-avatar1">
-                        <img src="{{ url('/').'/storage/app/public/profile'.'/'.Auth::user()->profile_pic}}" alt="{{Auth::user()->name}}" class="avatar avatar-md brround">
+                        <img src="{{ url('/').'/storage/profile'.'/'.Auth::user()->profile_pic}}" alt="{{Auth::user()->name}}" class="avatar avatar-md brround">
                         </span>
                         <span class="adm-profile-name">{{ Auth::user()->name }}</span>
                         <svg class="adm-profile-caret" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>

@@ -70,7 +70,10 @@ class UserController extends Controller
             })
 
             ->editColumn('doc', function ($user) {
-                return url("storage/app/public/profile") . "/" . $user->prescription;
+                // Previously always returned a URL even with no file (prescription
+                // null), producing a link to the bare "profile/" directory instead
+                // of hiding the download action.
+                return $user->prescription ? url("storage/app/public/profile") . "/" . $user->prescription : null;
             })
 
             
@@ -135,47 +138,49 @@ class UserController extends Controller
             })
 
             ->editColumn('image', function ($user) {
-                return url("storage/app/public/profile") . "/" . $user->profile_pic;
+                // Previously always concatenated a URL even with no
+                // profile_pic — defensive null-check, same fix already
+                // applied elsewhere (User Prescription, Subcategory).
+                return $user->profile_pic ? url("storage/app/public/profile") . "/" . $user->profile_pic : url("public/img") . "/default_user.png";
             })
 
             ->editColumn('action', function ($user) {
-                
-                $buttons ='';
                 $edittext = __('message.Edit');
                 $deletetext = __('message.Delete');
-                $test = url('testuser', array('id' => $user->id));
-                if($user->user_type == 2){
-                    $edit = url('savemanager', array('id' => $user->id));
-                }else{
-                    $edit = url('save_cc_boy', array('id' => $user->id));
-                }
-                
-                if($user->status == 1){
-                    $status = url('update_user_status', array('id' => $user->id,'status'=>0));
-                    $buttons .= '<a href="' . $status . '" rel="tooltip"  class="btn btn-success" data-original-title="status" style="margin-right: 10px;color:white !important">Active</a>';
-                }else{
-                    $status = url('update_user_status', array('id' => $user->id,'status'=>1));
-                    $buttons .= '<a href="' . $status . '" rel="tooltip"  class="btn btn-danger" data-original-title="status" style="margin-right: 10px;color:white !important">In-Active</a>';
-                }
-                
+                // This table is filtered to user_type=2 (Lab) only, so the
+                // edit target is always savemanager.
+                $edit = url('savemanager', array('id' => $user->id));
                 $delete = url('deleteuser', array('id' => $user->id));
-                $buttons .= '<a  href="' . $edit . '" rel="tooltip"  class="btn btn-primary" data-original-title="banner" style="margin-right: 10px;color: white !important;">' . $edittext . '</a>
-                <a onclick="delete_record(' . "'" . $delete . "'" . ')" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">' . $deletetext . '</a>';
+
+                $buttons = '<div class="adm-row-actions" style="flex-wrap:wrap;">';
+                if ($user->status == 1) {
+                    $status = url('update_user_status', array('id' => $user->id, 'status' => 0));
+                    $buttons .= '<a href="' . $status . '" class="adm-act adm-act--green">Active</a>';
+                } else {
+                    $status = url('update_user_status', array('id' => $user->id, 'status' => 1));
+                    $buttons .= '<a href="' . $status . '" class="adm-act adm-act--gray">In-Active</a>';
+                }
+                $buttons .= '<a href="' . $edit . '" class="adm-act adm-act--green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>' . $edittext . '</a>';
+                $buttons .= '<a onclick="delete_record(' . "'" . $delete . "'" . ')" class="adm-act adm-act--red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>' . $deletetext . '</a>';
+                $buttons .= '</div>';
                 return $buttons;
             })
+            ->rawColumns(['action'])
             ->make(true);
     }
     public function update_user_status($id , $status){
         $user  = User::find($id);
-        $user->status = $status; 
+        $user->status = $status;
         $user->save();
-        $city = City::find($user->city);
-        $city->status = $status; 
-        $city->save();
+        // Previously also looked up the user's city and overwrote *its*
+        // status to match — city.status isn't read anywhere else in the
+        // app, so this had no visible effect except risking a crash
+        // ("Call to a member function save() on null") for any user with
+        // no city set, which is common for SampleBoy accounts.
         Session::flash('message', 'Status updated!');
         Session::flash('alert-class', 'alert-success');
         return redirect()->back();
-        
+
     }
     public function show_sampleTable()
     {
@@ -201,20 +206,17 @@ class UserController extends Controller
             
 
             ->editColumn('action', function ($user) {
-                $testtext = 'Test';
                 $edittext = __('message.Edit');
                 $deletetext = __('message.Delete');
-                $test = url('testuser', array('id' => $user->id));
-                if($user->user_type == 2){
-                    $edit = url('savemanager', array('id' => $user->id));
-                }else{
-                    $edit = url('save_cc_boy', array('id' => $user->id));
-                }
-                
+                // This table is filtered to user_type=4 (SampleBoy) only.
+                $edit = url('save_cc_boy', array('id' => $user->id));
                 $delete = url('deleteuser', array('id' => $user->id));
-                return '<a  href="' . $edit . '" rel="tooltip"  class="btn btn-primary" data-original-title="banner" style="margin-right: 10px;color: white !important;">' . $edittext . '</a>
-                <a onclick="delete_record(' . "'" . $delete . "'" . ')" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">' . $deletetext . '</a>';
+                return '<div class="adm-row-actions">'
+                    .'<a href="'.$edit.'" class="adm-act adm-act--green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>'.$edittext.'</a>'
+                    .'<a onclick="delete_record(' . "'" . $delete . "'" . ')" class="adm-act adm-act--red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>'.$deletetext.'</a>'
+                    .'</div>';
             })
+            ->rawColumns(['action'])
             ->make(true);
     }
     public function show_sampleboyTable()
@@ -644,11 +646,11 @@ class UserController extends Controller
             })
             ->editColumn('city', function ($user) {
                 $memertext = __('message.Members');
-                return '<a href="javascript:void(0)" onclick="view_member(' . "'" . $user->id . "'" . ')" data-bs-toggle="modal" data-bs-target="#normalmodal" rel="tooltip"  class="btn btn-info" data-original-title="Remove" style="margin-right: 10px;color:white !important">' . $memertext . '</a>';
+                return '<a href="javascript:void(0)" onclick="view_member(' . "'" . $user->id . "'" . ')" data-bs-toggle="modal" data-bs-target="#normalmodal" class="adm-act adm-act--green">' . $memertext . '</a>';
             })
             ->editColumn('member', function ($user) {
                 $addresstext = __('message.Address');
-                return '<a href="javascript:void(0)" onclick="view_address(' . "'" . $user->id . "'" . ')" data-bs-toggle="modal" data-bs-target="#addressmodal" rel="tooltip"  class="btn btn-info" data-original-title="Remove" style="margin-right: 10px;color:white !important">' . $addresstext . '</a>';
+                return '<a href="javascript:void(0)" onclick="view_address(' . "'" . $user->id . "'" . ')" data-bs-toggle="modal" data-bs-target="#addressmodal" class="adm-act adm-act--green">' . $addresstext . '</a>';
             })
             ->editColumn('image', function ($user) {
                 if ($user->profile_pic != "") {
@@ -658,11 +660,9 @@ class UserController extends Controller
                 }
             })
             ->editColumn('action', function ($user) {
-                $edittext = __('message.Edit');
                 $deletetext = __('message.Delete');
-                $edit = url('savemanager', array('id' => $user->id));
                 $delete = url('deleteuser_detail', array('id' => $user->id));
-                return '<a onclick="delete_user_detail(' . "'" . $delete . "'" . ')" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">' . $deletetext . '</a>';
+                return '<a onclick="delete_user_detail(' . "'" . $delete . "'" . ')" class="adm-act adm-act--red">' . $deletetext . '</a>';
             })
             ->escapeColumns([])
             ->make(true);

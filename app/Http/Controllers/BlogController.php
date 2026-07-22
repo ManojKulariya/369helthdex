@@ -87,11 +87,15 @@ class BlogController extends Controller
                 $deletetext = __('message.Delete');
                 $edit = url('saveblog',array('id'=>$blog->id));
                 $delete = url('deleteblog',array('id'=>$blog->id));
-                return '<a  href="'.$edit.'" rel="tooltip"  class="btn btn-primary" data-original-title="banner" style="margin-right: 10px;color: white !important;">'.$edittext.'</a><a onclick="delete_record(' . "'" . $delete. "'" . ')" rel="tooltip"  class="btn btn-danger" data-original-title="Remove" style="margin-right: 10px;color:white !important">'.$deletetext.'</a>';              
-            })           
+                return '<div class="adm-row-actions">'
+                    .'<a href="' . $edit . '" class="adm-act adm-act--green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>' . $edittext . '</a>'
+                    .'<a onclick="delete_record(' . "'" . $delete . "'" . ')" class="adm-act adm-act--red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>' . $deletetext . '</a>'
+                    .'</div>';
+            })
+            ->rawColumns(['action'])
             ->make(true);
     }
-    
+
     public function show_saveblog($id){
         $data = Blog::find($id);
         
@@ -111,7 +115,7 @@ class BlogController extends Controller
                 $this->removeImage('Blog/' . $store->image);
             }
         }       
-        $selectedTags = $request->get('tag'); // This will be an array of tag IDs
+        $selectedTags = $request->get('tag') ?? []; // This will be an array of tag IDs
 
         // Example: Save as comma-separated string (not ideal, but simple)
         $tags = implode(',', $selectedTags);
@@ -135,11 +139,13 @@ class BlogController extends Controller
         return redirect()->route('admin-blog');
     }
     
-    public function deleteblog($id){        
-        $data = Blog::find($id); 
-        $data->delete();       
-        Session::flash('message',__('message.Blog Delete Successfully')); 
-        Session::flash('alert-class', 'alert-success');
+    public function deleteblog($id){
+        $data = Blog::find($id);
+        if ($data) {
+            $data->delete();
+            Session::flash('message',__('message.Blog Delete Successfully'));
+            Session::flash('alert-class', 'alert-success');
+        }
         return redirect()->route('admin-blog');
     }
 }

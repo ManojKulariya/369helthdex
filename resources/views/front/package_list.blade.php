@@ -52,7 +52,7 @@ Book Full Body Health Checkup Packages in {{$cityName}} | Reliable
 
   <div class="auto-container"> 
         <div class="inner-box" style="padding: 1px 1px 14px 1px !important;">
-           <h3 style="color:#2aa48c !important;">Full Body Health Checkup in {{ucfirst($cityName)}}</h3>
+           <h3 style="color:#0a6c79 !important;">Full Body Health Checkup in {{ucfirst($cityName)}}</h3>
         </div>
     <div class="inner-content">
       <div class="row clearfix"> 

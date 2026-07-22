@@ -12,43 +12,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Same tokens as public/hd-home.css (the frontend design system) —
-     values copied 1:1, only the variable prefix differs, so the admin
-     panel is guaranteed to share the exact frontend palette. */
-  --adm-green-50: #ecfdf5;
-  --adm-green-100: #d1fae5;
+  /* Same tokens as public/hd-home.css (the frontend design system) — both
+     now reference public/theme.css (loaded before this file) as the single
+     source of truth, rather than each hardcoding its own copy of the same
+     values. Change a color in theme.css and both stylesheets' output
+     updates together automatically. --adm-* variable NAMES are kept as-is
+     since the rest of this file already consumes them by name.
 
-  --adm-brand: #059669;
-  --adm-brand-strong: #047857;
-  --adm-brand-soft: #10b981;
-  --adm-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  --adm-gradient-hover: linear-gradient(135deg, #059669 0%, #047857 100%);
-  /* Dark rail surface — not a frontend token (the homepage has no sidebar to
-     mirror), but built from the frontend's own --hd-ink-900 down to the
-     brand green rather than an unrelated hue, so it stays in the same
-     green/ink family the rest of the palette uses. */
-  --adm-gradient-dark: linear-gradient(160deg, #0b1a13 0%, #0f2a1e 60%, #103524 100%);
+     IMPORTANT: --adm-green- (all shades), --adm-brand (all variants),
+     --adm-gradient (all variants), --adm-shadow-green, --adm-border-green,
+     and --adm-surface-green now point at the ORANGE accent ramp, not teal.
+     Every usage of these tokens in this file is an
+     interactive/CTA surface (active sidebar nav item, buttons, hover
+     states, badges, chips) — the admin sidebar/header's own background is
+     plain white (see .app-sidebar below), it never used these tokens for
+     anything structural, so there was nothing to protect/exclude here
+     (unlike hd-home.css's header utility bar, which needed 2 lines
+     explicitly pinned to --primary-* first). */
+  --adm-green-50: var(--accent-50);
+  --adm-green-100: var(--accent-100);
+  --adm-green-200: var(--accent-200);
+
+  --adm-brand: var(--accent-color);
+  --adm-brand-strong: var(--accent-hover);
+  --adm-brand-soft: var(--accent-soft);
+  --adm-gradient: var(--gradient-accent);
+  --adm-gradient-hover: var(--gradient-accent-hover);
+  /* Dark rail surface — unused elsewhere in this file currently (kept for
+     a possible future dark-sidebar skin); left as its own bespoke ink+teal
+     blend rather than repointed to orange, since a dark rail historically
+     reads calmer in a cool hue regardless of the accent color in use. */
+  --adm-gradient-dark: linear-gradient(160deg, #0b1a13 0%, #0e2426 60%, #0f2d30 100%);
 
   --adm-ink-900: #0b1a13;
-  --adm-ink-800: #0f172a;
+  --adm-ink-800: var(--text-primary);
   --adm-ink-700: #334155;
-  --adm-ink-600: #475569;
+  --adm-ink-600: var(--text-secondary);
   --adm-ink-500: #64748b;
-  --adm-ink-400: #94a3b8;
+  --adm-ink-400: var(--text-muted);
 
-  --adm-surface: #ffffff;
-  --adm-surface-2: #f7faf9;
-  --adm-surface-3: #f1f6f4;
-  --adm-surface-green: #f0fdf4;
-  --adm-border: #e7edf1;
-  --adm-border-2: #dbe4ea;
-  --adm-border-green: rgba(16, 185, 129, .18);
+  --adm-surface: var(--surface);
+  --adm-surface-2: var(--surface-2);
+  --adm-surface-3: var(--surface-3);
+  --adm-surface-green: var(--accent-light);
+  --adm-border: var(--border-color);
+  --adm-border-2: var(--border-strong);
+  --adm-border-green: var(--border-accent);
 
-  --adm-shadow-xs: 0 1px 2px rgba(15, 23, 42, .06);
-  --adm-shadow-sm: 0 2px 10px rgba(15, 23, 42, .06);
-  --adm-shadow-md: 0 12px 34px -14px rgba(15, 23, 42, .20);
-  --adm-shadow-lg: 0 34px 64px -24px rgba(15, 23, 42, .28);
-  --adm-shadow-green: 0 16px 34px -12px rgba(5, 150, 105, .42);
+  --adm-shadow-xs: var(--shadow-xs);
+  --adm-shadow-sm: var(--shadow-sm);
+  --adm-shadow-md: var(--shadow-md);
+  --adm-shadow-lg: var(--shadow-lg);
+  --adm-shadow-green: var(--shadow-accent);
 
   --adm-r-xs: 10px;
   --adm-r-sm: 14px;
@@ -318,10 +333,10 @@ body.app * {
   font-weight: 600;
 }
 
-/* Thin scrollbar in the brand's green scale */
+/* Thin scrollbar in the brand's teal scale */
 .sidebar-container::-webkit-scrollbar { width: 6px; }
 .sidebar-container::-webkit-scrollbar-thumb { background: var(--adm-green-100); border-radius: 999px; }
-.sidebar-container::-webkit-scrollbar-thumb:hover { background: var(--adm-green-50); background: #a7f3d0; }
+.sidebar-container::-webkit-scrollbar-thumb:hover { background: var(--adm-green-200); }
 .sidebar-container::-webkit-scrollbar-track { background: transparent; }
 
 /* Sidebar quick-filter (new, client-side only — filters the menu items already in the DOM) */
@@ -976,7 +991,7 @@ footer.footer.adm-footer {
    ========================================================================== */
 .adm-quick-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 .adm-quick-card {
@@ -1024,4 +1039,1719 @@ footer.footer.adm-footer {
   .adm-kpi-grid, .adm-quick-grid { grid-template-columns: 1fr; padding: 0 1rem; }
   .adm-section { padding: 0 1rem; }
   .page-header { padding: 1.25rem 1rem .25rem !important; }
+}
+
+/* ==========================================================================
+   ORDERS MODULE
+   Display-only layer over the existing #OrdersTable DataTable. Nothing here
+   renames a class the theme/DataTables/admin.js binds to — .adm-* classes
+   are additive, applied by resources/views/admin/orders/default.blade.php
+   markup and its own decorate() script, never by editing admin.js.
+   ========================================================================== */
+
+/* ---- header row: title+breadcrumb left, primary action right ---- */
+.adm-orders-header {
+  display: flex !important;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.adm-breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin: .35rem 0 0;
+  font-size: .82rem;
+}
+.adm-breadcrumb .breadcrumb-item a { color: var(--adm-ink-500); text-decoration: none; }
+.adm-breadcrumb .breadcrumb-item a:hover { color: var(--adm-brand-strong); }
+.adm-breadcrumb .breadcrumb-item.active { color: var(--adm-brand-strong); font-weight: 600; }
+
+.adm-btn-primary,
+.adm-btn-danger {
+  display: inline-flex !important;
+  align-items: center;
+  gap: .5rem;
+  border: none !important;
+  border-radius: var(--adm-r-sm) !important;
+  font-weight: 600 !important;
+  font-size: .86rem !important;
+  padding: .6rem 1.1rem !important;
+  transition: transform 200ms var(--adm-ease-out), box-shadow 200ms var(--adm-ease);
+}
+.adm-btn-primary {
+  background: var(--adm-gradient) !important;
+  box-shadow: var(--adm-shadow-green);
+}
+.adm-btn-primary:hover { transform: translateY(-1px); background: var(--adm-gradient-hover) !important; }
+.adm-btn-danger {
+  background: var(--danger-light) !important;
+  box-shadow: 0 12px 24px -12px rgba(239, 68, 68, .45);
+}
+.adm-btn-danger:hover { transform: translateY(-1px); background: var(--danger-color) !important; }
+.adm-btn-primary svg, .adm-btn-danger svg { width: 16px; height: 16px; flex: 0 0 auto; }
+
+/* ---- neutral "secondary" button: the theme's raw .btn-secondary renders
+   an indigo/blue that isn't part of the 369 HealthDex palette (Green/White/
+   Light Gray only). Overridden sitewide here so every admin screen's plain
+   .btn-secondary (Close buttons, Reset buttons, etc.) matches. ---- */
+.btn-secondary {
+  display: inline-flex !important;
+  align-items: center;
+  gap: .5rem;
+  background: var(--adm-surface-2) !important;
+  border: 1px solid var(--adm-border) !important;
+  border-radius: var(--adm-r-sm) !important;
+  color: var(--adm-ink-700) !important;
+  font-weight: 600 !important;
+  font-size: .86rem !important;
+  padding: .6rem 1.1rem !important;
+  box-shadow: none !important;
+  transition: background 200ms var(--adm-ease), border-color 200ms var(--adm-ease);
+}
+.btn-secondary:hover, .btn-secondary:focus {
+  background: var(--adm-surface-3) !important;
+  border-color: var(--adm-border-green) !important;
+  color: var(--adm-ink-800) !important;
+}
+.btn-secondary:disabled { opacity: .6; }
+
+/* ---- toast ---- */
+.adm-toast-wrap { padding: 0 1.75rem; margin-top: -.5rem; }
+.adm-toast {
+  border-radius: var(--adm-r-sm) !important;
+  border: 1px solid var(--adm-border-green) !important;
+  background: var(--adm-surface-green) !important;
+  color: var(--adm-brand-strong) !important;
+  box-shadow: var(--adm-shadow-sm);
+  font-size: .88rem;
+}
+
+/* ---- stat cards ---- */
+.adm-orders-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0 1.75rem;
+  margin-bottom: 1.5rem;
+}
+.adm-stat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .55rem;
+  text-align: left;
+  background: #fff;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-lg);
+  box-shadow: var(--adm-shadow-sm);
+  padding: 1.1rem 1.2rem;
+  font-family: var(--adm-font);
+  cursor: pointer;
+  transition: transform 220ms var(--adm-ease-out), box-shadow 220ms var(--adm-ease), border-color 220ms var(--adm-ease);
+}
+.adm-stat.is-static { cursor: default; }
+.adm-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--adm-shadow-md);
+  border-color: var(--adm-border-green);
+}
+.adm-stat.is-active {
+  border-color: var(--adm-brand);
+  box-shadow: var(--adm-shadow-green);
+}
+.adm-stat-icon {
+  width: 40px; height: 40px; border-radius: var(--adm-r-sm);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--adm-gradient); color: #fff;
+  box-shadow: var(--adm-shadow-green);
+}
+.adm-stat-icon svg { width: 1.15rem; height: 1.15rem; }
+.adm-stat-icon.is-amber { background: linear-gradient(135deg, var(--warning-light) 0%, var(--warning-color) 100%); box-shadow: 0 14px 28px -12px rgba(245, 158, 11, .4); }
+.adm-stat-icon.is-red { background: linear-gradient(135deg, #f87171 0%, var(--danger-light) 100%); box-shadow: 0 14px 28px -12px rgba(239, 68, 68, .4); }
+.adm-stat-value {
+  font-weight: 800; letter-spacing: -.02em;
+  font-size: 1.5rem; color: var(--adm-ink-900); line-height: 1;
+}
+.adm-stat-label { font-size: .8rem; font-weight: 600; color: var(--adm-ink-500); margin-top: -.3rem; }
+.adm-stat-trend {
+  font-size: .72rem; font-weight: 700; color: var(--adm-brand-strong);
+  min-height: 1em;
+}
+
+/* ---- orders card + toolbar ---- */
+.adm-orders-card {
+  margin: 0 1.75rem 2rem;
+  background: #fff;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-lg);
+  box-shadow: var(--adm-shadow-sm);
+  overflow: hidden;
+}
+.adm-orders-toolbar {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  flex-wrap: wrap;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--adm-border);
+  background: var(--adm-surface-2);
+}
+.adm-ot-search {
+  position: relative;
+  flex: 1 1 260px;
+  min-width: 200px;
+}
+.adm-ot-search svg {
+  position: absolute; left: .8rem; top: 50%; transform: translateY(-50%);
+  width: 15px; height: 15px; color: var(--adm-ink-400); pointer-events: none;
+}
+.adm-ot-search input {
+  width: 100%; height: 40px;
+  padding: 0 .9rem 0 2.3rem;
+  border-radius: var(--adm-r-pill);
+  border: 1px solid var(--adm-border);
+  background: #fff;
+  font-family: var(--adm-font);
+  font-size: .85rem;
+  color: var(--adm-ink-800);
+  outline: none;
+  transition: border-color 200ms var(--adm-ease), box-shadow 200ms var(--adm-ease);
+}
+.adm-ot-search input::placeholder { color: var(--adm-ink-400); }
+.adm-ot-search input:focus {
+  border-color: var(--adm-border-green);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, .12);
+}
+.adm-ot-select {
+  height: 40px;
+  padding: 0 .9rem;
+  border-radius: var(--adm-r-sm);
+  border: 1px solid var(--adm-border);
+  background: #fff;
+  font-family: var(--adm-font);
+  font-size: .84rem;
+  font-weight: 500;
+  color: var(--adm-ink-700);
+  outline: none;
+  transition: border-color 200ms var(--adm-ease), box-shadow 200ms var(--adm-ease);
+}
+.adm-ot-select:focus { border-color: var(--adm-border-green); box-shadow: 0 0 0 3px rgba(16, 185, 129, .12); }
+.adm-ot-date { min-width: 150px; }
+.adm-ot-len { min-width: 96px; }
+.adm-ot-btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  height: 40px; padding: 0 1rem;
+  border-radius: var(--adm-r-sm);
+  border: 1px solid var(--adm-border);
+  background: #fff;
+  font-family: var(--adm-font);
+  font-size: .84rem; font-weight: 600;
+  color: var(--adm-ink-600);
+  cursor: pointer;
+  transition: background 200ms var(--adm-ease), color 200ms var(--adm-ease), border-color 200ms var(--adm-ease);
+}
+.adm-ot-btn:hover { background: var(--adm-surface-3); }
+.adm-ot-btn svg { width: 15px; height: 15px; }
+.adm-ot-btn--green {
+  background: var(--adm-surface-green);
+  border-color: var(--adm-border-green);
+  color: var(--adm-brand-strong);
+}
+.adm-ot-btn--green:hover { background: var(--adm-gradient); color: #fff; }
+.adm-ot-count {
+  margin-left: auto;
+  font-size: .78rem; font-weight: 600; color: var(--adm-ink-400);
+  white-space: nowrap;
+}
+
+/* ---- table shell / skeleton ---- */
+.adm-table-wrap { position: relative; overflow-x: auto; }
+.adm-orders-skeleton {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+.adm-orders-skeleton div {
+  height: 46px;
+  border-radius: var(--adm-r-sm);
+  background: linear-gradient(90deg, var(--adm-surface-2) 25%, var(--adm-surface-3) 37%, var(--adm-surface-2) 63%);
+  background-size: 400% 100%;
+  animation: adm-skeleton 1.4s ease infinite;
+}
+@keyframes adm-skeleton {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+.adm-table-wrap:has(.adm-orders-skeleton) .adm-orders-table { display: none; }
+
+/* ---- table ----
+   table-layout:fixed with explicit percentage widths, rather than letting
+   auto-layout size each column to its widest single line of content — with
+   9 columns of real data (multi-test package lists, full addresses, stacked
+   action buttons) auto-layout came out ~180px wider than a typical laptop
+   viewport, which meant Status/Actions needed a horizontal scroll to reach
+   by default. Percentages sum to 100 and are re-balanced at each breakpoint
+   below as columns drop off. */
+.adm-orders-table {
+  width: 100%;
+  table-layout: fixed;
+  margin: 0 !important;
+  border: none !important;
+  font-family: var(--adm-font);
+  font-size: .84rem;
+}
+.adm-orders-table col.adm-col-id           { width: 6%; }
+.adm-orders-table col.adm-col-customer     { width: 14%; }
+.adm-orders-table col.adm-col-items        { width: 13%; }
+.adm-orders-table col.adm-col-address      { width: 12%; }
+.adm-orders-table col.adm-col-when         { width: 10%; }
+.adm-orders-table col.adm-col-amount       { width: 12%; }
+.adm-orders-table col.adm-col-details      { width: 7%; }
+.adm-orders-table col.adm-col-status       { width: 13%; }
+.adm-orders-table col.adm-col-actions      { width: 13%; }
+.adm-orders-table thead th {
+  position: sticky; top: 0; z-index: 2;
+  background: var(--adm-surface-2);
+  color: var(--adm-ink-500);
+  font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em;
+  padding: .85rem .85rem !important;
+  border-bottom: 1px solid var(--adm-border) !important;
+  border-top: none !important;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+.adm-orders-table thead th:not(.sorting_disabled) { cursor: pointer; }
+.adm-orders-table tbody td {
+  padding: 20px 16px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--adm-border) !important;
+  vertical-align: middle;
+  color: var(--adm-ink-700);
+  overflow-wrap: break-word;
+}
+.adm-orders-table tbody tr {
+  transition: background 220ms var(--adm-ease), transform 220ms var(--adm-ease-out), box-shadow 220ms var(--adm-ease);
+}
+.adm-orders-table tbody tr:nth-child(even) { background: var(--adm-surface-2); }
+.adm-orders-table tbody tr:hover {
+  background: var(--adm-surface-green);
+  transform: translateY(-2px);
+  box-shadow: var(--adm-shadow-sm);
+  position: relative;
+  z-index: 1;
+}
+.adm-orders-table tbody tr:last-child td { border-bottom: none !important; }
+
+.adm-oid { font-weight: 700; color: var(--adm-ink-900); }
+
+/* ---- Customer: name / family-member hierarchy ---- */
+.adm-cell-customer { line-height: 1.4; }
+.adm-cust-name { display: block; font-weight: 700; color: var(--adm-ink-900); font-size: .88rem; }
+.adm-cust-meta { display: block; margin-top: .3rem; font-size: .76rem; font-weight: 500; color: var(--adm-ink-500); line-height: 1.5; }
+.adm-cust-more { color: var(--adm-brand-strong); font-weight: 700; }
+
+/* ---- Package/Test + Address: clamp to 2 lines, full text on hover via title ---- */
+.adm-cell-items, .adm-cell-addr { color: var(--adm-ink-600); line-height: 1.45; cursor: default; }
+.adm-clamp2 {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- Collection Schedule: date + time on their own rows with icons ---- */
+.adm-cell-when { color: var(--adm-ink-600); }
+.adm-when-row { display: flex; align-items: center; gap: .4rem; font-size: .8rem; white-space: nowrap; }
+.adm-when-row + .adm-when-row { margin-top: .3rem; color: var(--adm-ink-500); }
+.adm-when-row svg { width: 13px; height: 13px; flex: 0 0 auto; color: var(--adm-ink-400); }
+
+/* ---- Amount / Payment, Status, Details, Action: one consistent family —
+   same flex/center/gap rhythm so these five columns read as a set. Action
+   stretches its button stack to the column's fixed width instead of
+   centering, so every button (across every row) shares the same width.
+   IMPORTANT: the flex rules live on an inner .adm-col-stack wrapper the
+   decorate() script inserts, never on the <td> itself — setting
+   display:flex directly on a table cell makes Chrome drop it out of the
+   row's column layout entirely (cells then stack vertically like block
+   boxes instead of sitting side by side, which is exactly the "column
+   heights all different, action buttons piling down the page" bug this
+   replaced). vertical-align:middle on the plain table-cell <td> (set
+   earlier, unchanged) still does the vertical centering. */
+.adm-cell-amount, .adm-cell-status, .adm-cell-details, .adm-cell-actions { text-align: center; }
+.adm-col-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  width: 100%;
+}
+.adm-cell-actions .adm-col-stack { align-items: stretch; }
+
+.adm-amt { display: block; font-weight: 700; color: var(--adm-ink-900); font-size: .92rem; }
+.adm-cell-amount .adm-chip-row { display: flex; align-items: center; justify-content: center; gap: .35rem; flex-wrap: wrap; }
+.adm-chip {
+  display: inline-block;
+  font-size: .68rem; font-weight: 700; letter-spacing: .02em;
+  padding: .12rem .5rem;
+  border-radius: var(--adm-r-pill);
+}
+.adm-chip--green { background: var(--adm-surface-green); color: var(--adm-brand-strong); }
+.adm-chip--ink { background: var(--adm-surface-3); color: var(--adm-ink-600); }
+.adm-chip--ghost { background: transparent; border: 1px solid var(--adm-border); color: var(--adm-ink-400); }
+
+/* ---- Status: fixed-width pill with icon, so every badge lines up ---- */
+.adm-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .3rem;
+  width: 136px;
+  max-width: 100%;
+  font-size: .72rem; font-weight: 700;
+  padding: .4rem .55rem;
+  border-radius: var(--adm-r-pill);
+  white-space: normal;
+  overflow-wrap: break-word;
+  line-height: 1.25;
+}
+.adm-badge svg { width: 13px; height: 13px; flex: 0 0 auto; }
+.adm-badge--amber { background: var(--warning-bg); color: var(--warning-strong); }
+.adm-badge--green { background: var(--adm-surface-green); color: var(--adm-brand-strong); }
+.adm-badge--red { background: var(--danger-bg); color: var(--danger-strong); }
+.adm-badge--ink { background: var(--adm-surface-3); color: var(--adm-ink-600); }
+.adm-badge--blue { background: var(--info-bg); color: var(--info-strong); }
+.adm-badge--purple { background: #f3e8ff; color: #7e22ce; }
+.adm-badge--orange { background: var(--secondary-light); color: var(--secondary-hover); }
+.adm-badge--solid { background: var(--adm-gradient); color: #fff; }
+.adm-badge-sub { display: block; font-size: .74rem; color: var(--adm-ink-500); line-height: 1.4; }
+.adm-badge-sub u { color: var(--adm-brand-strong); text-decoration: none; font-weight: 600; }
+
+/* ---- Details: single compact icon+label button ---- */
+.adm-view-btn {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  gap: .35rem;
+  width: 92px; height: 36px;
+  border-radius: var(--adm-r-pill) !important;
+  background: var(--adm-surface-3);
+  color: var(--adm-ink-700) !important;
+  font-size: .78rem !important; font-weight: 600 !important;
+  border: 1px solid var(--adm-border) !important;
+  text-decoration: none !important;
+  transition: background 200ms var(--adm-ease), color 200ms var(--adm-ease), border-color 200ms var(--adm-ease);
+}
+.adm-view-btn svg { width: 14px; height: 14px; flex: 0 0 auto; }
+.adm-view-btn:hover { background: var(--adm-gradient); color: #fff !important; border-color: transparent !important; }
+
+/* ---- Action: equal-width, equal-height, evenly-spaced stack ---- */
+.adm-cell-manager { font-size: .74rem; font-weight: 600; color: var(--adm-ink-500); text-align: center; }
+.adm-act {
+  display: inline-flex !important; align-items: center; justify-content: center; gap: .4rem;
+  width: 100%; height: 36px; box-sizing: border-box;
+  padding: 0 .7rem !important;
+  border-radius: var(--adm-r-pill) !important;
+  font-size: .76rem !important; font-weight: 600 !important;
+  border: 1px solid transparent !important;
+  text-decoration: none !important;
+  white-space: normal !important;
+  text-align: center;
+  transition: background 200ms var(--adm-ease), color 200ms var(--adm-ease), transform 200ms var(--adm-ease-out);
+}
+.adm-act:hover { transform: translateY(-1px); }
+.adm-act svg { width: 14px; height: 14px; flex: 0 0 auto; }
+/* Green = positive, Red = reject, Blue = assign — replaces the old
+   green/red/"ink" mapping (which colored assign-type actions green) so the
+   color itself communicates the action's intent. */
+.adm-act--green { background: var(--adm-surface-green) !important; color: var(--adm-brand-strong) !important; }
+.adm-act--green:hover { background: var(--adm-gradient) !important; color: #fff !important; }
+.adm-act--red { background: var(--danger-bg) !important; color: var(--danger-strong) !important; }
+.adm-act--red:hover { background: var(--danger-light) !important; color: #fff !important; }
+.adm-act--blue { background: var(--info-bg) !important; color: var(--info-strong) !important; }
+.adm-act--blue:hover { background: var(--info-color) !important; color: #fff !important; }
+/* Gray = neutral status (e.g. "Inactive" toggle) — not destructive, so not
+   red; not a green/positive action either. */
+.adm-act--gray { background: var(--adm-surface-3) !important; color: var(--adm-ink-600) !important; }
+.adm-act--gray:hover { background: var(--adm-ink-400) !important; color: #fff !important; }
+/* Horizontal Edit/Delete-style action pairs for simple CRUD list tables
+   (Subcategory, Category, City, etc.) — .adm-act's own width:100% assumes
+   the .adm-col-stack (vertical, Orders-table) layout, so reset it here. */
+.adm-row-actions { display: inline-flex; gap: .5rem; justify-content: center; }
+.adm-row-actions .adm-act { width: auto; flex: 0 0 auto; }
+/* the plain "Completed" text the controller returns once there's nothing
+   left to action — styled to match the badge/button family instead of
+   sitting as bare text */
+.adm-act-note {
+  display: inline-flex; align-items: center; justify-content: center; gap: .35rem;
+  padding: .4rem .8rem;
+  border-radius: var(--adm-r-pill);
+  background: var(--adm-surface-green);
+  color: var(--adm-brand-strong);
+  font-size: .76rem; font-weight: 700;
+}
+.adm-act-note svg { width: 14px; height: 14px; flex: 0 0 auto; }
+
+.adm-empty {
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  padding: 3rem 1rem;
+  color: var(--adm-ink-400);
+}
+.adm-empty svg { width: 42px; height: 42px; opacity: .6; }
+.adm-empty b { color: var(--adm-ink-700); font-size: .95rem; }
+.adm-empty span { font-size: .82rem; }
+table.adm-orders-table td.dataTables_empty { border-bottom: none !important; }
+
+/* ---- DataTables chrome: hide the default filter/length (replaced by our
+   toolbar), restyle info + pagination to match ---- */
+.adm-orders-card .dataTables_wrapper { padding: 0 1.25rem 1.1rem; }
+.adm-orders-card .dataTables_length,
+.adm-orders-card .dataTables_filter { display: none !important; }
+.adm-orders-card .dataTables_info {
+  padding-top: 1rem !important;
+  font-size: .8rem; color: var(--adm-ink-500);
+}
+.adm-orders-card .dataTables_paginate { padding-top: .7rem; }
+.adm-orders-card .dataTables_paginate .pagination { gap: .3rem; }
+.adm-orders-card .page-link {
+  border: 1px solid var(--adm-border) !important;
+  border-radius: var(--adm-r-xs) !important;
+  color: var(--adm-ink-600) !important;
+  font-size: .82rem; font-weight: 600;
+  margin-left: 0 !important;
+}
+.adm-orders-card .page-item.active .page-link {
+  background: var(--adm-gradient) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+.adm-orders-card .page-item.disabled .page-link { color: var(--adm-ink-400) !important; opacity: .6; }
+.adm-orders-card .page-link:hover { background: var(--adm-surface-green); border-color: var(--adm-border-green) !important; }
+.adm-orders-card div.dataTables_processing {
+  background: #fff; border: 1px solid var(--adm-border); border-radius: var(--adm-r-sm);
+  box-shadow: var(--adm-shadow-md); font-size: .85rem; font-weight: 600; color: var(--adm-ink-700);
+  padding: 1rem !important;
+}
+
+/* ---- order-details / reject / complete / upload modals ---- */
+.adm-modal .modal-content {
+  border: none !important;
+  border-radius: var(--adm-r-lg) !important;
+  box-shadow: var(--adm-shadow-lg) !important;
+  overflow: hidden;
+}
+.adm-modal .modal-header {
+  background: var(--adm-surface-2);
+  border-bottom: 1px solid var(--adm-border);
+  padding: 1.1rem 1.4rem;
+}
+.adm-modal .modal-header--red { background: var(--danger-bg); }
+.adm-modal .modal-title {
+  display: flex; align-items: center; gap: .6rem;
+  font-weight: 700; color: var(--adm-ink-900); font-size: 1.05rem;
+}
+.adm-modal-icon {
+  width: 34px; height: 34px; border-radius: var(--adm-r-sm);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--adm-gradient); color: #fff; flex: 0 0 auto;
+}
+.adm-modal-icon svg { width: 17px; height: 17px; }
+.adm-modal-icon.is-red { background: var(--danger-light); }
+.adm-modal .modal-body { padding: 1.4rem; }
+.adm-modal .modal-footer { border-top: 1px solid var(--adm-border); padding: 1rem 1.4rem; }
+.adm-modal-hint { font-size: .85rem; color: var(--adm-ink-500); margin-bottom: 1rem; }
+
+.adm-od-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  margin-bottom: 1rem;
+}
+.adm-od-card {
+  background: var(--adm-surface-2);
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-md);
+  padding: 1.1rem 1.2rem;
+}
+.adm-od-card-title {
+  display: flex; align-items: center; gap: .5rem;
+  font-weight: 700; font-size: .84rem; color: var(--adm-ink-900);
+  margin-bottom: .8rem;
+}
+.adm-od-card-title svg { width: 16px; height: 16px; color: var(--adm-brand); }
+.adm-od-row {
+  display: flex; align-items: baseline; justify-content: space-between; gap: .75rem;
+  font-size: .84rem; padding: .3rem 0;
+  border-bottom: 1px dashed var(--adm-border-2);
+}
+.adm-od-row:last-child { border-bottom: none; }
+.adm-od-row span { color: var(--adm-ink-500); }
+.adm-od-row b { color: var(--adm-ink-800); font-weight: 600; text-align: right; }
+.adm-od-row--block { flex-direction: column; align-items: flex-start; gap: .25rem; }
+.adm-od-row--block b { text-align: left; }
+
+.adm-od-items { padding: 1.1rem 1.2rem; }
+.adm-od-table { margin: 0 !important; font-size: .84rem; }
+.adm-od-table thead td { font-weight: 700; color: var(--adm-ink-500); font-size: .72rem; text-transform: uppercase; letter-spacing: .03em; border-bottom: 1px solid var(--adm-border); padding-bottom: .6rem !important; }
+.adm-od-table tbody td { padding: .7rem 0 !important; border-bottom: 1px solid var(--adm-border); color: var(--adm-ink-700); vertical-align: top; }
+.adm-od-table tfoot td, .adm-od-table tfoot th { border: none !important; padding: .3rem 0 !important; font-size: .84rem; }
+.adm-od-taxrow { color: var(--adm-ink-500); }
+.adm-od-total th { font-size: 1rem !important; color: var(--adm-ink-900); border-top: 1px solid var(--adm-border) !important; padding-top: .6rem !important; }
+
+/* ---- Assign to Lab: labs as selectable cards instead of a <select> ---- */
+.adm-lab-search { margin-bottom: 1rem; }
+.adm-lab-list {
+  display: flex; flex-direction: column; gap: .65rem;
+  max-height: 360px; overflow-y: auto; padding-right: .25rem;
+}
+.adm-lab-card {
+  display: flex; align-items: flex-start; gap: .8rem;
+  padding: .9rem 1rem;
+  border: 1.5px solid var(--adm-border);
+  border-radius: var(--adm-r-md);
+  cursor: pointer;
+  transition: border-color 200ms var(--adm-ease), background 200ms var(--adm-ease), box-shadow 200ms var(--adm-ease);
+}
+.adm-lab-card:hover { border-color: var(--adm-border-green); background: var(--adm-surface-green); }
+.adm-lab-card input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
+.adm-lab-check {
+  width: 20px; height: 20px; border-radius: 50%; flex: 0 0 auto;
+  border: 2px solid var(--adm-border-2);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: transparent;
+  transition: background 200ms var(--adm-ease), border-color 200ms var(--adm-ease), color 200ms var(--adm-ease);
+}
+.adm-lab-check svg { width: 12px; height: 12px; }
+.adm-lab-card.is-selected {
+  border-color: var(--adm-brand);
+  background: var(--adm-surface-green);
+  box-shadow: var(--adm-shadow-green);
+}
+.adm-lab-card.is-selected .adm-lab-check {
+  background: var(--adm-gradient);
+  border-color: transparent;
+  color: #fff;
+}
+.adm-lab-body { display: flex; flex-direction: column; gap: .3rem; min-width: 0; }
+.adm-lab-name { font-weight: 700; color: var(--adm-ink-900); font-size: .92rem; }
+.adm-lab-meta {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: .78rem; color: var(--adm-ink-500);
+}
+.adm-lab-meta svg { width: 13px; height: 13px; flex: 0 0 auto; color: var(--adm-ink-400); }
+
+/* ==========================================================================
+   ORDERS MODULE — RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .adm-orders-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 992px) {
+  .adm-orders-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .adm-od-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .adm-orders-header { padding: 1.25rem 1rem .25rem !important; }
+  .adm-toast-wrap, .adm-orders-stats { padding-left: 1rem; padding-right: 1rem; }
+  .adm-orders-card { margin-left: 1rem; margin-right: 1rem; }
+
+  /* Horizontally-scrollable toolbar so filters stay reachable without
+     eating the whole screen height. `position:sticky` was tried here to
+     also pin it below the fixed header while scrolling, but its sticky
+     containing block is `.adm-orders-card` — which needs `overflow:hidden`
+     for its own rounded corners — and a sticky element clips to that
+     ancestor's box the moment it would stick, which was rendering the
+     toolbar on top of the first table row instead of pushing it down.
+     Static positioning avoids that; the horizontal scroll for the filter
+     controls themselves still works. */
+  .adm-orders-toolbar {
+    overflow-x: auto; flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .adm-ot-search { flex: 0 0 220px; }
+  .adm-ot-count { margin-left: 0; flex: 0 0 auto; }
+
+  /* card layout: hide the table head, stack each row as a card using the
+     data-label the decorate() script writes onto each cell */
+  .adm-orders-table thead { display: none; }
+  .adm-orders-table, .adm-orders-table tbody, .adm-orders-table tr, .adm-orders-table td {
+    display: block; width: 100% !important;
+  }
+  .adm-orders-table tbody tr {
+    border: 1px solid var(--adm-border);
+    border-radius: var(--adm-r-md);
+    margin-bottom: .85rem;
+    padding: .9rem 1rem;
+    background: #fff !important;
+  }
+  .adm-orders-table tbody td {
+    border-bottom: none !important;
+    padding: .35rem 0 !important;
+  }
+  .adm-orders-table td.dataTables_empty { border: none !important; }
+  .adm-orders-table td[data-label]:not(.adm-cell-actions):not(.adm-cell-details)::before {
+    content: attr(data-label);
+    display: block;
+    font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+    color: var(--adm-ink-400);
+    margin-bottom: .15rem;
+  }
+  .adm-orders-table td:first-child { padding-top: 0 !important; }
+  /* the generic td rule above forces display:block for the card layout;
+     re-enable flex just for these two so the button stack/centering from
+     the desktop rules still holds inside the card */
+  .adm-cell-amount, .adm-cell-status { display: flex !important; padding-top: .5rem; }
+  .adm-cell-details { display: flex !important; align-items: center; padding-top: .5rem; }
+  .adm-cell-actions {
+    display: flex !important; flex-direction: column; align-items: stretch;
+    gap: 10px; padding-top: .5rem;
+  }
+
+  /* pagination anchored to the bottom of the viewport for quick reach */
+  .adm-orders-card .dataTables_paginate,
+  .adm-orders-card .dataTables_info { text-align: center !important; }
+  .adm-orders-card .dataTables_paginate .pagination { justify-content: center !important; flex-wrap: wrap; }
+
+  .adm-od-row { flex-direction: column; align-items: flex-start; gap: .15rem; }
+  .adm-od-row b { text-align: left; }
+  .adm-lab-list { max-height: 300px; }
+}
+@media (max-width: 480px) {
+  .adm-orders-stats { grid-template-columns: 1fr 1fr; }
+}
+
+/* ==========================================================================
+   CREATE BOOKING (admin/orders/makeorder.blade.php) — everything below is
+   scoped under .adm-bk so it can't leak onto any other admin screen that
+   also uses plain .form-control/.select2/.adm-field-style markup.
+   ========================================================================== */
+.adm-bk { padding-bottom: 2rem; }
+
+.adm-bk-customerbar {
+  display: none;
+  align-items: center;
+  gap: .9rem;
+  margin: 0 1.75rem 1.25rem;
+  padding: .9rem 1.1rem;
+  background: var(--adm-surface-green);
+  border: 1px solid var(--adm-border-green);
+  border-radius: var(--adm-r-lg);
+}
+.adm-bk-customerbar-avatar {
+  width: 42px; height: 42px; border-radius: 50%; flex: 0 0 auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--adm-gradient); color: #fff; font-weight: 700; font-size: 1rem;
+  overflow: hidden;
+}
+.adm-bk-customerbar-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.adm-bk-customerbar-info { display: flex; flex-direction: column; gap: .1rem; flex: 1 1 auto; min-width: 0; }
+.adm-bk-customerbar-info b { color: var(--adm-ink-900); font-size: .92rem; }
+.adm-bk-customerbar-info span { color: var(--adm-ink-500); font-size: .78rem; }
+
+.adm-bk-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 1.25rem;
+  padding: 0 1.75rem;
+  align-items: start;
+}
+.adm-bk-main { display: flex; flex-direction: column; gap: 1.25rem; min-width: 0; }
+
+.adm-form-card {
+  background: #fff;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-lg);
+  box-shadow: var(--adm-shadow-sm);
+  overflow: hidden;
+}
+/* Standalone single-card form pages (Save Category, and every similar
+   create/edit page ahead) — .adm-form-card itself has no outer margin
+   because on the Booking page it's nested inside .adm-bk-grid's own
+   padding; this wrapper gives it the same page-edge spacing as
+   .adm-orders-card when it's the top-level content instead. */
+/* Was 640px — cramped on desktop for a 2-column layout, leaving excess
+   whitespace either side. Widened so 2-column forms actually use the
+   available width; single-field forms (Tag, Category name-only, etc.)
+   just end up with more breathing room rather than looking stretched,
+   since .adm-field columns are still Bootstrap .col-md-6/.col-12, not a
+   fixed pixel width. Pages that need something different (Setting/Payment
+   Setting's many-tab layouts, Booking's grid) already set their own
+   inline max-width and are unaffected. */
+.adm-form-page { margin: 0 1.75rem 2rem; max-width: 960px; }
+@media (max-width: 767px) { .adm-form-page { margin: 0 1rem 1.5rem; } }
+/* Multi-tab configuration pages (Setting, Payment Setting, Parameter,
+   Package, Profile) — same full-bleed treatment as .adm-orders-card
+   (no max-width at all, just the page's own side margins) instead of a
+   fixed pixel cap, so they use the same available width as the Orders
+   master reference rather than stranding a wide gap on real desktop
+   viewports. Simple 1-2 field forms (Tag, City, Coupon, etc.) keep the
+   960px cap above — full-bleeding a two-field form looks sparse, not
+   "balanced", the way a five-plus-field, multi-tab settings page does. */
+.adm-form-page--wide { max-width: none; }
+.adm-form-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: .9rem;
+  padding: 1.35rem 1.5rem;
+  border-bottom: 1px solid var(--adm-border);
+}
+.adm-form-card-title {
+  display: flex; align-items: center; gap: .55rem;
+  font-weight: 700; font-size: .96rem; color: var(--adm-ink-900);
+}
+.adm-form-card-title svg { width: 18px; height: 18px; color: var(--adm-brand); flex: 0 0 auto; }
+/* ROOT CAUSE (found via computed-style measurement, not assumed): this used
+   to be a direct-child selector (.adm-form-card > form > .row), which only
+   ever matches simple, non-tabbed forms (Category, City, Tag — form really
+   is a direct child of .adm-form-card). Every TABBED page (Setting, Payment
+   Setting, Parameter, Package, Profile) actually nests form two levels
+   deeper — .adm-form-card > .tab-content > .tab-pane > form > .row — so the
+   old selector silently never matched there and the card rendered with
+   ZERO horizontal padding on every tabbed page, full stop, regardless of
+   any other CSS. Confirmed empirically: input.getBoundingClientRect().left
+   minus card.getBoundingClientRect().left was 1px. Using a plain descendant
+   combinator instead of a child combinator fixes every depth at once. */
+.adm-form-card .row { padding: 2rem 2rem 0; margin: 0; }
+.adm-form-card .row:last-child { padding-bottom: 0; }
+@media (max-width: 991px) { .adm-form-card .row { padding: 1.5rem 1.5rem 0; } }
+@media (max-width: 575px) { .adm-form-card .row { padding: 1.25rem 1.25rem 0; } }
+.adm-bk-savedaddress { padding: 0 1.25rem 1.1rem; }
+
+/* ---- form footer (Save/Cancel row) — a plain button sitting right after
+   the last field with only field-spacing below it read as "isolated";
+   a top border + its own padding gives it the same "distinct footer"
+   treatment .adm-modal's modal-footer already has elsewhere, so Save
+   never looks like it just trailed off the form. Deliberately NOT
+   bled edge-to-edge via negative margins — this sits inside a Bootstrap
+   .col-12, whose own gutter padding varies slightly by context, and a
+   contained strip is a safer bet than trying to out-guess that.
+   padding-bottom matters here specifically: the last .row in a form has
+   its own padding-bottom zeroed (below) so the footer, not a generic
+   field, owns the card's final bottom spacing — without it Save would
+   sit flush against the card's bottom edge. */
+.adm-form-actions {
+  display: flex; align-items: center; gap: .65rem; flex-wrap: wrap;
+  margin-top: 2rem;
+  padding: 1.5rem 0 2rem;
+  border-top: 1px solid var(--adm-border);
+}
+
+/* ---- catalog / settings tabs — modern segmented-control look ----
+   A shared gray "track" behind the pills (like a native iOS segmented
+   control or Linear's tab bar) reads as one cohesive control, rather than
+   a loose row of separately-floating buttons.
+   Root cause of the "tabs feel cramped" complaint: this was never a
+   structural bug (no wrong selector, nothing failing to match) — the
+   component simply used compact segmented-control spacing values
+   (4.8px gap, ~9px/18px pill padding, 4.8px container padding), which
+   reads as tight compared to a premium dashboard's usual pill-tab rhythm.
+   Rebuilt with explicit, larger spacing per spec below — same component,
+   same classes, no markup change. */
+.adm-cat-tabs {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  border: none;
+  background: var(--adm-surface-2);
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-pill);
+  padding: 1.125rem;
+}
+@media (max-width: 991px) { .adm-cat-tabs { gap: .75rem; } }
+@media (max-width: 767px) { .adm-cat-tabs { gap: .5rem; } }
+/* Many-tab pages (Setting has 9, Payment Setting has 5) never fit on one
+   row at any realistic width — a single horizontally-scrollable strip
+   (scrollbar hidden, swipe/drag still works) stays one line always,
+   rather than wrapping into a second cramped row. Scoped to
+   .adm-form-card-head's tabs (Setting/Payment Setting/Parameter) rather
+   than the Booking page's own catalog tabs, which only ever have 3-4 items
+   and are meant to wrap. */
+.adm-form-card-head .adm-cat-tabs {
+  position: relative;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.adm-form-card-head .adm-cat-tabs::-webkit-scrollbar { display: none; }
+/* Scrolling itself always worked (verified: scrolling reveals every one of
+   the 9 tabs, nothing is lost) — but with no visual cue that the strip
+   scrolls, its own rounded right edge reads as "the tabs end here", so a
+   user never discovers Terms of Service / Privacy Policy / Franchise /
+   Refund Policy exist past the fold. A ::after fade mask pinned to the
+   container (not the scrolling content, so it never moves as you scroll)
+   signals more content is reachable — the same pattern browser tab strips
+   and Gmail's label list use. Pure CSS, no markup change needed on any
+   page that already uses .adm-cat-tabs inside .adm-form-card-head. */
+.adm-form-card-head { position: relative; }
+.adm-form-card-head .adm-cat-tabs::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  width: 2.5rem;
+  border-radius: 0 var(--adm-r-pill) var(--adm-r-pill) 0;
+  background: linear-gradient(to right, transparent, var(--adm-surface-2) 70%);
+  pointer-events: none;
+}
+/* ROOT CAUSE of the tabs overlapping/crowding each other (found via
+   getBoundingClientRect on every level, not assumed): the actual flex
+   items of the <ul class="adm-cat-tabs"> are the <li class="nav-item">
+   wrappers, NOT the <a class="nav-link"> anchors — but only the anchor
+   had flex:0 0 auto. The <li> kept flexbox's default flex-shrink:1, so
+   once 9 tabs' full padded width didn't fit the row, the browser shrank
+   each <li> box below its own anchor's real content width (the anchor
+   itself can't shrink — white-space:nowrap plus fixed padding — so it
+   just visually overflowed its shrunk <li>, overlapping the next tab).
+   flex-shrink:0 here stops the <li> from ever compressing below its
+   content, so the whole row overflows honestly and the intended
+   horizontal scroll (above) engages instead of tabs overlapping. */
+.adm-cat-tabs .nav-item { flex: 0 0 auto; }
+.adm-cat-tabs .nav-link {
+  flex: 0 0 auto;
+  border: none !important;
+  border-radius: var(--adm-r-pill) !important;
+  padding: .8125rem 1.5rem !important;
+  font-size: .84rem !important; font-weight: 600 !important;
+  white-space: nowrap;
+  color: var(--adm-ink-600) !important;
+  background: transparent !important;
+  line-height: 1.2;
+  transition: background 200ms var(--adm-ease), color 200ms var(--adm-ease), box-shadow 200ms var(--adm-ease);
+}
+.adm-cat-tabs .nav-link:hover { background: #fff !important; color: var(--adm-brand-strong) !important; box-shadow: var(--adm-shadow-xs); }
+.adm-cat-tabs .nav-link.active {
+  background: var(--adm-gradient) !important;
+  color: #fff !important;
+  box-shadow: var(--adm-shadow-green);
+}
+/* Standalone use (no surrounding track — none currently, kept for safety
+   if a future page uses .adm-cat-tabs outside .adm-form-card-head) */
+.adm-cat-toolbar .adm-cat-tabs,
+.adm-bk .adm-cat-tabs {
+  background: transparent; border: none; padding: 0; gap: .4rem;
+}
+.adm-cat-toolbar .adm-cat-tabs .nav-link,
+.adm-bk .adm-cat-tabs .nav-link {
+  border: 1px solid var(--adm-border) !important;
+  background: #fff !important;
+}
+.adm-cat-toolbar .adm-cat-tabs .nav-link:hover,
+.adm-bk .adm-cat-tabs .nav-link:hover { border-color: var(--adm-border-green) !important; }
+.adm-cat-search { position: relative; margin: 0 1.25rem 1rem; }
+
+/* ---- catalog / cart tables ---- */
+.adm-cat-table, .adm-cart-table {
+  width: 100%; margin: 0 !important; border: none !important;
+  font-family: var(--adm-font); font-size: .84rem;
+}
+.adm-cat-table thead th, .adm-cart-table thead th {
+  background: var(--adm-surface-2);
+  color: var(--adm-ink-500);
+  font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+  padding: .75rem 1.25rem !important;
+  border-bottom: 1px solid var(--adm-border) !important; border-top: none !important;
+  white-space: normal;
+}
+.adm-cat-table tbody td, .adm-cart-table tbody td {
+  padding: .85rem 1.25rem !important;
+  border: none !important;
+  border-bottom: 1px solid var(--adm-border) !important;
+  vertical-align: middle;
+  color: var(--adm-ink-700);
+}
+.adm-cat-table tbody tr:hover, .adm-cart-table tbody tr:hover { background: var(--adm-surface-green); }
+.adm-cat-table tbody tr:last-child td, .adm-cart-table tbody tr:last-child td { border-bottom: none !important; }
+.adm-cat-name {
+  display: block; font-weight: 600; color: var(--adm-ink-800);
+  white-space: normal !important; word-break: break-word;
+}
+.adm-cat-table td:first-child, .adm-cart-table td:first-child { white-space: normal !important; }
+.adm-cat-count { display: block; margin-top: .2rem; font-size: .74rem; font-weight: 500; color: var(--adm-ink-400); }
+.adm-cat-eye {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; margin-left: .4rem; vertical-align: middle;
+  border: none; background: var(--adm-surface-3); border-radius: 50%; color: var(--adm-ink-500);
+  cursor: pointer; transition: background 200ms var(--adm-ease), color 200ms var(--adm-ease);
+}
+.adm-cat-eye:hover { background: var(--adm-surface-green); color: var(--adm-brand-strong); }
+.adm-cat-eye svg { width: 12px; height: 12px; }
+.adm-cat-price { font-weight: 700; color: var(--adm-ink-900); white-space: nowrap; }
+.adm-cat-add {
+  display: inline-flex !important; align-items: center; gap: .35rem;
+  padding: .4rem .85rem !important;
+  border-radius: var(--adm-r-pill) !important;
+  background: var(--adm-surface-green) !important; color: var(--adm-brand-strong) !important;
+  border: none !important; font-size: .78rem !important; font-weight: 700 !important;
+  transition: background 200ms var(--adm-ease), color 200ms var(--adm-ease);
+}
+.adm-cat-add:hover { background: var(--adm-gradient) !important; color: #fff !important; }
+.adm-cat-add svg { width: 13px; height: 13px; }
+.adm-cart-name { font-weight: 600; color: var(--adm-ink-800); }
+.adm-cart-price { font-weight: 700; color: var(--adm-ink-900); }
+.adm-cart-empty-row td { padding: 0 !important; border-bottom: none !important; }
+.adm-empty--inline { padding: 1.75rem 1rem; }
+.adm-empty--inline svg { width: 32px; height: 32px; }
+
+.adm-bk-count-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 26px; height: 26px; padding: 0 .5rem;
+  border-radius: var(--adm-r-pill);
+  background: var(--adm-gradient); color: #fff;
+  font-size: .78rem; font-weight: 700;
+}
+
+/* ---- generic field + input styling for this page ---- */
+/* .adm-form is the same premium field/input/select2 skin as .adm-bk (Create
+   Booking), generalized under a page-agnostic name so any redesigned
+   create/edit form can opt in — .adm-bk is kept as an alias so the Booking
+   page (which uses that name literally) keeps working unchanged. Scoped
+   (not global) so untouched legacy pages keep plain Bootstrap inputs until
+   their own module redesign pass wraps them in .adm-form too. */
+.adm-bk .adm-field, .adm-form .adm-field { margin-bottom: 1.5rem; }
+.adm-bk .adm-field label, .adm-form .adm-field label {
+  display: block; margin-bottom: .75rem;
+  font-size: .78rem; font-weight: 700; color: var(--adm-ink-600);
+  text-transform: uppercase; letter-spacing: .03em;
+}
+.adm-bk .adm-field .reqfield, .adm-form .adm-field .reqfield { text-transform: none; }
+.adm-bk .form-control,
+.adm-bk select.form-control,
+.adm-form .form-control,
+.adm-form select.form-control {
+  border: 1px solid var(--adm-border) !important;
+  border-radius: 12px !important;
+  padding: .6rem .9rem !important;
+  height: 52px !important;
+  font-size: .86rem !important;
+  color: var(--adm-ink-800) !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  transition: border-color 200ms var(--adm-ease), box-shadow 200ms var(--adm-ease);
+}
+.adm-bk textarea.form-control,
+.adm-form textarea.form-control {
+  height: auto !important;
+  min-height: 120px !important;
+}
+/* The theme's own base stylesheet hard-codes select.form-control's height to
+   2.375rem (style.css, select.form-control:not([size]):not([multiple])),
+   which the padding above can't override — selects render ~5px shorter than
+   text inputs in the same row. The explicit height:52px above already wins
+   for selects too since it's the same rule; kept as its own declaration
+   here as documentation of why selects specifically needed an override. */
+.adm-bk .form-control:focus, .adm-form .form-control:focus {
+  border-color: var(--adm-border-green) !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, .12) !important;
+}
+.adm-bk .form-control::placeholder, .adm-form .form-control::placeholder { color: var(--adm-ink-400) !important; }
+.adm-bk .select2-container .select2-selection--single,
+.adm-form .select2-container .select2-selection--single {
+  height: 42px !important;
+  border: 1px solid var(--adm-border) !important;
+  border-radius: var(--adm-r-sm) !important;
+  display: flex; align-items: center;
+}
+.adm-bk .select2-container .select2-selection__rendered,
+.adm-form .select2-container .select2-selection__rendered { padding-left: .9rem !important; font-size: .86rem; color: var(--adm-ink-800); }
+.adm-bk .select2-container .select2-selection__arrow,
+.adm-form .select2-container .select2-selection__arrow { height: 40px !important; }
+
+/* ==========================================================================
+   MODERN FILE UPLOAD WIDGET
+   Every image field sitewide now uses one plain, always-visible native
+   file input styled via ::file-selector-button (the lowest-risk way to
+   modernize a native file input — no markup/JS required, degrades to the
+   plain control on unsupported browsers).
+
+   This replaces the old .upload-btn-wrapper/.imgcatlog pattern (Category,
+   Offer, Blog, Content, Manager, Subcategory, Edit Profile used to rely on
+   it) — that pattern layered an invisible, oversized (font-size:100px),
+   absolutely-positioned input under a decorative preview button (a trick
+   defined in the theme's own base stylesheet, public/assets/css/style.css)
+   to make the whole preview clickable. It worked, but its invisible sizing
+   was fragile: two separate rounds of shared-CSS changes in this project
+   nearly crushed its click area to nothing before either one shipped,
+   simply because a broad `input[type=file]{...}` rule doesn't distinguish
+   "invisible click-catcher" from "plain visible input" without very
+   deliberate, easy-to-forget scoping. Migrating every page to a single,
+   always-visible pattern removes that failure mode entirely — every field
+   now uses the exact same, simple, native control, wrapped by the new
+   .adm-upload component (thumbnail + control, defined below) instead of
+   the old invisible-overlay markup. The theme's own unused
+   .upload-btn-wrapper/.imgcatlog rules in style.css are untouched (dead,
+   harmless vendor CSS, not worth touching).
+   ========================================================================== */
+input[type=file] {
+  border: 1px solid var(--adm-border) !important;
+  border-radius: var(--adm-r-sm) !important;
+  padding: .5rem .7rem !important;
+  font-size: .82rem !important;
+  color: var(--adm-ink-600) !important;
+  background: #fff !important;
+}
+input[type=file]::file-selector-button,
+input[type=file]::-webkit-file-upload-button {
+  display: inline-flex; align-items: center;
+  margin-right: .8rem;
+  padding: .45rem .9rem;
+  border: none;
+  border-radius: var(--adm-r-pill);
+  background: var(--adm-surface-green);
+  color: var(--adm-brand-strong);
+  font-family: var(--adm-font);
+  font-size: .8rem; font-weight: 700;
+  cursor: pointer;
+  transition: background 200ms var(--adm-ease), color 200ms var(--adm-ease);
+}
+input[type=file]:hover::file-selector-button,
+input[type=file]:hover::-webkit-file-upload-button {
+  background: var(--adm-gradient);
+  color: #fff;
+}
+
+/* ---- .adm-upload: ONE reusable upload component, used by every image
+   field sitewide (Setting's 5, and — replacing the old
+   .upload-btn-wrapper/.imgcatlog invisible-overlay trick — Category,
+   Subcategory, Offer, Blog, Content, Manager, Edit Profile).
+   Stacked layout: 80×80 preview on its own line (object-fit:contain so a
+   wide/non-square source image like a real logo letterboxes instead of
+   being cropped), then the native (already-styled via ::file-selector-button
+   above) Choose File control on its own line — the browser already renders
+   "Choose File" + the chosen filename as one native control, side by side,
+   so no separate filename element is needed — then a small helper line.
+   No heavy card chrome, no background fill, just enough border to read as
+   one control.
+   Replacing the overlay trick (rather than restyling it a third time) is
+   intentional: that pattern relies on an invisible, oversized
+   (font-size:100px), absolutely-positioned input layered under a
+   decorative button, which is exactly what caused two near-miss
+   regressions earlier in this project when shared CSS changes touched
+   `input[type=file]`. A plain, visible, always-native file input has no
+   such failure mode — every page keeps its exact original name/id
+   attributes, so submission and the existing readURL() preview-on-select
+   handler (which targets #upload_image/#basic_img by id) keep working
+   completely unchanged. ---- */
+.adm-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .55rem;
+  padding: .6rem;
+  max-width: 280px;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-md);
+}
+.adm-upload-thumb {
+  width: 80px; height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex: 0 0 auto;
+  border: 1px solid var(--adm-border-2);
+  background: var(--adm-surface-2);
+  display: flex; align-items: center; justify-content: center;
+}
+.adm-upload-thumb img {
+  width: 100% !important; height: 100% !important;
+  object-fit: contain;
+  border: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+.adm-upload-control { flex: 1 1 auto; min-width: 0; width: 100%; display: flex; flex-direction: column; gap: .4rem; }
+.adm-upload-control input[type=file] { width: 100%; }
+.adm-upload-hint {
+  display: flex; align-items: center; gap: .35rem;
+  font-size: .72rem; color: var(--adm-ink-400);
+}
+.adm-upload-hint svg { width: 13px; height: 13px; color: var(--adm-brand); flex: 0 0 auto; }
+@media (max-width: 360px) {
+  .adm-upload { max-width: 100%; }
+}
+
+/* Multi-image preview grid (Setting's Main Banner / App Banner — the only
+   fields that can hold more than one existing image at once, each with its
+   own Remove link). Previously plain Bootstrap .row > .col-4: with fewer
+   than 3 images that left large dead gaps (an empty grid column) and each
+   image's HTML width="200px" attribute is invalid (the width attribute
+   takes a unitless number, not "200px"), so it was silently ignored and
+   thumbnails fell back to their unstyled natural size. Fixed-size flex
+   cards wrap naturally regardless of image count, with no dead column
+   space, and the thumbnail size now comes from real CSS. */
+.adm-banner-grid { display: flex; flex-wrap: wrap; gap: .75rem; margin: 0 0 .75rem; }
+.adm-banner-item {
+  width: 140px;
+  padding: .5rem;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-md);
+  text-align: center;
+}
+.adm-banner-item img {
+  width: 100%; height: 90px;
+  object-fit: cover;
+  border-radius: var(--adm-r-sm);
+  border: 1px solid var(--adm-border-2);
+  background: var(--adm-surface-2);
+  display: block;
+}
+.adm-banner-item .adm-act { width: 100%; margin-top: .5rem; justify-content: center; }
+
+/* ==========================================================================
+   CHECKBOX / TOGGLE SWITCH — the theme's raw Bootstrap 4
+   .custom-control.custom-checkbox (e.g. Setting's "Site RTL") had no skin
+   of its own here at all, so it rendered as a bare, dated native-ish
+   checkbox out of step with everything else on the page. Restyled as a
+   proper brand-green toggle switch — sitewide, since this is the only
+   checkbox pattern used across the panel (no separate radio/switch variant
+   exists to also cover).
+   ========================================================================== */
+.custom-control.custom-checkbox {
+  display: flex; align-items: center; gap: .65rem;
+  padding-left: 0;
+  min-height: 0;
+}
+.custom-control.custom-checkbox .custom-control-input {
+  position: absolute; opacity: 0; width: 0; height: 0;
+}
+.custom-control.custom-checkbox .custom-control-label {
+  position: relative;
+  display: inline-flex; align-items: center;
+  padding-left: 3rem;
+  cursor: pointer;
+  font-size: .86rem; font-weight: 600; color: var(--adm-ink-700);
+  min-height: 1.6rem;
+}
+.custom-control.custom-checkbox .custom-control-label::before {
+  content: '';
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 2.5rem; height: 1.4rem;
+  border-radius: var(--adm-r-pill);
+  background: var(--adm-border-2);
+  transition: background 200ms var(--adm-ease);
+}
+.custom-control.custom-checkbox .custom-control-label::after {
+  content: '';
+  position: absolute; left: .2rem; top: 50%; transform: translateY(-50%);
+  width: 1rem; height: 1rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--adm-shadow-xs);
+  transition: transform 200ms var(--adm-ease);
+}
+.custom-control.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background: var(--adm-gradient);
+}
+.custom-control.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  transform: translateY(-50%) translateX(1.1rem);
+}
+.custom-control.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, .18);
+}
+
+.adm-bk-map { height: 260px; border-radius: var(--adm-r-md); overflow: hidden; border: 1px solid var(--adm-border); }
+
+/* ---- sticky booking summary ---- */
+.adm-bk-summary { position: sticky; top: 76px; align-self: start; }
+.adm-summary-card {
+  background: #fff;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-lg);
+  box-shadow: var(--adm-shadow-md);
+  padding: 1.25rem;
+}
+.adm-summary-title {
+  display: flex; align-items: center; gap: .55rem;
+  font-weight: 800; font-size: 1rem; color: var(--adm-ink-900);
+  margin-bottom: 1.1rem;
+}
+.adm-summary-title svg { width: 18px; height: 18px; color: var(--adm-brand); }
+.adm-bk-coupon-row { display: flex; gap: .5rem; }
+.adm-bk-coupon-row .form-control { flex: 1 1 auto; }
+.adm-bk-coupon-msg { display: block; margin-top: .4rem; font-size: .76rem; color: var(--adm-brand-strong); font-weight: 600; min-height: 1.1em; }
+.adm-summary-rows { border-top: 1px dashed var(--adm-border-2); margin-top: .5rem; padding-top: 1rem; }
+.adm-summary-row { display: flex; align-items: center; justify-content: space-between; padding: .35rem 0; font-size: .86rem; color: var(--adm-ink-600); }
+.adm-summary-row b { color: var(--adm-ink-800); font-weight: 700; }
+.adm-summary-row--discount b { color: var(--adm-brand-strong); }
+.adm-summary-row--total { margin-top: .3rem; padding-top: .8rem; border-top: 1px solid var(--adm-border); }
+.adm-summary-row--total span { font-weight: 700; color: var(--adm-ink-900); }
+.adm-summary-row--total b { font-size: 1.3rem; color: var(--adm-ink-900); letter-spacing: -.02em; }
+.adm-bk-checkout-btn { width: 100%; justify-content: center; padding: .8rem 1rem !important; font-size: .92rem !important; margin-top: 1rem; }
+.adm-bk-summary-hint { margin: .8rem 0 0; font-size: .78rem; color: var(--adm-ink-400); text-align: center; }
+
+/* ---- Select User modal: card grid ---- */
+.adm-bk-usersearch { margin-bottom: 1rem; }
+.adm-user-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: .25rem;
+  margin-bottom: 1rem;
+}
+.adm-user-card {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .85rem .9rem;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-md);
+  transition: border-color 200ms var(--adm-ease), box-shadow 200ms var(--adm-ease);
+}
+.adm-user-card:hover { border-color: var(--adm-border-green); box-shadow: var(--adm-shadow-sm); }
+.adm-user-avatar {
+  width: 44px; height: 44px; border-radius: 50%; flex: 0 0 auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--adm-gradient); color: #fff; font-weight: 700; font-size: 1.05rem;
+  overflow: hidden;
+}
+.adm-user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.adm-user-body { display: flex; flex-direction: column; gap: .2rem; min-width: 0; flex: 1 1 auto; }
+.adm-user-name { font-weight: 700; color: var(--adm-ink-900); font-size: .88rem; }
+.adm-user-meta-row { display: flex; flex-wrap: wrap; gap: .25rem .6rem; }
+.adm-user-meta {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .74rem; color: var(--adm-ink-500);
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.adm-user-meta svg { width: 11px; height: 11px; flex: 0 0 auto; color: var(--adm-ink-400); }
+.adm-user-orders { font-size: .72rem; font-weight: 700; color: var(--adm-brand-strong); }
+.adm-user-select { flex: 0 0 auto; padding: .4rem .9rem !important; }
+
+.adm-bk-newcustomer-toggle {
+  width: 100%; justify-content: center;
+  border-style: dashed !important;
+  margin-bottom: 1rem;
+}
+.adm-bk-newcustomer-form {
+  border-top: 1px solid var(--adm-border);
+  padding-top: 1.1rem;
+}
+
+@media (max-width: 1100px) {
+  .adm-bk-grid { grid-template-columns: 1fr; }
+  .adm-bk-summary { position: static; }
+}
+@media (max-width: 767px) {
+  .adm-bk-grid { padding: 0 1rem; }
+  .adm-bk-customerbar { margin: 0 1rem 1.1rem; }
+  .adm-user-grid { grid-template-columns: 1fr; max-height: 320px; }
+  .adm-cat-tabs { width: 100%; }
+  .adm-cat-toolbar { padding: 1rem !important; }
+  .adm-cat-toolbar .adm-ot-search { flex: 1 1 100%; }
+  .adm-cat-toolbar .adm-ot-len { flex: 1 1 100%; }
+}
+/* The single-line-scroll behavior itself now applies at every width (see
+   .adm-form-card-head .adm-cat-tabs above) — this media query only still
+   needs to stack the header on narrow screens. No edge-bleed margin hack:
+   the tabs track keeps its own consistent rounded-container padding at
+   every width instead of un-inseting itself to the card's raw edge. */
+@media (max-width: 640px) {
+  .adm-form-card-head { flex-direction: column; align-items: stretch; }
+}
+
+/* ---- catalog tab toolbar (search + rows-per-page), reusing the Orders
+   page's toolbar look exactly so both pages match ---- */
+.adm-cat-toolbar { border-bottom: 1px solid var(--adm-border); }
+.adm-bk .dataTables_wrapper { padding: 0 1.25rem 1.1rem; }
+.adm-bk .dataTables_length,
+.adm-bk .dataTables_filter { display: none !important; }
+.adm-bk .dataTables_info {
+  padding-top: 1rem !important;
+  font-size: .8rem; color: var(--adm-ink-500);
+}
+.adm-bk .dataTables_paginate { padding-top: .7rem; }
+.adm-bk .dataTables_paginate .pagination { gap: .3rem; }
+.adm-bk .page-link {
+  border: 1px solid var(--adm-border) !important;
+  border-radius: var(--adm-r-xs) !important;
+  color: var(--adm-ink-600) !important;
+  font-size: .82rem; font-weight: 600;
+  margin-left: 0 !important;
+}
+.adm-bk .page-item.active .page-link {
+  background: var(--adm-gradient) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+.adm-bk .page-item.disabled .page-link { color: var(--adm-ink-400) !important; opacity: .6; }
+.adm-bk .page-link:hover { background: var(--adm-surface-green); border-color: var(--adm-border-green) !important; }
+
+/* ==========================================================================
+   NOTIFICATION SYSTEM (admin-notify.js) — sitewide toast stack + confirm
+   modal that replaces browser alert()/confirm() everywhere in the admin
+   panel. Deliberately unscoped (not under .adm-bk) since it's shared by
+   every admin page via the layout.
+   ========================================================================== */
+.adm-notify-stack {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  pointer-events: none;
+}
+.adm-notify-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  background: #fff;
+  border-radius: var(--adm-r-md);
+  box-shadow: var(--adm-shadow-lg);
+  border: 1px solid var(--adm-border);
+  border-left: 4px solid var(--adm-border);
+  padding: .8rem .9rem;
+  opacity: 0;
+  transform: translateX(24px) scale(.98);
+  transition: opacity 220ms var(--adm-ease-out), transform 220ms var(--adm-ease-out);
+}
+.adm-notify-toast.is-shown { opacity: 1; transform: translateX(0) scale(1); }
+.adm-notify-toast.is-leaving { opacity: 0; transform: translateX(24px) scale(.98); }
+.adm-notify-toast--success { border-left-color: var(--success-color); }
+.adm-notify-toast--error { border-left-color: var(--danger-light); }
+.adm-notify-toast--warning { border-left-color: var(--warning-color); }
+.adm-notify-toast--info { border-left-color: var(--adm-ink-500); }
+.adm-notify-icon {
+  width: 26px; height: 26px; border-radius: 50%; flex: 0 0 auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: .05rem;
+}
+.adm-notify-icon svg { width: 14px; height: 14px; }
+.adm-notify-toast--success .adm-notify-icon { background: var(--success-bg); color: var(--success-strong); }
+.adm-notify-toast--error .adm-notify-icon { background: var(--danger-bg); color: var(--danger-color); }
+.adm-notify-toast--warning .adm-notify-icon { background: var(--warning-bg); color: var(--warning-strong); }
+.adm-notify-toast--info .adm-notify-icon { background: var(--adm-surface-2); color: var(--adm-ink-500); }
+.adm-notify-body { flex: 1 1 auto; min-width: 0; }
+.adm-notify-title {
+  display: block; font-size: .84rem; font-weight: 700;
+  color: var(--adm-ink-900); margin-bottom: .15rem;
+}
+.adm-notify-msg {
+  display: block; font-size: .81rem; color: var(--adm-ink-600);
+  line-height: 1.45; word-break: break-word;
+}
+.adm-notify-close {
+  border: none; background: transparent; color: var(--adm-ink-400);
+  font-size: 1.2rem; line-height: 1; cursor: pointer; padding: 0 0 0 .4rem;
+  flex: 0 0 auto; transition: color 150ms var(--adm-ease);
+}
+.adm-notify-close:hover { color: var(--adm-ink-700); }
+
+.adm-confirm-overlay {
+  position: fixed; inset: 0; z-index: 99998;
+  background: rgba(15, 23, 42, .5);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 180ms var(--adm-ease);
+}
+.adm-confirm-overlay.is-shown { opacity: 1; }
+.adm-confirm-modal {
+  background: #fff;
+  border-radius: var(--adm-r-lg);
+  box-shadow: var(--adm-shadow-lg);
+  padding: 1.75rem;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  transform: scale(.94) translateY(6px);
+  transition: transform 200ms var(--adm-ease-out);
+}
+.adm-confirm-overlay.is-shown .adm-confirm-modal { transform: scale(1) translateY(0); }
+.adm-confirm-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin: 0 auto .9rem;
+}
+.adm-confirm-icon svg { width: 24px; height: 24px; }
+.adm-confirm-icon--danger { background: var(--danger-bg); color: var(--danger-color); }
+.adm-confirm-icon--default { background: var(--adm-surface-green); color: var(--adm-brand-strong); }
+.adm-confirm-title { font-size: 1.05rem; font-weight: 700; color: var(--adm-ink-900); margin: 0 0 .4rem; }
+.adm-confirm-msg { font-size: .87rem; color: var(--adm-ink-600); margin: 0 0 1.25rem; line-height: 1.5; }
+.adm-confirm-actions { display: flex; gap: .6rem; }
+.adm-confirm-actions button { flex: 1 1 0; justify-content: center; }
+@media (max-width: 480px) {
+  .adm-notify-stack { top: 12px; right: 12px; left: 12px; width: auto; }
+  .adm-confirm-modal { padding: 1.4rem; }
+}
+
+/* ==========================================================================
+   DASHBOARD 2.0 — welcome hero, KPI accents, status overview, recent
+   orders, activity timeline, top lists, glance strip. All colors come
+   from theme.css / the --adm-* aliases; nothing hardcoded.
+   ========================================================================== */
+
+/* --- Welcome hero --- */
+.adm-dash-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0 1.75rem 1.4rem;
+  padding: 1.6rem 1.75rem;
+  border-radius: var(--adm-r-lg);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 55%, var(--primary-soft) 100%);
+  box-shadow: var(--adm-shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.adm-dash-hero-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(560px 200px at 85% -30%, rgba(255, 255, 255, .16), transparent 70%),
+    radial-gradient(circle at 12% 120%, rgba(255, 255, 255, .10), transparent 55%);
+}
+.adm-dash-hero-main { position: relative; }
+.adm-dash-hero-greet { margin: 0; font-size: .85rem; font-weight: 600; color: rgba(255, 255, 255, .78); }
+.adm-dash-hero-name {
+  margin: .1rem 0 .45rem;
+  font-family: var(--adm-font);
+  font-size: 1.55rem; font-weight: 800; letter-spacing: -.02em;
+  color: #fff;
+}
+.adm-dash-hero-date {
+  margin: 0; display: flex; align-items: center; gap: .45rem;
+  font-size: .82rem; font-weight: 600; color: rgba(255, 255, 255, .85);
+}
+.adm-dash-hero-date svg { width: 1em; height: 1em; flex: 0 0 auto; }
+.adm-dash-hero-actions { position: relative; display: flex; flex-wrap: wrap; gap: .6rem; }
+.adm-dash-hero-btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .55rem 1rem;
+  border-radius: var(--adm-r-pill);
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .28);
+  color: #fff !important;
+  font-size: .82rem; font-weight: 700;
+  text-decoration: none;
+  transition: background var(--adm-t) var(--adm-ease), transform var(--adm-t) var(--adm-ease-out), box-shadow var(--adm-t) var(--adm-ease);
+}
+.adm-dash-hero-btn svg { width: 1.05em; height: 1.05em; flex: 0 0 auto; }
+.adm-dash-hero-btn:hover { background: rgba(255, 255, 255, .22); transform: translateY(-2px); }
+.adm-dash-hero-btn.is-primary {
+  background: var(--adm-gradient);
+  border-color: transparent;
+  box-shadow: var(--adm-shadow-green);
+}
+.adm-dash-hero-btn.is-primary:hover { box-shadow: var(--adm-shadow-md); }
+
+/* --- KPI accents + downward trend --- */
+.adm-kpi-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  border-radius: var(--adm-r-lg) var(--adm-r-lg) 0 0;
+  background: transparent;
+}
+.adm-kpi-accent--brand::before   { background: var(--primary-color); }
+.adm-kpi-accent--success::before { background: var(--success-strong); }
+.adm-kpi-accent--info::before    { background: var(--info-color); }
+.adm-kpi-accent--warning::before { background: var(--warning-color); }
+.adm-kpi-trend svg { width: .95em; height: .95em; flex: 0 0 auto; }
+.adm-kpi-trend.is-down { background: var(--danger-bg); color: var(--danger-strong); }
+
+/* --- Card head (title + "view all" link) --- */
+.adm-card-head {
+  display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+  margin-bottom: 1rem;
+}
+.adm-chart-title {
+  display: flex; align-items: center; gap: .5rem;
+  margin: 0;
+  font-family: var(--adm-font);
+  font-size: .95rem; font-weight: 700; color: var(--adm-ink-900);
+}
+.adm-chart-title svg { width: 1.05em; height: 1.05em; flex: 0 0 auto; color: var(--adm-brand-strong); }
+.adm-chart-card .adm-chart-title { margin-bottom: .9rem; }
+.adm-card-head .adm-chart-title { margin-bottom: 0; }
+.adm-card-head-link {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-size: .8rem; font-weight: 700;
+  color: var(--adm-brand-strong) !important;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.adm-card-head-link svg { width: .95em; height: .95em; transition: transform var(--adm-t) var(--adm-ease-out); }
+.adm-card-head-link:hover svg { transform: translateX(3px); }
+
+/* --- Tones (dots, progress bars, chips) --- */
+.adm-tone--warning { background: var(--warning-color); }
+.adm-tone--info    { background: var(--info-color); }
+.adm-tone--brand   { background: var(--primary-color); }
+.adm-tone--success { background: var(--success-strong); }
+.adm-tone--danger  { background: var(--danger-color); }
+.adm-tone--muted   { background: var(--adm-ink-400, #94a3b8); }
+
+.adm-status-chip {
+  display: inline-flex; align-items: center;
+  padding: .28rem .7rem;
+  border-radius: var(--adm-r-pill);
+  font-size: .74rem; font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+.adm-status-chip.adm-tone--warning { background: var(--warning-bg); color: var(--warning-strong); }
+.adm-status-chip.adm-tone--info    { background: var(--info-bg); color: var(--info-strong); }
+.adm-status-chip.adm-tone--brand   { background: var(--primary-light); color: var(--primary-dark); }
+.adm-status-chip.adm-tone--success { background: var(--success-bg); color: var(--success-strong); }
+.adm-status-chip.adm-tone--danger  { background: var(--danger-bg); color: var(--danger-strong); }
+.adm-status-chip.adm-tone--muted   { background: var(--adm-surface-2); color: var(--adm-ink-500); }
+
+/* --- Order status overview grid --- */
+.adm-status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+.adm-status-card {
+  background: #fff;
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-r-lg);
+  box-shadow: var(--adm-shadow-sm);
+  padding: 1.05rem 1.15rem;
+  transition: transform var(--adm-t) var(--adm-ease-out), box-shadow var(--adm-t) var(--adm-ease);
+}
+.adm-status-card:hover { transform: translateY(-3px); box-shadow: var(--adm-shadow-md); }
+.adm-status-card-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .55rem; }
+.adm-status-dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; }
+.adm-status-label { font-size: .8rem; font-weight: 700; color: var(--adm-ink-600); }
+.adm-status-figures { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: .55rem; }
+.adm-status-count { font-family: var(--adm-font); font-size: 1.35rem; font-weight: 800; color: var(--adm-ink-900); }
+.adm-status-pct { font-size: .78rem; font-weight: 700; color: var(--adm-ink-500); }
+
+.adm-progress {
+  height: 6px;
+  border-radius: var(--adm-r-pill);
+  background: var(--adm-surface-2);
+  overflow: hidden;
+}
+.adm-progress-bar {
+  display: block; height: 100%;
+  border-radius: var(--adm-r-pill);
+  transition: width .5s var(--adm-ease-out);
+}
+
+/* --- Two-column dashboard rows ---
+   minmax(0,…) + min-width:0 matter: the recent-orders table is nowrap and
+   wider than a phone screen, and without them the grid column refuses to
+   shrink below the table's content width, overflowing the whole page
+   instead of scrolling inside .adm-recent-table-wrap. */
+.adm-dash-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  gap: 1.15rem;
+  align-items: start;
+}
+.adm-dash-cols--even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.adm-dash-cols > .adm-card { min-width: 0; }
+
+/* --- Recent orders table --- */
+.adm-recent-table-wrap { overflow-x: auto; }
+.adm-recent-table { width: 100%; border-collapse: collapse; }
+.adm-recent-table th {
+  text-align: left;
+  font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--adm-ink-500);
+  padding: .5rem .75rem;
+  border-bottom: 1px solid var(--adm-border);
+  white-space: nowrap;
+}
+.adm-recent-table td {
+  padding: .7rem .75rem;
+  font-size: .85rem;
+  color: var(--adm-ink-700, #334155);
+  border-bottom: 1px solid var(--adm-border);
+  white-space: nowrap;
+}
+.adm-recent-table tbody tr:last-child td { border-bottom: none; }
+.adm-recent-table tbody tr { transition: background var(--adm-t) var(--adm-ease); }
+.adm-recent-table tbody tr:hover { background: var(--adm-surface-2); }
+.adm-recent-id { font-weight: 700; color: var(--adm-brand-strong); }
+.adm-recent-amount { font-weight: 700; color: var(--adm-ink-900); }
+.adm-recent-date { color: var(--adm-ink-500); font-size: .8rem; }
+.adm-recent-user { display: inline-flex; align-items: center; gap: .55rem; font-weight: 600; color: var(--adm-ink-800); }
+.adm-avatar-initial {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--adm-surface-green); color: var(--adm-brand-strong);
+  font-size: .8rem; font-weight: 800;
+  flex: 0 0 auto;
+}
+
+/* --- Activity timeline --- */
+.adm-activity { list-style: none; margin: 0; padding: 0; position: relative; }
+.adm-activity-item {
+  position: relative;
+  display: flex; gap: .8rem;
+  padding: 0 0 1.05rem 0;
+}
+.adm-activity-item:not(:last-child)::before {
+  content: ""; position: absolute; left: 15px; top: 32px; bottom: 2px;
+  width: 2px; background: var(--adm-border);
+}
+.adm-activity-icon {
+  position: relative; z-index: 1;
+  width: 32px; height: 32px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 auto;
+  background: var(--adm-surface-green); color: var(--adm-brand-strong);
+}
+.adm-activity-icon svg { width: .95rem; height: .95rem; }
+.adm-activity-icon--user { background: var(--info-bg); color: var(--info-strong); }
+.adm-activity-icon--package { background: var(--warning-bg); color: var(--warning-strong); }
+.adm-activity-body { min-width: 0; }
+.adm-activity-text { margin: .1rem 0 .15rem; font-size: .84rem; font-weight: 600; color: var(--adm-ink-800); line-height: 1.4; }
+.adm-activity-time { font-size: .74rem; color: var(--adm-ink-500); }
+
+/* --- Top packages / labs lists --- */
+.adm-top-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.adm-top-item-row { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; margin-bottom: .45rem; }
+.adm-top-name { font-size: .87rem; font-weight: 700; color: var(--adm-ink-800); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.adm-top-figures { font-size: .78rem; font-weight: 600; color: var(--adm-ink-500); white-space: nowrap; }
+.adm-top-sub { font-size: .78rem; color: var(--adm-ink-500); }
+.adm-top-item--rank { display: flex; align-items: center; gap: .8rem; }
+.adm-top-item--rank .adm-top-item-row { margin-bottom: .15rem; }
+.adm-top-item-grow { flex: 1 1 auto; min-width: 0; }
+.adm-rank-badge {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--adm-surface-2); color: var(--adm-ink-600);
+  font-size: .82rem; font-weight: 800;
+  flex: 0 0 auto;
+}
+.adm-rank-badge.is-first { background: var(--adm-gradient); color: #fff; box-shadow: var(--adm-shadow-green); }
+
+/* --- Catalog & support glance strip --- */
+.adm-glance-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: .75rem;
+}
+.adm-glance-item {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: .2rem;
+  padding: .9rem .5rem;
+  border-radius: var(--adm-r-md, 12px);
+  background: var(--adm-surface-2);
+  transition: background var(--adm-t) var(--adm-ease), transform var(--adm-t) var(--adm-ease-out);
+}
+.adm-glance-item:hover { background: var(--adm-surface-green); transform: translateY(-2px); }
+.adm-glance-value { font-family: var(--adm-font); font-size: 1.25rem; font-weight: 800; color: var(--adm-ink-900); }
+.adm-glance-label { font-size: .72rem; font-weight: 600; color: var(--adm-ink-500); }
+
+.adm-dash-empty { padding: .75rem 0; font-size: .85rem; color: var(--adm-ink-500); }
+
+/* --- Dashboard responsive --- */
+@media (max-width: 1400px) {
+  .adm-status-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .adm-glance-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 1200px) {
+  .adm-dash-cols, .adm-dash-cols--even { grid-template-columns: 1fr; }
+  .adm-status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+  .adm-dash-hero { margin: 0 1rem 1.2rem; padding: 1.25rem 1.2rem; }
+  .adm-dash-hero-actions { width: 100%; }
+  .adm-dash-hero-btn { flex: 1 1 auto; justify-content: center; }
+  .adm-glance-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .adm-status-grid { grid-template-columns: 1fr; }
 }

@@ -3,77 +3,88 @@
 {{__("message.Save Category")}}
 @stop
 @section('content')
-<div class="page-header">
-	<h3 class="page-title">{{__("message.Save Category")}} </h3>
-	<div class="col-sm-6">
-      @if(__("message.Is_rtl")=='1')
-             <ol class="breadcrumb float-sm-left">
-         @else
-            <ol class="breadcrumb float-sm-right">
-         @endif
-         <li class="breadcrumb-item"><a href="{{route('admin-dashboard')}}">{{__("message.Home")}}</a></li>
-         <li class="breadcrumb-item"><a href="{{route('admin-category')}}">{{__("message.Category")}}</a></li>
-         <li class="breadcrumb-item active">{{__("message.Save Category")}}</li>
-      </ol>
-   </div>	      	
+
+{{-- ============ Page header ============ --}}
+<div class="page-header adm-orders-header">
+   <div>
+      <h3 class="page-title mb-0">{{__("message.Save Category")}}</h3>
+      <nav aria-label="breadcrumb">
+         <ol class="breadcrumb adm-breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('admin-dashboard')}}">{{__("message.Home")}}</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin-category')}}">{{__("message.Category")}}</a></li>
+            <li class="breadcrumb-item active">{{__("message.Save Category")}}</li>
+         </ol>
+      </nav>
+   </div>
 </div>
-<div class="row" style="display: flex;justify-content: center;">
-	<div class="col-12 grid-margin stretch-card">
-     <div class="card">
-       	<div class="card-body">
-       		@if(Session::has('message'))
-          		<div class="col-sm-12">
-                   <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">{{ Session::get('message') }}
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                      </button>
-                   </div>
-                </div>
-          		@endif
-            <form action="{{route('update-category')}}" method="post" enctype="multipart/form-data" class="row">
-               {{csrf_field()}}
-               	<input type="hidden" name="id" id="id" value="{{$id}}">
-                  <div class="form-group col-6">
-                     <label for="name">{{__("message.Name")}}<span class="reqfield">*</span></label>
-                     <input type="text" id="name" name="name" class="form-control" placeholder='{{__("message.Enter Category Name")}}' required="" value="{{isset($data->name)?$data->name:''}}">
+
+@if(Session::has('message'))
+<div class="adm-toast-wrap">
+   <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show adm-toast" role="alert">{{ Session::get('message') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+</div>
+@endif
+
+{{-- ============ Save category form card ============ --}}
+<div class="adm-form adm-form-page">
+   <div class="adm-form-card">
+      <div class="adm-form-card-head">
+         <div class="adm-form-card-title">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>
+            {{__("message.Save Category")}}
+         </div>
+      </div>
+      <form action="{{route('update-category')}}" method="post" enctype="multipart/form-data">
+         {{csrf_field()}}
+         <input type="hidden" name="id" id="id" value="{{$id}}">
+         <div class="row">
+            <div class="col-md-6 adm-field">
+               <label for="name">{{__("message.Name")}}<span class="reqfield">*</span></label>
+               <input type="text" id="name" name="name" class="form-control" placeholder='{{__("message.Enter Category Name")}}' required="" value="{{isset($data->name)?$data->name:''}}">
+            </div>
+            <div class="col-md-6 adm-field">
+               <label for="upload_image">{{__("message.Category Image")}}<span class="reqfield">*</span></label>
+               <?php
+                  if(isset($data->image)){
+                      $path=env('APP_URL')."/storage/category/".$data->image;
+                  }
+                  else{
+                      $path=asset('public/upload/default.jpg');
+                  }
+                  ?>
+               <div class="adm-upload">
+                  <span class="adm-upload-thumb"><img src="{{$path}}" alt="..." id="basic_img"></span>
+                  <div class="adm-upload-control">
+                     <input type="hidden" name="real_basic_img" id="real_basic_img" value="<?= isset($data->image)?$data->image:""?>"/>
+                     <input type="hidden" name="basic_img" id="basic_img1"/>
+                     @if(isset($data->image))
+                     <input type="file" name="upload_image" id="upload_image" class="form-control" />
+                     @else
+                     <input type="file" class="form-control" required="" name="upload_image" id="upload_image" />
+                     @endif
+                     <span class="adm-upload-hint"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>PNG or JPG</span>
                   </div>
-                 	<div class="form-group col-6">
-                     <label for="name">{{__("message.Category Image")}}<span class="reqfield">*</span></label>
-                     <div id="uploaded_image">
-                        <div class="upload-btn-wrapper">
-                           <button class="btn imgcatlog">
-                           <input type="hidden" name="real_basic_img" id="real_basic_img" value="<?= isset($data->image)?$data->image:""?>"/>
-                           <?php 
-                              if(isset($data->image)){
-                                  $path=env('APP_URL')."storage/app/public/category"."/".$data->image;
-                              }
-                              else{
-                                  $path=asset('public/upload/default.jpg');
-                              }
-                              ?>
-                           <img src="{{$path}}" alt="..." class="img-thumbnail imgsize"  id="basic_img" >
-                           </button>
-                           <input type="hidden" name="basic_img" id="basic_img1"/>
-                           @if(isset($data->image))
-                           <input type="file" name="upload_image" id="upload_image" class="form-control" />
-                           @else
-                            <input type="file" class="form-control" required="" name="upload_image" id="upload_image" />
-                           @endif
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-12">
-                     	 @if(Session::get("is_demo")==1)
-                        <input type="button" value='{{__("message.Save Category")}}' class="btn btn-success" onclick="disablebtn()">
-                         @else
-                        <input type="submit" value='{{__("message.Save Category")}}' class="btn btn-success">
-                         @endif
-                        <a href="{{route('admin-category')}}" class="btn btn-danger">{{__("message.Cancel")}}</a>
-                     </div>
-                  </div>
-           	</form>
-       	</div>
-     </div>
+               </div>
+            </div>
+            <div class="col-12 adm-form-actions">
+               @if(Session::get("is_demo")==1)
+               <button type="button" class="btn btn-success adm-btn-primary" onclick="disablebtn()">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>
+                  {{__("message.Save Category")}}
+               </button>
+               @else
+               <button type="submit" class="btn btn-success adm-btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>
+                  {{__("message.Save Category")}}
+               </button>
+               @endif
+               <a href="{{route('admin-category')}}" class="btn-secondary">{{__("message.Cancel")}}</a>
+            </div>
+         </div>
+      </form>
+   </div>
 </div>
 @endsection

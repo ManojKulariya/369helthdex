@@ -1,10 +1,10 @@
 <?php 
-	$top_background = "#2aa48c";
+	$top_background = "#0a6c79";
 // 	$top_background = "#1e4169";
     $theme_main_color = "#233646";
-    $theme_second_color = "#2aa48c";
+    $theme_second_color = "#f67f2d";
     $header_text_color = "#00224f";
-    $bg_color_2 = "#2aa48c";//light color
+    $bg_color_2 = "#0a6c79";//light color
     $bg_color_1 = "#e6ecf2";//drak color
     $footer_bottom = "#7a030d";
     $light_main_color = "#dbaeba";
@@ -111,7 +111,7 @@
 	background : <?=$top_background?> !important;
 }
 h1, h2, h3, h4, h5, h6{
-	color: #2aa48c  !important;
+	color: #0a6c79  !important;
 }
 .category-block-one .inner-box .link a{
 	background: <?=$light_main_color?> !important;
@@ -207,7 +207,7 @@ h1, h2, h3, h4, h5, h6{
     	background-color:<?=$theme_second_color?> !important;
 }
 .sec-title p{
-	color: #2aa48c !important;
+	color: #0a6c79 !important;
 }
 .list-style-one li:before {
     border: 3px solid <?=$top_background?> !important;

@@ -104,7 +104,7 @@
 
 .newstyle {
     font-weight:bold;
-    color:#2aa48c;
+    color:#0a6c79;
 }
 .sec-title {
     display: flex;
@@ -128,7 +128,7 @@
 }
 /* Style Swiper buttons like Owl Carousel */
 .btn-next, .btn-pre {
-    background-color: #2aa48c !important;
+    background-color: #f67f2d !important;
     padding: 5px 8px;
     border-radius: 9px;
     color: #ece4e4 !important;
@@ -150,7 +150,7 @@
 }
 
 .custom-swiper-nav button {
-    background-color: #2aa48c !important;
+    background-color: #f67f2d !important;
     padding: 0px 8px;
     font-size: 12px;
     border-radius: 5px;
@@ -273,7 +273,7 @@
 .swiper-pagination-bullet {
     
     opacity: 1; /* Make bullets fully visible */
-    background-color:#2aa48c;
+    background-color:#f67f2d;
     width: 10px;
     height: 10px;
 }
@@ -376,7 +376,7 @@
     .read-more-btn {
         background: none;
         border: none;
-        color: #2aa48c;
+        color: #f67f2d;
         cursor: pointer;
         padding: 5px;
         display: inline-block;
@@ -608,7 +608,7 @@ h1,h2,h3,h4,h5,h6{
 
   font-weight: 400;
 
-  color: #2aa48c;
+  color: #0a6c79;
 
   margin: 0px;
 
@@ -1003,7 +1003,7 @@ img {
 }
 
 .blue-text {
-  color: #2aa48c;
+  color: #0a6c79;
 }
 
 
@@ -1636,7 +1636,7 @@ img {
 }
 
 .fixed-header ul > li > a {
-    color: #2aa48c !important;
+    color: #0a6c79 !important;
 }
 
 
@@ -3889,7 +3889,7 @@ div#mCSB_1_container{
 
   font-family: 'Jost', sans-serif;
 
-  color: #2aa48c;
+  color: #0a6c79;
 
   font-weight: 500;
 
@@ -4129,7 +4129,7 @@ div#mCSB_1_container{
 
   display: inline-block;
 
-  color: #2aa48c;
+  color: #0a6c79;
 
 }
 
@@ -6189,7 +6189,7 @@ div#mCSB_1_container{
 
 
 .main-footer{
-	background: #2aa48c;
+	background: #0a6c79;
 	position: relative;
 }
 
@@ -9164,7 +9164,7 @@ div#mCSB_1_container{
 
   font-size: 24px;
 
-  color: #2aa48c;
+  color: #f67f2d;
 
   font-family: 'Font Awesome 5 Pro';
 
@@ -9196,7 +9196,7 @@ div#mCSB_1_container{
 
   content: "\f106";
 
-  color: #2aa48c;
+  color: #f67f2d;
 
 }
 
@@ -10953,7 +10953,7 @@ div#mCSB_1_container{
 
 .page-title-two .bread-crumb li a{
 
-  color: #2aa48c;
+  color: #0a6c79;
 
 }
 
@@ -10981,7 +10981,7 @@ div#mCSB_1_container{
 
   right: 0px;
 
-  color: #2aa48c;
+  color: #0a6c79;
 
   font-weight: 400;
 
@@ -11034,7 +11034,7 @@ div#mCSB_1_container{
 .more-link {
         font-size: 14px; /* Adjust font size */
         font-weight: 500; /* Make it bold */
-        color: #2aa48c; /* Attractive color */
+        color: #f67f2d; /* Attractive color */
         text-decoration: none; /* Remove underline */
         transition: all 0.3s ease; /* Smooth hover effect */
     }
@@ -11170,7 +11170,7 @@ div#mCSB_1_container{
 
   display: block;
 
-  color: #2aa48c; 
+  color: #0a6c79; 
 
   border-bottom: 1px solid #e5eded;
 
@@ -11210,7 +11210,7 @@ div#mCSB_1_container{
 
   font-size: 17px;
 
-  color: #2aa48c;
+  color: #0a6c79;
 
   top: 14px;
 
@@ -12192,7 +12192,7 @@ div#mCSB_1_container{
 
   overflow: hidden;
 
-  background: #2aa48c;
+  background: #f67f2d;
 
   border-radius: 8px;
 
@@ -15857,7 +15857,7 @@ div#mCSB_1_container{
 
   font-weight: 500;
 
-  color: #2aa48c;
+  color: #0a6c79;
 
   margin-bottom: 10px;
 
@@ -22631,7 +22631,7 @@ z-index: 9999999 !important;
 
 .location div {
     font-weight: bold;
-    color: #2aa48c;
+    color: #0a6c79;
 }
 .blog_box {
     border: solid 1px #ededed;
@@ -22644,7 +22644,7 @@ z-index: 9999999 !important;
     padding:20px 15px;
 }
 .read_more {
-    background: #2aa48c;
+    background: #f67f2d;
     padding: 5px 20px;
     color: #fff;
     border-radius: 25px;
@@ -22664,7 +22664,7 @@ z-index: 9999999 !important;
 }
 .blog_bottom {
     font-weight: 600;
-    color: #2aa48c;
+    color: #0a6c79;
 }
 .blog_box:hover {
     box-shadow: -2px 0rem 1rem rgb(0 0 0 / 15%) !important;
@@ -22764,7 +22764,7 @@ z-index: 9999999 !important;
     color: white !important;
 }
 .header-lower {
-    background :#2aa48c;
+    background :#0a6c79;
     /*background: #e6ae05;*/
 }
 .font_aw_icon {
@@ -22778,10 +22778,10 @@ z-index: 9999999 !important;
 	text-align: left;
 	line-height: 18px;
 	margin-left: 0px;
-	color: #2aa48c;
+	color: #0a6c79;
 }
 .font_aw_icon i {
-	background: #2aa48c;
+	background: #f67f2d;
 	border-radius: 40px;
 	width: 32px;
 	height: 32px;
@@ -22804,7 +22804,7 @@ z-index: 9999999 !important;
 .top-box label {
 	margin-bottom: 0px !important;
 	font-weight: bold;
-	color: #2aa48c;
+	color: #0a6c79;
 }
 /*.cart-count {*/
 /*	position: absolute;*/
@@ -22866,7 +22866,7 @@ z-index: 9999999 !important;
 	font-weight: 700;
 	line-height: 20px;
 	font-size:14px;
-	color: #2aa48c;
+	color: #0a6c79;
 }
 .imgwhy {
     width:35px;
@@ -22894,7 +22894,7 @@ z-index: 9999999 !important;
 .why_reliable .text-para {
 	/*font-weight: 600;*/
 	line-height: 15px;
-	color: #2aa48c;
+	color: #0a6c79;
 	font-size:12px;
 }
 .why_reliable .card {
@@ -22932,7 +22932,7 @@ z-index: 9999999 !important;
     border-top-left-radius: 8px;
 }
 .ctbn_free button:hover {
-    background: #2aa48c;
+    background: #f67f2d;
     height:40px;
 }
 .get_call .form-control:focus {
@@ -22941,9 +22941,9 @@ z-index: 9999999 !important;
 .ctbn_free button {
     border-radius: 0px;
     height:40px;
-    background: #2aa48c !important;
+    background: #f67f2d !important;
     color: #fff !important;
-    border-color: #2aa48c !important;
+    border-color: #f67f2d !important;
 }
 .get_call input {
     border-radius: 0px;

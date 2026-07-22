@@ -40,7 +40,10 @@ class ControllerCoupon extends Controller
                 return $data->id;
             })
             ->editColumn('Vacancies', function ($data) {
-                return $data->job->title;
+                // job (Vacancie) is SoftDeletes-enabled; a soft-deleted vacancy
+                // resolves this relation to null and previously crashed the
+                // whole table with "Attempt to read property on null".
+                return $data->job ? $data->job->title : '—';
             })
             ->editColumn('name', function ($data) {
                 return $data->name;
@@ -68,11 +71,15 @@ class ControllerCoupon extends Controller
                 $documentPath = storage_path("app/public/resumes/{$data->resume}");
                 if (file_exists($documentPath)) {
                     $url = url("storage/app/public/resumes/{$data->resume}");
-                    return '<a href="' . $url . '"  target="_blank"><i class="fa fa-file"></i></a>';
+                    return '<a href="' . $url . '" target="_blank" class="adm-cat-eye" title="View resume"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg></a>';
                 } else {
                     return 'File not found';
                 }
             })
+            // Without this, yajra/laravel-datatables HTML-escapes every column
+            // by default, so the resume link/icon above was rendering as
+            // literal "&lt;a href=..." text instead of a clickable element.
+            ->rawColumns(['resume'])
             ->make(true);
     }
 
@@ -144,15 +151,23 @@ class ControllerCoupon extends Controller
             })
             ->editColumn('name', function ($data) {
                 if ($data->type == '1') {
-                    $nm = $data->package->name;
+                    $model = Package::class; $label = 'Package'; $col = 'name';
                 } elseif ($data->type == '2') {
-                    $nm = $data->parameter->name;
+                    $model = Parameter::class; $label = 'Parameter'; $col = 'name';
                 } elseif ($data->type == '3') {
-                    $nm = $data->test->profile_name;
+                    $model = Profiles::class; $label = 'Test'; $col = 'profile_name';
                 } else {
-                    $nm = "ALL";
+                    return 'ALL';
                 }
-                return $nm;
+                $ids = array_filter(explode(',', (string) $data->product_ids));
+                if (count($ids) == 0) {
+                    return '—';
+                }
+                if (count($ids) == 1) {
+                    $item = $model::find($ids[0]);
+                    return $item ? $item->{$col} : '—';
+                }
+                return count($ids) . ' ' . $label . 's';
             })
             ->editColumn('value', function ($data) {
                 if ($data->coupon_type == 'fixed') {
@@ -171,9 +186,15 @@ class ControllerCoupon extends Controller
             })
             ->editColumn('action', function ($data) {
                 $edittext = __('message.Edit');
+                $deletetext = __('message.Delete');
                 $edit = url('savecoupon', array('id' => $data->id));
-                return '<a  href="' . $edit . '" rel="tooltip"  class="btn btn-primary" data-original-title="banner" style="margin-right: 10px;color: white !important;">' . $edittext . '</a>';
+                $delete = route('delete-coupon', array('id' => $data->id));
+                return '<div class="adm-row-actions">'
+                    .'<a href="' . $edit . '" class="adm-act adm-act--green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>' . $edittext . '</a>'
+                    .'<a onclick="delete_record(' . "'" . $delete . "'" . ')" class="adm-act adm-act--red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>' . $deletetext . '</a>'
+                    .'</div>';
             })
+            ->rawColumns(['coupon_code', 'action'])
             ->make(true);
     }
     public function show_update_coupon(Request $request)
@@ -212,9 +233,11 @@ class ControllerCoupon extends Controller
     public function deletecoupon($id)
     {
         $data = Coupon::find($id);
-        $data->delete();
-        Session::flash('message', 'Coupon Delete Successfully');
-        Session::flash('alert-class', 'alert-success');
+        if ($data) {
+            $data->delete();
+            Session::flash('message', 'Coupon Delete Successfully');
+            Session::flash('alert-class', 'alert-success');
+        }
         return redirect()->route('admin-coupon');
     }
 }

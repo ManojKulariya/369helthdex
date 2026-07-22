@@ -71,6 +71,7 @@ $(document).ready(function () {
                 }
             }
         }],
+        autoWidth: false,
         order: [
             [0, "DESC"]
         ]
@@ -80,6 +81,7 @@ $(document).ready(function () {
     $('#sampletypeTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/sampletypedatatable',
         columns: [{
                 data: 'id',
@@ -103,6 +105,7 @@ $(document).ready(function () {
     $('#preTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/predataTable',
         columns: [{
                 data: 'id',
@@ -112,9 +115,8 @@ $(document).ready(function () {
                 name: 'doc',
                 render: function (data, type, row) {
                     if (data) {
-                        // Assuming 'data' is the document path
-                        return `<a href="${data}" download>
-                                    <i class="fa fa-download"></i>
+                        return `<a href="${data}" download class="adm-doc-link" title="Download prescription">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                                 </a>`;
                     }
                     return ''; // return empty if no doc
@@ -190,12 +192,13 @@ $(document).ready(function () {
                 }
             }
         }],
+        autoWidth: false,
         order: [
             [0, "DESC"]
         ]
     });
-    
-    
+
+
 });
 $(document).ready(function () {
     $('#CouponTable').DataTable({
@@ -210,14 +213,7 @@ $(document).ready(function () {
                 name: 'coupon_code'
             } ,{
                 data: 'name',
-                name: 'name',
-                 render: function(data) {
-                    if (!data) {
-                        return ''; // return blank if null, undefined, or empty
-                    }
-                    // Assuming memberName and relation are properties of the row object
-                    return `<div style="width: 140px; white-space: normal; overflow-wrap: break-word;">${data}</div>`;
-                }
+                name: 'name'
             },{
                 data: 'value',
                 name: 'value'
@@ -236,7 +232,7 @@ $(document).ready(function () {
                 name: 'action'
             }
         ],
-       
+        autoWidth: false,
         order: [
             [0, "DESC"]
         ]
@@ -287,19 +283,20 @@ $(document).ready(function () {
                 name: 'action'
             }
         ],
-       
+        autoWidth: false,
         order: [
             [0, "DESC"]
         ]
     });
-    
-    
+
+
 });
 
     $(document).ready(function () {
         $('#callbackTable').DataTable({
             processing: true,
             serverSide: true,
+            autoWidth: false,
             ajax: $("#url_path").val() + '/calbackdatatable',
             columns: [{
                 data: 'id',
@@ -333,6 +330,7 @@ $(document).ready(function () {
         $('#complaintTable').DataTable({
             processing: true,
             serverSide: true,
+            autoWidth: false,
             ajax: $("#url_path").val() + '/complaintsdatatable',
             columns: [{
                 data: 'id',
@@ -369,6 +367,7 @@ $(document).ready(function () {
         $('#ApplicationTable').DataTable({
             processing: true,
             serverSide: true,
+            autoWidth: false,
             ajax: $("#url_path").val() + '/application-datatable',
             columns: [{
                 data: 'id',
@@ -429,7 +428,7 @@ $(document).ready(function () {
     });
 
 function disablebtn(){
-    alert($("#admin_demo_msg").val());
+    admNotify.info($("#admin_demo_msg").val(), 'Demo Mode');
 }
 
 function samplecollectionchange(val){
@@ -456,6 +455,7 @@ $(document).ready(function () {
     $('#SubcategoryTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/subcategorydatatable',
         columns: [{
                 data: 'id',
@@ -517,7 +517,7 @@ $(document).ready(function () {
                 name: 'action'
             }
         ],
-        
+        autoWidth: false,
         order: [
             [0, "DESC"]
         ]
@@ -555,6 +555,7 @@ $(document).ready(function () {
                 }
             }
         }],
+        autoWidth: false,
         order: [
             [0, "DESC"]
         ]
@@ -579,6 +580,7 @@ $(document).ready(function () {
                 name: 'action'
             }
         ],
+        autoWidth: false,
         order: [
             [0, "DESC"]
         ]
@@ -623,6 +625,7 @@ $(document).ready(function () {
     $('#CityTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/citydatatable',
         columns: [{
                 data: 'id',
@@ -651,6 +654,7 @@ $(document).ready(function () {
     $('#ContactTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/contact_datatable',
         columns: [{
                 data: 'id',
@@ -986,26 +990,26 @@ function completeorder(id){
                                 })
                                 .catch(error => {
                                     console.error('There was a problem with the fetch operation:', error);
-                                    alert("Error to Load PDF for Registration.");
+                                    admNotify.error('Error loading PDF for registration.', 'Download Failed');
                                 });
-                           
+
                         } else {
-                            alert("Error to Load PDF for Registration.");
-                           
-                            
+                            admNotify.error('Error loading PDF for registration.', 'Download Failed');
+
+
                         }
                     }
                 } else {
                     console.log('Error To retrieve Data');
-                    alert("Error to Load PDF for Registration.");
-                    
+                    admNotify.error('Error loading PDF for registration.', 'Download Failed');
+
                 }
             },
             completed: function() {
-                
+
             },
             error: function(result) {
-                alert("Error to Load PDF for Registration");
+                admNotify.error('Error loading PDF for registration.', 'Download Failed');
             }
         });
     }
@@ -1083,15 +1087,15 @@ $(document).on('click', '.submit-report-btn', function() {
             success: function(response) {
                 console.log(response);
                 if (response.success) {
-                    $(`#report_id_${index}`).val(response.report_id); 
-                    alert('Report ' + (index + 1) + ' submitted successfully!');
-                   
+                    $(`#report_id_${index}`).val(response.report_id);
+                    admNotify.success('Report ' + (index + 1) + ' submitted successfully!', 'Report Submitted');
+
                 } else {
-                    alert('Failed to submit report: ' + response.message);
+                    admNotify.error(response.message, 'Report Submission Failed');
                 }
             },
             error: function(xhr) {
-                alert('An error occurred: ' + xhr.responseText);
+                admNotify.error(xhr.responseText, 'Report Submission Failed');
             }
         });
     });
@@ -1299,6 +1303,7 @@ $(document).ready(function () {
     $('#ManagerTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/ManagerTable',
         columns: [{
                 data: 'id',
@@ -1364,6 +1369,7 @@ $(document).ready(function () {
  $('#sampleTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/SampleTable',
         columns: [{
                 data: 'id',
@@ -1531,6 +1537,7 @@ $(document).ready(function () {
     $('#UserTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/UserTable',
         columns: [{
                 data: 'id',
@@ -1591,6 +1598,7 @@ $(document).ready(function () {
     $('#ProfileTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/profiledatatable',
         columns: [{
                 data: 'id',
@@ -1614,10 +1622,10 @@ $(document).ready(function () {
         ],columnDefs: [{
             targets: 3,
             render: function (data) {
-                            
+
                 if (data != null) {
                     var path = $("#url_path").val() +'/frq'+"/"+data+"/3";
-                    return '<a href="'+path+'" class="btn btn-primary">'+$("#view_frq_lable").val()+'</a>';
+                    return '<a href="'+path+'" class="adm-act adm-act--green" style="width:auto;display:inline-flex !important;">'+$("#view_frq_lable").val()+'</a>';
                 } else {
                     return '';
                 }
@@ -1625,10 +1633,10 @@ $(document).ready(function () {
         },{
             targets: 4,
             render: function (data) {
-                            
+
                 if (data != null) {
                     var path = $("#url_path").val() +'/storage/app/public/sample_report'+"/"+data;
-                    return '<a href="'+path+'" class="btn btn-primary" target="_blank">'+$("#view_report").val()+'</a>';
+                    return '<a href="'+path+'" class="adm-act adm-act--green" style="width:auto;display:inline-flex !important;" target="_blank">'+$("#view_report").val()+'</a>';
                 } else {
                     return '';
                 }
@@ -1646,6 +1654,7 @@ $(document).ready(function () {
      $('#PackageTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/package_datatable',
         columns: [{
                 data: 'id',
@@ -1821,6 +1830,7 @@ $(document).ready(function () {
                 name: 'action'
             }
         ],
+        autoWidth: false,
         order: [
             [0, "DESC"]
         ]
@@ -1845,6 +1855,7 @@ $(document).ready(function () {
     $('#ParameterTable').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
         ajax: $("#url_path").val() + '/parameter_datatable',
         columns: [{
                 data: 'id',
@@ -1886,10 +1897,10 @@ $(document).ready(function () {
         ],columnDefs: [{
             targets: 4,
             render: function (data) {
-                            
+
                 if (data != null) {
                     var path = $("#url_path").val() +'/frq'+"/"+data+"/2";
-                    return '<a href="'+path+'" class="btn btn-primary">'+$("#view_frq_lable").val()+'</a>';
+                    return '<a href="'+path+'" class="adm-act adm-act--green" style="width:auto;display:inline-flex !important;">'+$("#view_frq_lable").val()+'</a>';
                 } else {
                     return '';
                 }
@@ -1897,10 +1908,10 @@ $(document).ready(function () {
         },{
             targets: 5,
             render: function (data) {
-                            
+
                 if (data != null) {
                     var path = $("#url_path").val() +'/storage/app/public/sample_report'+"/"+data;
-                    return '<a href="'+path+'" class="btn btn-primary" target="_blank">'+$("#view_report").val()+'</a>';
+                    return '<a href="'+path+'" class="adm-act adm-act--green" style="width:auto;display:inline-flex !important;" target="_blank">'+$("#view_report").val()+'</a>';
                 } else {
                     return '';
                 }
@@ -1922,7 +1933,7 @@ function checkcurrentpwd(val){
             console.log(data);
             if(data==1){
                 var msg = $("#cpwd").val();
-                alert(msg);
+                admNotify.warning(msg, 'Incorrect Password');
                 $("#oldPassword").val("");
             }
         }
@@ -1951,7 +1962,7 @@ function selecttesttype(type,id){
 
 function changepopulartype(val){
     if(val==""){
-        alert("Please Select Vaild Type");
+        admNotify.warning('Please select a valid type.', 'Missing Selection');
         $("#type_id").html("");
     }else{
          $.ajax({
@@ -1971,36 +1982,39 @@ function checkbothpassword(val){
     var msg = $("#newpwd").val();    
     var newpassword = $("#newPassword").val();
     if(newpassword!=val){
-        alert(msg);
+        admNotify.warning(msg, 'Password Mismatch');
         $("#newPassword").val("");
         $("#confirmPassword").val("");
     }
 }
 function delete_record(url){
     var msg = $("#record").val();
-    if (confirm(msg)) {   
-        if($("#is_demo_flag").val()=='1'){
-            alert($("#admin_demo_msg").val());
-        }else{
-            window.location.href = url; 
-        }                   
-    } else {
-        window.location.reload();
-    }
+    admNotify.confirm(msg, {title: 'Delete this record?', confirmText: 'Delete', cancelText: 'Cancel', danger: true}).then(function (ok) {
+        if (ok) {
+            if($("#is_demo_flag").val()=='1'){
+                admNotify.info($("#admin_demo_msg").val(), 'Demo Mode');
+            }else{
+                window.location.href = url;
+            }
+        } else {
+            window.location.reload();
+        }
+    });
 }
 
 function delete_user_detail(url){
     var msg = $("#record").val();
-    // alert(url);
-    if (confirm(msg)) {   
-         if($("#is_demo_flag").val()=='1'){
-            alert($("#admin_demo_msg").val());
-         }else{
-            window.location.href = url; 
-         }                   
-    } else {
-        window.location.reload();
-    }
+    admNotify.confirm(msg, {title: 'Delete this record?', confirmText: 'Delete', cancelText: 'Cancel', danger: true}).then(function (ok) {
+        if (ok) {
+            if($("#is_demo_flag").val()=='1'){
+                admNotify.info($("#admin_demo_msg").val(), 'Demo Mode');
+            }else{
+                window.location.href = url;
+            }
+        } else {
+            window.location.reload();
+        }
+    });
 }
 
 $(document).ready(function () {
@@ -2024,8 +2038,7 @@ function readURL(input, field) {
 
 function checkconfirmpassword(val){
     if(val!=$("#password").val()){
-        alert($("#pass_match_msg").val());
-        // alert("Password and Confirm Password Must Be Same");
+        admNotify.warning($("#pass_match_msg").val(), 'Password Mismatch');
         $("#cpassword").val("");
     }
 }

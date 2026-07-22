@@ -30,7 +30,7 @@
     flex-wrap: wrap; /* Ensure responsiveness */
     justify-content: center; /* Center the boxes */
     gap: 20px; /* Add space between boxes */
-    background-color:#2aa48c;
+    background-color:#f67f2d;
     border-radius:5px;
     padding-top:10px;
     padding-bottom:10px;
@@ -94,7 +94,7 @@
     }
     
     .about-card-1 {
-        background-color: #2aa48c;
+        background-color: #f67f2d;
         padding: 12px;
         border-radius: 10px;
         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
@@ -169,7 +169,7 @@
 .about-box i {
     font-size: 32px;
     margin-bottom: 10px;
-    color: #2aa48c;
+    color: #f67f2d;
 }
 
 .about-box h6 {
@@ -304,7 +304,7 @@
                         line-height: 0.1rem;
                     }
                     .about_icon_box i{
-                        color: #2aa48c; font-size: 28px;
+                        color: #f67f2d; font-size: 28px;
                     }
                 </style>
                 <h5 class="newstyle mt-4">2. Franchisee Setup Requirements (Key Investment)</h5>
@@ -504,7 +504,7 @@
                     </div>
                     <style>
                         .about_icon_box_val{
-                        background-color: #2aa48c;
+                        background-color: #f67f2d;
                         border-radius: 10%;
                         width: 73px;
                         height: 73px;
@@ -598,7 +598,7 @@
                 <div class="col-12 my-4 p-2" style="border:1px solid black;">
                     <div class="row">
                         <div class="col-md-2 col-lg-2 col-sm-12 centred">
-                            <i class="fas fa-hammer" style="font-size: 40px; color: #2aa48c;"></i>
+                            <i class="fas fa-hammer" style="font-size: 40px; color: #f67f2d;"></i>
                         </div>
                         <div class="col-md-10 col-lg-10 col-sm-12 ">
                             <p><b>Infrastructure Support</b></p>
@@ -609,7 +609,7 @@
                 <div class="col-12 my-4 p-2" style="border:1px solid black;">
                     <div class="row">
                         <div class="col-md-2 col-lg-2 col-sm-12 centred">
-                            <i class="fas fa-graduation-cap" style="font-size: 40px; color: #2aa48c;"></i>
+                            <i class="fas fa-graduation-cap" style="font-size: 40px; color: #f67f2d;"></i>
                             
                         </div>
                         <div class="col-md-10 col-lg-10 col-sm-12 ">
@@ -624,7 +624,7 @@
                 <div class="col-12 my-4 p-2" style="border:1px solid black;">
                     <div class="row">
                         <div class="col-md-2 col-lg-2 col-sm-12 centred">
-                            <i class="fas fa-handshake" style="font-size: 40px; color: #2aa48c;"></i>
+                            <i class="fas fa-handshake" style="font-size: 40px; color: #f67f2d;"></i>
                             
                         </div>
                         <div class="col-md-10 col-lg-10 col-sm-12">
@@ -638,7 +638,7 @@
                 <div class="col-12 my-4 p-2" style="border:1px solid black;">
                     <div class="row">
                         <div class="col-md-2 col-lg-2 col-sm-12 centred">
-                            <i class="fas fa-desktop" style="font-size: 40px; color: #2aa48c;"></i>
+                            <i class="fas fa-desktop" style="font-size: 40px; color: #f67f2d;"></i>
                             
                         </div>
                         <div class="col-md-10 col-lg-10 col-sm-12">
@@ -652,7 +652,7 @@
                 <div class="col-12 my-4 p-2" style="border:1px solid black;">
                     <div class="row">
                         <div class="col-md-2 col-lg-2 col-sm-12 centred">
-                            <i class="fas fa-box-open" style="font-size: 40px; color: #2aa48c;"></i>
+                            <i class="fas fa-box-open" style="font-size: 40px; color: #f67f2d;"></i>
                             
                         </div>
                         <div class="col-md-10 col-lg-10 col-sm-12">
@@ -735,8 +735,8 @@
         </div>
     </div>
     <div class="col-equal-5 p-2">
-        <div class="p-3 text-center steps-box-inner" style="border: 2px solid #2aa48c; border-radius: 8px;">
-            <h5 style="color: #2aa48c;">2.</h5>
+        <div class="p-3 text-center steps-box-inner" style="border: 2px solid #f67f2d; border-radius: 8px;">
+            <h5 style="color: #f67f2d;">2.</h5>
             <p class="13px mb-0"><b>Agreement</b>: Complete franchise registration and KYC.</p>
         </div>
     </div>
@@ -747,8 +747,8 @@
         </div>
     </div>
     <div class="col-equal-5 p-2">
-        <div class="p-3 text-center steps-box-inner" style="border: 2px solid #2aa48c; border-radius: 8px;">
-            <h5 style="color: #2aa48c;">4.</h5>
+        <div class="p-3 text-center steps-box-inner" style="border: 2px solid #f67f2d; border-radius: 8px;">
+            <h5 style="color: #f67f2d;">4.</h5>
             <p class="13px mb-0"><b>Marketing</b>: Launch local and digital outreach.</p>
         </div>
     </div>
@@ -797,7 +797,7 @@
             }
             
             .box {
-                border: 2px solid #2aa48c;
+                border: 2px solid #f67f2d;
                 border-radius: 5px;
                 padding: 4px;
                 background: white;
@@ -823,9 +823,9 @@
             }
             
             .box-wrapper.active .box {
-                background: #2aa48c;
+                background: #f67f2d;
                 color: white;
-                border-color: #2aa48c;
+                border-color: #f67f2d;
             }
             
             /* Shared description box under all */

@@ -15,6 +15,7 @@ use App\Models\Timeslote;
 use App\Models\Profiles;
 use App\Models\Parameter;
 use App\Models\City;
+use App\Models\Orders;
 use Hash;
 use Storage;
 use Config;
@@ -59,8 +60,25 @@ class CreateorderController extends Controller
         $store->sex = $request->sex;
         $store->phone = $request->phone;
         $store->password = bcrypt('123456rdc'); // Always hash passwords!
-        $store->user_type = '3'; 
+        $store->user_type = '3';
         $store->save();
+
+        // Every other registration path (see FrontController) auto-creates a
+        // "Self" family member so the customer immediately has someone to book
+        // tests for. This admin quick-create path was missing that step, which
+        // left orders_data.family_member_id null for any test added right
+        // after registering — and null there makes memberdetails() resolve to
+        // null, so the order-details view crashes reading memberdetails.name.
+        $storeFamily = new FamilyMember();
+        $storeFamily->name = $store->name;
+        $storeFamily->mobile_no = $store->phone;
+        $storeFamily->age = $store->age;
+        $storeFamily->email = $store->email;
+        $storeFamily->dob = $store->d_o_b;
+        $storeFamily->relation = 'Self';
+        $storeFamily->gender = $store->sex;
+        $storeFamily->user_id = $store->id;
+        $storeFamily->save();
 
         return response()->json(['success' => true, 'message' => 'User saved successfully!', 'data' => $store]);
 
@@ -89,8 +107,18 @@ class CreateorderController extends Controller
     }
     
     public function getUser(Request $request){
-        
+
         $user = $this->getUserlist($request->role);
+        // Display-only addition for the Select User cards ("Previous Orders"
+        // requested in the redesign) — a plain count keyed by user_id, no
+        // existing field/behavior touched.
+        $orderCounts = Orders::whereIn('user_id', $user->pluck('id'))
+            ->selectRaw('user_id, count(*) as c')
+            ->groupBy('user_id')
+            ->pluck('c', 'user_id');
+        foreach ($user as $u) {
+            $u->orders_count = (int) ($orderCounts[$u->id] ?? 0);
+        }
         $response =[
             'status'=>true,
             'msg'=>'User list',
