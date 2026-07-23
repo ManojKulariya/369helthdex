@@ -59,7 +59,7 @@
 						                                $path= url('/')."/storage/app/public/profile"."/".Auth::user()->profile_pic;
 						                            }
 						                            else{
-						                                $path=asset('/upload/default.jpg');
+						                                $path=asset('public/upload/default.jpg');
 						                            }
 						                        ?>
 					                        	<img src="{{$path}}" alt="..." class="img-thumbnail imgsize"  id="basic_img" >

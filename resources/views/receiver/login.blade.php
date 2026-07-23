@@ -8,7 +8,7 @@
       <meta content="Freaktemplate" name="author">
       <meta name="keywords" content="">
       <title>{{__("message.login_page_title_for_tranport")}}</title>
-      <link rel="icon" href="{{asset('img').'/'.$setting->favicon}}" type="image/x-icon"/>
+      <link rel="icon" href="{{asset('public/img').'/'.$setting->favicon}}" type="image/x-icon"/>
       <!--Bootstrap css -->
       
       <link href="{{ asset('public/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -71,19 +71,19 @@
             </div>
          </div>
       </div>
-      <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+      <script src="{{ asset('public/assets/js/jquery.min.js') }}"></script>
       <!-- Bootstrap5 js-->
-      <script src="{{ asset('assets/plugins/bootstrap/popper.min.js') }}"></script>
-      <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/bootstrap/popper.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
       <!--Othercharts js-->
-      <script src="{{ asset('assets/plugins/othercharts/jquery.sparkline.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/othercharts/jquery.sparkline.min.js') }}"></script>
       <!-- Circle-progress js-->
-      <script src="{{ asset('assets/js/circle-progress.min.js') }}"></script>
+      <script src="{{ asset('public/assets/js/circle-progress.min.js') }}"></script>
       <!-- Jquery-rating js-->
-      <script src="{{ asset('assets/plugins/rating/jquery.rating-stars.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/rating/jquery.rating-stars.js') }}"></script>
       <!-- Show Password -->
-      <script src="{{ asset('assets/js/bootstrap-show-password.min.js') }}"></script>
+      <script src="{{ asset('public/assets/js/bootstrap-show-password.min.js') }}"></script>
       <!-- Custom js-->
-      <script src="{{ asset('assets/js/custom.js') }}"></script>
+      <script src="{{ asset('public/assets/js/custom.js') }}"></script>
    </body>
 </html>

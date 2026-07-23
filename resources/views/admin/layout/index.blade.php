@@ -84,7 +84,7 @@
 		<link rel="stylesheet" href="{{ asset('public/theme.css') }}?v=4">
 
 		<!-- 369 HealthDex — Premium Admin skin (CSS-only layer over the theme above) -->
-		<link rel="stylesheet" href="{{ asset('admin-premium.css') }}?v=59">
+		<link rel="stylesheet" href="{{ asset('public/admin-premium.css') }}?v=59">
 	</head>
 	<body class="app sidebar-mini light-mode dark-header layout-fullwidth dark-menu">
 		
@@ -204,7 +204,7 @@
 		<!--<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>-->
 		
         <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
-		<script type="text/javascript" src="{{ asset('admin-notify.js') }}?v=2"></script>
+		<script type="text/javascript" src="{{ asset('public/admin-notify.js') }}?v=2"></script>
 		<script type="text/javascript" src="{{asset('public/admin.js?v=sadyutyfdg20')}}"></script>
 		<script type="text/javascript">
             // Only init when the page actually has a "description" field —

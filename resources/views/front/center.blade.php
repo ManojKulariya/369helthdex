@@ -91,7 +91,7 @@ $cityName = session()->get('cityName');
 <!-- Include other libraries or scripts if needed -->
 
 <!-- Include your custom JavaScript file that contains the Ajax code -->
-<script src="{{ asset('js/your-custom-script.js') }}"></script>
+<script src="{{ asset('public/js/your-custom-script.js') }}"></script>
 
         <script>
             var page = 1;

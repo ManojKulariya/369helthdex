@@ -54,7 +54,7 @@
                       $path= url('/')."/storage/profile"."/".Auth::user()->profile_pic;
                   }
                   else{
-                      $path=asset('/upload/default.jpg');
+                      $path=asset('public/upload/default.jpg');
                   }
                   ?>
                <div class="adm-upload">
